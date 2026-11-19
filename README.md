@@ -1,84 +1,188 @@
-<p align="center">
-	<a href="https://nethergames.org">
-		<!--[if IE]>
-			<img src="https://github.com/NetherGamesMC/PocketMine-MP/blob/stable/.github/readme/legacy-pocketmine.png" alt="The PocketMine-MP logo" title="PocketMine" loading="eager" />
-		<![endif]-->
-		<picture>
-			<source srcset="https://raw.githubusercontent.com/NetherGamesMC/PocketMine-MP/stable/.github/readme/pocketmine-dark-rgb.gif" media="(prefers-color-scheme: dark)">
-			<img src="https://raw.githubusercontent.com/NetherGamesMC/PocketMine-MP/stable/.github/readme/pocketmine-rgb.gif" loading="eager" />
-		</picture>
-	</a><br>
-	<b>A highly customisable, open source server software for Minecraft: Bedrock Edition written in PHP</b>
-</p>
+# PocketMine-MP Community Successor
 
-<p align="center">
-	<a href="https://github.com/NetherGamesMC/PocketMine-MP/actions/workflows/main.yml"><img src="https://github.com/NetherGamesMC/PocketMine-MP/actions/workflows/main.yml/badge.svg" alt="CI" /></a>
-	<a href="https://github.com/axolotl-pm/PocketMine-MP/releases/latest"><img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/axolotl-pm/PocketMine-MP?label=release&sort=semver"></a>
-	<a href="https://nethergames.org/discord"><img src="https://img.shields.io/discord/276992368358457344?label=discord&color=7289DA&logo=discord" alt="Discord" /></a>
-	<br>
-	<a href="https://github.com/axolotl-pm/PocketMine-MP/releases"><img alt="GitHub all releases" src="https://img.shields.io/github/downloads/axolotl-pm/PocketMine-MP/total?label=downloads%40total"></a>
-	<a href="https://github.com/axolotl-pm/PocketMine-MP/releases/latest"><img alt="GitHub release (latest by SemVer)" src="https://img.shields.io/github/downloads/axolotl-pm/PocketMine-MP/latest/total?sort=semver"></a>
-</p>
+**A community-driven continuation of PocketMine-MP — maintaining its legacy and expanding Minecraft: Bedrock Edition server capabilities.**
 
-## What is this?
-PocketMine-MP is a highly customisable server software for Minecraft: Bedrock Edition, built from scratch in PHP, with over 10 years of history.
+PocketMine-MP is a highly customisable, open-source server software for Minecraft: Bedrock Edition, written in PHP. It has powered custom Bedrock servers, minigames and plugin-driven gamemodes for over a decade.
 
-If you're looking to create a Minecraft: Bedrock server with **custom functionality**, look no further.
+In 2025 the upstream PocketMine-MP team announced the end of support: no one was left to update the project for new Minecraft versions. This repository continues from the last upstream release, now rebased onto the maintained NetherGames 5.51.2 base (Bedrock 1.26.60 / protocol 2225, compatible with 26.60–26.65 clients) as an actively maintained successor. It is **not** an official PocketMine-MP release and is not affiliated with the upstream team or Mojang.
 
-- 🧩 **Powerful plugin API** - extend and customise gameplay as you see fit
-- 🗺️ **Rich ecosystem** and **large developer community** - find plugins easily and learn to develop your own
-- 🌐 **Multi-world support** - offer a more varied game experience to players without transferring them to other server nodes
-- 🏎️ **Performance** - get 100+ players onto one server (depending on hardware and plugins)
-- ⤴️ **Continuously updated** - new Minecraft versions are usually supported within days
+- PHP 8.2+ (64-bit), PHP 8.4 recommended
+- Bedrock 1.26.60 / protocol 2225 (26.65 clients use the same protocol)
+- `ext-webrtc` for NetherNet (included in axolotl-pm PHP builds)
+- LGPL-3.0
 
-## :x: PocketMine-MP is NOT a vanilla Minecraft server software.
-**It is poorly suited to hosting vanilla survival servers.**
-It doesn't have many features from the vanilla game, such as vanilla world generation, redstone, mob AI, and various other things.
+---
 
-If you just want to play **vanilla survival multiplayer**, consider using the [official Minecraft: Bedrock server software](https://minecraft.net/download/server/bedrock) instead of PocketMine-MP.
+## Why this project exists
 
-If that's not an option for you, you may be able to add some of PocketMine-MP's missing features using plugins from [Poggit](https://poggit.pmmp.io/plugins), or write plugins to implement them yourself.
+The original PocketMine-MP development has stopped. New Bedrock versions, blocks, items and protocol changes will no longer be handled upstream. Server owners and plugin developers need a maintained codebase that keeps working with current clients.
 
-## Getting Started
-- [Documentation](http://pmmp.readthedocs.org/)
-- [Installation instructions](https://pmmp.readthedocs.io/en/rtfd/installation.html)
-- [Docker image](https://github.com/pmmp/PocketMine-MP/pkgs/container/pocketmine-mp)
-- [Plugin repository](https://poggit.pmmp.io/plugins)
+This project exists to fill that gap:
 
-## Community & Support
-Join our [Discord](https://nethergames.org/discord) server to chat with other users and developers.
+- continue protocol and data updates for new Bedrock releases;
+- close the block, item and gameplay compatibility gap with the official Bedrock Dedicated Server;
+- modernise the internals without breaking the plugin ecosystem;
+- keep the project documented, tested and buildable.
 
-You can also post questions on [StackOverflow](https://stackoverflow.com/tags/pocketmine) under the tag `pocketmine`.
+This is a continuation of PocketMine-MP's legacy, not merely a maintenance fork. The objective is to make it better, more complete and sustainable.
 
-## Developing Plugins
-If you want to write your own plugins, the following resources may be useful.
-Don't forget you can always ask our community if you need help.
+## Project status
 
- * [Developer documentation](https://devdoc.pmmp.io) - General documentation for PocketMine-MP plugin developers
- * [Latest release API documentation](https://apidoc.pmmp.io) - Doxygen API documentation generated for each release
- * [Latest bleeding-edge API documentation](https://apidoc-dev.pmmp.io) - Doxygen API documentation generated weekly from `major-next` branch
- * [DevTools](https://github.com/pmmp/DevTools/) - Development tools plugin for creating plugins
- * [ExamplePlugin](https://github.com/pmmp/ExamplePlugin/) - Example plugin demonstrating some basic API features
+The project is under active development. Everything below is measured against the Bedrock 1.26.60 canonical block palette shipped in `nethergamesmc/bedrock-data`.
 
-## Contributing to PocketMine-MP
-PocketMine-MP accepts community contributions! The following resources will be useful if you want to contribute to PocketMine-MP.
- * [Building and running PocketMine-MP from source](BUILDING.md)
- * [Contributing Guidelines](CONTRIBUTING.md)
+| Area | Status |
+|---|---|
+| Bedrock protocol 1.26.60 (2225), 26.65-compatible | Working (NetherGames 5.51.2 base, NetherNet + RakNet) |
+| Block type names registered | **1,334 / 1,480** |
+| Sulfur & cinnabar families | Complete (27 block types / 33 Bedrock block names, including `potent_sulfur` states) |
+| Sculk family | Catalyst, shrieker, vein, sensor, calibrated sensor implemented |
+| Technical blocks | Observer, dispenser, dropper, pistons, command/structure/jigsaw, vault, trial spawner implemented as stateful blocks |
+| Decorative 1.21–1.26 blocks | Bush, firefly bush, dry grass, leaf litter, wildflowers, pale moss, pale hanging moss, moss carpet, copper golem statues, etc. |
+| Block entities for new blocks | Partially. Shelves, copper chests and beehives are the remaining block types |
+| Vanilla world generation | Not achieved. The built-in generator is PocketMine-MP's simplified noise generator |
+| Nether / End dimensions | Nether generator exists; End generation and vanilla-style dimension travel are not implemented |
+| Redstone, mob AI, vanilla survival mechanics | Not implemented (same gap as upstream) |
 
-New here? Check out [issues with the "Easy task" label](https://github.com/pmmp/PocketMine-MP/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Easy%20task%22) for things you could work to familiarise yourself with the codebase.
+The remaining 146 names are the 1.26.60 additions not yet modelled: the poplar wood set, coloured wool/concrete slabs and stairs, shelves, copper chests, beehives, ice crystals/icicles, disc press, straw bed and related decoration. Shelves, copper chests and beehives need block entities and are intentionally not registered as tile-less stubs.
 
-## Donate
-PocketMine-MP is free, but it requires a lot of time and effort from unpaid volunteers to develop. Donations enable us to keep delivering support for new versions and adding features your players love.
+A live audit can be run with:
 
-You can support development using the following methods:
+```bash
+php build/audit/block-coverage.php
+```
 
-- [Patreon](https://www.patreon.com/pocketminemp)
-- Bitcoin (BTC): `bc1q2v5ngyf8ugyd55kqa9ep35g2rv342ueqm6ks33`
-- Stellar Lumens (XLM): `GAAC5WZ33HCTE3BFJFZJXONMEIBNHFLBXM2HJVAZHXXPYA3HP5XPPS7T`
+### What "implemented" means here
 
-Thanks for your support!
+A block is considered implemented when:
 
-## Licensing information
-This project is licensed under LGPL-3.0. Please see the [LICENSE](/LICENSE) file for details.
+- its Bedrock block type names and all canonical state permutations are registered;
+- state data round-trips through the Bedrock blockstate serializer/deserializer;
+- block properties (hardness, blast resistance, light, flammability, collision, support) match the vanilla data;
+- it can be placed, broken, saved and loaded, and its item form exists where Bedrock has one.
 
-pmmp/PocketMine are not affiliated with Mojang. All brands and trademarks belong to their respective owners. PocketMine-MP is not a Mojang-approved software, nor is it associated with Mojang.
+Gameplay systems layered on top of blocks (redstone propagation, piston movement, sculk sensing, archaeology, container UIs for the new blocks) are tracked separately in the roadmap. No block is registered as an empty stub: unknown or unimplemented Bedrock states still fall back to the existing `UnknownBlock` mechanism rather than silently becoming an incorrect vanilla block.
+
+## Feature overview
+
+- **Plugin API** — stable PocketMine-MP 5.x API, Composer-based plugins, event system, commands, forms, permissions, tasks and async workers.
+- **Block & item registry** — generated vanilla registries from official Bedrock data, full blockstate serialization for implemented blocks.
+- **World system** — LevelDB and region world formats, chunk loading/unloading, lighting, biomes, block entities, multiple worlds.
+- **Networking** — RakNet transport, current Bedrock protocol, login/authentication, resource packs, skins, forms.
+- **Entities & gameplay** — players, items, projectiles, basic mobs, inventories, crafting, enchantments, effects, farming primitives, weather and time.
+- **Tooling** — PHPStan level 9, PHPUnit suite, code generation for registries and Bedrock data constants, CI workflows.
+
+## Bedrock compatibility goals
+
+1. **Blocks and items** — reach full coverage of the canonical Bedrock palette, including tile-backed blocks.
+2. **Worlds** — Bedrock-compatible storage is already supported; generation parity with Bedrock Dedicated Server is the long-term goal.
+3. **Dimensions** — complete Overworld, Nether and End generation and portal travel.
+4. **Gameplay** — redstone, fluids, projectiles, combat, farming, breeding and block interactions at vanilla parity where practical.
+5. **Protocol** — current Bedrock versions, with modular updates for new releases.
+6. **Performance** — measured improvements, not claims. Benchmarks and profiling belong in the repository, not the README.
+
+## Requirements
+
+- 64-bit PHP 8.1 or newer (PHP 8.2+ recommended; the build guide assumes 8.2+)
+- Required extensions: `chunkutils2`, `crypto`, `ctype`, `curl`, `date`, `encoding`, `gmp`, `hash`, `igbinary`, `json`, `leveldb`, `mbstring`, `morton`, `openssl`, `pcre`, `phar`, `pmmpthread`, `reflection`, `simplexml`, `sockets`, `spl`, `yaml`, `zip`, `zlib`
+- Composer 2
+- A bash shell for building (Git Bash works on Windows)
+
+PMMP publishes prebuilt PHP binaries with all required extensions:
+[pmmp/PHP-Binaries releases](https://github.com/pmmp/PHP-Binaries/releases).
+
+## Installation
+
+### From source
+
+NetherNet (required by 26.60+ clients) needs `ext-webrtc`; the axolotl-pm prebuilt PHP binaries include it. Plain pmmp binaries do not.
+
+```bash
+git clone <this-repository> PocketMine-MP
+cd PocketMine-MP
+composer install
+php src/PocketMine.php
+```
+
+Open the game port for **both TCP and UDP** (NetherNet signaling uses TCP on `server-port`). On first start the server creates `server.properties`, `pocketmine.yml` and the `worlds/` directory. Edit `server.properties` before inviting players.
+
+### Build a distributable PHAR
+
+```bash
+composer install --no-dev --classmap-authoritative
+composer make-server
+php PocketMine-MP.phar
+```
+
+`composer make-server` produces `PocketMine-MP.phar` in the repository root. See [BUILDING.md](BUILDING.md) for custom PHP binaries and platform notes.
+
+### Docker
+
+The upstream Docker image is not maintained by this project. Build from the included `docker/` directory if you need a container, and pin the PHP binary version you test with.
+
+## Development setup
+
+```bash
+composer install
+composer update-codegen        # regenerate registries from bedrock-data after data bumps
+vendor/bin/phpunit --bootstrap vendor/autoload.php tests/phpunit
+vendor/bin/phpstan analyse
+```
+
+Useful entry points:
+
+- `src/block/` — block implementations and `VanillaBlocksInputs`
+- `src/data/bedrock/block/convert/` — Bedrock blockstate mappings
+- `src/item/` — items, `StringToItemParser`, item type IDs
+- `src/world/` — worlds, formats, generators
+- `tests/phpunit/` — unit tests; `tests/plugins/` — server-level test plugins
+
+When adding a block:
+
+1. add the type ID to `src/block/BlockTypeIds.php`;
+2. register it in `src/block/VanillaBlocksInputs.php`;
+3. add serializer/deserializer mappings in `VanillaBlockMappings.php`;
+4. regenerate `generated/block/VanillaBlocks.php`:
+
+   ```bash
+   php build/codegen/registry-interface.php src generated
+   ```
+
+5. regenerate the block factory consistency table:
+
+   ```bash
+   php tests/phpunit/block/regenerate_consistency_check.php
+   ```
+
+6. add the item alias in `src/item/StringToItemParser.php`;
+7. run PHPUnit and PHPStan.
+
+`BlockTest` verifies hardness/blast resistance against the vanilla properties table, and `BlockSerializerDeserializerTest` round-trips every registered state.
+
+## Plugin development
+
+The plugin API is compatible with PocketMine-MP 5.x. Existing plugins should continue to work when the functionality they use is supported.
+
+- API version: 5.x (`src/plugin/ApiVersion.php`)
+- Plugins are Composer packages or PHARs loaded from `plugins/`
+- Documentation: [pmmp docs](https://doc.pmmp.io/) (upstream API documentation remains valid for the inherited API)
+- Plugin repository: [Poggit](https://poggit.pmmp.io/plugins)
+- Migration notes: [docs/PLUGIN-MIGRATION.md](docs/PLUGIN-MIGRATION.md)
+
+## Contributing
+
+Contributions are welcome: bug fixes, block implementations, protocol updates, tests, documentation and profiling results.
+
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) for coding standards and PR expectations.
+- Keep changes focused and include tests where behaviour changes.
+- Do not add placeholder implementations; a block or feature is either implemented or tracked in the roadmap.
+- Report security issues privately according to [SECURITY.md](SECURITY.md).
+
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for the current milestone list, remaining block work and long-term goals.
+
+## License
+
+PocketMine-MP is licensed under the GNU Lesser General Public License v3.0. See [LICENSE](LICENSE).
+
+PocketMine-MP and this community successor are not affiliated with Mojang or Microsoft. Minecraft is a trademark of Mojang Synergies AB. All brands and trademarks belong to their respective owners.

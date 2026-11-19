@@ -1,6 +1,6 @@
 # Roadmap
 
-Status snapshot: Bedrock 1.26.30 (protocol 1001), based on upstream PocketMine-MP 5.44.4.
+Status snapshot: Bedrock 1.26.60 (protocol 2225), based on NetherGames PocketMine-MP 5.51.2. 26.65 clients use the same protocol. NetherNet is enabled alongside RakNet.
 
 Legend: **done** — implemented and covered by tests; **active** — partially implemented, needs the listed work; **planned** — not started.
 
@@ -18,13 +18,14 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Technical blocks with full state models: observer, dispenser, dropper, piston/sticky piston and arm collision blocks, moving block, command blocks, structure block, jigsaw, vault, trial spawner, crafter, creaking heart, decorated pot, grindstone, sculk sensor/calibrated sensor/shrieker/catalyst/vein, border/allow/deny blocks, chalkboard, camera, end portal/gateway, powder snow, unknown/client placeholder blocks.
 - Cherry and pale oak saplings, with matching tree generators.
 
-Coverage: **1,334 of 1,356** canonical block type names.
+Coverage: **1,334 of 1,480** canonical block type names (90.1%).
 
 **Active**
 
 - 8 wooden shelves — block entity with 4 item slots, comparator output and powered state.
 - 6 copper chests — container block entity with oxidation/wax variants; decide on chest pairing semantics.
 - `bee_nest`, `beehive` — bee block entity, honey level and release behaviour.
+- 1.26.60 content: poplar wood set, coloured wool/concrete slabs and stairs, ice crystal/icicle, disc press, straw bed, red shrub, shelf mushroom, poplar leaves variants.
 
 **Planned**
 
@@ -80,7 +81,8 @@ Coverage: **1,334 of 1,356** canonical block type names.
 
 **Done**
 
-- RakNet transport, current protocol (1001), login/authentication, resource packs, skins, forms.
+- RakNet transport, NetherNet (TCP signaling + UDP game data), protocol 2225, login/authentication, resource packs, skins, forms.
+- NetherNet is required by 26.60+ clients; the server needs the port open for TCP and UDP.
 
 **Active**
 
