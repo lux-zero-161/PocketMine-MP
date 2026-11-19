@@ -1001,7 +1001,40 @@ final class BlockTypeIds{
 	public const BLACK_WOOL_SLAB = 10967;
 	public const BLACK_CONCRETE_SLAB = 10968;
 
-	public const FIRST_UNUSED_BLOCK_ID = 10969;
+	public const WHITE_WOOL_STAIRS = 10969;
+	public const ORANGE_WOOL_STAIRS = 10970;
+	public const MAGENTA_WOOL_STAIRS = 10971;
+	public const LIGHT_BLUE_WOOL_STAIRS = 10972;
+	public const YELLOW_WOOL_STAIRS = 10973;
+	public const LIME_WOOL_STAIRS = 10974;
+	public const PINK_WOOL_STAIRS = 10975;
+	public const GRAY_WOOL_STAIRS = 10976;
+	public const LIGHT_GRAY_WOOL_STAIRS = 10977;
+	public const CYAN_WOOL_STAIRS = 10978;
+	public const PURPLE_WOOL_STAIRS = 10979;
+	public const BLUE_WOOL_STAIRS = 10980;
+	public const BROWN_WOOL_STAIRS = 10981;
+	public const GREEN_WOOL_STAIRS = 10982;
+	public const RED_WOOL_STAIRS = 10983;
+	public const BLACK_WOOL_STAIRS = 10984;
+	public const WHITE_CONCRETE_STAIRS = 10985;
+	public const ORANGE_CONCRETE_STAIRS = 10986;
+	public const MAGENTA_CONCRETE_STAIRS = 10987;
+	public const LIGHT_BLUE_CONCRETE_STAIRS = 10988;
+	public const YELLOW_CONCRETE_STAIRS = 10989;
+	public const LIME_CONCRETE_STAIRS = 10990;
+	public const PINK_CONCRETE_STAIRS = 10991;
+	public const GRAY_CONCRETE_STAIRS = 10992;
+	public const LIGHT_GRAY_CONCRETE_STAIRS = 10993;
+	public const CYAN_CONCRETE_STAIRS = 10994;
+	public const PURPLE_CONCRETE_STAIRS = 10995;
+	public const BLUE_CONCRETE_STAIRS = 10996;
+	public const BROWN_CONCRETE_STAIRS = 10997;
+	public const GREEN_CONCRETE_STAIRS = 10998;
+	public const RED_CONCRETE_STAIRS = 10999;
+	public const BLACK_CONCRETE_STAIRS = 11000;
+
+	public const FIRST_UNUSED_BLOCK_ID = 11001;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_BLOCK_ID;
 

@@ -126,13 +126,17 @@ final class VanillaBlocks{
 	private static Stair $_mBLACKSTONE_STAIRS;
 	private static Wall $_mBLACKSTONE_WALL;
 	private static Slab $_mBLACK_CONCRETE_SLAB;
+	private static Stair $_mBLACK_CONCRETE_STAIRS;
 	private static Slab $_mBLACK_WOOL_SLAB;
+	private static Stair $_mBLACK_WOOL_STAIRS;
 	private static Furnace $_mBLAST_FURNACE;
 	private static Slab $_mBLUE_CONCRETE_SLAB;
+	private static Stair $_mBLUE_CONCRETE_STAIRS;
 	private static BlueIce $_mBLUE_ICE;
 	private static Flower $_mBLUE_ORCHID;
 	private static Torch $_mBLUE_TORCH;
 	private static Slab $_mBLUE_WOOL_SLAB;
+	private static Stair $_mBLUE_WOOL_STAIRS;
 	private static BoneBlock $_mBONE_BLOCK;
 	private static Bookshelf $_mBOOKSHELF;
 	private static BorderBlock $_mBORDER_BLOCK;
@@ -142,9 +146,11 @@ final class VanillaBlocks{
 	private static Stair $_mBRICK_STAIRS;
 	private static Wall $_mBRICK_WALL;
 	private static Slab $_mBROWN_CONCRETE_SLAB;
+	private static Stair $_mBROWN_CONCRETE_STAIRS;
 	private static BrownMushroom $_mBROWN_MUSHROOM;
 	private static BrownMushroomBlock $_mBROWN_MUSHROOM_BLOCK;
 	private static Slab $_mBROWN_WOOL_SLAB;
+	private static Stair $_mBROWN_WOOL_STAIRS;
 	private static BubbleColumn $_mBUBBLE_COLUMN;
 	private static BuddingAmethyst $_mBUDDING_AMETHYST;
 	private static Bush $_mBUSH;
@@ -284,7 +290,9 @@ final class VanillaBlocks{
 	private static Opaque $_mCUT_SANDSTONE;
 	private static Slab $_mCUT_SANDSTONE_SLAB;
 	private static Slab $_mCYAN_CONCRETE_SLAB;
+	private static Stair $_mCYAN_CONCRETE_STAIRS;
 	private static Slab $_mCYAN_WOOL_SLAB;
+	private static Stair $_mCYAN_WOOL_STAIRS;
 	private static CyclingPotentSulfur $_mCYCLING_POTENT_SULFUR;
 	private static Flower $_mDANDELION;
 	private static WoodenButton $_mDARK_OAK_BUTTON;
@@ -516,10 +524,14 @@ final class VanillaBlocks{
 	private static GrassPath $_mGRASS_PATH;
 	private static Gravel $_mGRAVEL;
 	private static Slab $_mGRAY_CONCRETE_SLAB;
+	private static Stair $_mGRAY_CONCRETE_STAIRS;
 	private static Slab $_mGRAY_WOOL_SLAB;
+	private static Stair $_mGRAY_WOOL_STAIRS;
 	private static Slab $_mGREEN_CONCRETE_SLAB;
+	private static Stair $_mGREEN_CONCRETE_STAIRS;
 	private static Torch $_mGREEN_TORCH;
 	private static Slab $_mGREEN_WOOL_SLAB;
+	private static Stair $_mGREEN_WOOL_STAIRS;
 	private static Grindstone $_mGRINDSTONE;
 	private static HangingRoots $_mHANGING_ROOTS;
 	private static HardenedClay $_mHARDENED_CLAY;
@@ -583,19 +595,27 @@ final class VanillaBlocks{
 	private static Light $_mLIGHT;
 	private static LightningRod $_mLIGHTNING_ROD;
 	private static Slab $_mLIGHT_BLUE_CONCRETE_SLAB;
+	private static Stair $_mLIGHT_BLUE_CONCRETE_STAIRS;
 	private static Slab $_mLIGHT_BLUE_WOOL_SLAB;
+	private static Stair $_mLIGHT_BLUE_WOOL_STAIRS;
 	private static Slab $_mLIGHT_GRAY_CONCRETE_SLAB;
+	private static Stair $_mLIGHT_GRAY_CONCRETE_STAIRS;
 	private static Slab $_mLIGHT_GRAY_WOOL_SLAB;
+	private static Stair $_mLIGHT_GRAY_WOOL_STAIRS;
 	private static DoublePlant $_mLILAC;
 	private static Flower $_mLILY_OF_THE_VALLEY;
 	private static WaterLily $_mLILY_PAD;
 	private static Slab $_mLIME_CONCRETE_SLAB;
+	private static Stair $_mLIME_CONCRETE_STAIRS;
 	private static Slab $_mLIME_WOOL_SLAB;
+	private static Stair $_mLIME_WOOL_STAIRS;
 	private static LitPumpkin $_mLIT_PUMPKIN;
 	private static Opaque $_mLODESTONE;
 	private static Loom $_mLOOM;
 	private static Slab $_mMAGENTA_CONCRETE_SLAB;
+	private static Stair $_mMAGENTA_CONCRETE_STAIRS;
 	private static Slab $_mMAGENTA_WOOL_SLAB;
+	private static Stair $_mMAGENTA_WOOL_STAIRS;
 	private static Magma $_mMAGMA;
 	private static WoodenButton $_mMANGROVE_BUTTON;
 	private static CeilingCenterHangingSign $_mMANGROVE_CEILING_CENTER_HANGING_SIGN;
@@ -679,8 +699,10 @@ final class VanillaBlocks{
 	private static OminousWallBanner $_mOMINOUS_WALL_BANNER;
 	private static Flower $_mOPEN_EYEBLOSSOM;
 	private static Slab $_mORANGE_CONCRETE_SLAB;
+	private static Stair $_mORANGE_CONCRETE_STAIRS;
 	private static Flower $_mORANGE_TULIP;
 	private static Slab $_mORANGE_WOOL_SLAB;
+	private static Stair $_mORANGE_WOOL_STAIRS;
 	private static Flower $_mOXEYE_DAISY;
 	private static CopperGolemStatue $_mOXIDIZED_COPPER_GOLEM_STATUE;
 	private static PackedIce $_mPACKED_ICE;
@@ -708,9 +730,11 @@ final class VanillaBlocks{
 	private static Wood $_mPALE_OAK_WOOD;
 	private static DoublePlant $_mPEONY;
 	private static Slab $_mPINK_CONCRETE_SLAB;
+	private static Stair $_mPINK_CONCRETE_STAIRS;
 	private static PinkPetals $_mPINK_PETALS;
 	private static Flower $_mPINK_TULIP;
 	private static Slab $_mPINK_WOOL_SLAB;
+	private static Stair $_mPINK_WOOL_STAIRS;
 	private static Piston $_mPISTON;
 	private static PistonArmCollision $_mPISTON_ARM_COLLISION;
 	private static PitcherCrop $_mPITCHER_CROP;
@@ -769,8 +793,10 @@ final class VanillaBlocks{
 	private static Pumpkin $_mPUMPKIN;
 	private static PumpkinStem $_mPUMPKIN_STEM;
 	private static Slab $_mPURPLE_CONCRETE_SLAB;
+	private static Stair $_mPURPLE_CONCRETE_STAIRS;
 	private static Torch $_mPURPLE_TORCH;
 	private static Slab $_mPURPLE_WOOL_SLAB;
+	private static Stair $_mPURPLE_WOOL_STAIRS;
 	private static Opaque $_mPURPUR;
 	private static SimplePillar $_mPURPUR_PILLAR;
 	private static Slab $_mPURPUR_SLAB;
@@ -792,6 +818,7 @@ final class VanillaBlocks{
 	private static RedstoneTorch $_mREDSTONE_TORCH;
 	private static RedstoneWire $_mREDSTONE_WIRE;
 	private static Slab $_mRED_CONCRETE_SLAB;
+	private static Stair $_mRED_CONCRETE_STAIRS;
 	private static RedMushroom $_mRED_MUSHROOM;
 	private static RedMushroomBlock $_mRED_MUSHROOM_BLOCK;
 	private static Opaque $_mRED_NETHER_BRICKS;
@@ -806,6 +833,7 @@ final class VanillaBlocks{
 	private static Torch $_mRED_TORCH;
 	private static Flower $_mRED_TULIP;
 	private static Slab $_mRED_WOOL_SLAB;
+	private static Stair $_mRED_WOOL_STAIRS;
 	private static Opaque $_mREINFORCED_DEEPSLATE;
 	private static CommandBlock $_mREPEATING_COMMAND_BLOCK;
 	private static Reserved6 $_mRESERVED6;
@@ -973,13 +1001,17 @@ final class VanillaBlocks{
 	private static WetPotentSulfur $_mWET_POTENT_SULFUR;
 	private static Wheat $_mWHEAT;
 	private static Slab $_mWHITE_CONCRETE_SLAB;
+	private static Stair $_mWHITE_CONCRETE_STAIRS;
 	private static Flower $_mWHITE_TULIP;
 	private static Slab $_mWHITE_WOOL_SLAB;
+	private static Stair $_mWHITE_WOOL_STAIRS;
 	private static Wildflowers $_mWILDFLOWERS;
 	private static WitherRose $_mWITHER_ROSE;
 	private static Wool $_mWOOL;
 	private static Slab $_mYELLOW_CONCRETE_SLAB;
+	private static Stair $_mYELLOW_CONCRETE_STAIRS;
 	private static Slab $_mYELLOW_WOOL_SLAB;
+	private static Stair $_mYELLOW_WOOL_STAIRS;
 
 	/**
 	 * @var Block[]
@@ -1102,13 +1134,17 @@ final class VanillaBlocks{
 			"blackstone_stairs" => fn(Stair $v) => self::$_mBLACKSTONE_STAIRS = $v,
 			"blackstone_wall" => fn(Wall $v) => self::$_mBLACKSTONE_WALL = $v,
 			"black_concrete_slab" => fn(Slab $v) => self::$_mBLACK_CONCRETE_SLAB = $v,
+			"black_concrete_stairs" => fn(Stair $v) => self::$_mBLACK_CONCRETE_STAIRS = $v,
 			"black_wool_slab" => fn(Slab $v) => self::$_mBLACK_WOOL_SLAB = $v,
+			"black_wool_stairs" => fn(Stair $v) => self::$_mBLACK_WOOL_STAIRS = $v,
 			"blast_furnace" => fn(Furnace $v) => self::$_mBLAST_FURNACE = $v,
 			"blue_concrete_slab" => fn(Slab $v) => self::$_mBLUE_CONCRETE_SLAB = $v,
+			"blue_concrete_stairs" => fn(Stair $v) => self::$_mBLUE_CONCRETE_STAIRS = $v,
 			"blue_ice" => fn(BlueIce $v) => self::$_mBLUE_ICE = $v,
 			"blue_orchid" => fn(Flower $v) => self::$_mBLUE_ORCHID = $v,
 			"blue_torch" => fn(Torch $v) => self::$_mBLUE_TORCH = $v,
 			"blue_wool_slab" => fn(Slab $v) => self::$_mBLUE_WOOL_SLAB = $v,
+			"blue_wool_stairs" => fn(Stair $v) => self::$_mBLUE_WOOL_STAIRS = $v,
 			"bone_block" => fn(BoneBlock $v) => self::$_mBONE_BLOCK = $v,
 			"bookshelf" => fn(Bookshelf $v) => self::$_mBOOKSHELF = $v,
 			"border_block" => fn(BorderBlock $v) => self::$_mBORDER_BLOCK = $v,
@@ -1118,9 +1154,11 @@ final class VanillaBlocks{
 			"brick_stairs" => fn(Stair $v) => self::$_mBRICK_STAIRS = $v,
 			"brick_wall" => fn(Wall $v) => self::$_mBRICK_WALL = $v,
 			"brown_concrete_slab" => fn(Slab $v) => self::$_mBROWN_CONCRETE_SLAB = $v,
+			"brown_concrete_stairs" => fn(Stair $v) => self::$_mBROWN_CONCRETE_STAIRS = $v,
 			"brown_mushroom" => fn(BrownMushroom $v) => self::$_mBROWN_MUSHROOM = $v,
 			"brown_mushroom_block" => fn(BrownMushroomBlock $v) => self::$_mBROWN_MUSHROOM_BLOCK = $v,
 			"brown_wool_slab" => fn(Slab $v) => self::$_mBROWN_WOOL_SLAB = $v,
+			"brown_wool_stairs" => fn(Stair $v) => self::$_mBROWN_WOOL_STAIRS = $v,
 			"bubble_column" => fn(BubbleColumn $v) => self::$_mBUBBLE_COLUMN = $v,
 			"budding_amethyst" => fn(BuddingAmethyst $v) => self::$_mBUDDING_AMETHYST = $v,
 			"bush" => fn(Bush $v) => self::$_mBUSH = $v,
@@ -1260,7 +1298,9 @@ final class VanillaBlocks{
 			"cut_sandstone" => fn(Opaque $v) => self::$_mCUT_SANDSTONE = $v,
 			"cut_sandstone_slab" => fn(Slab $v) => self::$_mCUT_SANDSTONE_SLAB = $v,
 			"cyan_concrete_slab" => fn(Slab $v) => self::$_mCYAN_CONCRETE_SLAB = $v,
+			"cyan_concrete_stairs" => fn(Stair $v) => self::$_mCYAN_CONCRETE_STAIRS = $v,
 			"cyan_wool_slab" => fn(Slab $v) => self::$_mCYAN_WOOL_SLAB = $v,
+			"cyan_wool_stairs" => fn(Stair $v) => self::$_mCYAN_WOOL_STAIRS = $v,
 			"cycling_potent_sulfur" => fn(CyclingPotentSulfur $v) => self::$_mCYCLING_POTENT_SULFUR = $v,
 			"dandelion" => fn(Flower $v) => self::$_mDANDELION = $v,
 			"dark_oak_button" => fn(WoodenButton $v) => self::$_mDARK_OAK_BUTTON = $v,
@@ -1492,10 +1532,14 @@ final class VanillaBlocks{
 			"grass_path" => fn(GrassPath $v) => self::$_mGRASS_PATH = $v,
 			"gravel" => fn(Gravel $v) => self::$_mGRAVEL = $v,
 			"gray_concrete_slab" => fn(Slab $v) => self::$_mGRAY_CONCRETE_SLAB = $v,
+			"gray_concrete_stairs" => fn(Stair $v) => self::$_mGRAY_CONCRETE_STAIRS = $v,
 			"gray_wool_slab" => fn(Slab $v) => self::$_mGRAY_WOOL_SLAB = $v,
+			"gray_wool_stairs" => fn(Stair $v) => self::$_mGRAY_WOOL_STAIRS = $v,
 			"green_concrete_slab" => fn(Slab $v) => self::$_mGREEN_CONCRETE_SLAB = $v,
+			"green_concrete_stairs" => fn(Stair $v) => self::$_mGREEN_CONCRETE_STAIRS = $v,
 			"green_torch" => fn(Torch $v) => self::$_mGREEN_TORCH = $v,
 			"green_wool_slab" => fn(Slab $v) => self::$_mGREEN_WOOL_SLAB = $v,
+			"green_wool_stairs" => fn(Stair $v) => self::$_mGREEN_WOOL_STAIRS = $v,
 			"grindstone" => fn(Grindstone $v) => self::$_mGRINDSTONE = $v,
 			"hanging_roots" => fn(HangingRoots $v) => self::$_mHANGING_ROOTS = $v,
 			"hardened_clay" => fn(HardenedClay $v) => self::$_mHARDENED_CLAY = $v,
@@ -1559,19 +1603,27 @@ final class VanillaBlocks{
 			"light" => fn(Light $v) => self::$_mLIGHT = $v,
 			"lightning_rod" => fn(LightningRod $v) => self::$_mLIGHTNING_ROD = $v,
 			"light_blue_concrete_slab" => fn(Slab $v) => self::$_mLIGHT_BLUE_CONCRETE_SLAB = $v,
+			"light_blue_concrete_stairs" => fn(Stair $v) => self::$_mLIGHT_BLUE_CONCRETE_STAIRS = $v,
 			"light_blue_wool_slab" => fn(Slab $v) => self::$_mLIGHT_BLUE_WOOL_SLAB = $v,
+			"light_blue_wool_stairs" => fn(Stair $v) => self::$_mLIGHT_BLUE_WOOL_STAIRS = $v,
 			"light_gray_concrete_slab" => fn(Slab $v) => self::$_mLIGHT_GRAY_CONCRETE_SLAB = $v,
+			"light_gray_concrete_stairs" => fn(Stair $v) => self::$_mLIGHT_GRAY_CONCRETE_STAIRS = $v,
 			"light_gray_wool_slab" => fn(Slab $v) => self::$_mLIGHT_GRAY_WOOL_SLAB = $v,
+			"light_gray_wool_stairs" => fn(Stair $v) => self::$_mLIGHT_GRAY_WOOL_STAIRS = $v,
 			"lilac" => fn(DoublePlant $v) => self::$_mLILAC = $v,
 			"lily_of_the_valley" => fn(Flower $v) => self::$_mLILY_OF_THE_VALLEY = $v,
 			"lily_pad" => fn(WaterLily $v) => self::$_mLILY_PAD = $v,
 			"lime_concrete_slab" => fn(Slab $v) => self::$_mLIME_CONCRETE_SLAB = $v,
+			"lime_concrete_stairs" => fn(Stair $v) => self::$_mLIME_CONCRETE_STAIRS = $v,
 			"lime_wool_slab" => fn(Slab $v) => self::$_mLIME_WOOL_SLAB = $v,
+			"lime_wool_stairs" => fn(Stair $v) => self::$_mLIME_WOOL_STAIRS = $v,
 			"lit_pumpkin" => fn(LitPumpkin $v) => self::$_mLIT_PUMPKIN = $v,
 			"lodestone" => fn(Opaque $v) => self::$_mLODESTONE = $v,
 			"loom" => fn(Loom $v) => self::$_mLOOM = $v,
 			"magenta_concrete_slab" => fn(Slab $v) => self::$_mMAGENTA_CONCRETE_SLAB = $v,
+			"magenta_concrete_stairs" => fn(Stair $v) => self::$_mMAGENTA_CONCRETE_STAIRS = $v,
 			"magenta_wool_slab" => fn(Slab $v) => self::$_mMAGENTA_WOOL_SLAB = $v,
+			"magenta_wool_stairs" => fn(Stair $v) => self::$_mMAGENTA_WOOL_STAIRS = $v,
 			"magma" => fn(Magma $v) => self::$_mMAGMA = $v,
 			"mangrove_button" => fn(WoodenButton $v) => self::$_mMANGROVE_BUTTON = $v,
 			"mangrove_ceiling_center_hanging_sign" => fn(CeilingCenterHangingSign $v) => self::$_mMANGROVE_CEILING_CENTER_HANGING_SIGN = $v,
@@ -1655,8 +1707,10 @@ final class VanillaBlocks{
 			"ominous_wall_banner" => fn(OminousWallBanner $v) => self::$_mOMINOUS_WALL_BANNER = $v,
 			"open_eyeblossom" => fn(Flower $v) => self::$_mOPEN_EYEBLOSSOM = $v,
 			"orange_concrete_slab" => fn(Slab $v) => self::$_mORANGE_CONCRETE_SLAB = $v,
+			"orange_concrete_stairs" => fn(Stair $v) => self::$_mORANGE_CONCRETE_STAIRS = $v,
 			"orange_tulip" => fn(Flower $v) => self::$_mORANGE_TULIP = $v,
 			"orange_wool_slab" => fn(Slab $v) => self::$_mORANGE_WOOL_SLAB = $v,
+			"orange_wool_stairs" => fn(Stair $v) => self::$_mORANGE_WOOL_STAIRS = $v,
 			"oxeye_daisy" => fn(Flower $v) => self::$_mOXEYE_DAISY = $v,
 			"oxidized_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mOXIDIZED_COPPER_GOLEM_STATUE = $v,
 			"packed_ice" => fn(PackedIce $v) => self::$_mPACKED_ICE = $v,
@@ -1684,9 +1738,11 @@ final class VanillaBlocks{
 			"pale_oak_wood" => fn(Wood $v) => self::$_mPALE_OAK_WOOD = $v,
 			"peony" => fn(DoublePlant $v) => self::$_mPEONY = $v,
 			"pink_concrete_slab" => fn(Slab $v) => self::$_mPINK_CONCRETE_SLAB = $v,
+			"pink_concrete_stairs" => fn(Stair $v) => self::$_mPINK_CONCRETE_STAIRS = $v,
 			"pink_petals" => fn(PinkPetals $v) => self::$_mPINK_PETALS = $v,
 			"pink_tulip" => fn(Flower $v) => self::$_mPINK_TULIP = $v,
 			"pink_wool_slab" => fn(Slab $v) => self::$_mPINK_WOOL_SLAB = $v,
+			"pink_wool_stairs" => fn(Stair $v) => self::$_mPINK_WOOL_STAIRS = $v,
 			"piston" => fn(Piston $v) => self::$_mPISTON = $v,
 			"piston_arm_collision" => fn(PistonArmCollision $v) => self::$_mPISTON_ARM_COLLISION = $v,
 			"pitcher_crop" => fn(PitcherCrop $v) => self::$_mPITCHER_CROP = $v,
@@ -1745,8 +1801,10 @@ final class VanillaBlocks{
 			"pumpkin" => fn(Pumpkin $v) => self::$_mPUMPKIN = $v,
 			"pumpkin_stem" => fn(PumpkinStem $v) => self::$_mPUMPKIN_STEM = $v,
 			"purple_concrete_slab" => fn(Slab $v) => self::$_mPURPLE_CONCRETE_SLAB = $v,
+			"purple_concrete_stairs" => fn(Stair $v) => self::$_mPURPLE_CONCRETE_STAIRS = $v,
 			"purple_torch" => fn(Torch $v) => self::$_mPURPLE_TORCH = $v,
 			"purple_wool_slab" => fn(Slab $v) => self::$_mPURPLE_WOOL_SLAB = $v,
+			"purple_wool_stairs" => fn(Stair $v) => self::$_mPURPLE_WOOL_STAIRS = $v,
 			"purpur" => fn(Opaque $v) => self::$_mPURPUR = $v,
 			"purpur_pillar" => fn(SimplePillar $v) => self::$_mPURPUR_PILLAR = $v,
 			"purpur_slab" => fn(Slab $v) => self::$_mPURPUR_SLAB = $v,
@@ -1768,6 +1826,7 @@ final class VanillaBlocks{
 			"redstone_torch" => fn(RedstoneTorch $v) => self::$_mREDSTONE_TORCH = $v,
 			"redstone_wire" => fn(RedstoneWire $v) => self::$_mREDSTONE_WIRE = $v,
 			"red_concrete_slab" => fn(Slab $v) => self::$_mRED_CONCRETE_SLAB = $v,
+			"red_concrete_stairs" => fn(Stair $v) => self::$_mRED_CONCRETE_STAIRS = $v,
 			"red_mushroom" => fn(RedMushroom $v) => self::$_mRED_MUSHROOM = $v,
 			"red_mushroom_block" => fn(RedMushroomBlock $v) => self::$_mRED_MUSHROOM_BLOCK = $v,
 			"red_nether_bricks" => fn(Opaque $v) => self::$_mRED_NETHER_BRICKS = $v,
@@ -1782,6 +1841,7 @@ final class VanillaBlocks{
 			"red_torch" => fn(Torch $v) => self::$_mRED_TORCH = $v,
 			"red_tulip" => fn(Flower $v) => self::$_mRED_TULIP = $v,
 			"red_wool_slab" => fn(Slab $v) => self::$_mRED_WOOL_SLAB = $v,
+			"red_wool_stairs" => fn(Stair $v) => self::$_mRED_WOOL_STAIRS = $v,
 			"reinforced_deepslate" => fn(Opaque $v) => self::$_mREINFORCED_DEEPSLATE = $v,
 			"repeating_command_block" => fn(CommandBlock $v) => self::$_mREPEATING_COMMAND_BLOCK = $v,
 			"reserved6" => fn(Reserved6 $v) => self::$_mRESERVED6 = $v,
@@ -1949,13 +2009,17 @@ final class VanillaBlocks{
 			"wet_potent_sulfur" => fn(WetPotentSulfur $v) => self::$_mWET_POTENT_SULFUR = $v,
 			"wheat" => fn(Wheat $v) => self::$_mWHEAT = $v,
 			"white_concrete_slab" => fn(Slab $v) => self::$_mWHITE_CONCRETE_SLAB = $v,
+			"white_concrete_stairs" => fn(Stair $v) => self::$_mWHITE_CONCRETE_STAIRS = $v,
 			"white_tulip" => fn(Flower $v) => self::$_mWHITE_TULIP = $v,
 			"white_wool_slab" => fn(Slab $v) => self::$_mWHITE_WOOL_SLAB = $v,
+			"white_wool_stairs" => fn(Stair $v) => self::$_mWHITE_WOOL_STAIRS = $v,
 			"wildflowers" => fn(Wildflowers $v) => self::$_mWILDFLOWERS = $v,
 			"wither_rose" => fn(WitherRose $v) => self::$_mWITHER_ROSE = $v,
 			"wool" => fn(Wool $v) => self::$_mWOOL = $v,
 			"yellow_concrete_slab" => fn(Slab $v) => self::$_mYELLOW_CONCRETE_SLAB = $v,
+			"yellow_concrete_stairs" => fn(Stair $v) => self::$_mYELLOW_CONCRETE_STAIRS = $v,
 			"yellow_wool_slab" => fn(Slab $v) => self::$_mYELLOW_WOOL_SLAB = $v,
+			"yellow_wool_stairs" => fn(Stair $v) => self::$_mYELLOW_WOOL_STAIRS = $v,
 		];
 	}
 
@@ -2434,9 +2498,19 @@ final class VanillaBlocks{
 		return clone self::$_mBLACK_CONCRETE_SLAB;
 	}
 
+	public static function BLACK_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mBLACK_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mBLACK_CONCRETE_STAIRS;
+	}
+
 	public static function BLACK_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mBLACK_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mBLACK_WOOL_SLAB;
+	}
+
+	public static function BLACK_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mBLACK_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mBLACK_WOOL_STAIRS;
 	}
 
 	public static function BLAST_FURNACE() : Furnace{
@@ -2447,6 +2521,11 @@ final class VanillaBlocks{
 	public static function BLUE_CONCRETE_SLAB() : Slab{
 		if(!isset(self::$_mBLUE_CONCRETE_SLAB)){ self::init(); }
 		return clone self::$_mBLUE_CONCRETE_SLAB;
+	}
+
+	public static function BLUE_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mBLUE_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mBLUE_CONCRETE_STAIRS;
 	}
 
 	public static function BLUE_ICE() : BlueIce{
@@ -2467,6 +2546,11 @@ final class VanillaBlocks{
 	public static function BLUE_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mBLUE_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mBLUE_WOOL_SLAB;
+	}
+
+	public static function BLUE_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mBLUE_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mBLUE_WOOL_STAIRS;
 	}
 
 	public static function BONE_BLOCK() : BoneBlock{
@@ -2514,6 +2598,11 @@ final class VanillaBlocks{
 		return clone self::$_mBROWN_CONCRETE_SLAB;
 	}
 
+	public static function BROWN_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mBROWN_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mBROWN_CONCRETE_STAIRS;
+	}
+
 	public static function BROWN_MUSHROOM() : BrownMushroom{
 		if(!isset(self::$_mBROWN_MUSHROOM)){ self::init(); }
 		return clone self::$_mBROWN_MUSHROOM;
@@ -2527,6 +2616,11 @@ final class VanillaBlocks{
 	public static function BROWN_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mBROWN_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mBROWN_WOOL_SLAB;
+	}
+
+	public static function BROWN_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mBROWN_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mBROWN_WOOL_STAIRS;
 	}
 
 	public static function BUBBLE_COLUMN() : BubbleColumn{
@@ -3224,9 +3318,19 @@ final class VanillaBlocks{
 		return clone self::$_mCYAN_CONCRETE_SLAB;
 	}
 
+	public static function CYAN_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mCYAN_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mCYAN_CONCRETE_STAIRS;
+	}
+
 	public static function CYAN_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mCYAN_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mCYAN_WOOL_SLAB;
+	}
+
+	public static function CYAN_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mCYAN_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mCYAN_WOOL_STAIRS;
 	}
 
 	public static function CYCLING_POTENT_SULFUR() : CyclingPotentSulfur{
@@ -4384,14 +4488,29 @@ final class VanillaBlocks{
 		return clone self::$_mGRAY_CONCRETE_SLAB;
 	}
 
+	public static function GRAY_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mGRAY_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mGRAY_CONCRETE_STAIRS;
+	}
+
 	public static function GRAY_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mGRAY_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mGRAY_WOOL_SLAB;
 	}
 
+	public static function GRAY_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mGRAY_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mGRAY_WOOL_STAIRS;
+	}
+
 	public static function GREEN_CONCRETE_SLAB() : Slab{
 		if(!isset(self::$_mGREEN_CONCRETE_SLAB)){ self::init(); }
 		return clone self::$_mGREEN_CONCRETE_SLAB;
+	}
+
+	public static function GREEN_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mGREEN_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mGREEN_CONCRETE_STAIRS;
 	}
 
 	public static function GREEN_TORCH() : Torch{
@@ -4402,6 +4521,11 @@ final class VanillaBlocks{
 	public static function GREEN_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mGREEN_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mGREEN_WOOL_SLAB;
+	}
+
+	public static function GREEN_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mGREEN_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mGREEN_WOOL_STAIRS;
 	}
 
 	public static function GRINDSTONE() : Grindstone{
@@ -4719,9 +4843,19 @@ final class VanillaBlocks{
 		return clone self::$_mLIGHT_BLUE_CONCRETE_SLAB;
 	}
 
+	public static function LIGHT_BLUE_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mLIGHT_BLUE_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mLIGHT_BLUE_CONCRETE_STAIRS;
+	}
+
 	public static function LIGHT_BLUE_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mLIGHT_BLUE_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mLIGHT_BLUE_WOOL_SLAB;
+	}
+
+	public static function LIGHT_BLUE_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mLIGHT_BLUE_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mLIGHT_BLUE_WOOL_STAIRS;
 	}
 
 	public static function LIGHT_GRAY_CONCRETE_SLAB() : Slab{
@@ -4729,9 +4863,19 @@ final class VanillaBlocks{
 		return clone self::$_mLIGHT_GRAY_CONCRETE_SLAB;
 	}
 
+	public static function LIGHT_GRAY_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mLIGHT_GRAY_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mLIGHT_GRAY_CONCRETE_STAIRS;
+	}
+
 	public static function LIGHT_GRAY_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mLIGHT_GRAY_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mLIGHT_GRAY_WOOL_SLAB;
+	}
+
+	public static function LIGHT_GRAY_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mLIGHT_GRAY_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mLIGHT_GRAY_WOOL_STAIRS;
 	}
 
 	public static function LILAC() : DoublePlant{
@@ -4754,9 +4898,19 @@ final class VanillaBlocks{
 		return clone self::$_mLIME_CONCRETE_SLAB;
 	}
 
+	public static function LIME_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mLIME_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mLIME_CONCRETE_STAIRS;
+	}
+
 	public static function LIME_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mLIME_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mLIME_WOOL_SLAB;
+	}
+
+	public static function LIME_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mLIME_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mLIME_WOOL_STAIRS;
 	}
 
 	public static function LIT_PUMPKIN() : LitPumpkin{
@@ -4779,9 +4933,19 @@ final class VanillaBlocks{
 		return clone self::$_mMAGENTA_CONCRETE_SLAB;
 	}
 
+	public static function MAGENTA_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mMAGENTA_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mMAGENTA_CONCRETE_STAIRS;
+	}
+
 	public static function MAGENTA_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mMAGENTA_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mMAGENTA_WOOL_SLAB;
+	}
+
+	public static function MAGENTA_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mMAGENTA_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mMAGENTA_WOOL_STAIRS;
 	}
 
 	public static function MAGMA() : Magma{
@@ -5199,6 +5363,11 @@ final class VanillaBlocks{
 		return clone self::$_mORANGE_CONCRETE_SLAB;
 	}
 
+	public static function ORANGE_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mORANGE_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mORANGE_CONCRETE_STAIRS;
+	}
+
 	public static function ORANGE_TULIP() : Flower{
 		if(!isset(self::$_mORANGE_TULIP)){ self::init(); }
 		return clone self::$_mORANGE_TULIP;
@@ -5207,6 +5376,11 @@ final class VanillaBlocks{
 	public static function ORANGE_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mORANGE_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mORANGE_WOOL_SLAB;
+	}
+
+	public static function ORANGE_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mORANGE_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mORANGE_WOOL_STAIRS;
 	}
 
 	public static function OXEYE_DAISY() : Flower{
@@ -5344,6 +5518,11 @@ final class VanillaBlocks{
 		return clone self::$_mPINK_CONCRETE_SLAB;
 	}
 
+	public static function PINK_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mPINK_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mPINK_CONCRETE_STAIRS;
+	}
+
 	public static function PINK_PETALS() : PinkPetals{
 		if(!isset(self::$_mPINK_PETALS)){ self::init(); }
 		return clone self::$_mPINK_PETALS;
@@ -5357,6 +5536,11 @@ final class VanillaBlocks{
 	public static function PINK_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mPINK_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mPINK_WOOL_SLAB;
+	}
+
+	public static function PINK_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mPINK_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mPINK_WOOL_STAIRS;
 	}
 
 	public static function PISTON() : Piston{
@@ -5649,6 +5833,11 @@ final class VanillaBlocks{
 		return clone self::$_mPURPLE_CONCRETE_SLAB;
 	}
 
+	public static function PURPLE_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mPURPLE_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mPURPLE_CONCRETE_STAIRS;
+	}
+
 	public static function PURPLE_TORCH() : Torch{
 		if(!isset(self::$_mPURPLE_TORCH)){ self::init(); }
 		return clone self::$_mPURPLE_TORCH;
@@ -5657,6 +5846,11 @@ final class VanillaBlocks{
 	public static function PURPLE_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mPURPLE_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mPURPLE_WOOL_SLAB;
+	}
+
+	public static function PURPLE_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mPURPLE_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mPURPLE_WOOL_STAIRS;
 	}
 
 	public static function PURPUR() : Opaque{
@@ -5764,6 +5958,11 @@ final class VanillaBlocks{
 		return clone self::$_mRED_CONCRETE_SLAB;
 	}
 
+	public static function RED_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mRED_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mRED_CONCRETE_STAIRS;
+	}
+
 	public static function RED_MUSHROOM() : RedMushroom{
 		if(!isset(self::$_mRED_MUSHROOM)){ self::init(); }
 		return clone self::$_mRED_MUSHROOM;
@@ -5832,6 +6031,11 @@ final class VanillaBlocks{
 	public static function RED_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mRED_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mRED_WOOL_SLAB;
+	}
+
+	public static function RED_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mRED_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mRED_WOOL_STAIRS;
 	}
 
 	public static function REINFORCED_DEEPSLATE() : Opaque{
@@ -6669,6 +6873,11 @@ final class VanillaBlocks{
 		return clone self::$_mWHITE_CONCRETE_SLAB;
 	}
 
+	public static function WHITE_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mWHITE_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mWHITE_CONCRETE_STAIRS;
+	}
+
 	public static function WHITE_TULIP() : Flower{
 		if(!isset(self::$_mWHITE_TULIP)){ self::init(); }
 		return clone self::$_mWHITE_TULIP;
@@ -6677,6 +6886,11 @@ final class VanillaBlocks{
 	public static function WHITE_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mWHITE_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mWHITE_WOOL_SLAB;
+	}
+
+	public static function WHITE_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mWHITE_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mWHITE_WOOL_STAIRS;
 	}
 
 	public static function WILDFLOWERS() : Wildflowers{
@@ -6699,8 +6913,18 @@ final class VanillaBlocks{
 		return clone self::$_mYELLOW_CONCRETE_SLAB;
 	}
 
+	public static function YELLOW_CONCRETE_STAIRS() : Stair{
+		if(!isset(self::$_mYELLOW_CONCRETE_STAIRS)){ self::init(); }
+		return clone self::$_mYELLOW_CONCRETE_STAIRS;
+	}
+
 	public static function YELLOW_WOOL_SLAB() : Slab{
 		if(!isset(self::$_mYELLOW_WOOL_SLAB)){ self::init(); }
 		return clone self::$_mYELLOW_WOOL_SLAB;
+	}
+
+	public static function YELLOW_WOOL_STAIRS() : Stair{
+		if(!isset(self::$_mYELLOW_WOOL_STAIRS)){ self::init(); }
+		return clone self::$_mYELLOW_WOOL_STAIRS;
 	}
 }

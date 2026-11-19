@@ -1294,7 +1294,9 @@ final class VanillaBlocksInputs extends RegistrySource{
 			$name = $color->getDisplayName();
 			$prefix = strtolower($color->name);
 			self::register($prefix . "_wool_slab", fn(BID $id) => new Slab($id, $name . " Wool", $woolInfo));
+			self::register($prefix . "_wool_stairs", fn(BID $id) => new Stair($id, $name . " Wool Stairs", $woolInfo));
 			self::register($prefix . "_concrete_slab", fn(BID $id) => new Slab($id, $name . " Concrete", $concreteInfo));
+			self::register($prefix . "_concrete_stairs", fn(BID $id) => new Stair($id, $name . " Concrete Stairs", $concreteInfo));
 		}
 	}
 
