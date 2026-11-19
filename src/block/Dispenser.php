@@ -33,6 +33,10 @@ use pocketmine\entity\projectile\SplashPotion as SplashPotionEntity;
 use pocketmine\item\Arrow as ArrowItem;
 use pocketmine\item\Egg as EggItem;
 use pocketmine\item\Fertilizer;
+use pocketmine\item\ItemTypeIds;
+use pocketmine\item\LiquidBucket;
+use pocketmine\item\VanillaItems;
+use pocketmine\block\Liquid;
 use pocketmine\item\Snowball as SnowballItem;
 use pocketmine\item\SplashPotion as SplashPotionItem;
 use pocketmine\block\utils\RedstonePowerHelper;
@@ -71,6 +75,29 @@ class Dispenser extends Opaque implements AnyFacing{
 				for($slot = 0; $slot < 9; $slot++){
 					$item = $inventory->getItem($slot);
 					if(!$item->isNull()){
+						if($item instanceof LiquidBucket){
+							$target = $this->getSide($this->facing);
+							if($target->canBeReplaced()){
+								$world->setBlock($target->getPosition(), $item->getLiquid()->getFlowingForm());
+								$inventory->setItem($slot, VanillaItems::BUCKET());
+								break;
+							}
+						}
+						if($item->getTypeId() === ItemTypeIds::BUCKET){
+							$target = $this->getSide($this->facing);
+							if($target instanceof Liquid && $target->isSource()){
+								$filled = match($target->getTypeId()){
+									BlockTypeIds::WATER => VanillaItems::WATER_BUCKET(),
+									BlockTypeIds::LAVA => VanillaItems::LAVA_BUCKET(),
+									default => null
+								};
+								if($filled !== null){
+									$world->setBlock($target->getPosition(), VanillaBlocks::AIR());
+									$inventory->setItem($slot, $filled);
+									break;
+								}
+							}
+						}
 						if($item instanceof Fertilizer){
 							$returned = [];
 							$target = $this->getSide($this->facing);
