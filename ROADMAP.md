@@ -47,6 +47,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Aliases for all newly added block items.
 - Poplar boat item, including BoatType and Bedrock item serialization.
 - Pottery sherd and banner pattern items, plus the bolt and flow armor trim smithing templates.
+- 1.26.60 cushion and harness items in all 16 colors.
 
 **Active**
 

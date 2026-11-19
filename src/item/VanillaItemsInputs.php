@@ -92,6 +92,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::registerTierToolItems();
 		self::registerSmithingTemplates();
 		self::registerPotterySherdsAndBannerPatterns();
+		self::registerCushionsAndHarnesses();
 
 		//this doesn't use the regular register() because it doesn't have an item typeID
 		//in the future we'll probably want to dissociate this from the air block and make a proper null item
@@ -471,6 +472,42 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("mojang_banner_pattern", fn(IID $id) => new Item($id, "Thing Banner Pattern"));
 		self::register("piglin_banner_pattern", fn(IID $id) => new Item($id, "Snout Banner Pattern"));
 		self::register("skull_banner_pattern", fn(IID $id) => new Item($id, "Skull Charge Banner Pattern"));
+	}
+
+
+	private function registerCushionsAndHarnesses() : void{
+		self::register("white_cushion", fn(IID $id) => new Item($id, "White Cushion"));
+		self::register("light_gray_cushion", fn(IID $id) => new Item($id, "Light Gray Cushion"));
+		self::register("gray_cushion", fn(IID $id) => new Item($id, "Gray Cushion"));
+		self::register("black_cushion", fn(IID $id) => new Item($id, "Black Cushion"));
+		self::register("brown_cushion", fn(IID $id) => new Item($id, "Brown Cushion"));
+		self::register("red_cushion", fn(IID $id) => new Item($id, "Red Cushion"));
+		self::register("orange_cushion", fn(IID $id) => new Item($id, "Orange Cushion"));
+		self::register("yellow_cushion", fn(IID $id) => new Item($id, "Yellow Cushion"));
+		self::register("lime_cushion", fn(IID $id) => new Item($id, "Lime Cushion"));
+		self::register("green_cushion", fn(IID $id) => new Item($id, "Green Cushion"));
+		self::register("cyan_cushion", fn(IID $id) => new Item($id, "Cyan Cushion"));
+		self::register("light_blue_cushion", fn(IID $id) => new Item($id, "Light Blue Cushion"));
+		self::register("blue_cushion", fn(IID $id) => new Item($id, "Blue Cushion"));
+		self::register("purple_cushion", fn(IID $id) => new Item($id, "Purple Cushion"));
+		self::register("magenta_cushion", fn(IID $id) => new Item($id, "Magenta Cushion"));
+		self::register("pink_cushion", fn(IID $id) => new Item($id, "Pink Cushion"));
+		self::register("white_harness", fn(IID $id) => new Item($id, "White Harness"));
+		self::register("light_gray_harness", fn(IID $id) => new Item($id, "Light Gray Harness"));
+		self::register("gray_harness", fn(IID $id) => new Item($id, "Gray Harness"));
+		self::register("black_harness", fn(IID $id) => new Item($id, "Black Harness"));
+		self::register("brown_harness", fn(IID $id) => new Item($id, "Brown Harness"));
+		self::register("red_harness", fn(IID $id) => new Item($id, "Red Harness"));
+		self::register("orange_harness", fn(IID $id) => new Item($id, "Orange Harness"));
+		self::register("yellow_harness", fn(IID $id) => new Item($id, "Yellow Harness"));
+		self::register("lime_harness", fn(IID $id) => new Item($id, "Lime Harness"));
+		self::register("green_harness", fn(IID $id) => new Item($id, "Green Harness"));
+		self::register("cyan_harness", fn(IID $id) => new Item($id, "Cyan Harness"));
+		self::register("light_blue_harness", fn(IID $id) => new Item($id, "Light Blue Harness"));
+		self::register("blue_harness", fn(IID $id) => new Item($id, "Blue Harness"));
+		self::register("purple_harness", fn(IID $id) => new Item($id, "Purple Harness"));
+		self::register("magenta_harness", fn(IID $id) => new Item($id, "Magenta Harness"));
+		self::register("pink_harness", fn(IID $id) => new Item($id, "Pink Harness"));
 	}
 
 }

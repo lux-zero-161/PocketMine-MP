@@ -531,6 +531,38 @@ final class ItemSerializerDeserializerRegistrar{
 		$this->map1to1Item(Ids::SKULL_BANNER_PATTERN, Items::SKULL_BANNER_PATTERN());
 		$this->map1to1Item(Ids::BOLT_ARMOR_TRIM_SMITHING_TEMPLATE, Items::BOLT_ARMOR_TRIM_SMITHING_TEMPLATE());
 		$this->map1to1Item(Ids::FLOW_ARMOR_TRIM_SMITHING_TEMPLATE, Items::FLOW_ARMOR_TRIM_SMITHING_TEMPLATE());
+		$this->map1to1Item(Ids::WHITE_CUSHION, Items::WHITE_CUSHION());
+		$this->map1to1Item(Ids::LIGHT_GRAY_CUSHION, Items::LIGHT_GRAY_CUSHION());
+		$this->map1to1Item(Ids::GRAY_CUSHION, Items::GRAY_CUSHION());
+		$this->map1to1Item(Ids::BLACK_CUSHION, Items::BLACK_CUSHION());
+		$this->map1to1Item(Ids::BROWN_CUSHION, Items::BROWN_CUSHION());
+		$this->map1to1Item(Ids::RED_CUSHION, Items::RED_CUSHION());
+		$this->map1to1Item(Ids::ORANGE_CUSHION, Items::ORANGE_CUSHION());
+		$this->map1to1Item(Ids::YELLOW_CUSHION, Items::YELLOW_CUSHION());
+		$this->map1to1Item(Ids::LIME_CUSHION, Items::LIME_CUSHION());
+		$this->map1to1Item(Ids::GREEN_CUSHION, Items::GREEN_CUSHION());
+		$this->map1to1Item(Ids::CYAN_CUSHION, Items::CYAN_CUSHION());
+		$this->map1to1Item(Ids::LIGHT_BLUE_CUSHION, Items::LIGHT_BLUE_CUSHION());
+		$this->map1to1Item(Ids::BLUE_CUSHION, Items::BLUE_CUSHION());
+		$this->map1to1Item(Ids::PURPLE_CUSHION, Items::PURPLE_CUSHION());
+		$this->map1to1Item(Ids::MAGENTA_CUSHION, Items::MAGENTA_CUSHION());
+		$this->map1to1Item(Ids::PINK_CUSHION, Items::PINK_CUSHION());
+		$this->map1to1Item(Ids::WHITE_HARNESS, Items::WHITE_HARNESS());
+		$this->map1to1Item(Ids::LIGHT_GRAY_HARNESS, Items::LIGHT_GRAY_HARNESS());
+		$this->map1to1Item(Ids::GRAY_HARNESS, Items::GRAY_HARNESS());
+		$this->map1to1Item(Ids::BLACK_HARNESS, Items::BLACK_HARNESS());
+		$this->map1to1Item(Ids::BROWN_HARNESS, Items::BROWN_HARNESS());
+		$this->map1to1Item(Ids::RED_HARNESS, Items::RED_HARNESS());
+		$this->map1to1Item(Ids::ORANGE_HARNESS, Items::ORANGE_HARNESS());
+		$this->map1to1Item(Ids::YELLOW_HARNESS, Items::YELLOW_HARNESS());
+		$this->map1to1Item(Ids::LIME_HARNESS, Items::LIME_HARNESS());
+		$this->map1to1Item(Ids::GREEN_HARNESS, Items::GREEN_HARNESS());
+		$this->map1to1Item(Ids::CYAN_HARNESS, Items::CYAN_HARNESS());
+		$this->map1to1Item(Ids::LIGHT_BLUE_HARNESS, Items::LIGHT_BLUE_HARNESS());
+		$this->map1to1Item(Ids::BLUE_HARNESS, Items::BLUE_HARNESS());
+		$this->map1to1Item(Ids::PURPLE_HARNESS, Items::PURPLE_HARNESS());
+		$this->map1to1Item(Ids::MAGENTA_HARNESS, Items::MAGENTA_HARNESS());
+		$this->map1to1Item(Ids::PINK_HARNESS, Items::PINK_HARNESS());
 
 	}
 

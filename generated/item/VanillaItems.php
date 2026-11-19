@@ -59,10 +59,14 @@ final class VanillaItems{
 	private static Boat $_mBIRCH_BOAT;
 	private static HangingSign $_mBIRCH_HANGING_SIGN;
 	private static ItemBlockWallOrFloor $_mBIRCH_SIGN;
+	private static Item $_mBLACK_CUSHION;
+	private static Item $_mBLACK_HARNESS;
 	private static Item $_mBLADE_POTTERY_SHERD;
 	private static Item $_mBLAZE_POWDER;
 	private static BlazeRod $_mBLAZE_ROD;
 	private static Item $_mBLEACH;
+	private static Item $_mBLUE_CUSHION;
+	private static Item $_mBLUE_HARNESS;
 	private static Item $_mBOLT_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static Item $_mBONE;
 	private static Fertilizer $_mBONE_MEAL;
@@ -73,6 +77,8 @@ final class VanillaItems{
 	private static Bread $_mBREAD;
 	private static Item $_mBREWER_POTTERY_SHERD;
 	private static Item $_mBRICK;
+	private static Item $_mBROWN_CUSHION;
+	private static Item $_mBROWN_HARNESS;
 	private static Bucket $_mBUCKET;
 	private static Item $_mBURN_POTTERY_SHERD;
 	private static Carrot $_mCARROT;
@@ -151,6 +157,8 @@ final class VanillaItems{
 	private static Item $_mCREEPER_BANNER_PATTERN;
 	private static HangingSign $_mCRIMSON_HANGING_SIGN;
 	private static ItemBlockWallOrFloor $_mCRIMSON_SIGN;
+	private static Item $_mCYAN_CUSHION;
+	private static Item $_mCYAN_HARNESS;
 	private static Item $_mDANGER_POTTERY_SHERD;
 	private static Boat $_mDARK_OAK_BOAT;
 	private static HangingSign $_mDARK_OAK_HANGING_SIGN;
@@ -215,6 +223,10 @@ final class VanillaItems{
 	private static Sword $_mGOLDEN_SWORD;
 	private static Item $_mGOLD_INGOT;
 	private static Item $_mGOLD_NUGGET;
+	private static Item $_mGRAY_CUSHION;
+	private static Item $_mGRAY_HARNESS;
+	private static Item $_mGREEN_CUSHION;
+	private static Item $_mGREEN_HARNESS;
 	private static Item $_mGUNPOWDER;
 	private static Item $_mGUSTER_BANNER_PATTERN;
 	private static Item $_mGUSTER_POTTERY_SHERD;
@@ -248,7 +260,15 @@ final class VanillaItems{
 	private static Armor $_mLEATHER_CAP;
 	private static Armor $_mLEATHER_PANTS;
 	private static Armor $_mLEATHER_TUNIC;
+	private static Item $_mLIGHT_BLUE_CUSHION;
+	private static Item $_mLIGHT_BLUE_HARNESS;
+	private static Item $_mLIGHT_GRAY_CUSHION;
+	private static Item $_mLIGHT_GRAY_HARNESS;
+	private static Item $_mLIME_CUSHION;
+	private static Item $_mLIME_HARNESS;
 	private static SplashPotion $_mLINGERING_POTION;
+	private static Item $_mMAGENTA_CUSHION;
+	private static Item $_mMAGENTA_HARNESS;
 	private static Item $_mMAGMA_CREAM;
 	private static Boat $_mMANGROVE_BOAT;
 	private static HangingSign $_mMANGROVE_HANGING_SIGN;
@@ -283,12 +303,16 @@ final class VanillaItems{
 	private static HangingSign $_mOAK_HANGING_SIGN;
 	private static ItemBlockWallOrFloor $_mOAK_SIGN;
 	private static ItemBlockWallOrFloor $_mOMINOUS_BANNER;
+	private static Item $_mORANGE_CUSHION;
+	private static Item $_mORANGE_HARNESS;
 	private static PaintingItem $_mPAINTING;
 	private static HangingSign $_mPALE_OAK_HANGING_SIGN;
 	private static ItemBlockWallOrFloor $_mPALE_OAK_SIGN;
 	private static Item $_mPAPER;
 	private static Item $_mPHANTOM_MEMBRANE;
 	private static Item $_mPIGLIN_BANNER_PATTERN;
+	private static Item $_mPINK_CUSHION;
+	private static Item $_mPINK_HARNESS;
 	private static PitcherPod $_mPITCHER_POD;
 	private static Item $_mPLENTY_POTTERY_SHERD;
 	private static PoisonousPotato $_mPOISONOUS_POTATO;
@@ -304,6 +328,8 @@ final class VanillaItems{
 	private static Pufferfish $_mPUFFERFISH;
 	private static PumpkinPie $_mPUMPKIN_PIE;
 	private static PumpkinSeeds $_mPUMPKIN_SEEDS;
+	private static Item $_mPURPLE_CUSHION;
+	private static Item $_mPURPLE_HARNESS;
 	private static Item $_mRABBIT_FOOT;
 	private static Item $_mRABBIT_HIDE;
 	private static RabbitStew $_mRABBIT_STEW;
@@ -340,6 +366,8 @@ final class VanillaItems{
 	private static Record $_mRECORD_WARD;
 	private static Item $_mRECOVERY_COMPASS;
 	private static Redstone $_mREDSTONE_DUST;
+	private static Item $_mRED_CUSHION;
+	private static Item $_mRED_HARNESS;
 	private static Item $_mRESIN_BRICK;
 	private static Item $_mRIB_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static RottenFlesh $_mROTTEN_FLESH;
@@ -391,6 +419,8 @@ final class VanillaItems{
 	private static Item $_mWAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static Item $_mWHEAT;
 	private static WheatSeeds $_mWHEAT_SEEDS;
+	private static Item $_mWHITE_CUSHION;
+	private static Item $_mWHITE_HARNESS;
 	private static Item $_mWILD_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static Axe $_mWOODEN_AXE;
 	private static Hoe $_mWOODEN_HOE;
@@ -399,6 +429,8 @@ final class VanillaItems{
 	private static Sword $_mWOODEN_SWORD;
 	private static WritableBook $_mWRITABLE_BOOK;
 	private static WrittenBook $_mWRITTEN_BOOK;
+	private static Item $_mYELLOW_CUSHION;
+	private static Item $_mYELLOW_HARNESS;
 	private static SpawnEgg $_mZOMBIE_SPAWN_EGG;
 
 	/**
@@ -455,10 +487,14 @@ final class VanillaItems{
 			"birch_boat" => fn(Boat $v) => self::$_mBIRCH_BOAT = $v,
 			"birch_hanging_sign" => fn(HangingSign $v) => self::$_mBIRCH_HANGING_SIGN = $v,
 			"birch_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mBIRCH_SIGN = $v,
+			"black_cushion" => fn(Item $v) => self::$_mBLACK_CUSHION = $v,
+			"black_harness" => fn(Item $v) => self::$_mBLACK_HARNESS = $v,
 			"blade_pottery_sherd" => fn(Item $v) => self::$_mBLADE_POTTERY_SHERD = $v,
 			"blaze_powder" => fn(Item $v) => self::$_mBLAZE_POWDER = $v,
 			"blaze_rod" => fn(BlazeRod $v) => self::$_mBLAZE_ROD = $v,
 			"bleach" => fn(Item $v) => self::$_mBLEACH = $v,
+			"blue_cushion" => fn(Item $v) => self::$_mBLUE_CUSHION = $v,
+			"blue_harness" => fn(Item $v) => self::$_mBLUE_HARNESS = $v,
 			"bolt_armor_trim_smithing_template" => fn(Item $v) => self::$_mBOLT_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"bone" => fn(Item $v) => self::$_mBONE = $v,
 			"bone_meal" => fn(Fertilizer $v) => self::$_mBONE_MEAL = $v,
@@ -469,6 +505,8 @@ final class VanillaItems{
 			"bread" => fn(Bread $v) => self::$_mBREAD = $v,
 			"brewer_pottery_sherd" => fn(Item $v) => self::$_mBREWER_POTTERY_SHERD = $v,
 			"brick" => fn(Item $v) => self::$_mBRICK = $v,
+			"brown_cushion" => fn(Item $v) => self::$_mBROWN_CUSHION = $v,
+			"brown_harness" => fn(Item $v) => self::$_mBROWN_HARNESS = $v,
 			"bucket" => fn(Bucket $v) => self::$_mBUCKET = $v,
 			"burn_pottery_sherd" => fn(Item $v) => self::$_mBURN_POTTERY_SHERD = $v,
 			"carrot" => fn(Carrot $v) => self::$_mCARROT = $v,
@@ -547,6 +585,8 @@ final class VanillaItems{
 			"creeper_banner_pattern" => fn(Item $v) => self::$_mCREEPER_BANNER_PATTERN = $v,
 			"crimson_hanging_sign" => fn(HangingSign $v) => self::$_mCRIMSON_HANGING_SIGN = $v,
 			"crimson_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mCRIMSON_SIGN = $v,
+			"cyan_cushion" => fn(Item $v) => self::$_mCYAN_CUSHION = $v,
+			"cyan_harness" => fn(Item $v) => self::$_mCYAN_HARNESS = $v,
 			"danger_pottery_sherd" => fn(Item $v) => self::$_mDANGER_POTTERY_SHERD = $v,
 			"dark_oak_boat" => fn(Boat $v) => self::$_mDARK_OAK_BOAT = $v,
 			"dark_oak_hanging_sign" => fn(HangingSign $v) => self::$_mDARK_OAK_HANGING_SIGN = $v,
@@ -611,6 +651,10 @@ final class VanillaItems{
 			"golden_sword" => fn(Sword $v) => self::$_mGOLDEN_SWORD = $v,
 			"gold_ingot" => fn(Item $v) => self::$_mGOLD_INGOT = $v,
 			"gold_nugget" => fn(Item $v) => self::$_mGOLD_NUGGET = $v,
+			"gray_cushion" => fn(Item $v) => self::$_mGRAY_CUSHION = $v,
+			"gray_harness" => fn(Item $v) => self::$_mGRAY_HARNESS = $v,
+			"green_cushion" => fn(Item $v) => self::$_mGREEN_CUSHION = $v,
+			"green_harness" => fn(Item $v) => self::$_mGREEN_HARNESS = $v,
 			"gunpowder" => fn(Item $v) => self::$_mGUNPOWDER = $v,
 			"guster_banner_pattern" => fn(Item $v) => self::$_mGUSTER_BANNER_PATTERN = $v,
 			"guster_pottery_sherd" => fn(Item $v) => self::$_mGUSTER_POTTERY_SHERD = $v,
@@ -644,7 +688,15 @@ final class VanillaItems{
 			"leather_cap" => fn(Armor $v) => self::$_mLEATHER_CAP = $v,
 			"leather_pants" => fn(Armor $v) => self::$_mLEATHER_PANTS = $v,
 			"leather_tunic" => fn(Armor $v) => self::$_mLEATHER_TUNIC = $v,
+			"light_blue_cushion" => fn(Item $v) => self::$_mLIGHT_BLUE_CUSHION = $v,
+			"light_blue_harness" => fn(Item $v) => self::$_mLIGHT_BLUE_HARNESS = $v,
+			"light_gray_cushion" => fn(Item $v) => self::$_mLIGHT_GRAY_CUSHION = $v,
+			"light_gray_harness" => fn(Item $v) => self::$_mLIGHT_GRAY_HARNESS = $v,
+			"lime_cushion" => fn(Item $v) => self::$_mLIME_CUSHION = $v,
+			"lime_harness" => fn(Item $v) => self::$_mLIME_HARNESS = $v,
 			"lingering_potion" => fn(SplashPotion $v) => self::$_mLINGERING_POTION = $v,
+			"magenta_cushion" => fn(Item $v) => self::$_mMAGENTA_CUSHION = $v,
+			"magenta_harness" => fn(Item $v) => self::$_mMAGENTA_HARNESS = $v,
 			"magma_cream" => fn(Item $v) => self::$_mMAGMA_CREAM = $v,
 			"mangrove_boat" => fn(Boat $v) => self::$_mMANGROVE_BOAT = $v,
 			"mangrove_hanging_sign" => fn(HangingSign $v) => self::$_mMANGROVE_HANGING_SIGN = $v,
@@ -679,12 +731,16 @@ final class VanillaItems{
 			"oak_hanging_sign" => fn(HangingSign $v) => self::$_mOAK_HANGING_SIGN = $v,
 			"oak_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mOAK_SIGN = $v,
 			"ominous_banner" => fn(ItemBlockWallOrFloor $v) => self::$_mOMINOUS_BANNER = $v,
+			"orange_cushion" => fn(Item $v) => self::$_mORANGE_CUSHION = $v,
+			"orange_harness" => fn(Item $v) => self::$_mORANGE_HARNESS = $v,
 			"painting" => fn(PaintingItem $v) => self::$_mPAINTING = $v,
 			"pale_oak_hanging_sign" => fn(HangingSign $v) => self::$_mPALE_OAK_HANGING_SIGN = $v,
 			"pale_oak_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mPALE_OAK_SIGN = $v,
 			"paper" => fn(Item $v) => self::$_mPAPER = $v,
 			"phantom_membrane" => fn(Item $v) => self::$_mPHANTOM_MEMBRANE = $v,
 			"piglin_banner_pattern" => fn(Item $v) => self::$_mPIGLIN_BANNER_PATTERN = $v,
+			"pink_cushion" => fn(Item $v) => self::$_mPINK_CUSHION = $v,
+			"pink_harness" => fn(Item $v) => self::$_mPINK_HARNESS = $v,
 			"pitcher_pod" => fn(PitcherPod $v) => self::$_mPITCHER_POD = $v,
 			"plenty_pottery_sherd" => fn(Item $v) => self::$_mPLENTY_POTTERY_SHERD = $v,
 			"poisonous_potato" => fn(PoisonousPotato $v) => self::$_mPOISONOUS_POTATO = $v,
@@ -700,6 +756,8 @@ final class VanillaItems{
 			"pufferfish" => fn(Pufferfish $v) => self::$_mPUFFERFISH = $v,
 			"pumpkin_pie" => fn(PumpkinPie $v) => self::$_mPUMPKIN_PIE = $v,
 			"pumpkin_seeds" => fn(PumpkinSeeds $v) => self::$_mPUMPKIN_SEEDS = $v,
+			"purple_cushion" => fn(Item $v) => self::$_mPURPLE_CUSHION = $v,
+			"purple_harness" => fn(Item $v) => self::$_mPURPLE_HARNESS = $v,
 			"rabbit_foot" => fn(Item $v) => self::$_mRABBIT_FOOT = $v,
 			"rabbit_hide" => fn(Item $v) => self::$_mRABBIT_HIDE = $v,
 			"rabbit_stew" => fn(RabbitStew $v) => self::$_mRABBIT_STEW = $v,
@@ -736,6 +794,8 @@ final class VanillaItems{
 			"record_ward" => fn(Record $v) => self::$_mRECORD_WARD = $v,
 			"recovery_compass" => fn(Item $v) => self::$_mRECOVERY_COMPASS = $v,
 			"redstone_dust" => fn(Redstone $v) => self::$_mREDSTONE_DUST = $v,
+			"red_cushion" => fn(Item $v) => self::$_mRED_CUSHION = $v,
+			"red_harness" => fn(Item $v) => self::$_mRED_HARNESS = $v,
 			"resin_brick" => fn(Item $v) => self::$_mRESIN_BRICK = $v,
 			"rib_armor_trim_smithing_template" => fn(Item $v) => self::$_mRIB_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"rotten_flesh" => fn(RottenFlesh $v) => self::$_mROTTEN_FLESH = $v,
@@ -787,6 +847,8 @@ final class VanillaItems{
 			"wayfinder_armor_trim_smithing_template" => fn(Item $v) => self::$_mWAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"wheat" => fn(Item $v) => self::$_mWHEAT = $v,
 			"wheat_seeds" => fn(WheatSeeds $v) => self::$_mWHEAT_SEEDS = $v,
+			"white_cushion" => fn(Item $v) => self::$_mWHITE_CUSHION = $v,
+			"white_harness" => fn(Item $v) => self::$_mWHITE_HARNESS = $v,
 			"wild_armor_trim_smithing_template" => fn(Item $v) => self::$_mWILD_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"wooden_axe" => fn(Axe $v) => self::$_mWOODEN_AXE = $v,
 			"wooden_hoe" => fn(Hoe $v) => self::$_mWOODEN_HOE = $v,
@@ -795,6 +857,8 @@ final class VanillaItems{
 			"wooden_sword" => fn(Sword $v) => self::$_mWOODEN_SWORD = $v,
 			"writable_book" => fn(WritableBook $v) => self::$_mWRITABLE_BOOK = $v,
 			"written_book" => fn(WrittenBook $v) => self::$_mWRITTEN_BOOK = $v,
+			"yellow_cushion" => fn(Item $v) => self::$_mYELLOW_CUSHION = $v,
+			"yellow_harness" => fn(Item $v) => self::$_mYELLOW_HARNESS = $v,
 			"zombie_spawn_egg" => fn(SpawnEgg $v) => self::$_mZOMBIE_SPAWN_EGG = $v,
 		];
 	}
@@ -939,6 +1003,16 @@ final class VanillaItems{
 		return clone self::$_mBIRCH_SIGN;
 	}
 
+	public static function BLACK_CUSHION() : Item{
+		if(!isset(self::$_mBLACK_CUSHION)){ self::init(); }
+		return clone self::$_mBLACK_CUSHION;
+	}
+
+	public static function BLACK_HARNESS() : Item{
+		if(!isset(self::$_mBLACK_HARNESS)){ self::init(); }
+		return clone self::$_mBLACK_HARNESS;
+	}
+
 	public static function BLADE_POTTERY_SHERD() : Item{
 		if(!isset(self::$_mBLADE_POTTERY_SHERD)){ self::init(); }
 		return clone self::$_mBLADE_POTTERY_SHERD;
@@ -957,6 +1031,16 @@ final class VanillaItems{
 	public static function BLEACH() : Item{
 		if(!isset(self::$_mBLEACH)){ self::init(); }
 		return clone self::$_mBLEACH;
+	}
+
+	public static function BLUE_CUSHION() : Item{
+		if(!isset(self::$_mBLUE_CUSHION)){ self::init(); }
+		return clone self::$_mBLUE_CUSHION;
+	}
+
+	public static function BLUE_HARNESS() : Item{
+		if(!isset(self::$_mBLUE_HARNESS)){ self::init(); }
+		return clone self::$_mBLUE_HARNESS;
 	}
 
 	public static function BOLT_ARMOR_TRIM_SMITHING_TEMPLATE() : Item{
@@ -1007,6 +1091,16 @@ final class VanillaItems{
 	public static function BRICK() : Item{
 		if(!isset(self::$_mBRICK)){ self::init(); }
 		return clone self::$_mBRICK;
+	}
+
+	public static function BROWN_CUSHION() : Item{
+		if(!isset(self::$_mBROWN_CUSHION)){ self::init(); }
+		return clone self::$_mBROWN_CUSHION;
+	}
+
+	public static function BROWN_HARNESS() : Item{
+		if(!isset(self::$_mBROWN_HARNESS)){ self::init(); }
+		return clone self::$_mBROWN_HARNESS;
 	}
 
 	public static function BUCKET() : Bucket{
@@ -1399,6 +1493,16 @@ final class VanillaItems{
 		return clone self::$_mCRIMSON_SIGN;
 	}
 
+	public static function CYAN_CUSHION() : Item{
+		if(!isset(self::$_mCYAN_CUSHION)){ self::init(); }
+		return clone self::$_mCYAN_CUSHION;
+	}
+
+	public static function CYAN_HARNESS() : Item{
+		if(!isset(self::$_mCYAN_HARNESS)){ self::init(); }
+		return clone self::$_mCYAN_HARNESS;
+	}
+
 	public static function DANGER_POTTERY_SHERD() : Item{
 		if(!isset(self::$_mDANGER_POTTERY_SHERD)){ self::init(); }
 		return clone self::$_mDANGER_POTTERY_SHERD;
@@ -1719,6 +1823,26 @@ final class VanillaItems{
 		return clone self::$_mGOLD_NUGGET;
 	}
 
+	public static function GRAY_CUSHION() : Item{
+		if(!isset(self::$_mGRAY_CUSHION)){ self::init(); }
+		return clone self::$_mGRAY_CUSHION;
+	}
+
+	public static function GRAY_HARNESS() : Item{
+		if(!isset(self::$_mGRAY_HARNESS)){ self::init(); }
+		return clone self::$_mGRAY_HARNESS;
+	}
+
+	public static function GREEN_CUSHION() : Item{
+		if(!isset(self::$_mGREEN_CUSHION)){ self::init(); }
+		return clone self::$_mGREEN_CUSHION;
+	}
+
+	public static function GREEN_HARNESS() : Item{
+		if(!isset(self::$_mGREEN_HARNESS)){ self::init(); }
+		return clone self::$_mGREEN_HARNESS;
+	}
+
 	public static function GUNPOWDER() : Item{
 		if(!isset(self::$_mGUNPOWDER)){ self::init(); }
 		return clone self::$_mGUNPOWDER;
@@ -1884,9 +2008,49 @@ final class VanillaItems{
 		return clone self::$_mLEATHER_TUNIC;
 	}
 
+	public static function LIGHT_BLUE_CUSHION() : Item{
+		if(!isset(self::$_mLIGHT_BLUE_CUSHION)){ self::init(); }
+		return clone self::$_mLIGHT_BLUE_CUSHION;
+	}
+
+	public static function LIGHT_BLUE_HARNESS() : Item{
+		if(!isset(self::$_mLIGHT_BLUE_HARNESS)){ self::init(); }
+		return clone self::$_mLIGHT_BLUE_HARNESS;
+	}
+
+	public static function LIGHT_GRAY_CUSHION() : Item{
+		if(!isset(self::$_mLIGHT_GRAY_CUSHION)){ self::init(); }
+		return clone self::$_mLIGHT_GRAY_CUSHION;
+	}
+
+	public static function LIGHT_GRAY_HARNESS() : Item{
+		if(!isset(self::$_mLIGHT_GRAY_HARNESS)){ self::init(); }
+		return clone self::$_mLIGHT_GRAY_HARNESS;
+	}
+
+	public static function LIME_CUSHION() : Item{
+		if(!isset(self::$_mLIME_CUSHION)){ self::init(); }
+		return clone self::$_mLIME_CUSHION;
+	}
+
+	public static function LIME_HARNESS() : Item{
+		if(!isset(self::$_mLIME_HARNESS)){ self::init(); }
+		return clone self::$_mLIME_HARNESS;
+	}
+
 	public static function LINGERING_POTION() : SplashPotion{
 		if(!isset(self::$_mLINGERING_POTION)){ self::init(); }
 		return clone self::$_mLINGERING_POTION;
+	}
+
+	public static function MAGENTA_CUSHION() : Item{
+		if(!isset(self::$_mMAGENTA_CUSHION)){ self::init(); }
+		return clone self::$_mMAGENTA_CUSHION;
+	}
+
+	public static function MAGENTA_HARNESS() : Item{
+		if(!isset(self::$_mMAGENTA_HARNESS)){ self::init(); }
+		return clone self::$_mMAGENTA_HARNESS;
 	}
 
 	public static function MAGMA_CREAM() : Item{
@@ -2059,6 +2223,16 @@ final class VanillaItems{
 		return clone self::$_mOMINOUS_BANNER;
 	}
 
+	public static function ORANGE_CUSHION() : Item{
+		if(!isset(self::$_mORANGE_CUSHION)){ self::init(); }
+		return clone self::$_mORANGE_CUSHION;
+	}
+
+	public static function ORANGE_HARNESS() : Item{
+		if(!isset(self::$_mORANGE_HARNESS)){ self::init(); }
+		return clone self::$_mORANGE_HARNESS;
+	}
+
 	public static function PAINTING() : PaintingItem{
 		if(!isset(self::$_mPAINTING)){ self::init(); }
 		return clone self::$_mPAINTING;
@@ -2087,6 +2261,16 @@ final class VanillaItems{
 	public static function PIGLIN_BANNER_PATTERN() : Item{
 		if(!isset(self::$_mPIGLIN_BANNER_PATTERN)){ self::init(); }
 		return clone self::$_mPIGLIN_BANNER_PATTERN;
+	}
+
+	public static function PINK_CUSHION() : Item{
+		if(!isset(self::$_mPINK_CUSHION)){ self::init(); }
+		return clone self::$_mPINK_CUSHION;
+	}
+
+	public static function PINK_HARNESS() : Item{
+		if(!isset(self::$_mPINK_HARNESS)){ self::init(); }
+		return clone self::$_mPINK_HARNESS;
 	}
 
 	public static function PITCHER_POD() : PitcherPod{
@@ -2162,6 +2346,16 @@ final class VanillaItems{
 	public static function PUMPKIN_SEEDS() : PumpkinSeeds{
 		if(!isset(self::$_mPUMPKIN_SEEDS)){ self::init(); }
 		return clone self::$_mPUMPKIN_SEEDS;
+	}
+
+	public static function PURPLE_CUSHION() : Item{
+		if(!isset(self::$_mPURPLE_CUSHION)){ self::init(); }
+		return clone self::$_mPURPLE_CUSHION;
+	}
+
+	public static function PURPLE_HARNESS() : Item{
+		if(!isset(self::$_mPURPLE_HARNESS)){ self::init(); }
+		return clone self::$_mPURPLE_HARNESS;
 	}
 
 	public static function RABBIT_FOOT() : Item{
@@ -2342,6 +2536,16 @@ final class VanillaItems{
 	public static function REDSTONE_DUST() : Redstone{
 		if(!isset(self::$_mREDSTONE_DUST)){ self::init(); }
 		return clone self::$_mREDSTONE_DUST;
+	}
+
+	public static function RED_CUSHION() : Item{
+		if(!isset(self::$_mRED_CUSHION)){ self::init(); }
+		return clone self::$_mRED_CUSHION;
+	}
+
+	public static function RED_HARNESS() : Item{
+		if(!isset(self::$_mRED_HARNESS)){ self::init(); }
+		return clone self::$_mRED_HARNESS;
 	}
 
 	public static function RESIN_BRICK() : Item{
@@ -2599,6 +2803,16 @@ final class VanillaItems{
 		return clone self::$_mWHEAT_SEEDS;
 	}
 
+	public static function WHITE_CUSHION() : Item{
+		if(!isset(self::$_mWHITE_CUSHION)){ self::init(); }
+		return clone self::$_mWHITE_CUSHION;
+	}
+
+	public static function WHITE_HARNESS() : Item{
+		if(!isset(self::$_mWHITE_HARNESS)){ self::init(); }
+		return clone self::$_mWHITE_HARNESS;
+	}
+
 	public static function WILD_ARMOR_TRIM_SMITHING_TEMPLATE() : Item{
 		if(!isset(self::$_mWILD_ARMOR_TRIM_SMITHING_TEMPLATE)){ self::init(); }
 		return clone self::$_mWILD_ARMOR_TRIM_SMITHING_TEMPLATE;
@@ -2637,6 +2851,16 @@ final class VanillaItems{
 	public static function WRITTEN_BOOK() : WrittenBook{
 		if(!isset(self::$_mWRITTEN_BOOK)){ self::init(); }
 		return clone self::$_mWRITTEN_BOOK;
+	}
+
+	public static function YELLOW_CUSHION() : Item{
+		if(!isset(self::$_mYELLOW_CUSHION)){ self::init(); }
+		return clone self::$_mYELLOW_CUSHION;
+	}
+
+	public static function YELLOW_HARNESS() : Item{
+		if(!isset(self::$_mYELLOW_HARNESS)){ self::init(); }
+		return clone self::$_mYELLOW_HARNESS;
 	}
 
 	public static function ZOMBIE_SPAWN_EGG() : SpawnEgg{

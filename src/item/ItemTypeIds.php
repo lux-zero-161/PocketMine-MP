@@ -406,7 +406,40 @@ final class ItemTypeIds{
 	public const BOLT_ARMOR_TRIM_SMITHING_TEMPLATE = 20365;
 	public const FLOW_ARMOR_TRIM_SMITHING_TEMPLATE = 20366;
 
-	public const FIRST_UNUSED_ITEM_ID = 20367;
+	public const WHITE_CUSHION = 20367;
+	public const LIGHT_GRAY_CUSHION = 20368;
+	public const GRAY_CUSHION = 20369;
+	public const BLACK_CUSHION = 20370;
+	public const BROWN_CUSHION = 20371;
+	public const RED_CUSHION = 20372;
+	public const ORANGE_CUSHION = 20373;
+	public const YELLOW_CUSHION = 20374;
+	public const LIME_CUSHION = 20375;
+	public const GREEN_CUSHION = 20376;
+	public const CYAN_CUSHION = 20377;
+	public const LIGHT_BLUE_CUSHION = 20378;
+	public const BLUE_CUSHION = 20379;
+	public const PURPLE_CUSHION = 20380;
+	public const MAGENTA_CUSHION = 20381;
+	public const PINK_CUSHION = 20382;
+	public const WHITE_HARNESS = 20383;
+	public const LIGHT_GRAY_HARNESS = 20384;
+	public const GRAY_HARNESS = 20385;
+	public const BLACK_HARNESS = 20386;
+	public const BROWN_HARNESS = 20387;
+	public const RED_HARNESS = 20388;
+	public const ORANGE_HARNESS = 20389;
+	public const YELLOW_HARNESS = 20390;
+	public const LIME_HARNESS = 20391;
+	public const GREEN_HARNESS = 20392;
+	public const CYAN_HARNESS = 20393;
+	public const LIGHT_BLUE_HARNESS = 20394;
+	public const BLUE_HARNESS = 20395;
+	public const PURPLE_HARNESS = 20396;
+	public const MAGENTA_HARNESS = 20397;
+	public const PINK_HARNESS = 20398;
+
+	public const FIRST_UNUSED_ITEM_ID = 20399;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 
