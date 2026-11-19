@@ -25,6 +25,7 @@ namespace pocketmine\block;
 
 use pocketmine\block\utils\Lightable;
 use pocketmine\block\utils\PoweredByRedstone;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\PoweredByRedstoneTrait;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 
@@ -48,4 +49,12 @@ class RedstoneLamp extends Opaque implements PoweredByRedstone, Lightable{
 		$this->powered = $lit;
 		return $this;
 	}
+	public function onNearbyBlockChange() : void{
+		$powered = RedstonePowerHelper::isPowered($this);
+		if($powered !== $this->isPowered()){
+			$this->setPowered($powered);
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
+	}
+
 }

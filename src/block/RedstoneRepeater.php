@@ -26,6 +26,7 @@ namespace pocketmine\block;
 use pocketmine\block\utils\HorizontalFacing;
 use pocketmine\block\utils\HorizontalFacingTrait;
 use pocketmine\block\utils\PoweredByRedstone;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\PoweredByRedstoneTrait;
 use pocketmine\block\utils\RedstoneSignalEmitter;
 use pocketmine\block\utils\StaticSupportTrait;
@@ -90,4 +91,12 @@ class RedstoneRepeater extends Flowable implements PoweredByRedstone, Horizontal
 	}
 
 	//TODO: redstone functionality
+	public function onNearbyBlockChange() : void{
+		$powered = RedstonePowerHelper::isPowered($this);
+		if($powered !== $this->isPowered()){
+			$this->setPowered($powered);
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
+	}
+
 }

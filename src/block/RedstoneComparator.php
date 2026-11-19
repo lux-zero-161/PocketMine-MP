@@ -29,6 +29,7 @@ use pocketmine\block\utils\AnalogRedstoneSignalEmitterTrait;
 use pocketmine\block\utils\HorizontalFacing;
 use pocketmine\block\utils\HorizontalFacingTrait;
 use pocketmine\block\utils\PoweredByRedstone;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\PoweredByRedstoneTrait;
 use pocketmine\block\utils\StaticSupportTrait;
 use pocketmine\block\utils\SupportType;
@@ -104,4 +105,12 @@ class RedstoneComparator extends Flowable implements AnalogRedstoneSignalEmitter
 	}
 
 	//TODO: redstone functionality
+	public function onNearbyBlockChange() : void{
+		$powered = RedstonePowerHelper::isPowered($this);
+		if($powered !== $this->isPowered()){
+			$this->setPowered($powered);
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
+	}
+
 }

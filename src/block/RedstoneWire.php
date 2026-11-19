@@ -27,6 +27,7 @@ use pocketmine\block\utils\AnalogRedstoneSignalEmitter;
 use pocketmine\block\utils\AnalogRedstoneSignalEmitterTrait;
 use pocketmine\block\utils\RedstoneSignalEmitter;
 use pocketmine\block\utils\RedstoneWireConnectionType;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\StaticSupportTrait;
 use pocketmine\block\utils\SupportType;
 use pocketmine\data\runtime\RuntimeDataDescriber;
@@ -94,8 +95,14 @@ class RedstoneWire extends Flowable implements AnalogRedstoneSignalEmitter{
 	public function onNearbyBlockChange() : void{
 		if(!$this->canBeSupportedAt($this)){
 			$this->position->getWorld()->useBreakOn($this->position);
-		}elseif($this->recalculateConnections()){
-			$this->position->getWorld()->setBlock($this->position, $this);
+		}else{
+			$changed = $this->recalculateConnections();
+			if(RedstonePowerHelper::updateWire($this)){
+				$changed = true;
+			}
+			if($changed){
+				$this->position->getWorld()->setBlock($this->position, $this);
+			}
 		}
 	}
 
