@@ -23,9 +23,11 @@ declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\block\tile\Container;
 use pocketmine\block\tile\Hopper as TileHopper;
 use pocketmine\block\utils\PoweredByRedstone;
 use pocketmine\block\utils\PoweredByRedstoneTrait;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\SupportType;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\item\Item;
@@ -34,6 +36,8 @@ use pocketmine\math\Facing;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\world\BlockTransaction;
+use function count;
+use function min;
 
 class Hopper extends Transparent implements PoweredByRedstone{
 	use PoweredByRedstoneTrait;
@@ -92,9 +96,80 @@ class Hopper extends Transparent implements PoweredByRedstone{
 		return false;
 	}
 
-	public function onScheduledUpdate() : void{
-		//TODO
+	public function onNearbyBlockChange() : void{
+		$powered = RedstonePowerHelper::isPowered($this);
+		$world = $this->position->getWorld();
+		if($powered !== $this->powered){
+			$this->powered = $powered;
+			$world->setBlock($this->position, $this);
+		}
+		//check again soon so the hopper resumes immediately after being unlocked
+		$world->scheduleDelayedBlockUpdate($this->position, 1);
 	}
 
-	//TODO: redstone logic, sucking logic
+	public function onScheduledUpdate() : void{
+		$world = $this->position->getWorld();
+		$tile = $world->getTile($this->position);
+		if(!$tile instanceof TileHopper){
+			return;
+		}
+
+		if(!$this->powered){
+			$this->tryTransferItems($tile);
+		}
+		$world->scheduleDelayedBlockUpdate($this->position, 8);
+	}
+
+	/**
+	 * Moves one itemstack from the container above into this hopper, then from this hopper into the container it faces.
+	 */
+	private function tryTransferItems(TileHopper $tile) : bool{
+		$world = $this->position->getWorld();
+		$transferred = false;
+
+		$target = $world->getTile($this->getSide($this->facing)->getPosition());
+		if($target instanceof Container){
+			$source = $tile->getInventory();
+			$targetInventory = $target->getRealInventory();
+			foreach($source->getContents() as $slot => $item){
+				$amount = min($item->getCount(), $targetInventory->getAddableItemQuantity($item));
+				if($amount <= 0){
+					continue;
+				}
+				$leftover = $targetInventory->addItem((clone $item)->setCount($amount));
+				if(count($leftover) > 0){
+					continue;
+				}
+				if($amount >= $item->getCount()){
+					$source->clear($slot);
+				}else{
+					$source->setItem($slot, (clone $item)->setCount($item->getCount() - $amount));
+				}
+				$transferred = true;
+				break;
+			}
+		}
+
+		$above = $world->getTile($this->getSide(Facing::UP)->getPosition());
+		if($above instanceof Container){
+			$source = $above->getRealInventory();
+			$targetInventory = $tile->getInventory();
+			foreach($source->getContents() as $slot => $item){
+				$amount = min($item->getCount(), $targetInventory->getAddableItemQuantity($item));
+				if($amount <= 0){
+					continue;
+				}
+				$targetInventory->addItem((clone $item)->setCount($amount));
+				if($amount >= $item->getCount()){
+					$source->clear($slot);
+				}else{
+					$source->setItem($slot, (clone $item)->setCount($item->getCount() - $amount));
+				}
+				$transferred = true;
+				break;
+			}
+		}
+
+		return $transferred;
+	}
 }
