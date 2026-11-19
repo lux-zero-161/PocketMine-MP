@@ -28,7 +28,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 **Active**
 
 - Shelves — 3 slots, item insertion/removal, redstone powered state and comparator output (1/2/4 per slot) implemented; multi-shelf hotbar swapping remains.
-- Copper chests — verify pairing across oxidation variants and add comparator output.
+- Copper chests — container block entity with oxidation/wax variants, same-variant chest pairing and waxing/scraping support.
 - `bee_nest`, `beehive` — bee entity release/entry and honey production.
 - Redstone — wire propagation, torch inversion, repeater delay/locking and comparator analog output are implemented; piston movement, sculk sensing and observer/dispenser edge cases remain.
 
