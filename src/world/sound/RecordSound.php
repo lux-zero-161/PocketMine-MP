@@ -45,6 +45,7 @@ class RecordSound extends ProtocolSound{
 			RecordType::DISK_5 => LevelSoundEvent::RECORD_5,
 			RecordType::DISK_CAT => LevelSoundEvent::RECORD_CAT,
 			RecordType::DISK_BLOCKS => LevelSoundEvent::RECORD_BLOCKS,
+			RecordType::DISK_BOUNCE => LevelSoundEvent::RECORD_BOUNCE,
 			RecordType::DISK_CHIRP => LevelSoundEvent::RECORD_CHIRP,
 			RecordType::DISK_CREATOR => LevelSoundEvent::RECORD_CREATOR,
 			RecordType::DISK_CREATOR_MUSIC_BOX => LevelSoundEvent::RECORD_CREATOR_MUSIC_BOX,
@@ -58,6 +59,7 @@ class RecordSound extends ProtocolSound{
 			RecordType::DISK_RELIC => LevelSoundEvent::RECORD_RELIC,
 			RecordType::DISK_STAL => LevelSoundEvent::RECORD_STAL,
 			RecordType::DISK_STRAD => LevelSoundEvent::RECORD_STRAD,
+			RecordType::DISK_TEARS => LevelSoundEvent::RECORD_TEARS,
 			RecordType::DISK_WARD => LevelSoundEvent::RECORD_WARD,
 			RecordType::DISK_11 => LevelSoundEvent::RECORD_11,
 			RecordType::DISK_WAIT => LevelSoundEvent::RECORD_WAIT

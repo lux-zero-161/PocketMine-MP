@@ -36,6 +36,7 @@ use function spl_object_id;
  * @method static RecordType DISK_13()
  * @method static RecordType DISK_5()
  * @method static RecordType DISK_BLOCKS()
+ * @method static RecordType DISK_BOUNCE()
  * @method static RecordType DISK_CAT()
  * @method static RecordType DISK_CHIRP()
  * @method static RecordType DISK_FAR()
@@ -45,6 +46,7 @@ use function spl_object_id;
  * @method static RecordType DISK_PIGSTEP()
  * @method static RecordType DISK_STAL()
  * @method static RecordType DISK_STRAD()
+ * @method static RecordType DISK_TEARS()
  * @method static RecordType DISK_WAIT()
  * @method static RecordType DISK_WARD()
  *
@@ -57,6 +59,7 @@ enum RecordType{
 	case DISK_5;
 	case DISK_CAT;
 	case DISK_BLOCKS;
+	case DISK_BOUNCE;
 	case DISK_CHIRP;
 	case DISK_CREATOR;
 	case DISK_CREATOR_MUSIC_BOX;
@@ -70,6 +73,7 @@ enum RecordType{
 	case DISK_RELIC;
 	case DISK_STAL;
 	case DISK_STRAD;
+	case DISK_TEARS;
 	case DISK_WARD;
 	case DISK_11;
 	case DISK_WAIT;
@@ -86,6 +90,7 @@ enum RecordType{
 			self::DISK_5 => ["Samuel Åberg - 5", KnownTranslationFactory::item_record_5_desc()],
 			self::DISK_CAT => ["C418 - cat", KnownTranslationFactory::item_record_cat_desc()],
 			self::DISK_BLOCKS => ["C418 - blocks", KnownTranslationFactory::item_record_blocks_desc()],
+			self::DISK_BOUNCE => ["Bounce", KnownTranslationFactory::item_record_bounce_desc()],
 			self::DISK_CHIRP => ["C418 - chirp", KnownTranslationFactory::item_record_chirp_desc()],
 			self::DISK_CREATOR => ["Lena Raine - Creator", KnownTranslationFactory::item_record_creator_desc()],
 			self::DISK_CREATOR_MUSIC_BOX => ["Lena Raine - Creator (Music Box)", KnownTranslationFactory::item_record_creator_music_box_desc()],
@@ -99,6 +104,7 @@ enum RecordType{
 			self::DISK_RELIC => ["Aaron Cherof - Relic", KnownTranslationFactory::item_record_relic_desc()],
 			self::DISK_STAL => ["C418 - stal", KnownTranslationFactory::item_record_stal_desc()],
 			self::DISK_STRAD => ["C418 - strad", KnownTranslationFactory::item_record_strad_desc()],
+			self::DISK_TEARS => ["Tears", KnownTranslationFactory::item_record_tears_desc()],
 			self::DISK_WARD => ["C418 - ward", KnownTranslationFactory::item_record_ward_desc()],
 			self::DISK_11 => ["C418 - 11", KnownTranslationFactory::item_record_11_desc()],
 			self::DISK_WAIT => ["C418 - wait", KnownTranslationFactory::item_record_wait_desc()]

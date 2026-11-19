@@ -465,7 +465,10 @@ final class ItemTypeIds{
 	public const SPARKLER = 20421;
 	public const BRUSH = 20422;
 
-	public const FIRST_UNUSED_ITEM_ID = 20423;
+	public const MUSIC_DISC_BOUNCE = 20423;
+	public const MUSIC_DISC_TEARS = 20424;
+
+	public const FIRST_UNUSED_ITEM_ID = 20425;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 

@@ -51,6 +51,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Cherry and pale oak boats, plus horse, nautilus and wolf armor items.
 - Powder snow bucket and powder snow cauldron, including bucket pickup from powder snow blocks.
 - Lead, saddle, armadillo scute, breeze rod, trial keys, eye of ender, brush, glow stick and sparkler items.
+- 1.26.60 Bounce and Tears music discs, including jukebox comparator outputs.
 - Cherry and pale oak boats, plus horse, nautilus and wolf armor items.
 
 **Active**

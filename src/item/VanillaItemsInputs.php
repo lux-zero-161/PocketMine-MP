@@ -293,6 +293,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("record_13", fn(IID $id) => new Record($id, RecordType::DISK_13, "Record 13"));
 		self::register("record_5", fn(IID $id) => new Record($id, RecordType::DISK_5, "Record 5"));
 		self::register("record_blocks", fn(IID $id) => new Record($id, RecordType::DISK_BLOCKS, "Record Blocks"));
+		self::register("music_disc_bounce", fn(IID $id) => new Record($id, RecordType::DISK_BOUNCE, "Bounce"));
 		self::register("record_cat", fn(IID $id) => new Record($id, RecordType::DISK_CAT, "Record Cat"));
 		self::register("record_chirp", fn(IID $id) => new Record($id, RecordType::DISK_CHIRP, "Record Chirp"));
 		self::register("record_creator", fn(IID $id) => new Record($id, RecordType::DISK_CREATOR, "Record Creator"));
@@ -307,6 +308,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("record_relic", fn(IID $id) => new Record($id, RecordType::DISK_RELIC, "Record Relic"));
 		self::register("record_stal", fn(IID $id) => new Record($id, RecordType::DISK_STAL, "Record Stal"));
 		self::register("record_strad", fn(IID $id) => new Record($id, RecordType::DISK_STRAD, "Record Strad"));
+		self::register("music_disc_tears", fn(IID $id) => new Record($id, RecordType::DISK_TEARS, "Tears"));
 		self::register("record_wait", fn(IID $id) => new Record($id, RecordType::DISK_WAIT, "Record Wait"));
 		self::register("record_ward", fn(IID $id) => new Record($id, RecordType::DISK_WARD, "Record Ward"));
 		self::register("recovery_compass", fn(IID $id) => new Item($id, "Recovery Compass"));

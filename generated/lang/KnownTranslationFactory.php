@@ -1035,6 +1035,10 @@ final class KnownTranslationFactory{
 		return new Translatable(KnownTranslationKeys::ITEM_RECORD_BLOCKS_DESC, []);
 	}
 
+	public static function item_record_bounce_desc() : Translatable{
+		return new Translatable(KnownTranslationKeys::ITEM_RECORD_BOUNCE_DESC, []);
+	}
+
 	public static function item_record_cat_desc() : Translatable{
 		return new Translatable(KnownTranslationKeys::ITEM_RECORD_CAT_DESC, []);
 	}
@@ -1089,6 +1093,10 @@ final class KnownTranslationFactory{
 
 	public static function item_record_strad_desc() : Translatable{
 		return new Translatable(KnownTranslationKeys::ITEM_RECORD_STRAD_DESC, []);
+	}
+
+	public static function item_record_tears_desc() : Translatable{
+		return new Translatable(KnownTranslationKeys::ITEM_RECORD_TEARS_DESC, []);
 	}
 
 	public static function item_record_wait_desc() : Translatable{

@@ -298,6 +298,8 @@ final class VanillaItems{
 	private static Item $_mMOJANG_BANNER_PATTERN;
 	private static Item $_mMOURNER_POTTERY_SHERD;
 	private static MushroomStew $_mMUSHROOM_STEW;
+	private static Record $_mMUSIC_DISC_BOUNCE;
+	private static Record $_mMUSIC_DISC_TEARS;
 	private static NameTag $_mNAME_TAG;
 	private static Item $_mNAUTILUS_SHELL;
 	private static Axe $_mNETHERITE_AXE;
@@ -751,6 +753,8 @@ final class VanillaItems{
 			"mojang_banner_pattern" => fn(Item $v) => self::$_mMOJANG_BANNER_PATTERN = $v,
 			"mourner_pottery_sherd" => fn(Item $v) => self::$_mMOURNER_POTTERY_SHERD = $v,
 			"mushroom_stew" => fn(MushroomStew $v) => self::$_mMUSHROOM_STEW = $v,
+			"music_disc_bounce" => fn(Record $v) => self::$_mMUSIC_DISC_BOUNCE = $v,
+			"music_disc_tears" => fn(Record $v) => self::$_mMUSIC_DISC_TEARS = $v,
 			"name_tag" => fn(NameTag $v) => self::$_mNAME_TAG = $v,
 			"nautilus_shell" => fn(Item $v) => self::$_mNAUTILUS_SHELL = $v,
 			"netherite_axe" => fn(Axe $v) => self::$_mNETHERITE_AXE = $v,
@@ -2246,6 +2250,16 @@ final class VanillaItems{
 	public static function MUSHROOM_STEW() : MushroomStew{
 		if(!isset(self::$_mMUSHROOM_STEW)){ self::init(); }
 		return clone self::$_mMUSHROOM_STEW;
+	}
+
+	public static function MUSIC_DISC_BOUNCE() : Record{
+		if(!isset(self::$_mMUSIC_DISC_BOUNCE)){ self::init(); }
+		return clone self::$_mMUSIC_DISC_BOUNCE;
+	}
+
+	public static function MUSIC_DISC_TEARS() : Record{
+		if(!isset(self::$_mMUSIC_DISC_TEARS)){ self::init(); }
+		return clone self::$_mMUSIC_DISC_TEARS;
 	}
 
 	public static function NAME_TAG() : NameTag{
