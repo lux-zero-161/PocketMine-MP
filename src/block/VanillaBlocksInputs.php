@@ -32,6 +32,7 @@ use pocketmine\block\tile\Banner as TileBanner;
 use pocketmine\block\tile\Barrel as TileBarrel;
 use pocketmine\block\tile\Beacon as TileBeacon;
 use pocketmine\block\tile\Bed as TileBed;
+use pocketmine\block\tile\Beehive as TileBeehive;
 use pocketmine\block\tile\Bell as TileBell;
 use pocketmine\block\tile\BlastFurnace as TileBlastFurnace;
 use pocketmine\block\tile\BrewingStand as TileBrewingStand;
@@ -670,6 +671,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::registerBlocksR26Misc();
 		self::registerBlocksR26Container();
 		self::registerShelfBlocks();
+		self::registerBeehiveBlocks();
 		self::registerMudBlocks();
 		self::registerResinBlocks();
 		self::registerTuffBlocks();
@@ -1341,6 +1343,11 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("crimson_shelf", fn(BID $id) => new Shelf($id, "Crimson Shelf", $shelfBreakInfo), TileShelf::class);
 		self::register("warped_shelf", fn(BID $id) => new Shelf($id, "Warped Shelf", $shelfBreakInfo), TileShelf::class);
 		self::register("poplar_shelf", fn(BID $id) => new Shelf($id, "Poplar Shelf", $shelfBreakInfo), TileShelf::class);
+	}
+
+	private function registerBeehiveBlocks() : void{
+		self::register("beehive", fn(BID $id) => new Beehive($id, "Beehive", new Info(BreakInfo::axe(0.6, null, 3.0))), TileBeehive::class);
+		self::register("bee_nest", fn(BID $id) => new Beehive($id, "Bee Nest", new Info(BreakInfo::axe(0.3, null, 1.5))), TileBeehive::class);
 	}
 
 	private function registerCauldronBlocks() : void{

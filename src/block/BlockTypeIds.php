@@ -1064,7 +1064,10 @@ final class BlockTypeIds{
 	public const WARPED_SHELF = 11026;
 	public const POPLAR_SHELF = 11027;
 
-	public const FIRST_UNUSED_BLOCK_ID = 11028;
+	public const BEEHIVE = 11028;
+	public const BEE_NEST = 11029;
+
+	public const FIRST_UNUSED_BLOCK_ID = 11030;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_BLOCK_ID;
 

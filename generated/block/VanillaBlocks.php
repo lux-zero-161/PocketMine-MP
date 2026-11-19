@@ -101,7 +101,9 @@ final class VanillaBlocks{
 	private static Beacon $_mBEACON;
 	private static Bed $_mBED;
 	private static Bedrock $_mBEDROCK;
+	private static Beehive $_mBEEHIVE;
 	private static Beetroot $_mBEETROOTS;
+	private static Beehive $_mBEE_NEST;
 	private static Bell $_mBELL;
 	private static BigDripleafHead $_mBIG_DRIPLEAF_HEAD;
 	private static BigDripleafStem $_mBIG_DRIPLEAF_STEM;
@@ -1136,7 +1138,9 @@ final class VanillaBlocks{
 			"beacon" => fn(Beacon $v) => self::$_mBEACON = $v,
 			"bed" => fn(Bed $v) => self::$_mBED = $v,
 			"bedrock" => fn(Bedrock $v) => self::$_mBEDROCK = $v,
+			"beehive" => fn(Beehive $v) => self::$_mBEEHIVE = $v,
 			"beetroots" => fn(Beetroot $v) => self::$_mBEETROOTS = $v,
+			"bee_nest" => fn(Beehive $v) => self::$_mBEE_NEST = $v,
 			"bell" => fn(Bell $v) => self::$_mBELL = $v,
 			"big_dripleaf_head" => fn(BigDripleafHead $v) => self::$_mBIG_DRIPLEAF_HEAD = $v,
 			"big_dripleaf_stem" => fn(BigDripleafStem $v) => self::$_mBIG_DRIPLEAF_STEM = $v,
@@ -2427,9 +2431,19 @@ final class VanillaBlocks{
 		return clone self::$_mBEDROCK;
 	}
 
+	public static function BEEHIVE() : Beehive{
+		if(!isset(self::$_mBEEHIVE)){ self::init(); }
+		return clone self::$_mBEEHIVE;
+	}
+
 	public static function BEETROOTS() : Beetroot{
 		if(!isset(self::$_mBEETROOTS)){ self::init(); }
 		return clone self::$_mBEETROOTS;
+	}
+
+	public static function BEE_NEST() : Beehive{
+		if(!isset(self::$_mBEE_NEST)){ self::init(); }
+		return clone self::$_mBEE_NEST;
 	}
 
 	public static function BELL() : Bell{

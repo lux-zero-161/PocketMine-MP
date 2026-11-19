@@ -30,6 +30,7 @@ use pocketmine\block\Bamboo;
 use pocketmine\block\BambooSapling;
 use pocketmine\block\Barrel;
 use pocketmine\block\Bed;
+use pocketmine\block\Beehive;
 use pocketmine\block\Bedrock;
 use pocketmine\block\Bell;
 use pocketmine\block\BigDripleafHead;
@@ -1373,6 +1374,14 @@ final class VanillaBlockMappings{
 			$commonProperties->horizontalFacingCardinal,
 			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
 			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::BEEHIVE(), Ids::BEEHIVE)->properties([
+			new IntProperty(StateNames::DIRECTION, 0, Beehive::MAX_DIRECTION, fn(Beehive $b) => $b->getDirection(), fn(Beehive $b, int $v) => $b->setDirection($v)),
+			new IntProperty(StateNames::HONEY_LEVEL, 0, Beehive::MAX_HONEY_LEVEL, fn(Beehive $b) => $b->getHoneyLevel(), fn(Beehive $b, int $v) => $b->setHoneyLevel($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::BEE_NEST(), Ids::BEE_NEST)->properties([
+			new IntProperty(StateNames::DIRECTION, 0, Beehive::MAX_DIRECTION, fn(Beehive $b) => $b->getDirection(), fn(Beehive $b, int $v) => $b->setDirection($v)),
+			new IntProperty(StateNames::HONEY_LEVEL, 0, Beehive::MAX_HONEY_LEVEL, fn(Beehive $b) => $b->getHoneyLevel(), fn(Beehive $b, int $v) => $b->setHoneyLevel($v))
 		]));
 		$reg->mapSimple(Blocks::UNKNOWN(), Ids::UNKNOWN);
 		$reg->mapModel(Model::create(Blocks::DEPRECATED_ANVIL(), Ids::DEPRECATED_ANVIL)->properties([$commonProperties->horizontalFacingCardinal]));

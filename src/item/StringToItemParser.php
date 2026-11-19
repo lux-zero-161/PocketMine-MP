@@ -1347,6 +1347,8 @@ final class StringToItemParser extends StringToTParser{
 		$result->registerBlock("crimson_shelf", fn() => Blocks::CRIMSON_SHELF());
 		$result->registerBlock("warped_shelf", fn() => Blocks::WARPED_SHELF());
 		$result->registerBlock("poplar_shelf", fn() => Blocks::POPLAR_SHELF());
+		$result->registerBlock("beehive", fn() => Blocks::BEEHIVE());
+		$result->registerBlock("bee_nest", fn() => Blocks::BEE_NEST());
 		$result->registerBlock("zombie_head", fn() => Blocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE));
 
 		//Blocks added for newer Bedrock versions
