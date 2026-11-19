@@ -23,5 +23,22 @@ declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\item\Item;
+use pocketmine\item\ItemTypeIds;
+use pocketmine\item\VanillaItems;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
+
 class PowderSnow extends Transparent{
+
+	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
+		if($item->getTypeId() === ItemTypeIds::BUCKET){
+			$item->pop();
+			$returnedItems[] = VanillaItems::POWDER_SNOW_BUCKET();
+			$this->position->getWorld()->setBlock($this->position, VanillaBlocks::AIR());
+			return true;
+		}
+
+		return false;
+	}
 }

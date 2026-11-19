@@ -2204,6 +2204,10 @@ final class VanillaBlockMappings{
 			$fillLevelProperty,
 			new DummyProperty(StateNames::CAULDRON_LIQUID, StringValues::CAULDRON_LIQUID_LAVA)
 		]);
+		$powderSnowCauldronModel = Model::create(Blocks::POWDER_SNOW_CAULDRON(), Ids::CAULDRON)->properties([
+			$fillLevelProperty,
+			new DummyProperty(StateNames::CAULDRON_LIQUID, StringValues::CAULDRON_LIQUID_POWDER_SNOW)
+		]);
 		$waterCauldronModel = Model::create(Blocks::WATER_CAULDRON(), Ids::CAULDRON)->properties([
 			$fillLevelProperty,
 			new DummyProperty(StateNames::CAULDRON_LIQUID, StringValues::CAULDRON_LIQUID_WATER)
@@ -2213,6 +2217,7 @@ final class VanillaBlockMappings{
 			new DummyProperty(StateNames::CAULDRON_LIQUID, StringValues::CAULDRON_LIQUID_WATER)
 		]);
 		self::mapAsymmetricSerializer($reg, $lavaCauldronModel);
+		self::mapAsymmetricSerializer($reg, $powderSnowCauldronModel);
 		self::mapAsymmetricSerializer($reg, $waterCauldronModel);
 		self::mapAsymmetricSerializer($reg, $emptyCauldronModel);
 		$reg->deserializer->map(Ids::CAULDRON, fn(Reader $in) => $in->readInt(StateNames::FILL_LEVEL) === 0 ?
@@ -2220,7 +2225,7 @@ final class VanillaBlockMappings{
 			match ($liquid = $in->readString(StateNames::CAULDRON_LIQUID)) {
 				StringValues::CAULDRON_LIQUID_WATER => self::deserializeAsymmetric($waterCauldronModel, $in),
 				StringValues::CAULDRON_LIQUID_LAVA => self::deserializeAsymmetric($lavaCauldronModel, $in),
-				StringValues::CAULDRON_LIQUID_POWDER_SNOW => throw new UnsupportedBlockStateException("Powder snow is not supported yet"),
+				StringValues::CAULDRON_LIQUID_POWDER_SNOW => self::deserializeAsymmetric($powderSnowCauldronModel, $in),
 				default => throw $in->badValueException(StateNames::CAULDRON_LIQUID, $liquid)
 			}
 		);
