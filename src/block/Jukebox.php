@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pocketmine\block;
 
 use pocketmine\block\tile\Jukebox as JukeboxTile;
+use pocketmine\block\utils\RecordType;
 use pocketmine\item\Item;
 use pocketmine\item\Record;
 use pocketmine\lang\KnownTranslationFactory;
@@ -57,6 +58,32 @@ class Jukebox extends Opaque{
 
 	public function getRecord() : ?Record{
 		return $this->record;
+	}
+
+	/**
+	 * Returns the comparator signal strength for the currently playing record.
+	 */
+	public function getComparatorOutput() : int{
+		if($this->record === null){
+			return 0;
+		}
+		return match($this->record->getRecordType()){
+			RecordType::DISK_13 => 1,
+			RecordType::DISK_CAT => 2,
+			RecordType::DISK_BLOCKS => 3,
+			RecordType::DISK_CHIRP => 4,
+			RecordType::DISK_FAR => 5,
+			RecordType::DISK_MALL => 6,
+			RecordType::DISK_MELLOHI => 7,
+			RecordType::DISK_STAL => 8,
+			RecordType::DISK_STRAD, RecordType::DISK_LAVA_CHICKEN => 9,
+			RecordType::DISK_WARD => 10,
+			RecordType::DISK_11, RecordType::DISK_CREATOR_MUSIC_BOX => 11,
+			RecordType::DISK_WAIT, RecordType::DISK_CREATOR => 12,
+			RecordType::DISK_PIGSTEP, RecordType::DISK_PRECIPICE => 13,
+			RecordType::DISK_OTHERSIDE, RecordType::DISK_RELIC => 14,
+			RecordType::DISK_5 => 15,
+		};
 	}
 
 	public function ejectRecord() : void{
