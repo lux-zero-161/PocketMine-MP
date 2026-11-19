@@ -361,6 +361,8 @@ final class ItemSerializerDeserializerRegistrar{
 		$this->map1to1Item(Ids::OAK_BOAT, Items::OAK_BOAT());
 		$this->map1to1Item(Ids::OAK_HANGING_SIGN, Items::OAK_HANGING_SIGN());
 		$this->map1to1Item(Ids::OAK_SIGN, Items::OAK_SIGN());
+		$this->map1to1Item(Ids::POPLAR_SIGN, Items::POPLAR_SIGN());
+		$this->map1to1Item(Ids::POPLAR_HANGING_SIGN, Items::POPLAR_HANGING_SIGN());
 		$this->map1to1Item(Ids::PAINTING, Items::PAINTING());
 		$this->map1to1Item(Ids::PALE_OAK_HANGING_SIGN, Items::PALE_OAK_HANGING_SIGN());
 		$this->map1to1Item(Ids::PALE_OAK_SIGN, Items::PALE_OAK_SIGN());

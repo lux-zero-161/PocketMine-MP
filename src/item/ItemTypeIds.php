@@ -366,7 +366,10 @@ final class ItemTypeIds{
 	public const ELYTRA = 20327;
 	public const SHIELD = 20328;
 
-	public const FIRST_UNUSED_ITEM_ID = 20329;
+	public const POPLAR_SIGN = 20329;
+	public const POPLAR_HANGING_SIGN = 20330;
+
+	public const FIRST_UNUSED_ITEM_ID = 20331;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 

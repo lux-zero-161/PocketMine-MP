@@ -18,7 +18,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Technical blocks with full state models: observer, dispenser, dropper, piston/sticky piston and arm collision blocks, moving block, command blocks, structure block, jigsaw, vault, trial spawner, crafter, creaking heart, decorated pot, grindstone, sculk sensor/calibrated sensor/shrieker/catalyst/vein, border/allow/deny blocks, chalkboard, camera, end portal/gateway, powder snow, unknown/client placeholder blocks.
 - Cherry and pale oak saplings, with matching tree generators.
 
-Coverage: **1,459 of 1,480** canonical block type names (98.6%).
+Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Active**
 

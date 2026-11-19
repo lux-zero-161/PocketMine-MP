@@ -36,6 +36,7 @@ use pocketmine\utils\LegacyEnumShimTrait;
  * @method static TreeType JUNGLE()
  * @method static TreeType OAK()
  * @method static TreeType PALE_OAK()
+ * @method static TreeType POPLAR()
  * @method static TreeType SPRUCE()
  */
 enum TreeType{
@@ -52,6 +53,7 @@ enum TreeType{
 	case AZALEA;
 	case CHERRY;
 	case PALE_OAK;
+	case POPLAR;
 	//TODO: mangrove
 
 	public function getDisplayName() : string{
@@ -67,6 +69,7 @@ enum TreeType{
 			self::AZALEA => "Azalea",
 			self::CHERRY => "Cherry",
 			self::PALE_OAK => "Pale Oak",
+			self::POPLAR => "Poplar",
 		};
 	}
 }

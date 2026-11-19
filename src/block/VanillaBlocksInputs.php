@@ -700,6 +700,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 			WoodType::CHERRY => VanillaItems::CHERRY_SIGN(...),
 			WoodType::PALE_OAK => VanillaItems::PALE_OAK_SIGN(...),
 			WoodType::BAMBOO => VanillaItems::BAMBOO_SIGN(...),
+			WoodType::POPLAR => VanillaItems::POPLAR_SIGN(...),
 		};
 	}
 
@@ -720,6 +721,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 			WoodType::CHERRY => VanillaItems::CHERRY_HANGING_SIGN(...),
 			WoodType::PALE_OAK => VanillaItems::PALE_OAK_HANGING_SIGN(...),
 			WoodType::BAMBOO => VanillaItems::BAMBOO_HANGING_SIGN(...),
+			WoodType::POPLAR => VanillaItems::POPLAR_HANGING_SIGN(...),
 		};
 	}
 
@@ -756,13 +758,19 @@ final class VanillaBlocksInputs extends RegistrySource{
 			self::register($idName("pressure_plate"), fn(BID $id) => new WoodenPressurePlate($id, $name . " Pressure Plate", $woodenPressurePlateBreakInfo, $woodType, 20));
 			self::register($idName("trapdoor"), fn(BID $id) => new WoodenTrapdoor($id, $name . " Trapdoor", $woodenDoorBreakInfo, $woodType));
 
+			if($woodType !== WoodType::POPLAR){
 			self::registerDelayed($idName("sign"), fn(string $idName) : FloorSign => new FloorSign(self::makeBID($idName, TileSign::class), $name . " Sign", $signBreakInfo, $woodType, self::getSignItemCallback($woodType)));
 			self::registerDelayed($idName("wall_sign"), fn(string $idName) : WallSign => new WallSign(self::makeBID($idName, TileSign::class), $name . " Wall Sign", $signBreakInfo, $woodType, self::getSignItemCallback($woodType)));
 
 			self::registerDelayed($idName("ceiling_center_hanging_sign"), fn(string $idName) : CeilingCenterHangingSign => new CeilingCenterHangingSign(self::makeBID($idName, TileHangingSign::class), $name . " Center Hanging Sign", $hangingSignBreakInfo, $woodType, self::getHangingSignItemCallback($woodType)));
 			self::registerDelayed($idName("ceiling_edges_hanging_sign"), fn(string $idName) : CeilingEdgesHangingSign => new CeilingEdgesHangingSign(self::makeBID($idName, TileHangingSign::class), $name . " Edges Hanging Sign", $hangingSignBreakInfo, $woodType, self::getHangingSignItemCallback($woodType)));
 			self::registerDelayed($idName("wall_hanging_sign"), fn(string $idName) : WallHangingSign => new WallHangingSign(self::makeBID($idName, TileHangingSign::class), $name . " Wall Hanging Sign", $hangingSignBreakInfo, $woodType, self::getHangingSignItemCallback($woodType)));
+			}
 		}
+
+		self::register("poplar_sign", fn(BID $id) => new FloorSign($id, "Poplar Sign", $signBreakInfo, WoodType::POPLAR, VanillaItems::POPLAR_SIGN(...)), TileSign::class);
+		self::register("poplar_wall_sign", fn(BID $id) => new WallSign($id, "Poplar Wall Sign", $signBreakInfo, WoodType::POPLAR, VanillaItems::POPLAR_SIGN(...)), TileSign::class);
+		self::register("poplar_hanging_sign", fn(BID $id) => new PoplarHangingSign($id, "Poplar Hanging Sign", $hangingSignBreakInfo), TileHangingSign::class);
 
 		$mosaicBreakInfo = new Info(BreakInfo::axe(2.0, null, 15.0), [Tags::BAMBOO_MOSAIC]);
 		self::register("bamboo_mosaic", fn(BID $id) => new Planks($id, "Bamboo Mosaic", $mosaicBreakInfo, WoodType::BAMBOO));

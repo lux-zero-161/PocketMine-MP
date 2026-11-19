@@ -1349,6 +1349,24 @@ final class StringToItemParser extends StringToTParser{
 		$result->registerBlock("poplar_shelf", fn() => Blocks::POPLAR_SHELF());
 		$result->registerBlock("beehive", fn() => Blocks::BEEHIVE());
 		$result->registerBlock("bee_nest", fn() => Blocks::BEE_NEST());
+		$result->registerBlock("poplar_log", fn() => Blocks::POPLAR_LOG());
+		$result->registerBlock("poplar_wood", fn() => Blocks::POPLAR_WOOD());
+		$result->registerBlock("poplar_planks", fn() => Blocks::POPLAR_PLANKS());
+		$result->registerBlock("poplar_slab", fn() => Blocks::POPLAR_SLAB());
+		$result->registerBlock("poplar_stairs", fn() => Blocks::POPLAR_STAIRS());
+		$result->registerBlock("poplar_fence", fn() => Blocks::POPLAR_FENCE());
+		$result->registerBlock("poplar_fence_gate", fn() => Blocks::POPLAR_FENCE_GATE());
+		$result->registerBlock("poplar_door", fn() => Blocks::POPLAR_DOOR());
+		$result->registerBlock("poplar_trapdoor", fn() => Blocks::POPLAR_TRAPDOOR());
+		$result->registerBlock("poplar_button", fn() => Blocks::POPLAR_BUTTON());
+		$result->registerBlock("poplar_pressure_plate", fn() => Blocks::POPLAR_PRESSURE_PLATE());
+		$result->registerBlock("poplar_sign", fn() => Blocks::POPLAR_SIGN());
+		$result->registerBlock("poplar_wall_sign", fn() => Blocks::POPLAR_WALL_SIGN());
+		$result->registerBlock("poplar_hanging_sign", fn() => Blocks::POPLAR_HANGING_SIGN());
+		$result->registerBlock("poplar_sapling", fn() => Blocks::POPLAR_SAPLING());
+		$result->registerBlock("orange_poplar_leaves", fn() => Blocks::ORANGE_POPLAR_LEAVES());
+		$result->registerBlock("red_poplar_leaves", fn() => Blocks::RED_POPLAR_LEAVES());
+		$result->registerBlock("yellow_poplar_leaves", fn() => Blocks::YELLOW_POPLAR_LEAVES());
 		$result->registerBlock("zombie_head", fn() => Blocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE));
 
 		//Blocks added for newer Bedrock versions

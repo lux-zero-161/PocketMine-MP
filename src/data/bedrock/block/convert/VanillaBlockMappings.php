@@ -156,6 +156,7 @@ use pocketmine\block\PaleMossCarpet;
 use pocketmine\block\Piston;
 use pocketmine\block\PistonArmCollision;
 use pocketmine\block\PointedDripstone;
+use pocketmine\block\PoplarHangingSign;
 use pocketmine\block\PotentSulfur;
 use pocketmine\block\Scaffolding;
 use pocketmine\block\SculkCatalyst;
@@ -620,6 +621,9 @@ final class VanillaBlockMappings{
 			Ids::MANGROVE_LEAVES => Blocks::MANGROVE_LEAVES(),
 			Ids::OAK_LEAVES => Blocks::OAK_LEAVES(),
 			Ids::PALE_OAK_LEAVES => Blocks::PALE_OAK_LEAVES(),
+			Ids::ORANGE_POPLAR_LEAVES => Blocks::ORANGE_POPLAR_LEAVES(),
+			Ids::RED_POPLAR_LEAVES => Blocks::RED_POPLAR_LEAVES(),
+			Ids::YELLOW_POPLAR_LEAVES => Blocks::YELLOW_POPLAR_LEAVES(),
 			Ids::SPRUCE_LEAVES => Blocks::SPRUCE_LEAVES()
 		] as $id => $block){
 			$reg->mapModel(Model::create($block, $id)->properties($properties));
@@ -638,6 +642,7 @@ final class VanillaBlockMappings{
 			Ids::JUNGLE_SAPLING => Blocks::JUNGLE_SAPLING(),
 			Ids::OAK_SAPLING => Blocks::OAK_SAPLING(),
 			Ids::PALE_OAK_SAPLING => Blocks::PALE_OAK_SAPLING(),
+			Ids::POPLAR_SAPLING => Blocks::POPLAR_SAPLING(),
 			Ids::SPRUCE_SAPLING => Blocks::SPRUCE_SAPLING(),
 		] as $id => $block){
 			$reg->mapModel(Model::create($block, $id)->properties($properties));
@@ -1590,6 +1595,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_BUTTON(), Ids::MANGROVE_BUTTON],
 			[Blocks::OAK_BUTTON(), Ids::WOODEN_BUTTON],
 			[Blocks::PALE_OAK_BUTTON(), Ids::PALE_OAK_BUTTON],
+			[Blocks::POPLAR_BUTTON(), Ids::POPLAR_BUTTON],
 			[Blocks::SPRUCE_BUTTON(), Ids::SPRUCE_BUTTON],
 			[Blocks::WARPED_BUTTON(), Ids::WARPED_BUTTON]
 		] as [$block, $id]){
@@ -1608,6 +1614,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_DOOR(), Ids::MANGROVE_DOOR],
 			[Blocks::OAK_DOOR(), Ids::WOODEN_DOOR],
 			[Blocks::PALE_OAK_DOOR(), Ids::PALE_OAK_DOOR],
+			[Blocks::POPLAR_DOOR(), Ids::POPLAR_DOOR],
 			[Blocks::SPRUCE_DOOR(), Ids::SPRUCE_DOOR],
 			[Blocks::WARPED_DOOR(), Ids::WARPED_DOOR]
 		] as [$block, $id]){
@@ -1625,6 +1632,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_FENCE(), Ids::MANGROVE_FENCE],
 			[Blocks::OAK_FENCE(), Ids::OAK_FENCE],
 			[Blocks::PALE_OAK_FENCE(), Ids::PALE_OAK_FENCE],
+			[Blocks::POPLAR_FENCE(), Ids::POPLAR_FENCE],
 			[Blocks::SPRUCE_FENCE(), Ids::SPRUCE_FENCE],
 			[Blocks::CRIMSON_FENCE(), Ids::CRIMSON_FENCE],
 			[Blocks::WARPED_FENCE(), Ids::WARPED_FENCE]
@@ -1642,6 +1650,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_FENCE_GATE(), Ids::MANGROVE_FENCE_GATE],
 			[Blocks::OAK_FENCE_GATE(), Ids::FENCE_GATE],
 			[Blocks::PALE_OAK_FENCE_GATE(), Ids::PALE_OAK_FENCE_GATE],
+			[Blocks::POPLAR_FENCE_GATE(), Ids::POPLAR_FENCE_GATE],
 			[Blocks::SPRUCE_FENCE_GATE(), Ids::SPRUCE_FENCE_GATE],
 			[Blocks::CRIMSON_FENCE_GATE(), Ids::CRIMSON_FENCE_GATE],
 			[Blocks::WARPED_FENCE_GATE(), Ids::WARPED_FENCE_GATE]
@@ -1659,6 +1668,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_SIGN(), Ids::MANGROVE_STANDING_SIGN],
 			[Blocks::OAK_SIGN(), Ids::STANDING_SIGN],
 			[Blocks::PALE_OAK_SIGN(), Ids::PALE_OAK_STANDING_SIGN],
+			[Blocks::POPLAR_SIGN(), Ids::POPLAR_STANDING_SIGN],
 			[Blocks::SPRUCE_SIGN(), Ids::SPRUCE_STANDING_SIGN],
 			[Blocks::CRIMSON_SIGN(), Ids::CRIMSON_STANDING_SIGN],
 			[Blocks::WARPED_SIGN(), Ids::WARPED_STANDING_SIGN]
@@ -1676,6 +1686,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_LOG(), "mangrove_log"],
 			[Blocks::OAK_LOG(), "oak_log"],
 			[Blocks::PALE_OAK_LOG(), "pale_oak_log"],
+			[Blocks::POPLAR_LOG(), "poplar_log"],
 			[Blocks::SPRUCE_LOG(), "spruce_log"],
 			[Blocks::CRIMSON_STEM(), "crimson_stem"],
 			[Blocks::WARPED_STEM(), "warped_stem"],
@@ -1689,6 +1700,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_WOOD(), "mangrove_wood"],
 			[Blocks::OAK_WOOD(), "oak_wood"],
 			[Blocks::PALE_OAK_WOOD(), "pale_oak_wood"],
+			[Blocks::POPLAR_WOOD(), "poplar_wood"],
 			[Blocks::SPRUCE_WOOD(), "spruce_wood"],
 			[Blocks::CRIMSON_HYPHAE(), "crimson_hyphae"],
 			[Blocks::WARPED_HYPHAE(), "warped_hyphae"],
@@ -1714,6 +1726,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_PLANKS(), Ids::MANGROVE_PLANKS],
 			[Blocks::OAK_PLANKS(), Ids::OAK_PLANKS],
 			[Blocks::PALE_OAK_PLANKS(), Ids::PALE_OAK_PLANKS],
+			[Blocks::POPLAR_PLANKS(), Ids::POPLAR_PLANKS],
 			[Blocks::SPRUCE_PLANKS(), Ids::SPRUCE_PLANKS],
 			[Blocks::CRIMSON_PLANKS(), Ids::CRIMSON_PLANKS],
 			[Blocks::WARPED_PLANKS(), Ids::WARPED_PLANKS]
@@ -1732,6 +1745,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_PRESSURE_PLATE(), Ids::MANGROVE_PRESSURE_PLATE],
 			[Blocks::OAK_PRESSURE_PLATE(), Ids::WOODEN_PRESSURE_PLATE],
 			[Blocks::PALE_OAK_PRESSURE_PLATE(), Ids::PALE_OAK_PRESSURE_PLATE],
+			[Blocks::POPLAR_PRESSURE_PLATE(), Ids::POPLAR_PRESSURE_PLATE],
 			[Blocks::SPRUCE_PRESSURE_PLATE(), Ids::SPRUCE_PRESSURE_PLATE],
 			[Blocks::CRIMSON_PRESSURE_PLATE(), Ids::CRIMSON_PRESSURE_PLATE],
 			[Blocks::WARPED_PRESSURE_PLATE(), Ids::WARPED_PRESSURE_PLATE]
@@ -1751,6 +1765,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_SLAB(), "mangrove"],
 			[Blocks::OAK_SLAB(), "oak"],
 			[Blocks::PALE_OAK_SLAB(), "pale_oak"],
+			[Blocks::POPLAR_SLAB(), "poplar"],
 			[Blocks::SPRUCE_SLAB(), "spruce"],
 			[Blocks::CRIMSON_SLAB(), "crimson"],
 			[Blocks::WARPED_SLAB(), "warped"]
@@ -1770,6 +1785,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_STAIRS(), Ids::MANGROVE_STAIRS],
 			[Blocks::OAK_STAIRS(), Ids::OAK_STAIRS],
 			[Blocks::PALE_OAK_STAIRS(), Ids::PALE_OAK_STAIRS],
+			[Blocks::POPLAR_STAIRS(), Ids::POPLAR_STAIRS],
 			[Blocks::SPRUCE_STAIRS(), Ids::SPRUCE_STAIRS],
 			[Blocks::CRIMSON_STAIRS(), Ids::CRIMSON_STAIRS],
 			[Blocks::WARPED_STAIRS(), Ids::WARPED_STAIRS]
@@ -1788,6 +1804,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_TRAPDOOR(), Ids::MANGROVE_TRAPDOOR],
 			[Blocks::OAK_TRAPDOOR(), Ids::TRAPDOOR],
 			[Blocks::PALE_OAK_TRAPDOOR(), Ids::PALE_OAK_TRAPDOOR],
+			[Blocks::POPLAR_TRAPDOOR(), Ids::POPLAR_TRAPDOOR],
 			[Blocks::SPRUCE_TRAPDOOR(), Ids::SPRUCE_TRAPDOOR],
 			[Blocks::CRIMSON_TRAPDOOR(), Ids::CRIMSON_TRAPDOOR],
 			[Blocks::WARPED_TRAPDOOR(), Ids::WARPED_TRAPDOOR]
@@ -1806,6 +1823,7 @@ final class VanillaBlockMappings{
 			[Blocks::MANGROVE_WALL_SIGN(), Ids::MANGROVE_WALL_SIGN],
 			[Blocks::OAK_WALL_SIGN(), Ids::WALL_SIGN],
 			[Blocks::PALE_OAK_WALL_SIGN(), Ids::PALE_OAK_WALL_SIGN],
+			[Blocks::POPLAR_WALL_SIGN(), Ids::POPLAR_WALL_SIGN],
 			[Blocks::SPRUCE_WALL_SIGN(), Ids::SPRUCE_WALL_SIGN],
 			[Blocks::CRIMSON_WALL_SIGN(), Ids::CRIMSON_WALL_SIGN],
 			[Blocks::WARPED_WALL_SIGN(), Ids::WARPED_WALL_SIGN]
@@ -2251,6 +2269,13 @@ final class VanillaBlockMappings{
 		self::mapAsymmetricSerializer($reg, Model::create(Blocks::OMINOUS_BANNER(), Ids::STANDING_BANNER)->properties([$commonProperties->floorSignLikeRotation]));
 		self::mapAsymmetricSerializer($reg, Model::create(Blocks::OMINOUS_WALL_BANNER(), Ids::WALL_BANNER)->properties([$commonProperties->horizontalFacingClassic]));
 
+
+		$reg->mapModel(Model::create(Blocks::POPLAR_HANGING_SIGN(), Ids::POPLAR_HANGING_SIGN)->properties([
+			new BoolProperty(StateNames::ATTACHED_BIT, fn(PoplarHangingSign $b) => $b->isAttached(), fn(PoplarHangingSign $b, bool $v) => $b->setAttached($v)),
+			new IntProperty(StateNames::FACING_DIRECTION, 0, 5, fn(PoplarHangingSign $b) => $b->getFacing(), fn(PoplarHangingSign $b, int $v) => $b->setFacing($v)),
+			new IntProperty(StateNames::GROUND_SIGN_DIRECTION, 0, 15, fn(PoplarHangingSign $b) => $b->getGroundSignDirection(), fn(PoplarHangingSign $b, int $v) => $b->setGroundSignDirection($v)),
+			new BoolProperty(StateNames::HANGING, fn(PoplarHangingSign $b) => $b->isHanging(), fn(PoplarHangingSign $b, bool $v) => $b->setHanging($v))
+		]));
 		foreach([
 			Ids::ACACIA_HANGING_SIGN => [Blocks::ACACIA_CEILING_CENTER_HANGING_SIGN(), Blocks::ACACIA_CEILING_EDGES_HANGING_SIGN(), Blocks::ACACIA_WALL_HANGING_SIGN()],
 			Ids::BAMBOO_HANGING_SIGN => [Blocks::BAMBOO_CEILING_CENTER_HANGING_SIGN(), Blocks::BAMBOO_CEILING_EDGES_HANGING_SIGN(), Blocks::BAMBOO_WALL_HANGING_SIGN()],
@@ -2261,6 +2286,7 @@ final class VanillaBlockMappings{
 			Ids::JUNGLE_HANGING_SIGN => [Blocks::JUNGLE_CEILING_CENTER_HANGING_SIGN(), Blocks::JUNGLE_CEILING_EDGES_HANGING_SIGN(), Blocks::JUNGLE_WALL_HANGING_SIGN()],
 			Ids::MANGROVE_HANGING_SIGN => [Blocks::MANGROVE_CEILING_CENTER_HANGING_SIGN(), Blocks::MANGROVE_CEILING_EDGES_HANGING_SIGN(), Blocks::MANGROVE_WALL_HANGING_SIGN()],
 			Ids::OAK_HANGING_SIGN => [Blocks::OAK_CEILING_CENTER_HANGING_SIGN(), Blocks::OAK_CEILING_EDGES_HANGING_SIGN(), Blocks::OAK_WALL_HANGING_SIGN()],
+
 			Ids::PALE_OAK_HANGING_SIGN => [Blocks::PALE_OAK_CEILING_CENTER_HANGING_SIGN(), Blocks::PALE_OAK_CEILING_EDGES_HANGING_SIGN(), Blocks::PALE_OAK_WALL_HANGING_SIGN()],
 			Ids::SPRUCE_HANGING_SIGN => [Blocks::SPRUCE_CEILING_CENTER_HANGING_SIGN(), Blocks::SPRUCE_CEILING_EDGES_HANGING_SIGN(), Blocks::SPRUCE_WALL_HANGING_SIGN()],
 			Ids::WARPED_HANGING_SIGN => [Blocks::WARPED_CEILING_CENTER_HANGING_SIGN(), Blocks::WARPED_CEILING_EDGES_HANGING_SIGN(), Blocks::WARPED_WALL_HANGING_SIGN()],
