@@ -41,6 +41,7 @@ use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\world\BlockTransaction;
 use function assert;
+use function max;
 
 class RedstoneComparator extends Flowable implements AnalogRedstoneSignalEmitter, PoweredByRedstone, HorizontalFacing{
 	use HorizontalFacingTrait;
@@ -104,13 +105,50 @@ class RedstoneComparator extends Flowable implements AnalogRedstoneSignalEmitter
 		return $block->getAdjacentSupportType(Facing::DOWN) !== SupportType::NONE;
 	}
 
-	//TODO: redstone functionality
-	public function onNearbyBlockChange() : void{
-		$powered = RedstonePowerHelper::isPowered($this);
-		if($powered !== $this->isPowered()){
-			$this->setPowered($powered);
+	/**
+	 * Returns the analog signal delivered to the given side of the comparator.
+	 *
+	 * @param int $side one of Facing::*, the direction from the comparator towards the input block
+	 */
+	private function getInputSignal(int $side) : int{
+		$input = $this->getSide($side);
+		$strength = RedstonePowerHelper::getSignalStrengthTowards($input, Facing::opposite($side));
+		if($strength > 0){
+			return $strength;
+		}
+
+		$strength = RedstonePowerHelper::getAnalogSignalStrength($input);
+		if($strength > 0){
+			return $strength;
+		}
+
+		//solid blocks can also deliver indirect power from a source attached to them
+		return RedstonePowerHelper::isPowered($input, $this) ? 15 : 0;
+	}
+
+	private function recalculateOutput() : void{
+		$rear = $this->getInputSignal(Facing::opposite($this->facing));
+		$side = max(
+			$this->getInputSignal(Facing::rotateY($this->facing, false)),
+			$this->getInputSignal(Facing::rotateY($this->facing, true))
+		);
+
+		$output = $this->isSubtractMode ? max(0, $rear - $side) : ($rear >= $side ? $rear : 0);
+
+		if($output !== $this->signalStrength || ($output > 0) !== $this->isPowered()){
+			$this->signalStrength = $output;
+			$this->setPowered($output > 0);
 			$this->position->getWorld()->setBlock($this->position, $this);
 		}
+	}
+
+	//TODO: locking by a powered repeater/comparator pointing into the side
+	public function onNearbyBlockChange() : void{
+		$this->position->getWorld()->scheduleDelayedBlockUpdate($this->position, 1);
+	}
+
+	public function onScheduledUpdate() : void{
+		$this->recalculateOutput();
 	}
 
 }

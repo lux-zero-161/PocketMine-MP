@@ -90,9 +90,22 @@ class RedstoneRepeater extends Flowable implements PoweredByRedstone, Horizontal
 		return $block->getAdjacentSupportType(Facing::DOWN) !== SupportType::NONE;
 	}
 
-	//TODO: redstone functionality
+	/**
+	 * Repeaters only read the block behind them, and only change their output after the configured delay.
+	 */
+	private function isReceivingInput() : bool{
+		$input = $this->getSide(Facing::opposite($this->facing));
+		return RedstonePowerHelper::providesPowerTo($input, $this->facing) || RedstonePowerHelper::isPowered($input, $this);
+	}
+
 	public function onNearbyBlockChange() : void{
-		$powered = RedstonePowerHelper::isPowered($this);
+		if($this->isReceivingInput() !== $this->isPowered()){
+			$this->position->getWorld()->scheduleDelayedBlockUpdate($this->position, $this->delay);
+		}
+	}
+
+	public function onScheduledUpdate() : void{
+		$powered = $this->isReceivingInput();
 		if($powered !== $this->isPowered()){
 			$this->setPowered($powered);
 			$this->position->getWorld()->setBlock($this->position, $this);
