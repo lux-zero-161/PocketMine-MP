@@ -49,7 +49,10 @@ A live audit can be run with:
 
 ```bash
 php build/audit/block-coverage.php
+php build/audit/item-coverage.php --missing
 ```
+
+The block audit reports canonical block type and state coverage; the item audit compares the Bedrock creative inventory against the block and item registries.
 
 ### What "implemented" means here
 
