@@ -145,8 +145,7 @@ class Leaves extends Transparent{
 		}
 
 		$drops = [];
-		if(FortuneDropHelper::bonusChanceDivisor($item, 20, 4)){ //Saplings
-			// TODO: according to the wiki, the jungle saplings have a different drop rate
+		if(FortuneDropHelper::bonusChanceDivisor($item, $this->leavesType === LeavesType::JUNGLE ? 40 : 20, 4)){ //Saplings
 			$sapling = (match($this->leavesType){
 				LeavesType::ACACIA => VanillaBlocks::ACACIA_SAPLING(),
 				LeavesType::BIRCH => VanillaBlocks::BIRCH_SAPLING(),
@@ -154,16 +153,14 @@ class Leaves extends Transparent{
 				LeavesType::JUNGLE => VanillaBlocks::JUNGLE_SAPLING(),
 				LeavesType::OAK => VanillaBlocks::OAK_SAPLING(),
 				LeavesType::SPRUCE => VanillaBlocks::SPRUCE_SAPLING(),
-				LeavesType::MANGROVE, //TODO: mangrove propagule
+				LeavesType::MANGROVE => VanillaBlocks::MANGROVE_PROPAGULE(),
 				LeavesType::AZALEA => VanillaBlocks::AZALEA(),
 				LeavesType::FLOWERING_AZALEA => VanillaBlocks::FLOWERING_AZALEA(),
-				LeavesType::CHERRY => null, //TODO: cherry
-				LeavesType::PALE_OAK => null, //TODO: pale oak
+				LeavesType::CHERRY => VanillaBlocks::CHERRY_SAPLING(),
+				LeavesType::PALE_OAK => VanillaBlocks::PALE_OAK_SAPLING(),
 				LeavesType::ORANGE_POPLAR, LeavesType::RED_POPLAR, LeavesType::YELLOW_POPLAR => VanillaBlocks::POPLAR_SAPLING(),
-			})?->asItem();
-			if($sapling !== null){
-				$drops[] = $sapling;
-			}
+			});
+			$drops[] = $sapling->asItem();
 		}
 		if(
 			($this->leavesType === LeavesType::OAK || $this->leavesType === LeavesType::DARK_OAK) &&
