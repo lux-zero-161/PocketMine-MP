@@ -78,6 +78,11 @@ class DaylightSensor extends Transparent implements AnalogRedstoneSignalEmitter{
 		return true;
 	}
 
+	public function onNearbyBlockChange() : void{
+		//the sensor has no tile to keep it ticking, so make sure the periodic update gets (re)scheduled
+		$this->position->getWorld()->scheduleDelayedBlockUpdate($this->position, 20);
+	}
+
 	public function onScheduledUpdate() : void{
 		$world = $this->position->getWorld();
 		$signalStrength = $this->recalculateSignalStrength();
