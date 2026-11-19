@@ -29,7 +29,7 @@ final class RedstonePowerHelper{
 				($side instanceof Lever && $side->isActivated()) ||
 				($side instanceof Button && $side->isPressed()) ||
 				($side instanceof RedstoneTorch && $side->isLit()) ||
-				$side->getTypeId() === BlockTypeIds::REDSTONE_BLOCK ||
+				$side->getTypeId() === BlockTypeIds::REDSTONE ||
 				($side instanceof PoweredByRedstone && $side->isPowered())
 			){
 				return true;
