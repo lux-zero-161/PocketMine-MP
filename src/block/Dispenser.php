@@ -29,9 +29,11 @@ use pocketmine\entity\Location;
 use pocketmine\entity\projectile\Arrow as ArrowEntity;
 use pocketmine\entity\projectile\Egg as EggEntity;
 use pocketmine\entity\projectile\Snowball as SnowballEntity;
+use pocketmine\entity\projectile\SplashPotion as SplashPotionEntity;
 use pocketmine\item\Arrow as ArrowItem;
 use pocketmine\item\Egg as EggItem;
 use pocketmine\item\Snowball as SnowballItem;
+use pocketmine\item\SplashPotion as SplashPotionItem;
 use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\math\Vector3;
 use pocketmine\data\runtime\RuntimeDataDescriber;
@@ -76,10 +78,11 @@ class Dispenser extends Opaque implements AnyFacing{
 							$item instanceof ArrowItem => new ArrowEntity($location, null, false),
 							$item instanceof EggItem => new EggEntity($location, null),
 							$item instanceof SnowballItem => new SnowballEntity($location, null),
+							$item instanceof SplashPotionItem => new SplashPotionEntity($location, null, $item->getType()),
 							default => null
 						};
 						if($projectile !== null){
-							$projectile->setMotion($v->multiply(1.5));
+							$projectile->setMotion($v->multiply($item instanceof SplashPotionItem ? 0.5 : 1.5));
 							$projectile->spawnToAll();
 						}else{
 							$world->dropItem($spawn, $item);
