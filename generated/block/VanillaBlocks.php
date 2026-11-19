@@ -226,6 +226,7 @@ final class VanillaBlocks{
 	private static Concrete $_mCONCRETE;
 	private static ConcretePowder $_mCONCRETE_POWDER;
 	private static Conduit $_mCONDUIT;
+	private static ContinuousPotentSulfur $_mCONTINUOUS_POTENT_SULFUR;
 	private static Copper $_mCOPPER;
 	private static CopperBars $_mCOPPER_BARS;
 	private static CopperBulb $_mCOPPER_BULB;
@@ -276,6 +277,7 @@ final class VanillaBlocks{
 	private static Slab $_mCUT_RED_SANDSTONE_SLAB;
 	private static Opaque $_mCUT_SANDSTONE;
 	private static Slab $_mCUT_SANDSTONE_SLAB;
+	private static CyclingPotentSulfur $_mCYCLING_POTENT_SULFUR;
 	private static Flower $_mDANDELION;
 	private static WoodenButton $_mDARK_OAK_BUTTON;
 	private static CeilingCenterHangingSign $_mDARK_OAK_CEILING_CENTER_HANGING_SIGN;
@@ -512,7 +514,7 @@ final class VanillaBlocks{
 	private static HardenedGlass $_mHARDENED_GLASS;
 	private static HardenedGlassPane $_mHARDENED_GLASS_PANE;
 	private static HayBale $_mHAY_BALE;
-	private static Opaque $_mHEAVY_CORE;
+	private static HeavyCore $_mHEAVY_CORE;
 	private static Opaque $_mHONEYCOMB;
 	private static HoneyBlock $_mHONEY_BLOCK;
 	private static Hopper $_mHOPPER;
@@ -940,6 +942,7 @@ final class VanillaBlocks{
 	private static NetherVines $_mWEEPING_VINES;
 	private static WeightedPressurePlateHeavy $_mWEIGHTED_PRESSURE_PLATE_HEAVY;
 	private static WeightedPressurePlateLight $_mWEIGHTED_PRESSURE_PLATE_LIGHT;
+	private static WetPotentSulfur $_mWET_POTENT_SULFUR;
 	private static Wheat $_mWHEAT;
 	private static Flower $_mWHITE_TULIP;
 	private static Wildflowers $_mWILDFLOWERS;
@@ -1167,6 +1170,7 @@ final class VanillaBlocks{
 			"concrete" => fn(Concrete $v) => self::$_mCONCRETE = $v,
 			"concrete_powder" => fn(ConcretePowder $v) => self::$_mCONCRETE_POWDER = $v,
 			"conduit" => fn(Conduit $v) => self::$_mCONDUIT = $v,
+			"continuous_potent_sulfur" => fn(ContinuousPotentSulfur $v) => self::$_mCONTINUOUS_POTENT_SULFUR = $v,
 			"copper" => fn(Copper $v) => self::$_mCOPPER = $v,
 			"copper_bars" => fn(CopperBars $v) => self::$_mCOPPER_BARS = $v,
 			"copper_bulb" => fn(CopperBulb $v) => self::$_mCOPPER_BULB = $v,
@@ -1217,6 +1221,7 @@ final class VanillaBlocks{
 			"cut_red_sandstone_slab" => fn(Slab $v) => self::$_mCUT_RED_SANDSTONE_SLAB = $v,
 			"cut_sandstone" => fn(Opaque $v) => self::$_mCUT_SANDSTONE = $v,
 			"cut_sandstone_slab" => fn(Slab $v) => self::$_mCUT_SANDSTONE_SLAB = $v,
+			"cycling_potent_sulfur" => fn(CyclingPotentSulfur $v) => self::$_mCYCLING_POTENT_SULFUR = $v,
 			"dandelion" => fn(Flower $v) => self::$_mDANDELION = $v,
 			"dark_oak_button" => fn(WoodenButton $v) => self::$_mDARK_OAK_BUTTON = $v,
 			"dark_oak_ceiling_center_hanging_sign" => fn(CeilingCenterHangingSign $v) => self::$_mDARK_OAK_CEILING_CENTER_HANGING_SIGN = $v,
@@ -1453,7 +1458,7 @@ final class VanillaBlocks{
 			"hardened_glass" => fn(HardenedGlass $v) => self::$_mHARDENED_GLASS = $v,
 			"hardened_glass_pane" => fn(HardenedGlassPane $v) => self::$_mHARDENED_GLASS_PANE = $v,
 			"hay_bale" => fn(HayBale $v) => self::$_mHAY_BALE = $v,
-			"heavy_core" => fn(Opaque $v) => self::$_mHEAVY_CORE = $v,
+			"heavy_core" => fn(HeavyCore $v) => self::$_mHEAVY_CORE = $v,
 			"honeycomb" => fn(Opaque $v) => self::$_mHONEYCOMB = $v,
 			"honey_block" => fn(HoneyBlock $v) => self::$_mHONEY_BLOCK = $v,
 			"hopper" => fn(Hopper $v) => self::$_mHOPPER = $v,
@@ -1881,6 +1886,7 @@ final class VanillaBlocks{
 			"weeping_vines" => fn(NetherVines $v) => self::$_mWEEPING_VINES = $v,
 			"weighted_pressure_plate_heavy" => fn(WeightedPressurePlateHeavy $v) => self::$_mWEIGHTED_PRESSURE_PLATE_HEAVY = $v,
 			"weighted_pressure_plate_light" => fn(WeightedPressurePlateLight $v) => self::$_mWEIGHTED_PRESSURE_PLATE_LIGHT = $v,
+			"wet_potent_sulfur" => fn(WetPotentSulfur $v) => self::$_mWET_POTENT_SULFUR = $v,
 			"wheat" => fn(Wheat $v) => self::$_mWHEAT = $v,
 			"white_tulip" => fn(Flower $v) => self::$_mWHITE_TULIP = $v,
 			"wildflowers" => fn(Wildflowers $v) => self::$_mWILDFLOWERS = $v,
@@ -2864,6 +2870,11 @@ final class VanillaBlocks{
 		return clone self::$_mCONDUIT;
 	}
 
+	public static function CONTINUOUS_POTENT_SULFUR() : ContinuousPotentSulfur{
+		if(!isset(self::$_mCONTINUOUS_POTENT_SULFUR)){ self::init(); }
+		return clone self::$_mCONTINUOUS_POTENT_SULFUR;
+	}
+
 	public static function COPPER() : Copper{
 		if(!isset(self::$_mCOPPER)){ self::init(); }
 		return clone self::$_mCOPPER;
@@ -3112,6 +3123,11 @@ final class VanillaBlocks{
 	public static function CUT_SANDSTONE_SLAB() : Slab{
 		if(!isset(self::$_mCUT_SANDSTONE_SLAB)){ self::init(); }
 		return clone self::$_mCUT_SANDSTONE_SLAB;
+	}
+
+	public static function CYCLING_POTENT_SULFUR() : CyclingPotentSulfur{
+		if(!isset(self::$_mCYCLING_POTENT_SULFUR)){ self::init(); }
+		return clone self::$_mCYCLING_POTENT_SULFUR;
 	}
 
 	public static function DANDELION() : Flower{
@@ -4294,7 +4310,7 @@ final class VanillaBlocks{
 		return clone self::$_mHAY_BALE;
 	}
 
-	public static function HEAVY_CORE() : Opaque{
+	public static function HEAVY_CORE() : HeavyCore{
 		if(!isset(self::$_mHEAVY_CORE)){ self::init(); }
 		return clone self::$_mHEAVY_CORE;
 	}
@@ -6432,6 +6448,11 @@ final class VanillaBlocks{
 	public static function WEIGHTED_PRESSURE_PLATE_LIGHT() : WeightedPressurePlateLight{
 		if(!isset(self::$_mWEIGHTED_PRESSURE_PLATE_LIGHT)){ self::init(); }
 		return clone self::$_mWEIGHTED_PRESSURE_PLATE_LIGHT;
+	}
+
+	public static function WET_POTENT_SULFUR() : WetPotentSulfur{
+		if(!isset(self::$_mWET_POTENT_SULFUR)){ self::init(); }
+		return clone self::$_mWET_POTENT_SULFUR;
 	}
 
 	public static function WHEAT() : Wheat{

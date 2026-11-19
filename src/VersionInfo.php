@@ -30,8 +30,8 @@ use function is_int;
 use function str_repeat;
 
 final class VersionInfo{
-	public const NAME = "PocketMine-MP";
-	public const BASE_VERSION = "5.44.4";
+	public const NAME = "NG-PocketMine-MP";
+	public const BASE_VERSION = "5.51.2";
 	public const IS_DEVELOPMENT_BUILD = true;
 	public const BUILD_CHANNEL = "stable";
 	public const GITHUB_URL = "https://github.com/pmmp/PocketMine-MP";

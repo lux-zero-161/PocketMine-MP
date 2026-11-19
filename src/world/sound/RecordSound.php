@@ -26,13 +26,21 @@ namespace pocketmine\world\sound;
 use pocketmine\block\utils\RecordType;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+use pocketmine\network\mcpe\protocol\RecordStartedPacket;
+use pocketmine\network\mcpe\protocol\types\BlockPosition;
 use pocketmine\network\mcpe\protocol\types\LevelSoundEvent;
 
-class RecordSound implements Sound{
-	public function __construct(private RecordType $recordType){}
+class RecordSound extends ProtocolSound{
+	public function __construct(
+		private RecordType $recordType,
+		private int $serverSoundHandleId = 0
+	){
+	}
 
 	public function encode(Vector3 $pos) : array{
-		return [LevelSoundEventPacket::nonActorSound(match($this->recordType){
+		$sound = match($this->recordType){
 			RecordType::DISK_13 => LevelSoundEvent::RECORD_13,
 			RecordType::DISK_5 => LevelSoundEvent::RECORD_5,
 			RecordType::DISK_CAT => LevelSoundEvent::RECORD_CAT,
@@ -53,6 +61,15 @@ class RecordSound implements Sound{
 			RecordType::DISK_WARD => LevelSoundEvent::RECORD_WARD,
 			RecordType::DISK_11 => LevelSoundEvent::RECORD_11,
 			RecordType::DISK_WAIT => LevelSoundEvent::RECORD_WAIT
-		}, $pos, false)];
+		};
+
+		if($this->protocolId < ProtocolInfo::PROTOCOL_1_26_50){
+			return [LevelSoundEventPacket::nonActorSound($sound, $pos, false)];
+		}
+
+		return [
+			PlaySoundPacket::create($sound, $pos->x, $pos->y, $pos->z, 1, 1, 0, true, $this->serverSoundHandleId, null),
+			RecordStartedPacket::create(BlockPosition::fromVector3($pos), $this->serverSoundHandleId),
+		];
 	}
 }

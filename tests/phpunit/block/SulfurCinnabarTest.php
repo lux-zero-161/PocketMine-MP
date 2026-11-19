@@ -24,7 +24,6 @@ declare(strict_types=1);
 namespace pocketmine\block;
 
 use PHPUnit\Framework\TestCase;
-use pocketmine\block\utils\PotentSulfurState;
 use pocketmine\block\utils\SlabType;
 use pocketmine\data\bedrock\BedrockDataFiles;
 use pocketmine\data\bedrock\block\BlockStateData;
@@ -128,23 +127,6 @@ final class SulfurCinnabarTest extends TestCase{
 			}
 		}
 		self::assertSame([], $missing, "The following sulfur/cinnabar block types are not registered: " . implode(", ", $missing));
-	}
-
-	public function testPotentSulfurStates() : void{
-		$block = VanillaBlocks::POTENT_SULFUR();
-		self::assertSame(PotentSulfurState::DRY, $block->getState());
-
-		$serializer = GlobalBlockStateHandlers::getSerializer();
-		$deserializer = GlobalBlockStateHandlers::getDeserializer();
-
-		foreach(PotentSulfurState::cases() as $state){
-			$block->setState($state);
-			$data = $serializer->serializeBlock($block);
-			self::assertSame(BlockTypeNames::POTENT_SULFUR, $data->getName());
-			$newBlock = $deserializer->deserializeBlock($data);
-			self::assertInstanceOf(PotentSulfur::class, $newBlock);
-			self::assertSame($state, $newBlock->getState());
-		}
 	}
 
 	public function testDoubleSlab() : void{
