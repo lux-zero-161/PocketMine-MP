@@ -37,7 +37,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Archaeology for suspicious sand/gravel.
 - Powder snow entity interaction (sinking, freezing, leather boots).
 - Scaffolding stability calculation and climbing physics.
-- Kelp/seagrass growth and fluid interactions.
+- Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
 
 ### 1.2 Items
 

@@ -24,6 +24,8 @@ declare(strict_types=1);
 namespace pocketmine\block;
 
 use pocketmine\data\runtime\RuntimeDataDescriber;
+use pocketmine\math\Facing;
+use function mt_rand;
 
 class Kelp extends Flowable{
 	public const MAX_AGE = 25;
@@ -43,5 +45,19 @@ class Kelp extends Flowable{
 		}
 		$this->age = $age;
 		return $this;
+	}
+
+	public function ticksRandomly() : bool{
+		return true;
+	}
+
+	public function onRandomTick() : void{
+		if($this->age >= self::MAX_AGE){
+			return;
+		}
+		$above = $this->getSide(Facing::UP);
+		if($above instanceof Water && mt_rand(0, 9) === 0){
+			$this->position->getWorld()->setBlock($above->getPosition(), VanillaBlocks::KELP()->setAge(0));
+		}
 	}
 }
