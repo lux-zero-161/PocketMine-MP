@@ -99,12 +99,18 @@ class RedstoneRepeater extends Flowable implements PoweredByRedstone, Horizontal
 	}
 
 	public function onNearbyBlockChange() : void{
+		if(RedstonePowerHelper::isLocked($this)){
+			return;
+		}
 		if($this->isReceivingInput() !== $this->isPowered()){
 			$this->position->getWorld()->scheduleDelayedBlockUpdate($this->position, $this->delay);
 		}
 	}
 
 	public function onScheduledUpdate() : void{
+		if(RedstonePowerHelper::isLocked($this)){
+			return;
+		}
 		$powered = $this->isReceivingInput();
 		if($powered !== $this->isPowered()){
 			$this->setPowered($powered);

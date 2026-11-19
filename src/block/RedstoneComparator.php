@@ -142,12 +142,15 @@ class RedstoneComparator extends Flowable implements AnalogRedstoneSignalEmitter
 		}
 	}
 
-	//TODO: locking by a powered repeater/comparator pointing into the side
+	//TODO: updating the output immediately when a comparator locks this one is not implemented
 	public function onNearbyBlockChange() : void{
 		$this->position->getWorld()->scheduleDelayedBlockUpdate($this->position, 1);
 	}
 
 	public function onScheduledUpdate() : void{
+		if(RedstonePowerHelper::isLocked($this)){
+			return;
+		}
 		$this->recalculateOutput();
 	}
 

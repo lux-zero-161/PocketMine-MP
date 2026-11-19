@@ -147,6 +147,28 @@ final class RedstonePowerHelper{
 	}
 
 	/**
+	 * Returns whether a repeater or comparator is locked by a powered repeater or comparator pointing into its side.
+	 */
+	public static function isLocked(Block $block) : bool{
+		if(!$block instanceof RedstoneRepeater && !$block instanceof RedstoneComparator){
+			throw new \InvalidArgumentException("Only repeaters and comparators can be locked");
+		}
+		$facing = $block->getFacing();
+
+		foreach([Facing::rotateY($facing, false), Facing::rotateY($facing, true)] as $side){
+			$neighbour = $block->getSide($side);
+			if(
+				($neighbour instanceof RedstoneRepeater || $neighbour instanceof RedstoneComparator) &&
+				$neighbour->isPowered() &&
+				$neighbour->getFacing() === Facing::opposite($side)
+			){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Recomputes a wire's signal strength from adjacent wires and power sources.
 	 * Returns true if the wire changed and needs to be written back to the world.
 	 */
