@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use pocketmine\data\bedrock\BedrockDataFiles;
 use pocketmine\network\mcpe\convert\BlockStateDictionary;
 use pocketmine\utils\Filesystem;
+use pocketmine\utils\Utils;
 use pocketmine\world\format\io\GlobalBlockStateHandlers;
 use function count;
 use function implode;
@@ -40,7 +41,7 @@ final class BlockCoverageTest extends TestCase{
 		}
 
 		$missing = [];
-		foreach($canonicalNames as $name => $unused){
+		foreach(Utils::stringifyKeys($canonicalNames) as $name => $unused){
 			if(!isset($registeredNames[$name])){
 				$missing[] = $name;
 			}

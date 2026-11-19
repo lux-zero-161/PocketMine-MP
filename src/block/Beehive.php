@@ -6,7 +6,12 @@ namespace pocketmine\block;
 
 use pocketmine\block\tile\Beehive as TileBeehive;
 use pocketmine\data\runtime\RuntimeDataDescriber;
-use pocketmine\math\Facing;
+use pocketmine\item\GlassBottle;
+use pocketmine\item\Item;
+use pocketmine\item\Shears;
+use pocketmine\item\VanillaItems;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
 
 class Beehive extends Opaque{
 	public const MAX_HONEY_LEVEL = 5;
@@ -29,6 +34,26 @@ class Beehive extends Opaque{
 		}
 		$this->honeyLevel = $level;
 		return $this;
+	}
+
+	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
+		if($this->honeyLevel >= self::MAX_HONEY_LEVEL){
+			if($item instanceof Shears){
+				$item->applyDamage(1);
+				for($i = 0; $i < 3; $i++){
+					$returnedItems[] = VanillaItems::HONEYCOMB();
+				}
+				$this->position->getWorld()->setBlock($this->position, $this->setHoneyLevel(0));
+				return true;
+			}
+			if($item instanceof GlassBottle){
+				$item->pop();
+				$returnedItems[] = VanillaItems::HONEY_BOTTLE();
+				$this->position->getWorld()->setBlock($this->position, $this->setHoneyLevel(0));
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function getDirection() : int{ return $this->direction; }
