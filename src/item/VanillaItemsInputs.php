@@ -91,6 +91,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::registerSpawnEggs();
 		self::registerTierToolItems();
 		self::registerSmithingTemplates();
+		self::registerPotterySherdsAndBannerPatterns();
 
 		//this doesn't use the regular register() because it doesn't have an item typeID
 		//in the future we'll probably want to dissociate this from the air block and make a proper null item
@@ -431,6 +432,45 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("ward_armor_trim_smithing_template", fn(IID $id) => new Item($id, "Ward Armor Trim Smithing Template"));
 		self::register("wayfinder_armor_trim_smithing_template", fn(IID $id) => new Item($id, "Wayfinder Armor Trim Smithing Template"));
 		self::register("wild_armor_trim_smithing_template", fn(IID $id) => new Item($id, "Wild Armor Trim Smithing Template"));
+		self::register("bolt_armor_trim_smithing_template", fn(IID $id) => new Item($id, "Bolt Armor Trim Smithing Template"));
+		self::register("flow_armor_trim_smithing_template", fn(IID $id) => new Item($id, "Flow Armor Trim Smithing Template"));
+	}
+
+
+	private function registerPotterySherdsAndBannerPatterns() : void{
+		self::register("angler_pottery_sherd", fn(IID $id) => new Item($id, "Angler Pottery Sherd"));
+		self::register("archer_pottery_sherd", fn(IID $id) => new Item($id, "Archer Pottery Sherd"));
+		self::register("arms_up_pottery_sherd", fn(IID $id) => new Item($id, "Arms Up Pottery Sherd"));
+		self::register("blade_pottery_sherd", fn(IID $id) => new Item($id, "Blade Pottery Sherd"));
+		self::register("brewer_pottery_sherd", fn(IID $id) => new Item($id, "Brewer Pottery Sherd"));
+		self::register("burn_pottery_sherd", fn(IID $id) => new Item($id, "Burn Pottery Sherd"));
+		self::register("danger_pottery_sherd", fn(IID $id) => new Item($id, "Danger Pottery Sherd"));
+		self::register("explorer_pottery_sherd", fn(IID $id) => new Item($id, "Explorer Pottery Sherd"));
+		self::register("flow_pottery_sherd", fn(IID $id) => new Item($id, "Flow Pottery Sherd"));
+		self::register("friend_pottery_sherd", fn(IID $id) => new Item($id, "Friend Pottery Sherd"));
+		self::register("guster_pottery_sherd", fn(IID $id) => new Item($id, "Guster Pottery Sherd"));
+		self::register("heart_pottery_sherd", fn(IID $id) => new Item($id, "Heart Pottery Sherd"));
+		self::register("heartbreak_pottery_sherd", fn(IID $id) => new Item($id, "Heartbreak Pottery Sherd"));
+		self::register("howl_pottery_sherd", fn(IID $id) => new Item($id, "Howl Pottery Sherd"));
+		self::register("miner_pottery_sherd", fn(IID $id) => new Item($id, "Miner Pottery Sherd"));
+		self::register("mourner_pottery_sherd", fn(IID $id) => new Item($id, "Mourner Pottery Sherd"));
+		self::register("plenty_pottery_sherd", fn(IID $id) => new Item($id, "Plenty Pottery Sherd"));
+		self::register("prize_pottery_sherd", fn(IID $id) => new Item($id, "Prize Pottery Sherd"));
+		self::register("scrape_pottery_sherd", fn(IID $id) => new Item($id, "Scrape Pottery Sherd"));
+		self::register("sheaf_pottery_sherd", fn(IID $id) => new Item($id, "Sheaf Pottery Sherd"));
+		self::register("shelter_pottery_sherd", fn(IID $id) => new Item($id, "Shelter Pottery Sherd"));
+		self::register("skull_pottery_sherd", fn(IID $id) => new Item($id, "Skull Pottery Sherd"));
+		self::register("snort_pottery_sherd", fn(IID $id) => new Item($id, "Snort Pottery Sherd"));
+		self::register("bordure_indented_banner_pattern", fn(IID $id) => new Item($id, "Bordure Indented Banner Pattern"));
+		self::register("creeper_banner_pattern", fn(IID $id) => new Item($id, "Creeper Charge Banner Pattern"));
+		self::register("field_masoned_banner_pattern", fn(IID $id) => new Item($id, "Field Masoned Banner Pattern"));
+		self::register("flow_banner_pattern", fn(IID $id) => new Item($id, "Flow Banner Pattern"));
+		self::register("flower_banner_pattern", fn(IID $id) => new Item($id, "Flower Charge Banner Pattern"));
+		self::register("globe_banner_pattern", fn(IID $id) => new Item($id, "Globe Banner Pattern"));
+		self::register("guster_banner_pattern", fn(IID $id) => new Item($id, "Guster Banner Pattern"));
+		self::register("mojang_banner_pattern", fn(IID $id) => new Item($id, "Thing Banner Pattern"));
+		self::register("piglin_banner_pattern", fn(IID $id) => new Item($id, "Snout Banner Pattern"));
+		self::register("skull_banner_pattern", fn(IID $id) => new Item($id, "Skull Charge Banner Pattern"));
 	}
 
 }
