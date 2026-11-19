@@ -32,6 +32,7 @@ use pocketmine\entity\projectile\Snowball as SnowballEntity;
 use pocketmine\entity\projectile\SplashPotion as SplashPotionEntity;
 use pocketmine\item\Arrow as ArrowItem;
 use pocketmine\item\Egg as EggItem;
+use pocketmine\item\Fertilizer;
 use pocketmine\item\Snowball as SnowballItem;
 use pocketmine\item\SplashPotion as SplashPotionItem;
 use pocketmine\block\utils\RedstonePowerHelper;
@@ -70,6 +71,17 @@ class Dispenser extends Opaque implements AnyFacing{
 				for($slot = 0; $slot < 9; $slot++){
 					$item = $inventory->getItem($slot);
 					if(!$item->isNull()){
+						if($item instanceof Fertilizer){
+							$returned = [];
+							$target = $this->getSide($this->facing);
+							if($target->onInteract(clone $item, Facing::opposite($this->facing), new Vector3(0.5, 0.5, 0.5), null, $returned)){
+								$inventory->clear($slot);
+								foreach($returned as $result){
+									$world->dropItem($this->position->add(0.5, 0.5, 0.5), $result);
+								}
+								break;
+							}
+						}
 						$inventory->clear($slot);
 						$v = $this->facingVector();
 						$spawn = $this->position->add(0.5 + $v->x, 0.5 + $v->y, 0.5 + $v->z);
