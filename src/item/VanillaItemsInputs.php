@@ -344,9 +344,14 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("written_book", fn(IID $id) => new WrittenBook($id, "Written Book"));
 
 		foreach(BoatType::cases() as $type){
+			if($type === BoatType::BAMBOO){
+				//bamboo rafts are a separate item, not a boat
+				continue;
+			}
 			//boat type is static, because different types of wood may have different properties
 			self::register(strtolower($type->name) . "_boat", fn(IID $id) => new Boat($id, $type->getDisplayName() . " Boat", $type));
 		}
+		self::register("bamboo_raft", fn(IID $id) => new Boat($id, "Bamboo Raft", BoatType::BAMBOO));
 	}
 
 	private function registerSpawnEggs() : void{

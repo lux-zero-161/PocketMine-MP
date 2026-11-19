@@ -468,7 +468,9 @@ final class ItemTypeIds{
 	public const MUSIC_DISC_BOUNCE = 20423;
 	public const MUSIC_DISC_TEARS = 20424;
 
-	public const FIRST_UNUSED_ITEM_ID = 20425;
+	public const BAMBOO_RAFT = 20425;
+
+	public const FIRST_UNUSED_ITEM_ID = 20426;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 

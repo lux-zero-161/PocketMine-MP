@@ -31,6 +31,7 @@ use pocketmine\utils\LegacyEnumShimTrait;
  *  These are retained for backwards compatibility only.
  *
  * @method static BoatType ACACIA()
+ * @method static BoatType BAMBOO()
  * @method static BoatType BIRCH()
  * @method static BoatType CHERRY()
  * @method static BoatType DARK_OAK()
@@ -46,6 +47,7 @@ enum BoatType{
 
 	case OAK;
 	case SPRUCE;
+	case BAMBOO;
 	case BIRCH;
 	case JUNGLE;
 	case ACACIA;
@@ -59,6 +61,7 @@ enum BoatType{
 		return match($this){
 			self::OAK => WoodType::OAK,
 			self::SPRUCE => WoodType::SPRUCE,
+			self::BAMBOO => WoodType::BAMBOO,
 			self::BIRCH => WoodType::BIRCH,
 			self::JUNGLE => WoodType::JUNGLE,
 			self::ACACIA => WoodType::ACACIA,
