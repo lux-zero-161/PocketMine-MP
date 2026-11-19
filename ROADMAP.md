@@ -21,6 +21,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - 8 copper chests — container block entity with oxidation/wax variants and same-variant chest pairing.
 - `bee_nest`, `beehive` — bee block entity with NBT storage, honey level and harvest interaction.
 - 1.26.60 content: poplar wood set, ice crystal/icicle, disc press, straw bed, red shrub, shelf mushroom and poplar leaves variants.
+- Straw beds are placed as two halves and support sleeping/spawn setting like regular beds.
 
 Coverage: **1,480 of 1,480** canonical block type names (100%).
 
