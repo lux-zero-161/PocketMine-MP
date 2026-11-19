@@ -100,6 +100,13 @@ class ItemFrame extends Flowable implements AnyFacing{
 		return $this->itemRotation;
 	}
 
+	/**
+	 * Returns the comparator signal strength for the framed item and its rotation.
+	 */
+	public function getComparatorOutput() : int{
+		return $this->framedItem === null ? 0 : $this->itemRotation + 1;
+	}
+
 	/** @return $this */
 	public function setItemRotation(int $itemRotation) : self{
 		$this->itemRotation = $itemRotation;

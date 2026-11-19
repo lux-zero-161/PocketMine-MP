@@ -10,6 +10,7 @@ use pocketmine\block\BlockTypeIds;
 use pocketmine\block\Button;
 use pocketmine\block\Cake;
 use pocketmine\block\Composter;
+use pocketmine\block\ItemFrame;
 use pocketmine\block\Jukebox;
 use pocketmine\block\Lever;
 use pocketmine\block\RedstoneTorch;
@@ -94,6 +95,9 @@ final class RedstonePowerHelper{
 			return $block->getHoneyLevel();
 		}
 		if($block instanceof Jukebox){
+			return $block->getComparatorOutput();
+		}
+		if($block instanceof ItemFrame){
 			return $block->getComparatorOutput();
 		}
 
