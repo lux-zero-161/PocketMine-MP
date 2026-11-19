@@ -48,10 +48,30 @@ class Shelf extends Transparent implements HorizontalFacing{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player !== null){
-			$tile = $this->position->getWorld()->getTile($this->position);
-			if($tile instanceof TileShelf){
-				$player->setCurrentWindow($tile->getInventory());
+		$tile = $this->position->getWorld()->getTile($this->position);
+		if(!$tile instanceof TileShelf){
+			return false;
+		}
+
+		$inventory = $tile->getInventory();
+		if(!$item->isNull()){
+			for($slot = 0; $slot < 4; $slot++){
+				if($inventory->getItem($slot)->isNull()){
+					$inventory->setItem($slot, (clone $item)->setCount(1));
+					$item->pop();
+					$this->position->getWorld()->setBlock($this->position, $this->setPoweredShelfType($slot));
+					return true;
+				}
+			}
+			return false;
+		}
+
+		for($slot = 3; $slot >= 0; $slot--){
+			$stored = $inventory->getItem($slot);
+			if(!$stored->isNull()){
+				$returnedItems[] = $stored;
+				$inventory->clear($slot);
+				$this->position->getWorld()->setBlock($this->position, $this->setPoweredShelfType($slot));
 				return true;
 			}
 		}
