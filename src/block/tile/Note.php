@@ -31,6 +31,7 @@ use pocketmine\nbt\tag\CompoundTag;
  */
 class Note extends Tile{
 	private int $pitch = 0;
+	private bool $powered = false;
 
 	public function readSaveData(CompoundTag $nbt) : void{
 		if(($pitch = $nbt->getByte("note", $this->pitch)) > BlockNote::MIN_PITCH && $pitch <= BlockNote::MAX_PITCH){
@@ -51,5 +52,17 @@ class Note extends Tile{
 			throw new \InvalidArgumentException("Pitch must be in range " . BlockNote::MIN_PITCH . " - " . BlockNote::MAX_PITCH);
 		}
 		$this->pitch = $pitch;
+	}
+
+	/**
+	 * Tracks the previous redstone state so the block only plays on a rising edge.
+	 * This is deliberately not persisted.
+	 */
+	public function isPowered() : bool{
+		return $this->powered;
+	}
+
+	public function setPowered(bool $powered) : void{
+		$this->powered = $powered;
 	}
 }

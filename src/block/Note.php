@@ -24,6 +24,14 @@ declare(strict_types=1);
 namespace pocketmine\block;
 
 use pocketmine\block\tile\Note as TileNote;
+use pocketmine\block\utils\WoodMaterial;
+use pocketmine\block\utils\RedstonePowerHelper;
+use pocketmine\item\Item;
+use pocketmine\math\Facing;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
+use pocketmine\world\sound\NoteInstrument;
+use pocketmine\world\sound\NoteSound;
 use function assert;
 
 class Note extends Opaque{
@@ -68,5 +76,50 @@ class Note extends Opaque{
 		return $this;
 	}
 
-	//TODO
+	private function getInstrument() : NoteInstrument{
+		$below = $this->getSide(Facing::DOWN);
+		return match(true){
+			$below->getTypeId() === BlockTypeIds::GOLD => NoteInstrument::BELL,
+			$below instanceof Clay => NoteInstrument::FLUTE,
+			$below instanceof PackedIce => NoteInstrument::CHIME,
+			$below instanceof HayBale => NoteInstrument::BANJO,
+			$below instanceof Glowstone => NoteInstrument::PLING,
+			$below instanceof Pumpkin, $below instanceof CarvedPumpkin => NoteInstrument::DIDGERIDOO,
+			$below instanceof SoulSand => NoteInstrument::COW_BELL,
+			$below instanceof BoneBlock => NoteInstrument::XYLOPHONE,
+			$below->getTypeId() === BlockTypeIds::IRON => NoteInstrument::IRON_XYLOPHONE,
+			$below->getTypeId() === BlockTypeIds::EMERALD => NoteInstrument::BIT,
+			$below instanceof Glass, $below instanceof GlassPane, $below instanceof HardenedGlass, $below instanceof HardenedGlassPane, $below instanceof TintedGlass => NoteInstrument::CLICKS_AND_STICKS,
+			$below instanceof WoodMaterial => NoteInstrument::DOUBLE_BASS,
+			$below instanceof Sand, $below instanceof Gravel, $below instanceof ConcretePowder => NoteInstrument::SNARE,
+			default => NoteInstrument::PIANO
+		};
+	}
+
+	private function playNote() : void{
+		$this->position->getWorld()->addSound(
+			$this->position->add(0.5, 0.5, 0.5),
+			new NoteSound($this->getInstrument(), $this->pitch)
+		);
+	}
+
+	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
+		$this->pitch = ($this->pitch + 1) % (self::MAX_PITCH + 1);
+		$this->position->getWorld()->setBlock($this->position, $this);
+		$this->playNote();
+		return true;
+	}
+
+	public function onNearbyBlockChange() : void{
+		$tile = $this->position->getWorld()->getTile($this->position);
+		if(!$tile instanceof TileNote){
+			return;
+		}
+
+		$powered = RedstonePowerHelper::isPowered($this);
+		if($powered && !$tile->isPowered()){
+			$this->playNote();
+		}
+		$tile->setPowered($powered);
+	}
 }
