@@ -60,6 +60,7 @@ use pocketmine\block\tile\Sign as TileSign;
 use pocketmine\block\tile\Smoker as TileSmoker;
 use pocketmine\block\tile\Tile;
 use pocketmine\block\utils\AmethystTrait;
+use pocketmine\block\utils\DyeColor;
 use pocketmine\block\utils\LeavesType;
 use pocketmine\block\utils\SaplingType;
 use pocketmine\block\utils\WoodType;
@@ -664,6 +665,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::registerBlocksR17();
 		self::registerBlocksR18();
 		self::registerBlocksR21();
+		self::registerColoredSlabBlocks();
 		self::registerMudBlocks();
 		self::registerResinBlocks();
 		self::registerTuffBlocks();
@@ -1283,6 +1285,17 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("polished_tuff_slab", fn(BID $id) => new Slab($id, "Polished Tuff", $tuffBreakInfo));
 		self::register("polished_tuff_stairs", fn(BID $id) => new Stair($id, "Polished Tuff Stairs", $tuffBreakInfo));
 		self::register("polished_tuff_wall", fn(BID $id) => new Wall($id, "Polished Tuff Wall", $tuffBreakInfo));
+	}
+
+	private function registerColoredSlabBlocks() : void{
+		$woolInfo = new Info(new BreakInfo(0.8, BlockToolType::NONE, 0, 0.8));
+		$concreteInfo = new Info(new BreakInfo(1.8, BlockToolType::NONE, 0, 0.36 * 5));
+		foreach(DyeColor::cases() as $color){
+			$name = $color->getDisplayName();
+			$prefix = strtolower($color->name);
+			self::register($prefix . "_wool_slab", fn(BID $id) => new Slab($id, $name . " Wool", $woolInfo));
+			self::register($prefix . "_concrete_slab", fn(BID $id) => new Slab($id, $name . " Concrete", $concreteInfo));
+		}
 	}
 
 	private function registerCauldronBlocks() : void{

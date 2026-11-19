@@ -1209,6 +1209,38 @@ final class VanillaBlockMappings{
 		}
 		$reg->mapModel(Model::create(Blocks::PALE_MOSS_CARPET(), Ids::PALE_MOSS_CARPET)->properties($paleMossCarpetProperties));
 
+		$reg->mapSlab(Blocks::WHITE_WOOL_SLAB(), "white_wool");
+		$reg->mapSlab(Blocks::WHITE_CONCRETE_SLAB(), "white_concrete");
+		$reg->mapSlab(Blocks::ORANGE_WOOL_SLAB(), "orange_wool");
+		$reg->mapSlab(Blocks::ORANGE_CONCRETE_SLAB(), "orange_concrete");
+		$reg->mapSlab(Blocks::MAGENTA_WOOL_SLAB(), "magenta_wool");
+		$reg->mapSlab(Blocks::MAGENTA_CONCRETE_SLAB(), "magenta_concrete");
+		$reg->mapSlab(Blocks::LIGHT_BLUE_WOOL_SLAB(), "light_blue_wool");
+		$reg->mapSlab(Blocks::LIGHT_BLUE_CONCRETE_SLAB(), "light_blue_concrete");
+		$reg->mapSlab(Blocks::YELLOW_WOOL_SLAB(), "yellow_wool");
+		$reg->mapSlab(Blocks::YELLOW_CONCRETE_SLAB(), "yellow_concrete");
+		$reg->mapSlab(Blocks::LIME_WOOL_SLAB(), "lime_wool");
+		$reg->mapSlab(Blocks::LIME_CONCRETE_SLAB(), "lime_concrete");
+		$reg->mapSlab(Blocks::PINK_WOOL_SLAB(), "pink_wool");
+		$reg->mapSlab(Blocks::PINK_CONCRETE_SLAB(), "pink_concrete");
+		$reg->mapSlab(Blocks::GRAY_WOOL_SLAB(), "gray_wool");
+		$reg->mapSlab(Blocks::GRAY_CONCRETE_SLAB(), "gray_concrete");
+		$reg->mapSlab(Blocks::LIGHT_GRAY_WOOL_SLAB(), "light_gray_wool");
+		$reg->mapSlab(Blocks::LIGHT_GRAY_CONCRETE_SLAB(), "light_gray_concrete");
+		$reg->mapSlab(Blocks::CYAN_WOOL_SLAB(), "cyan_wool");
+		$reg->mapSlab(Blocks::CYAN_CONCRETE_SLAB(), "cyan_concrete");
+		$reg->mapSlab(Blocks::PURPLE_WOOL_SLAB(), "purple_wool");
+		$reg->mapSlab(Blocks::PURPLE_CONCRETE_SLAB(), "purple_concrete");
+		$reg->mapSlab(Blocks::BLUE_WOOL_SLAB(), "blue_wool");
+		$reg->mapSlab(Blocks::BLUE_CONCRETE_SLAB(), "blue_concrete");
+		$reg->mapSlab(Blocks::BROWN_WOOL_SLAB(), "brown_wool");
+		$reg->mapSlab(Blocks::BROWN_CONCRETE_SLAB(), "brown_concrete");
+		$reg->mapSlab(Blocks::GREEN_WOOL_SLAB(), "green_wool");
+		$reg->mapSlab(Blocks::GREEN_CONCRETE_SLAB(), "green_concrete");
+		$reg->mapSlab(Blocks::RED_WOOL_SLAB(), "red_wool");
+		$reg->mapSlab(Blocks::RED_CONCRETE_SLAB(), "red_concrete");
+		$reg->mapSlab(Blocks::BLACK_WOOL_SLAB(), "black_wool");
+		$reg->mapSlab(Blocks::BLACK_CONCRETE_SLAB(), "black_concrete");
 		$reg->mapSimple(Blocks::UNKNOWN(), Ids::UNKNOWN);
 		$reg->mapModel(Model::create(Blocks::DEPRECATED_ANVIL(), Ids::DEPRECATED_ANVIL)->properties([$commonProperties->horizontalFacingCardinal]));
 		foreach([

@@ -968,7 +968,40 @@ final class BlockTypeIds{
 
 	public const PALE_OAK_SAPLING = 10936;
 
-	public const FIRST_UNUSED_BLOCK_ID = 10937;
+	public const WHITE_WOOL_SLAB = 10937;
+	public const WHITE_CONCRETE_SLAB = 10938;
+	public const ORANGE_WOOL_SLAB = 10939;
+	public const ORANGE_CONCRETE_SLAB = 10940;
+	public const MAGENTA_WOOL_SLAB = 10941;
+	public const MAGENTA_CONCRETE_SLAB = 10942;
+	public const LIGHT_BLUE_WOOL_SLAB = 10943;
+	public const LIGHT_BLUE_CONCRETE_SLAB = 10944;
+	public const YELLOW_WOOL_SLAB = 10945;
+	public const YELLOW_CONCRETE_SLAB = 10946;
+	public const LIME_WOOL_SLAB = 10947;
+	public const LIME_CONCRETE_SLAB = 10948;
+	public const PINK_WOOL_SLAB = 10949;
+	public const PINK_CONCRETE_SLAB = 10950;
+	public const GRAY_WOOL_SLAB = 10951;
+	public const GRAY_CONCRETE_SLAB = 10952;
+	public const LIGHT_GRAY_WOOL_SLAB = 10953;
+	public const LIGHT_GRAY_CONCRETE_SLAB = 10954;
+	public const CYAN_WOOL_SLAB = 10955;
+	public const CYAN_CONCRETE_SLAB = 10956;
+	public const PURPLE_WOOL_SLAB = 10957;
+	public const PURPLE_CONCRETE_SLAB = 10958;
+	public const BLUE_WOOL_SLAB = 10959;
+	public const BLUE_CONCRETE_SLAB = 10960;
+	public const BROWN_WOOL_SLAB = 10961;
+	public const BROWN_CONCRETE_SLAB = 10962;
+	public const GREEN_WOOL_SLAB = 10963;
+	public const GREEN_CONCRETE_SLAB = 10964;
+	public const RED_WOOL_SLAB = 10965;
+	public const RED_CONCRETE_SLAB = 10966;
+	public const BLACK_WOOL_SLAB = 10967;
+	public const BLACK_CONCRETE_SLAB = 10968;
+
+	public const FIRST_UNUSED_BLOCK_ID = 10969;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_BLOCK_ID;
 
