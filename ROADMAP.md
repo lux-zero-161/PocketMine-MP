@@ -45,6 +45,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 - Item registry and Bedrock item serialization inherited from upstream.
 - Aliases for all newly added block items.
+- Poplar boat item, including BoatType and Bedrock item serialization.
 
 **Active**
 

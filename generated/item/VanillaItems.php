@@ -264,6 +264,7 @@ final class VanillaItems{
 	private static Item $_mPHANTOM_MEMBRANE;
 	private static PitcherPod $_mPITCHER_POD;
 	private static PoisonousPotato $_mPOISONOUS_POTATO;
+	private static Boat $_mPOPLAR_BOAT;
 	private static HangingSign $_mPOPLAR_HANGING_SIGN;
 	private static ItemBlockWallOrFloor $_mPOPLAR_SIGN;
 	private static Item $_mPOPPED_CHORUS_FRUIT;
@@ -624,6 +625,7 @@ final class VanillaItems{
 			"phantom_membrane" => fn(Item $v) => self::$_mPHANTOM_MEMBRANE = $v,
 			"pitcher_pod" => fn(PitcherPod $v) => self::$_mPITCHER_POD = $v,
 			"poisonous_potato" => fn(PoisonousPotato $v) => self::$_mPOISONOUS_POTATO = $v,
+			"poplar_boat" => fn(Boat $v) => self::$_mPOPLAR_BOAT = $v,
 			"poplar_hanging_sign" => fn(HangingSign $v) => self::$_mPOPLAR_HANGING_SIGN = $v,
 			"poplar_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mPOPLAR_SIGN = $v,
 			"popped_chorus_fruit" => fn(Item $v) => self::$_mPOPPED_CHORUS_FRUIT = $v,
@@ -1890,6 +1892,11 @@ final class VanillaItems{
 	public static function POISONOUS_POTATO() : PoisonousPotato{
 		if(!isset(self::$_mPOISONOUS_POTATO)){ self::init(); }
 		return clone self::$_mPOISONOUS_POTATO;
+	}
+
+	public static function POPLAR_BOAT() : Boat{
+		if(!isset(self::$_mPOPLAR_BOAT)){ self::init(); }
+		return clone self::$_mPOPLAR_BOAT;
 	}
 
 	public static function POPLAR_HANGING_SIGN() : HangingSign{
