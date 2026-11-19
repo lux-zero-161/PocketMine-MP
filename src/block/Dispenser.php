@@ -26,6 +26,7 @@ namespace pocketmine\block;
 use pocketmine\block\utils\AnyFacing;
 use pocketmine\block\tile\Dispenser as TileDispenser;
 use pocketmine\entity\Location;
+use pocketmine\entity\object\PrimedTNT;
 use pocketmine\entity\projectile\Arrow as ArrowEntity;
 use pocketmine\entity\projectile\Egg as EggEntity;
 use pocketmine\entity\projectile\Snowball as SnowballEntity;
@@ -33,6 +34,8 @@ use pocketmine\entity\projectile\SplashPotion as SplashPotionEntity;
 use pocketmine\item\Arrow as ArrowItem;
 use pocketmine\item\Egg as EggItem;
 use pocketmine\item\Fertilizer;
+use pocketmine\item\FireCharge as FireChargeItem;
+use pocketmine\item\FlintSteel;
 use pocketmine\item\ItemTypeIds;
 use pocketmine\item\LiquidBucket;
 use pocketmine\item\VanillaItems;
@@ -43,6 +46,8 @@ use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\math\Vector3;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\math\Facing;
+use pocketmine\world\sound\BlazeShootSound;
+use pocketmine\world\sound\IgniteSound;
 
 class Dispenser extends Opaque implements AnyFacing{
 	protected int $facing = Facing::DOWN;
@@ -108,6 +113,35 @@ class Dispenser extends Opaque implements AnyFacing{
 								}
 								break;
 							}
+						}
+						if($item instanceof FireChargeItem || $item instanceof FlintSteel){
+							$target = $this->getSide($this->facing);
+							if($target instanceof TNT){
+								$target->ignite();
+							}elseif($target->getTypeId() === BlockTypeIds::AIR){
+								$world->setBlock($target->getPosition(), VanillaBlocks::FIRE());
+								$world->addSound($target->getPosition()->add(0.5, 0.5, 0.5), new BlazeShootSound());
+							}else{
+								continue;
+							}
+							if($item instanceof FireChargeItem){
+								$inventory->clear($slot);
+							}else{
+								$item->applyDamage(1);
+								$inventory->setItem($slot, $item);
+							}
+							break;
+						}
+						if(ItemTypeIds::toBlockTypeId($item->getTypeId()) === BlockTypeIds::TNT){
+							$v = $this->facingVector();
+							$spawn = $this->position->add(0.5 + $v->x, 0.5 + $v->y, 0.5 + $v->z);
+							$tnt = new PrimedTNT(Location::fromObject($spawn, $world));
+							$tnt->setFuse(80);
+							$tnt->setMotion($v->multiply(0.5));
+							$tnt->spawnToAll();
+							$tnt->broadcastSound(new IgniteSound());
+							$inventory->clear($slot);
+							break;
 						}
 						$inventory->clear($slot);
 						$v = $this->facingVector();
