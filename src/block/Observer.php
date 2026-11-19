@@ -45,6 +45,23 @@ class Observer extends Opaque implements AnyFacing{
 		return $this;
 	}
 
+	public function onNearbyBlockChange() : void{
+		if($this->powered){
+			return;
+		}
+		$this->powered = true;
+		$world = $this->position->getWorld();
+		$world->setBlock($this->position, $this);
+		$world->scheduleDelayedBlockUpdate($this->position, 2);
+	}
+
+	public function onScheduledUpdate() : void{
+		if($this->powered){
+			$this->powered = false;
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
+	}
+
 	public function isPowered() : bool{ return $this->powered; }
 
 	/** @return $this */
