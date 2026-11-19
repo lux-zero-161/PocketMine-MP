@@ -348,6 +348,7 @@ final class VanillaBlocks{
 	private static Stair $_mDIORITE_STAIRS;
 	private static Wall $_mDIORITE_WALL;
 	private static Dirt $_mDIRT;
+	private static DiscPress $_mDISC_PRESS;
 	private static Dispenser $_mDISPENSER;
 	private static DoublePitcherCrop $_mDOUBLE_PITCHER_CROP;
 	private static DoubleTallGrass $_mDOUBLE_TALLGRASS;
@@ -830,6 +831,7 @@ final class VanillaBlocks{
 	private static Slab $_mRED_SANDSTONE_SLAB;
 	private static Stair $_mRED_SANDSTONE_STAIRS;
 	private static Wall $_mRED_SANDSTONE_WALL;
+	private static RedShrub $_mRED_SHRUB;
 	private static Torch $_mRED_TORCH;
 	private static Flower $_mRED_TULIP;
 	private static Slab $_mRED_WOOL_SLAB;
@@ -859,6 +861,7 @@ final class VanillaBlocks{
 	private static Seagrass $_mSEAGRASS;
 	private static SeaLantern $_mSEA_LANTERN;
 	private static SeaPickle $_mSEA_PICKLE;
+	private static ShelfMushroom $_mSHELF_MUSHROOM;
 	private static DryGrass $_mSHORT_DRY_GRASS;
 	private static Opaque $_mSHROOMLIGHT;
 	private static ShulkerBox $_mSHULKER_BOX;
@@ -1356,6 +1359,7 @@ final class VanillaBlocks{
 			"diorite_stairs" => fn(Stair $v) => self::$_mDIORITE_STAIRS = $v,
 			"diorite_wall" => fn(Wall $v) => self::$_mDIORITE_WALL = $v,
 			"dirt" => fn(Dirt $v) => self::$_mDIRT = $v,
+			"disc_press" => fn(DiscPress $v) => self::$_mDISC_PRESS = $v,
 			"dispenser" => fn(Dispenser $v) => self::$_mDISPENSER = $v,
 			"double_pitcher_crop" => fn(DoublePitcherCrop $v) => self::$_mDOUBLE_PITCHER_CROP = $v,
 			"double_tallgrass" => fn(DoubleTallGrass $v) => self::$_mDOUBLE_TALLGRASS = $v,
@@ -1838,6 +1842,7 @@ final class VanillaBlocks{
 			"red_sandstone_slab" => fn(Slab $v) => self::$_mRED_SANDSTONE_SLAB = $v,
 			"red_sandstone_stairs" => fn(Stair $v) => self::$_mRED_SANDSTONE_STAIRS = $v,
 			"red_sandstone_wall" => fn(Wall $v) => self::$_mRED_SANDSTONE_WALL = $v,
+			"red_shrub" => fn(RedShrub $v) => self::$_mRED_SHRUB = $v,
 			"red_torch" => fn(Torch $v) => self::$_mRED_TORCH = $v,
 			"red_tulip" => fn(Flower $v) => self::$_mRED_TULIP = $v,
 			"red_wool_slab" => fn(Slab $v) => self::$_mRED_WOOL_SLAB = $v,
@@ -1867,6 +1872,7 @@ final class VanillaBlocks{
 			"seagrass" => fn(Seagrass $v) => self::$_mSEAGRASS = $v,
 			"sea_lantern" => fn(SeaLantern $v) => self::$_mSEA_LANTERN = $v,
 			"sea_pickle" => fn(SeaPickle $v) => self::$_mSEA_PICKLE = $v,
+			"shelf_mushroom" => fn(ShelfMushroom $v) => self::$_mSHELF_MUSHROOM = $v,
 			"short_dry_grass" => fn(DryGrass $v) => self::$_mSHORT_DRY_GRASS = $v,
 			"shroomlight" => fn(Opaque $v) => self::$_mSHROOMLIGHT = $v,
 			"shulker_box" => fn(ShulkerBox $v) => self::$_mSHULKER_BOX = $v,
@@ -3606,6 +3612,11 @@ final class VanillaBlocks{
 	public static function DIRT() : Dirt{
 		if(!isset(self::$_mDIRT)){ self::init(); }
 		return clone self::$_mDIRT;
+	}
+
+	public static function DISC_PRESS() : DiscPress{
+		if(!isset(self::$_mDISC_PRESS)){ self::init(); }
+		return clone self::$_mDISC_PRESS;
 	}
 
 	public static function DISPENSER() : Dispenser{
@@ -6018,6 +6029,11 @@ final class VanillaBlocks{
 		return clone self::$_mRED_SANDSTONE_WALL;
 	}
 
+	public static function RED_SHRUB() : RedShrub{
+		if(!isset(self::$_mRED_SHRUB)){ self::init(); }
+		return clone self::$_mRED_SHRUB;
+	}
+
 	public static function RED_TORCH() : Torch{
 		if(!isset(self::$_mRED_TORCH)){ self::init(); }
 		return clone self::$_mRED_TORCH;
@@ -6161,6 +6177,11 @@ final class VanillaBlocks{
 	public static function SEA_PICKLE() : SeaPickle{
 		if(!isset(self::$_mSEA_PICKLE)){ self::init(); }
 		return clone self::$_mSEA_PICKLE;
+	}
+
+	public static function SHELF_MUSHROOM() : ShelfMushroom{
+		if(!isset(self::$_mSHELF_MUSHROOM)){ self::init(); }
+		return clone self::$_mSHELF_MUSHROOM;
 	}
 
 	public static function SHORT_DRY_GRASS() : DryGrass{

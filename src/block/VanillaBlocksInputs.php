@@ -666,6 +666,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::registerBlocksR18();
 		self::registerBlocksR21();
 		self::registerColoredSlabBlocks();
+		self::registerBlocksR26Misc();
 		self::registerMudBlocks();
 		self::registerResinBlocks();
 		self::registerTuffBlocks();
@@ -1298,6 +1299,12 @@ final class VanillaBlocksInputs extends RegistrySource{
 			self::register($prefix . "_concrete_slab", fn(BID $id) => new Slab($id, $name . " Concrete", $concreteInfo));
 			self::register($prefix . "_concrete_stairs", fn(BID $id) => new Stair($id, $name . " Concrete Stairs", $concreteInfo));
 		}
+	}
+
+	private function registerBlocksR26Misc() : void{
+		self::register("red_shrub", fn(BID $id) => new RedShrub($id, "Red Shrub", new Info(BreakInfo::instant())));
+		self::register("shelf_mushroom", fn(BID $id) => new ShelfMushroom($id, "Shelf Mushroom", new Info(BreakInfo::instant())));
+		self::register("disc_press", fn(BID $id) => new DiscPress($id, "Disc Press", new Info(BreakInfo::instant())));
 	}
 
 	private function registerCauldronBlocks() : void{

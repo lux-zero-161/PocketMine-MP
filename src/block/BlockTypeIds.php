@@ -1034,7 +1034,11 @@ final class BlockTypeIds{
 	public const RED_CONCRETE_STAIRS = 10999;
 	public const BLACK_CONCRETE_STAIRS = 11000;
 
-	public const FIRST_UNUSED_BLOCK_ID = 11001;
+	public const RED_SHRUB = 11001;
+	public const SHELF_MUSHROOM = 11002;
+	public const DISC_PRESS = 11003;
+
+	public const FIRST_UNUSED_BLOCK_ID = 11004;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_BLOCK_ID;
 

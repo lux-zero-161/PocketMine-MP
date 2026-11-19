@@ -1273,6 +1273,12 @@ final class VanillaBlockMappings{
 		$reg->mapStairs(Blocks::RED_CONCRETE_STAIRS(), Ids::RED_CONCRETE_STAIRS);
 		$reg->mapStairs(Blocks::BLACK_WOOL_STAIRS(), Ids::BLACK_WOOL_STAIRS);
 		$reg->mapStairs(Blocks::BLACK_CONCRETE_STAIRS(), Ids::BLACK_CONCRETE_STAIRS);
+		$reg->mapSimple(Blocks::RED_SHRUB(), Ids::RED_SHRUB);
+		$reg->mapModel(Model::create(Blocks::SHELF_MUSHROOM(), Ids::SHELF_MUSHROOM)->properties([
+			new BoolProperty(StateNames::GROWTH, fn(\pocketmine\block\ShelfMushroom $b) => $b->isGrown(), fn(\pocketmine\block\ShelfMushroom $b, bool $v) => $b->setGrown($v)),
+			$commonProperties->horizontalFacingCardinal
+		]));
+		$reg->mapModel(Model::create(Blocks::DISC_PRESS(), Ids::DISC_PRESS)->properties([$commonProperties->horizontalFacingCardinal]));
 		$reg->mapSimple(Blocks::UNKNOWN(), Ids::UNKNOWN);
 		$reg->mapModel(Model::create(Blocks::DEPRECATED_ANVIL(), Ids::DEPRECATED_ANVIL)->properties([$commonProperties->horizontalFacingCardinal]));
 		foreach([

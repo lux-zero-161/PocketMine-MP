@@ -33,7 +33,7 @@ The project is under active development. Everything below is measured against th
 | Area | Status |
 |---|---|
 | Bedrock protocol 1.26.60 (2225), 26.65-compatible | Working (NetherGames 5.51.2 base, NetherNet + RakNet) |
-| Block type names registered | **1,430 / 1,480** |
+| Block type names registered | **1,433 / 1,480** |
 | Sulfur & cinnabar families | Complete (27 block types / 33 Bedrock block names, including `potent_sulfur` states) |
 | Sculk family | Catalyst, shrieker, vein, sensor, calibrated sensor implemented |
 | Technical blocks | Observer, dispenser, dropper, pistons, command/structure/jigsaw, vault, trial spawner implemented as stateful blocks |
@@ -43,7 +43,7 @@ The project is under active development. Everything below is measured against th
 | Nether / End dimensions | Nether generator exists; End generation and vanilla-style dimension travel are not implemented |
 | Redstone, mob AI, vanilla survival mechanics | Not implemented (same gap as upstream) |
 
-The remaining 50 names are the 1.26.60 additions not yet modelled: the poplar wood set, poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press, straw bed and related decoration. Shelves, copper chests and beehives need block entities and are intentionally not registered as tile-less stubs.
+The remaining 47 names are the 1.26.60 additions not yet modelled: the poplar wood set, poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press, straw bed and related decoration. Shelves, copper chests and beehives need block entities and are intentionally not registered as tile-less stubs.
 
 A live audit can be run with:
 
