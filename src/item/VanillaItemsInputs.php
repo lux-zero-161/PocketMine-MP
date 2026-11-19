@@ -93,6 +93,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::registerSmithingTemplates();
 		self::registerPotterySherdsAndBannerPatterns();
 		self::registerCushionsAndHarnesses();
+		self::registerEquipmentItems();
 
 		//this doesn't use the regular register() because it doesn't have an item typeID
 		//in the future we'll probably want to dissociate this from the air block and make a proper null item
@@ -508,6 +509,22 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("purple_harness", fn(IID $id) => new Item($id, "Purple Harness"));
 		self::register("magenta_harness", fn(IID $id) => new Item($id, "Magenta Harness"));
 		self::register("pink_harness", fn(IID $id) => new Item($id, "Pink Harness"));
+	}
+
+
+	private function registerEquipmentItems() : void{
+		self::register("leather_horse_armor", fn(IID $id) => new Item($id, "Leather Horse Armor"));
+		self::register("iron_horse_armor", fn(IID $id) => new Item($id, "Iron Horse Armor"));
+		self::register("golden_horse_armor", fn(IID $id) => new Item($id, "Golden Horse Armor"));
+		self::register("diamond_horse_armor", fn(IID $id) => new Item($id, "Diamond Horse Armor"));
+		self::register("copper_horse_armor", fn(IID $id) => new Item($id, "Copper Horse Armor"));
+		self::register("netherite_horse_armor", fn(IID $id) => new Item($id, "Netherite Horse Armor"));
+		self::register("iron_nautilus_armor", fn(IID $id) => new Item($id, "Iron Nautilus Armor"));
+		self::register("golden_nautilus_armor", fn(IID $id) => new Item($id, "Golden Nautilus Armor"));
+		self::register("diamond_nautilus_armor", fn(IID $id) => new Item($id, "Diamond Nautilus Armor"));
+		self::register("copper_nautilus_armor", fn(IID $id) => new Item($id, "Copper Nautilus Armor"));
+		self::register("netherite_nautilus_armor", fn(IID $id) => new Item($id, "Netherite Nautilus Armor"));
+		self::register("wolf_armor", fn(IID $id) => new Item($id, "Wolf Armor"));
 	}
 
 }

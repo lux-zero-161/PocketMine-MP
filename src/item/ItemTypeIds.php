@@ -439,7 +439,22 @@ final class ItemTypeIds{
 	public const MAGENTA_HARNESS = 20397;
 	public const PINK_HARNESS = 20398;
 
-	public const FIRST_UNUSED_ITEM_ID = 20399;
+	public const LEATHER_HORSE_ARMOR = 20399;
+	public const IRON_HORSE_ARMOR = 20400;
+	public const GOLDEN_HORSE_ARMOR = 20401;
+	public const DIAMOND_HORSE_ARMOR = 20402;
+	public const COPPER_HORSE_ARMOR = 20403;
+	public const NETHERITE_HORSE_ARMOR = 20404;
+	public const IRON_NAUTILUS_ARMOR = 20405;
+	public const GOLDEN_NAUTILUS_ARMOR = 20406;
+	public const DIAMOND_NAUTILUS_ARMOR = 20407;
+	public const COPPER_NAUTILUS_ARMOR = 20408;
+	public const NETHERITE_NAUTILUS_ARMOR = 20409;
+	public const WOLF_ARMOR = 20410;
+	public const CHERRY_BOAT = 20411;
+	public const PALE_OAK_BOAT = 20412;
+
+	public const FIRST_UNUSED_ITEM_ID = 20413;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 
