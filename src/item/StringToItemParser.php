@@ -1323,6 +1323,17 @@ final class StringToItemParser extends StringToTParser{
 		$result->registerBlock("red_shrub", fn() => Blocks::RED_SHRUB());
 		$result->registerBlock("shelf_mushroom", fn() => Blocks::SHELF_MUSHROOM());
 		$result->registerBlock("disc_press", fn() => Blocks::DISC_PRESS());
+		$result->registerBlock("copper_chest", fn() => Blocks::COPPER_CHEST());
+		$result->registerBlock("exposed_copper_chest", fn() => Blocks::EXPOSED_COPPER_CHEST());
+		$result->registerBlock("weathered_copper_chest", fn() => Blocks::WEATHERED_COPPER_CHEST());
+		$result->registerBlock("oxidized_copper_chest", fn() => Blocks::OXIDIZED_COPPER_CHEST());
+		$result->registerBlock("waxed_copper_chest", fn() => Blocks::WAXED_COPPER_CHEST());
+		$result->registerBlock("waxed_exposed_copper_chest", fn() => Blocks::WAXED_EXPOSED_COPPER_CHEST());
+		$result->registerBlock("waxed_weathered_copper_chest", fn() => Blocks::WAXED_WEATHERED_COPPER_CHEST());
+		$result->registerBlock("waxed_oxidized_copper_chest", fn() => Blocks::WAXED_OXIDIZED_COPPER_CHEST());
+		$result->registerBlock("straw_bed", fn() => Blocks::STRAW_BED());
+		$result->registerBlock("ice_crystal", fn() => Blocks::ICE_CRYSTAL());
+		$result->registerBlock("icicle", fn() => Blocks::ICICLE());
 		$result->registerBlock("zombie_head", fn() => Blocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE));
 
 		//Blocks added for newer Bedrock versions

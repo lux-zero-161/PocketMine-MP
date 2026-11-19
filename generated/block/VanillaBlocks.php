@@ -243,6 +243,7 @@ final class VanillaBlocks{
 	private static CopperBars $_mCOPPER_BARS;
 	private static CopperBulb $_mCOPPER_BULB;
 	private static CopperChain $_mCOPPER_CHAIN;
+	private static CopperChest $_mCOPPER_CHEST;
 	private static CopperDoor $_mCOPPER_DOOR;
 	private static CopperGolemStatue $_mCOPPER_GOLEM_STATUE;
 	private static CopperGrate $_mCOPPER_GRATE;
@@ -492,6 +493,7 @@ final class VanillaBlocks{
 	private static Slab $_mEND_STONE_BRICK_SLAB;
 	private static Stair $_mEND_STONE_BRICK_STAIRS;
 	private static Wall $_mEND_STONE_BRICK_WALL;
+	private static CopperChest $_mEXPOSED_COPPER_CHEST;
 	private static CopperGolemStatue $_mEXPOSED_COPPER_GOLEM_STATUE;
 	private static Slab $_mFAKE_WOODEN_SLAB;
 	private static Farmland $_mFARMLAND;
@@ -544,6 +546,8 @@ final class VanillaBlocks{
 	private static HoneyBlock $_mHONEY_BLOCK;
 	private static Hopper $_mHOPPER;
 	private static Ice $_mICE;
+	private static IceCrystal $_mICE_CRYSTAL;
+	private static Icicle $_mICICLE;
 	private static InfestedStone $_mINFESTED_CHISELED_STONE_BRICK;
 	private static InfestedStone $_mINFESTED_COBBLESTONE;
 	private static InfestedStone $_mINFESTED_CRACKED_STONE_BRICK;
@@ -705,6 +709,7 @@ final class VanillaBlocks{
 	private static Slab $_mORANGE_WOOL_SLAB;
 	private static Stair $_mORANGE_WOOL_STAIRS;
 	private static Flower $_mOXEYE_DAISY;
+	private static CopperChest $_mOXIDIZED_COPPER_CHEST;
 	private static CopperGolemStatue $_mOXIDIZED_COPPER_GOLEM_STATUE;
 	private static PackedIce $_mPACKED_ICE;
 	private static Opaque $_mPACKED_MUD;
@@ -927,6 +932,7 @@ final class VanillaBlocks{
 	private static StonePressurePlate $_mSTONE_PRESSURE_PLATE;
 	private static Slab $_mSTONE_SLAB;
 	private static Stair $_mSTONE_STAIRS;
+	private static StrawBed $_mSTRAW_BED;
 	private static StructureBlock $_mSTRUCTURE_BLOCK;
 	private static StructureVoid $_mSTRUCTURE_VOID;
 	private static Sugarcane $_mSUGARCANE;
@@ -993,10 +999,15 @@ final class VanillaBlocks{
 	private static Opaque $_mWARPED_WART_BLOCK;
 	private static Water $_mWATER;
 	private static WaterCauldron $_mWATER_CAULDRON;
+	private static CopperChest $_mWAXED_COPPER_CHEST;
 	private static CopperGolemStatue $_mWAXED_COPPER_GOLEM_STATUE;
+	private static CopperChest $_mWAXED_EXPOSED_COPPER_CHEST;
 	private static CopperGolemStatue $_mWAXED_EXPOSED_COPPER_GOLEM_STATUE;
+	private static CopperChest $_mWAXED_OXIDIZED_COPPER_CHEST;
 	private static CopperGolemStatue $_mWAXED_OXIDIZED_COPPER_GOLEM_STATUE;
+	private static CopperChest $_mWAXED_WEATHERED_COPPER_CHEST;
 	private static CopperGolemStatue $_mWAXED_WEATHERED_COPPER_GOLEM_STATUE;
+	private static CopperChest $_mWEATHERED_COPPER_CHEST;
 	private static CopperGolemStatue $_mWEATHERED_COPPER_GOLEM_STATUE;
 	private static NetherVines $_mWEEPING_VINES;
 	private static WeightedPressurePlateHeavy $_mWEIGHTED_PRESSURE_PLATE_HEAVY;
@@ -1254,6 +1265,7 @@ final class VanillaBlocks{
 			"copper_bars" => fn(CopperBars $v) => self::$_mCOPPER_BARS = $v,
 			"copper_bulb" => fn(CopperBulb $v) => self::$_mCOPPER_BULB = $v,
 			"copper_chain" => fn(CopperChain $v) => self::$_mCOPPER_CHAIN = $v,
+			"copper_chest" => fn(CopperChest $v) => self::$_mCOPPER_CHEST = $v,
 			"copper_door" => fn(CopperDoor $v) => self::$_mCOPPER_DOOR = $v,
 			"copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mCOPPER_GOLEM_STATUE = $v,
 			"copper_grate" => fn(CopperGrate $v) => self::$_mCOPPER_GRATE = $v,
@@ -1503,6 +1515,7 @@ final class VanillaBlocks{
 			"end_stone_brick_slab" => fn(Slab $v) => self::$_mEND_STONE_BRICK_SLAB = $v,
 			"end_stone_brick_stairs" => fn(Stair $v) => self::$_mEND_STONE_BRICK_STAIRS = $v,
 			"end_stone_brick_wall" => fn(Wall $v) => self::$_mEND_STONE_BRICK_WALL = $v,
+			"exposed_copper_chest" => fn(CopperChest $v) => self::$_mEXPOSED_COPPER_CHEST = $v,
 			"exposed_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mEXPOSED_COPPER_GOLEM_STATUE = $v,
 			"fake_wooden_slab" => fn(Slab $v) => self::$_mFAKE_WOODEN_SLAB = $v,
 			"farmland" => fn(Farmland $v) => self::$_mFARMLAND = $v,
@@ -1555,6 +1568,8 @@ final class VanillaBlocks{
 			"honey_block" => fn(HoneyBlock $v) => self::$_mHONEY_BLOCK = $v,
 			"hopper" => fn(Hopper $v) => self::$_mHOPPER = $v,
 			"ice" => fn(Ice $v) => self::$_mICE = $v,
+			"ice_crystal" => fn(IceCrystal $v) => self::$_mICE_CRYSTAL = $v,
+			"icicle" => fn(Icicle $v) => self::$_mICICLE = $v,
 			"infested_chiseled_stone_brick" => fn(InfestedStone $v) => self::$_mINFESTED_CHISELED_STONE_BRICK = $v,
 			"infested_cobblestone" => fn(InfestedStone $v) => self::$_mINFESTED_COBBLESTONE = $v,
 			"infested_cracked_stone_brick" => fn(InfestedStone $v) => self::$_mINFESTED_CRACKED_STONE_BRICK = $v,
@@ -1716,6 +1731,7 @@ final class VanillaBlocks{
 			"orange_wool_slab" => fn(Slab $v) => self::$_mORANGE_WOOL_SLAB = $v,
 			"orange_wool_stairs" => fn(Stair $v) => self::$_mORANGE_WOOL_STAIRS = $v,
 			"oxeye_daisy" => fn(Flower $v) => self::$_mOXEYE_DAISY = $v,
+			"oxidized_copper_chest" => fn(CopperChest $v) => self::$_mOXIDIZED_COPPER_CHEST = $v,
 			"oxidized_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mOXIDIZED_COPPER_GOLEM_STATUE = $v,
 			"packed_ice" => fn(PackedIce $v) => self::$_mPACKED_ICE = $v,
 			"packed_mud" => fn(Opaque $v) => self::$_mPACKED_MUD = $v,
@@ -1938,6 +1954,7 @@ final class VanillaBlocks{
 			"stone_pressure_plate" => fn(StonePressurePlate $v) => self::$_mSTONE_PRESSURE_PLATE = $v,
 			"stone_slab" => fn(Slab $v) => self::$_mSTONE_SLAB = $v,
 			"stone_stairs" => fn(Stair $v) => self::$_mSTONE_STAIRS = $v,
+			"straw_bed" => fn(StrawBed $v) => self::$_mSTRAW_BED = $v,
 			"structure_block" => fn(StructureBlock $v) => self::$_mSTRUCTURE_BLOCK = $v,
 			"structure_void" => fn(StructureVoid $v) => self::$_mSTRUCTURE_VOID = $v,
 			"sugarcane" => fn(Sugarcane $v) => self::$_mSUGARCANE = $v,
@@ -2004,10 +2021,15 @@ final class VanillaBlocks{
 			"warped_wart_block" => fn(Opaque $v) => self::$_mWARPED_WART_BLOCK = $v,
 			"water" => fn(Water $v) => self::$_mWATER = $v,
 			"water_cauldron" => fn(WaterCauldron $v) => self::$_mWATER_CAULDRON = $v,
+			"waxed_copper_chest" => fn(CopperChest $v) => self::$_mWAXED_COPPER_CHEST = $v,
 			"waxed_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mWAXED_COPPER_GOLEM_STATUE = $v,
+			"waxed_exposed_copper_chest" => fn(CopperChest $v) => self::$_mWAXED_EXPOSED_COPPER_CHEST = $v,
 			"waxed_exposed_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mWAXED_EXPOSED_COPPER_GOLEM_STATUE = $v,
+			"waxed_oxidized_copper_chest" => fn(CopperChest $v) => self::$_mWAXED_OXIDIZED_COPPER_CHEST = $v,
 			"waxed_oxidized_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mWAXED_OXIDIZED_COPPER_GOLEM_STATUE = $v,
+			"waxed_weathered_copper_chest" => fn(CopperChest $v) => self::$_mWAXED_WEATHERED_COPPER_CHEST = $v,
 			"waxed_weathered_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mWAXED_WEATHERED_COPPER_GOLEM_STATUE = $v,
+			"weathered_copper_chest" => fn(CopperChest $v) => self::$_mWEATHERED_COPPER_CHEST = $v,
 			"weathered_copper_golem_statue" => fn(CopperGolemStatue $v) => self::$_mWEATHERED_COPPER_GOLEM_STATUE = $v,
 			"weeping_vines" => fn(NetherVines $v) => self::$_mWEEPING_VINES = $v,
 			"weighted_pressure_plate_heavy" => fn(WeightedPressurePlateHeavy $v) => self::$_mWEIGHTED_PRESSURE_PLATE_HEAVY = $v,
@@ -3087,6 +3109,11 @@ final class VanillaBlocks{
 	public static function COPPER_CHAIN() : CopperChain{
 		if(!isset(self::$_mCOPPER_CHAIN)){ self::init(); }
 		return clone self::$_mCOPPER_CHAIN;
+	}
+
+	public static function COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mCOPPER_CHEST)){ self::init(); }
+		return clone self::$_mCOPPER_CHEST;
 	}
 
 	public static function COPPER_DOOR() : CopperDoor{
@@ -4334,6 +4361,11 @@ final class VanillaBlocks{
 		return clone self::$_mEND_STONE_BRICK_WALL;
 	}
 
+	public static function EXPOSED_COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mEXPOSED_COPPER_CHEST)){ self::init(); }
+		return clone self::$_mEXPOSED_COPPER_CHEST;
+	}
+
 	public static function EXPOSED_COPPER_GOLEM_STATUE() : CopperGolemStatue{
 		if(!isset(self::$_mEXPOSED_COPPER_GOLEM_STATUE)){ self::init(); }
 		return clone self::$_mEXPOSED_COPPER_GOLEM_STATUE;
@@ -4592,6 +4624,16 @@ final class VanillaBlocks{
 	public static function ICE() : Ice{
 		if(!isset(self::$_mICE)){ self::init(); }
 		return clone self::$_mICE;
+	}
+
+	public static function ICE_CRYSTAL() : IceCrystal{
+		if(!isset(self::$_mICE_CRYSTAL)){ self::init(); }
+		return clone self::$_mICE_CRYSTAL;
+	}
+
+	public static function ICICLE() : Icicle{
+		if(!isset(self::$_mICICLE)){ self::init(); }
+		return clone self::$_mICICLE;
 	}
 
 	public static function INFESTED_CHISELED_STONE_BRICK() : InfestedStone{
@@ -5397,6 +5439,11 @@ final class VanillaBlocks{
 	public static function OXEYE_DAISY() : Flower{
 		if(!isset(self::$_mOXEYE_DAISY)){ self::init(); }
 		return clone self::$_mOXEYE_DAISY;
+	}
+
+	public static function OXIDIZED_COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mOXIDIZED_COPPER_CHEST)){ self::init(); }
+		return clone self::$_mOXIDIZED_COPPER_CHEST;
 	}
 
 	public static function OXIDIZED_COPPER_GOLEM_STATUE() : CopperGolemStatue{
@@ -6509,6 +6556,11 @@ final class VanillaBlocks{
 		return clone self::$_mSTONE_STAIRS;
 	}
 
+	public static function STRAW_BED() : StrawBed{
+		if(!isset(self::$_mSTRAW_BED)){ self::init(); }
+		return clone self::$_mSTRAW_BED;
+	}
+
 	public static function STRUCTURE_BLOCK() : StructureBlock{
 		if(!isset(self::$_mSTRUCTURE_BLOCK)){ self::init(); }
 		return clone self::$_mSTRUCTURE_BLOCK;
@@ -6839,9 +6891,19 @@ final class VanillaBlocks{
 		return clone self::$_mWATER_CAULDRON;
 	}
 
+	public static function WAXED_COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mWAXED_COPPER_CHEST)){ self::init(); }
+		return clone self::$_mWAXED_COPPER_CHEST;
+	}
+
 	public static function WAXED_COPPER_GOLEM_STATUE() : CopperGolemStatue{
 		if(!isset(self::$_mWAXED_COPPER_GOLEM_STATUE)){ self::init(); }
 		return clone self::$_mWAXED_COPPER_GOLEM_STATUE;
+	}
+
+	public static function WAXED_EXPOSED_COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mWAXED_EXPOSED_COPPER_CHEST)){ self::init(); }
+		return clone self::$_mWAXED_EXPOSED_COPPER_CHEST;
 	}
 
 	public static function WAXED_EXPOSED_COPPER_GOLEM_STATUE() : CopperGolemStatue{
@@ -6849,14 +6911,29 @@ final class VanillaBlocks{
 		return clone self::$_mWAXED_EXPOSED_COPPER_GOLEM_STATUE;
 	}
 
+	public static function WAXED_OXIDIZED_COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mWAXED_OXIDIZED_COPPER_CHEST)){ self::init(); }
+		return clone self::$_mWAXED_OXIDIZED_COPPER_CHEST;
+	}
+
 	public static function WAXED_OXIDIZED_COPPER_GOLEM_STATUE() : CopperGolemStatue{
 		if(!isset(self::$_mWAXED_OXIDIZED_COPPER_GOLEM_STATUE)){ self::init(); }
 		return clone self::$_mWAXED_OXIDIZED_COPPER_GOLEM_STATUE;
 	}
 
+	public static function WAXED_WEATHERED_COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mWAXED_WEATHERED_COPPER_CHEST)){ self::init(); }
+		return clone self::$_mWAXED_WEATHERED_COPPER_CHEST;
+	}
+
 	public static function WAXED_WEATHERED_COPPER_GOLEM_STATUE() : CopperGolemStatue{
 		if(!isset(self::$_mWAXED_WEATHERED_COPPER_GOLEM_STATUE)){ self::init(); }
 		return clone self::$_mWAXED_WEATHERED_COPPER_GOLEM_STATUE;
+	}
+
+	public static function WEATHERED_COPPER_CHEST() : CopperChest{
+		if(!isset(self::$_mWEATHERED_COPPER_CHEST)){ self::init(); }
+		return clone self::$_mWEATHERED_COPPER_CHEST;
 	}
 
 	public static function WEATHERED_COPPER_GOLEM_STATUE() : CopperGolemStatue{

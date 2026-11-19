@@ -667,6 +667,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::registerBlocksR21();
 		self::registerColoredSlabBlocks();
 		self::registerBlocksR26Misc();
+		self::registerBlocksR26Container();
 		self::registerMudBlocks();
 		self::registerResinBlocks();
 		self::registerTuffBlocks();
@@ -1305,6 +1306,22 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("red_shrub", fn(BID $id) => new RedShrub($id, "Red Shrub", new Info(BreakInfo::instant())));
 		self::register("shelf_mushroom", fn(BID $id) => new ShelfMushroom($id, "Shelf Mushroom", new Info(BreakInfo::instant())));
 		self::register("disc_press", fn(BID $id) => new DiscPress($id, "Disc Press", new Info(BreakInfo::instant())));
+	}
+
+	private function registerBlocksR26Container() : void{
+
+			$copperChestInfo = new Info(BreakInfo::axe(3.0, null, 30.0));
+			self::register("copper_chest", fn(BID $id) => new CopperChest($id, "Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("exposed_copper_chest", fn(BID $id) => new CopperChest($id, "Exposed Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("weathered_copper_chest", fn(BID $id) => new CopperChest($id, "Weathered Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("oxidized_copper_chest", fn(BID $id) => new CopperChest($id, "Oxidized Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("waxed_copper_chest", fn(BID $id) => new CopperChest($id, "Waxed Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("waxed_exposed_copper_chest", fn(BID $id) => new CopperChest($id, "Waxed Exposed Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("waxed_weathered_copper_chest", fn(BID $id) => new CopperChest($id, "Waxed Weathered Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("waxed_oxidized_copper_chest", fn(BID $id) => new CopperChest($id, "Waxed Oxidized Copper Chest", $copperChestInfo), TileChest::class);
+			self::register("straw_bed", fn(BID $id) => new StrawBed($id, "Straw Bed", new Info(new BreakInfo(0.2, BlockToolType::NONE, 0, 1.0))));
+			self::register("ice_crystal", fn(BID $id) => new IceCrystal($id, "Ice Crystal", new Info(BreakInfo::pickaxe(1.5, null, 7.5))));
+			self::register("icicle", fn(BID $id) => new Icicle($id, "Icicle", new Info(BreakInfo::pickaxe(0.5, null, 2.5))));
 	}
 
 	private function registerCauldronBlocks() : void{

@@ -44,6 +44,7 @@ use pocketmine\block\ChorusFlower;
 use pocketmine\block\ChorusPlant;
 use pocketmine\block\CocoaBlock;
 use pocketmine\block\Copper;
+use pocketmine\block\CopperChest;
 use pocketmine\block\CopperLantern;
 use pocketmine\block\CyclingPotentSulfur;
 use pocketmine\block\DaylightSensor;
@@ -142,6 +143,8 @@ use pocketmine\block\DecoratedPot;
 use pocketmine\block\DeprecatedAnvil;
 use pocketmine\block\Dispenser;
 use pocketmine\block\DriedGhast;
+use pocketmine\block\IceCrystal;
+use pocketmine\block\Icicle;
 use pocketmine\block\Grindstone;
 use pocketmine\block\Jigsaw;
 use pocketmine\block\Kelp;
@@ -161,6 +164,7 @@ use pocketmine\block\SculkVein;
 use pocketmine\block\Seagrass;
 use pocketmine\block\SnifferEgg;
 use pocketmine\block\StructureBlock;
+use pocketmine\block\StrawBed;
 use pocketmine\block\SuspiciousBlock;
 use pocketmine\block\TrialSpawner;
 use pocketmine\block\TurtleEgg;
@@ -1279,6 +1283,31 @@ final class VanillaBlockMappings{
 			$commonProperties->horizontalFacingCardinal
 		]));
 		$reg->mapModel(Model::create(Blocks::DISC_PRESS(), Ids::DISC_PRESS)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::COPPER_CHEST(), Ids::COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::EXPOSED_COPPER_CHEST(), Ids::EXPOSED_COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::WEATHERED_COPPER_CHEST(), Ids::WEATHERED_COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::OXIDIZED_COPPER_CHEST(), Ids::OXIDIZED_COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::WAXED_COPPER_CHEST(), Ids::WAXED_COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::WAXED_EXPOSED_COPPER_CHEST(), Ids::WAXED_EXPOSED_COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::WAXED_WEATHERED_COPPER_CHEST(), Ids::WAXED_WEATHERED_COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::WAXED_OXIDIZED_COPPER_CHEST(), Ids::WAXED_OXIDIZED_COPPER_CHEST)->properties([$commonProperties->horizontalFacingCardinal]));
+		$reg->mapModel(Model::create(Blocks::STRAW_BED(), Ids::STRAW_BED)->properties([
+			new BoolProperty(StateNames::HEAD_PIECE_BIT, fn(StrawBed $b) => $b->isHead(), fn(StrawBed $b, bool $v) => $b->setHead($v)),
+			new BoolProperty(StateNames::OCCUPIED_BIT, fn(StrawBed $b) => $b->isOccupied(), fn(StrawBed $b, bool $v) => $b->setOccupied($v)),
+			$commonProperties->horizontalFacingCardinal
+		]));
+		$reg->mapModel(Model::create(Blocks::ICE_CRYSTAL(), Ids::ICE_CRYSTAL)->properties([$commonProperties->blockFace]));
+		$reg->mapModel(Model::create(Blocks::ICICLE(), Ids::ICICLE)->properties([
+			new ValueFromStringProperty(StateNames::DRIPSTONE_THICKNESS, EnumFromRawStateMap::string(DripstoneThickness::class, fn(DripstoneThickness $case) => match ($case) {
+				DripstoneThickness::TIP => StringValues::DRIPSTONE_THICKNESS_TIP,
+				DripstoneThickness::FRUSTUM => StringValues::DRIPSTONE_THICKNESS_FRUSTUM,
+				DripstoneThickness::MIDDLE => StringValues::DRIPSTONE_THICKNESS_MIDDLE,
+				DripstoneThickness::BASE => StringValues::DRIPSTONE_THICKNESS_BASE,
+				DripstoneThickness::MERGE => StringValues::DRIPSTONE_THICKNESS_MERGE,
+			}), fn(PointedDripstone $b) => $b->getThickness(), fn(PointedDripstone $b, DripstoneThickness $v) => $b->setThickness($v)),
+			new BoolProperty(StateNames::HANGING, fn(PointedDripstone $b) => $b->isHanging(), fn(PointedDripstone $b, bool $v) => $b->setHanging($v)),
+			new BoolProperty(StateNames::ATTACHED_BIT, fn(Icicle $b) => $b->isAttached(), fn(Icicle $b, bool $v) => $b->setAttached($v))
+		]));
 		$reg->mapSimple(Blocks::UNKNOWN(), Ids::UNKNOWN);
 		$reg->mapModel(Model::create(Blocks::DEPRECATED_ANVIL(), Ids::DEPRECATED_ANVIL)->properties([$commonProperties->horizontalFacingCardinal]));
 		foreach([

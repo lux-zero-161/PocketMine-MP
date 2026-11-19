@@ -1038,7 +1038,19 @@ final class BlockTypeIds{
 	public const SHELF_MUSHROOM = 11002;
 	public const DISC_PRESS = 11003;
 
-	public const FIRST_UNUSED_BLOCK_ID = 11004;
+	public const COPPER_CHEST = 11004;
+	public const EXPOSED_COPPER_CHEST = 11005;
+	public const WEATHERED_COPPER_CHEST = 11006;
+	public const OXIDIZED_COPPER_CHEST = 11007;
+	public const WAXED_COPPER_CHEST = 11008;
+	public const WAXED_EXPOSED_COPPER_CHEST = 11009;
+	public const WAXED_WEATHERED_COPPER_CHEST = 11010;
+	public const WAXED_OXIDIZED_COPPER_CHEST = 11011;
+	public const STRAW_BED = 11012;
+	public const ICE_CRYSTAL = 11013;
+	public const ICICLE = 11014;
+
+	public const FIRST_UNUSED_BLOCK_ID = 11015;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_BLOCK_ID;
 
