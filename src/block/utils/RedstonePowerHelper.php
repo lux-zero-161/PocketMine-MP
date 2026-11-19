@@ -12,6 +12,7 @@ use pocketmine\block\Cake;
 use pocketmine\block\Composter;
 use pocketmine\block\ItemFrame;
 use pocketmine\block\Lectern;
+use pocketmine\block\Shelf;
 use pocketmine\block\Jukebox;
 use pocketmine\block\Lever;
 use pocketmine\block\RedstoneTorch;
@@ -102,6 +103,9 @@ final class RedstonePowerHelper{
 			return $block->getComparatorOutput();
 		}
 		if($block instanceof Lectern){
+			return $block->getComparatorOutput();
+		}
+		if($block instanceof Shelf){
 			return $block->getComparatorOutput();
 		}
 

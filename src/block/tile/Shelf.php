@@ -16,7 +16,7 @@ class Shelf extends Tile implements Container{
 
 	public function __construct(World $world, Vector3 $pos){
 		parent::__construct($world, $pos);
-		$this->inventory = new SimpleInventory(4);
+		$this->inventory = new SimpleInventory(3);
 	}
 
 	public function getInventory() : SimpleInventory{ return $this->inventory; }
