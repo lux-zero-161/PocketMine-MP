@@ -25,9 +25,12 @@ final class RedstonePowerHelper{
 	 *
 	 * This intentionally only handles direct neighbours; wire propagation is a separate system.
 	 */
-	public static function isPowered(Block $block) : bool{
+	public static function isPowered(Block $block, ?Block $exclude = null) : bool{
 		foreach(Facing::ALL as $face){
 			$side = $block->getSide($face);
+			if($exclude !== null && $side->getPosition()->equals($exclude->getPosition())){
+				continue;
+			}
 			if(
 				($side instanceof Lever && $side->isActivated()) ||
 				($side instanceof Button && $side->isPressed()) ||

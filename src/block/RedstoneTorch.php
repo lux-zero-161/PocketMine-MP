@@ -25,6 +25,7 @@ namespace pocketmine\block;
 
 use pocketmine\block\utils\Lightable;
 use pocketmine\block\utils\LightableTrait;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\RedstoneSignalEmitter;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 
@@ -39,6 +40,15 @@ class RedstoneTorch extends Torch implements Lightable, RedstoneSignalEmitter{
 	protected function describeBlockOnlyState(RuntimeDataDescriber $w) : void{
 		parent::describeBlockOnlyState($w);
 		$w->bool($this->lit);
+	}
+
+	public function onNearbyBlockChange() : void{
+		$attached = $this->getSide(\pocketmine\math\Facing::opposite($this->facing));
+		$lit = !RedstonePowerHelper::isPowered($attached, $this);
+		if($lit !== $this->lit){
+			$this->lit = $lit;
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
 	}
 
 	public function getLightLevel() : int{
