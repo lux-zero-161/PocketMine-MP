@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pocketmine\block;
 
 use pocketmine\block\utils\AnyFacing;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\math\Facing;
 
@@ -34,6 +35,26 @@ class Dispenser extends Opaque implements AnyFacing{
 	protected function describeBlockOnlyState(RuntimeDataDescriber $w) : void{
 		$w->facing($this->facing);
 		$w->bool($this->triggered);
+	}
+
+	public function onNearbyBlockChange() : void{
+		$powered = RedstonePowerHelper::isPowered($this);
+		if($powered && !$this->triggered){
+			$this->triggered = true;
+			$world = $this->position->getWorld();
+			$world->setBlock($this->position, $this);
+			$world->scheduleDelayedBlockUpdate($this->position, 2);
+		}elseif(!$powered && $this->triggered){
+			$this->triggered = false;
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
+	}
+
+	public function onScheduledUpdate() : void{
+		if($this->triggered){
+			$this->triggered = false;
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
 	}
 
 	public function getFacing() : int{ return $this->facing; }
