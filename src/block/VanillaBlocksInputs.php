@@ -42,6 +42,7 @@ use pocketmine\block\tile\Chest as TileChest;
 use pocketmine\block\tile\ChiseledBookshelf as TileChiseledBookshelf;
 use pocketmine\block\tile\Comparator as TileComparator;
 use pocketmine\block\tile\DaylightSensor as TileDaylightSensor;
+use pocketmine\block\tile\Dispenser as TileDispenser;
 use pocketmine\block\tile\EnchantTable as TileEnchantingTable;
 use pocketmine\block\tile\EnderChest as TileEnderChest;
 use pocketmine\block\tile\FlowerPot as TileFlowerPot;
@@ -1195,8 +1196,8 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("sculk_vein", fn(BID $id) => new SculkVein($id, "Sculk Vein", new Info(new BreakInfo(0.2, ToolType::HOE, 0, 1.0))));
 
 		self::register("observer", fn(BID $id) => new Observer($id, "Observer", new Info(BreakInfo::pickaxe(3.0, ToolTier::WOOD, 15.0))));
-		self::register("dispenser", fn(BID $id) => new Dispenser($id, "Dispenser", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD, 17.5))));
-		self::register("dropper", fn(BID $id) => new Dispenser($id, "Dropper", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD, 17.5))));
+		self::register("dispenser", fn(BID $id) => new Dispenser($id, "Dispenser", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD, 17.5))), TileDispenser::class);
+		self::register("dropper", fn(BID $id) => new Dispenser($id, "Dropper", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD, 17.5))), TileDispenser::class);
 
 		$pistonBreakInfo = new Info(new BreakInfo(1.5, BlockToolType::NONE, 0, 7.5));
 		self::register("piston", fn(BID $id) => new Piston($id, "Piston", $pistonBreakInfo));

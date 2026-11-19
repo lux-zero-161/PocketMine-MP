@@ -24,7 +24,9 @@ declare(strict_types=1);
 namespace pocketmine\block;
 
 use pocketmine\block\utils\AnyFacing;
+use pocketmine\block\tile\Dispenser as TileDispenser;
 use pocketmine\block\utils\RedstonePowerHelper;
+use pocketmine\math\Vector3;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\math\Facing;
 
@@ -52,9 +54,35 @@ class Dispenser extends Opaque implements AnyFacing{
 
 	public function onScheduledUpdate() : void{
 		if($this->triggered){
+			$world = $this->position->getWorld();
+			$tile = $world->getTile($this->position);
+			if($tile instanceof TileDispenser){
+				$inventory = $tile->getInventory();
+				for($slot = 0; $slot < 9; $slot++){
+					$item = $inventory->getItem($slot);
+					if(!$item->isNull()){
+						$inventory->clear($slot);
+						$v = $this->facingVector();
+						$world->dropItem($this->position->add(0.5 + $v->x, 0.5 + $v->y, 0.5 + $v->z), $item);
+						break;
+					}
+				}
+			}
 			$this->triggered = false;
-			$this->position->getWorld()->setBlock($this->position, $this);
+			$world->setBlock($this->position, $this);
 		}
+	}
+
+	private function facingVector() : Vector3{
+		return match($this->facing){
+			Facing::DOWN => new Vector3(0, -1, 0),
+			Facing::UP => new Vector3(0, 1, 0),
+			Facing::NORTH => new Vector3(0, 0, -1),
+			Facing::SOUTH => new Vector3(0, 0, 1),
+			Facing::WEST => new Vector3(-1, 0, 0),
+			Facing::EAST => new Vector3(1, 0, 0),
+			default => throw new \InvalidArgumentException("Invalid facing")
+		};
 	}
 
 	public function getFacing() : int{ return $this->facing; }
