@@ -156,7 +156,7 @@ When adding a block:
 6. add the item alias in `src/item/StringToItemParser.php`;
 7. run PHPUnit and PHPStan.
 
-`BlockTest` verifies hardness/blast resistance against the vanilla properties table, and `BlockSerializerDeserializerTest` round-trips every registered state.
+`BlockTest` verifies hardness/blast resistance against the vanilla properties table, `BlockSerializerDeserializerTest` round-trips every registered state, and `BlockCoverageTest` fails if any canonical Bedrock block type name is missing.
 
 ## Plugin development
 
