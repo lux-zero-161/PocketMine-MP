@@ -9,6 +9,7 @@ use pocketmine\block\Block;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\Button;
 use pocketmine\block\Cake;
+use pocketmine\block\ChiseledBookshelf;
 use pocketmine\block\Composter;
 use pocketmine\block\ItemFrame;
 use pocketmine\block\Lectern;
@@ -106,6 +107,9 @@ final class RedstonePowerHelper{
 			return $block->getComparatorOutput();
 		}
 		if($block instanceof Shelf){
+			return $block->getComparatorOutput();
+		}
+		if($block instanceof ChiseledBookshelf){
 			return $block->getComparatorOutput();
 		}
 
