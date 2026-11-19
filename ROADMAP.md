@@ -50,6 +50,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - 1.26.60 cushion and harness items in all 16 colors.
 - Cherry and pale oak boats, plus horse, nautilus and wolf armor items.
 - Powder snow bucket and powder snow cauldron, including bucket pickup from powder snow blocks.
+- Lead, saddle, armadillo scute, breeze rod, trial keys, eye of ender, brush, glow stick and sparkler items.
 - Cherry and pale oak boats, plus horse, nautilus and wolf armor items.
 
 **Active**

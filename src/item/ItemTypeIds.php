@@ -454,7 +454,18 @@ final class ItemTypeIds{
 	public const CHERRY_BOAT = 20411;
 	public const PALE_OAK_BOAT = 20412;
 
-	public const FIRST_UNUSED_ITEM_ID = 20413;
+	public const LEAD = 20413;
+	public const SADDLE = 20414;
+	public const ARMADILLO_SCUTE = 20415;
+	public const BREEZE_ROD = 20416;
+	public const TRIAL_KEY = 20417;
+	public const OMINOUS_TRIAL_KEY = 20418;
+	public const ENDER_EYE = 20419;
+	public const GLOW_STICK = 20420;
+	public const SPARKLER = 20421;
+	public const BRUSH = 20422;
+
+	public const FIRST_UNUSED_ITEM_ID = 20423;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 

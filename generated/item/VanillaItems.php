@@ -46,6 +46,7 @@ final class VanillaItems{
 	private static Item $_mANGLER_POTTERY_SHERD;
 	private static Apple $_mAPPLE;
 	private static Item $_mARCHER_POTTERY_SHERD;
+	private static Item $_mARMADILLO_SCUTE;
 	private static Item $_mARMS_UP_POTTERY_SHERD;
 	private static Arrow $_mARROW;
 	private static BakedPotato $_mBAKED_POTATO;
@@ -75,10 +76,12 @@ final class VanillaItems{
 	private static Bow $_mBOW;
 	private static Bowl $_mBOWL;
 	private static Bread $_mBREAD;
+	private static Item $_mBREEZE_ROD;
 	private static Item $_mBREWER_POTTERY_SHERD;
 	private static Item $_mBRICK;
 	private static Item $_mBROWN_CUSHION;
 	private static Item $_mBROWN_HARNESS;
+	private static Item $_mBRUSH;
 	private static Bucket $_mBUCKET;
 	private static Item $_mBURN_POTTERY_SHERD;
 	private static Carrot $_mCARROT;
@@ -188,6 +191,7 @@ final class VanillaItems{
 	private static Item $_mEMERALD;
 	private static EnchantedBook $_mENCHANTED_BOOK;
 	private static GoldenAppleEnchanted $_mENCHANTED_GOLDEN_APPLE;
+	private static Item $_mENDER_EYE;
 	private static EnderPearl $_mENDER_PEARL;
 	private static EndCrystal $_mEND_CRYSTAL;
 	private static ExperienceBottle $_mEXPERIENCE_BOTTLE;
@@ -214,6 +218,7 @@ final class VanillaItems{
 	private static Item $_mGLOWSTONE_DUST;
 	private static GlowBerries $_mGLOW_BERRIES;
 	private static Item $_mGLOW_INK_SAC;
+	private static Item $_mGLOW_STICK;
 	private static GoatHorn $_mGOAT_HORN;
 	private static GoldenApple $_mGOLDEN_APPLE;
 	private static Axe $_mGOLDEN_AXE;
@@ -264,6 +269,7 @@ final class VanillaItems{
 	private static ItemBlockWallOrFloor $_mJUNGLE_SIGN;
 	private static Item $_mLAPIS_LAZULI;
 	private static LiquidBucket $_mLAVA_BUCKET;
+	private static Item $_mLEAD;
 	private static Item $_mLEATHER;
 	private static Armor $_mLEATHER_BOOTS;
 	private static Armor $_mLEATHER_CAP;
@@ -315,6 +321,7 @@ final class VanillaItems{
 	private static HangingSign $_mOAK_HANGING_SIGN;
 	private static ItemBlockWallOrFloor $_mOAK_SIGN;
 	private static ItemBlockWallOrFloor $_mOMINOUS_BANNER;
+	private static Item $_mOMINOUS_TRIAL_KEY;
 	private static Item $_mORANGE_CUSHION;
 	private static Item $_mORANGE_HARNESS;
 	private static PaintingItem $_mPAINTING;
@@ -385,6 +392,7 @@ final class VanillaItems{
 	private static Item $_mRESIN_BRICK;
 	private static Item $_mRIB_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static RottenFlesh $_mROTTEN_FLESH;
+	private static Item $_mSADDLE;
 	private static Item $_mSCRAPE_POTTERY_SHERD;
 	private static Item $_mSCUTE;
 	private static Item $_mSENTRY_ARMOR_TRIM_SMITHING_TEMPLATE;
@@ -400,6 +408,7 @@ final class VanillaItems{
 	private static Item $_mSNORT_POTTERY_SHERD;
 	private static Item $_mSNOUT_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static Snowball $_mSNOWBALL;
+	private static Item $_mSPARKLER;
 	private static SpiderEye $_mSPIDER_EYE;
 	private static Item $_mSPIRE_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static SplashPotion $_mSPLASH_POTION;
@@ -422,6 +431,7 @@ final class VanillaItems{
 	private static Item $_mTIDE_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static TorchflowerSeeds $_mTORCHFLOWER_SEEDS;
 	private static Totem $_mTOTEM;
+	private static Item $_mTRIAL_KEY;
 	private static Trident $_mTRIDENT;
 	private static TurtleHelmet $_mTURTLE_HELMET;
 	private static Item $_mVEX_ARMOR_TRIM_SMITHING_TEMPLATE;
@@ -489,6 +499,7 @@ final class VanillaItems{
 			"angler_pottery_sherd" => fn(Item $v) => self::$_mANGLER_POTTERY_SHERD = $v,
 			"apple" => fn(Apple $v) => self::$_mAPPLE = $v,
 			"archer_pottery_sherd" => fn(Item $v) => self::$_mARCHER_POTTERY_SHERD = $v,
+			"armadillo_scute" => fn(Item $v) => self::$_mARMADILLO_SCUTE = $v,
 			"arms_up_pottery_sherd" => fn(Item $v) => self::$_mARMS_UP_POTTERY_SHERD = $v,
 			"arrow" => fn(Arrow $v) => self::$_mARROW = $v,
 			"baked_potato" => fn(BakedPotato $v) => self::$_mBAKED_POTATO = $v,
@@ -518,10 +529,12 @@ final class VanillaItems{
 			"bow" => fn(Bow $v) => self::$_mBOW = $v,
 			"bowl" => fn(Bowl $v) => self::$_mBOWL = $v,
 			"bread" => fn(Bread $v) => self::$_mBREAD = $v,
+			"breeze_rod" => fn(Item $v) => self::$_mBREEZE_ROD = $v,
 			"brewer_pottery_sherd" => fn(Item $v) => self::$_mBREWER_POTTERY_SHERD = $v,
 			"brick" => fn(Item $v) => self::$_mBRICK = $v,
 			"brown_cushion" => fn(Item $v) => self::$_mBROWN_CUSHION = $v,
 			"brown_harness" => fn(Item $v) => self::$_mBROWN_HARNESS = $v,
+			"brush" => fn(Item $v) => self::$_mBRUSH = $v,
 			"bucket" => fn(Bucket $v) => self::$_mBUCKET = $v,
 			"burn_pottery_sherd" => fn(Item $v) => self::$_mBURN_POTTERY_SHERD = $v,
 			"carrot" => fn(Carrot $v) => self::$_mCARROT = $v,
@@ -631,6 +644,7 @@ final class VanillaItems{
 			"emerald" => fn(Item $v) => self::$_mEMERALD = $v,
 			"enchanted_book" => fn(EnchantedBook $v) => self::$_mENCHANTED_BOOK = $v,
 			"enchanted_golden_apple" => fn(GoldenAppleEnchanted $v) => self::$_mENCHANTED_GOLDEN_APPLE = $v,
+			"ender_eye" => fn(Item $v) => self::$_mENDER_EYE = $v,
 			"ender_pearl" => fn(EnderPearl $v) => self::$_mENDER_PEARL = $v,
 			"end_crystal" => fn(EndCrystal $v) => self::$_mEND_CRYSTAL = $v,
 			"experience_bottle" => fn(ExperienceBottle $v) => self::$_mEXPERIENCE_BOTTLE = $v,
@@ -657,6 +671,7 @@ final class VanillaItems{
 			"glowstone_dust" => fn(Item $v) => self::$_mGLOWSTONE_DUST = $v,
 			"glow_berries" => fn(GlowBerries $v) => self::$_mGLOW_BERRIES = $v,
 			"glow_ink_sac" => fn(Item $v) => self::$_mGLOW_INK_SAC = $v,
+			"glow_stick" => fn(Item $v) => self::$_mGLOW_STICK = $v,
 			"goat_horn" => fn(GoatHorn $v) => self::$_mGOAT_HORN = $v,
 			"golden_apple" => fn(GoldenApple $v) => self::$_mGOLDEN_APPLE = $v,
 			"golden_axe" => fn(Axe $v) => self::$_mGOLDEN_AXE = $v,
@@ -707,6 +722,7 @@ final class VanillaItems{
 			"jungle_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mJUNGLE_SIGN = $v,
 			"lapis_lazuli" => fn(Item $v) => self::$_mLAPIS_LAZULI = $v,
 			"lava_bucket" => fn(LiquidBucket $v) => self::$_mLAVA_BUCKET = $v,
+			"lead" => fn(Item $v) => self::$_mLEAD = $v,
 			"leather" => fn(Item $v) => self::$_mLEATHER = $v,
 			"leather_boots" => fn(Armor $v) => self::$_mLEATHER_BOOTS = $v,
 			"leather_cap" => fn(Armor $v) => self::$_mLEATHER_CAP = $v,
@@ -758,6 +774,7 @@ final class VanillaItems{
 			"oak_hanging_sign" => fn(HangingSign $v) => self::$_mOAK_HANGING_SIGN = $v,
 			"oak_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mOAK_SIGN = $v,
 			"ominous_banner" => fn(ItemBlockWallOrFloor $v) => self::$_mOMINOUS_BANNER = $v,
+			"ominous_trial_key" => fn(Item $v) => self::$_mOMINOUS_TRIAL_KEY = $v,
 			"orange_cushion" => fn(Item $v) => self::$_mORANGE_CUSHION = $v,
 			"orange_harness" => fn(Item $v) => self::$_mORANGE_HARNESS = $v,
 			"painting" => fn(PaintingItem $v) => self::$_mPAINTING = $v,
@@ -828,6 +845,7 @@ final class VanillaItems{
 			"resin_brick" => fn(Item $v) => self::$_mRESIN_BRICK = $v,
 			"rib_armor_trim_smithing_template" => fn(Item $v) => self::$_mRIB_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"rotten_flesh" => fn(RottenFlesh $v) => self::$_mROTTEN_FLESH = $v,
+			"saddle" => fn(Item $v) => self::$_mSADDLE = $v,
 			"scrape_pottery_sherd" => fn(Item $v) => self::$_mSCRAPE_POTTERY_SHERD = $v,
 			"scute" => fn(Item $v) => self::$_mSCUTE = $v,
 			"sentry_armor_trim_smithing_template" => fn(Item $v) => self::$_mSENTRY_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
@@ -843,6 +861,7 @@ final class VanillaItems{
 			"snort_pottery_sherd" => fn(Item $v) => self::$_mSNORT_POTTERY_SHERD = $v,
 			"snout_armor_trim_smithing_template" => fn(Item $v) => self::$_mSNOUT_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"snowball" => fn(Snowball $v) => self::$_mSNOWBALL = $v,
+			"sparkler" => fn(Item $v) => self::$_mSPARKLER = $v,
 			"spider_eye" => fn(SpiderEye $v) => self::$_mSPIDER_EYE = $v,
 			"spire_armor_trim_smithing_template" => fn(Item $v) => self::$_mSPIRE_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"splash_potion" => fn(SplashPotion $v) => self::$_mSPLASH_POTION = $v,
@@ -865,6 +884,7 @@ final class VanillaItems{
 			"tide_armor_trim_smithing_template" => fn(Item $v) => self::$_mTIDE_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"torchflower_seeds" => fn(TorchflowerSeeds $v) => self::$_mTORCHFLOWER_SEEDS = $v,
 			"totem" => fn(Totem $v) => self::$_mTOTEM = $v,
+			"trial_key" => fn(Item $v) => self::$_mTRIAL_KEY = $v,
 			"trident" => fn(Trident $v) => self::$_mTRIDENT = $v,
 			"turtle_helmet" => fn(TurtleHelmet $v) => self::$_mTURTLE_HELMET = $v,
 			"vex_armor_trim_smithing_template" => fn(Item $v) => self::$_mVEX_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
@@ -966,6 +986,11 @@ final class VanillaItems{
 	public static function ARCHER_POTTERY_SHERD() : Item{
 		if(!isset(self::$_mARCHER_POTTERY_SHERD)){ self::init(); }
 		return clone self::$_mARCHER_POTTERY_SHERD;
+	}
+
+	public static function ARMADILLO_SCUTE() : Item{
+		if(!isset(self::$_mARMADILLO_SCUTE)){ self::init(); }
+		return clone self::$_mARMADILLO_SCUTE;
 	}
 
 	public static function ARMS_UP_POTTERY_SHERD() : Item{
@@ -1113,6 +1138,11 @@ final class VanillaItems{
 		return clone self::$_mBREAD;
 	}
 
+	public static function BREEZE_ROD() : Item{
+		if(!isset(self::$_mBREEZE_ROD)){ self::init(); }
+		return clone self::$_mBREEZE_ROD;
+	}
+
 	public static function BREWER_POTTERY_SHERD() : Item{
 		if(!isset(self::$_mBREWER_POTTERY_SHERD)){ self::init(); }
 		return clone self::$_mBREWER_POTTERY_SHERD;
@@ -1131,6 +1161,11 @@ final class VanillaItems{
 	public static function BROWN_HARNESS() : Item{
 		if(!isset(self::$_mBROWN_HARNESS)){ self::init(); }
 		return clone self::$_mBROWN_HARNESS;
+	}
+
+	public static function BRUSH() : Item{
+		if(!isset(self::$_mBRUSH)){ self::init(); }
+		return clone self::$_mBRUSH;
 	}
 
 	public static function BUCKET() : Bucket{
@@ -1678,6 +1713,11 @@ final class VanillaItems{
 		return clone self::$_mENCHANTED_GOLDEN_APPLE;
 	}
 
+	public static function ENDER_EYE() : Item{
+		if(!isset(self::$_mENDER_EYE)){ self::init(); }
+		return clone self::$_mENDER_EYE;
+	}
+
 	public static function ENDER_PEARL() : EnderPearl{
 		if(!isset(self::$_mENDER_PEARL)){ self::init(); }
 		return clone self::$_mENDER_PEARL;
@@ -1806,6 +1846,11 @@ final class VanillaItems{
 	public static function GLOW_INK_SAC() : Item{
 		if(!isset(self::$_mGLOW_INK_SAC)){ self::init(); }
 		return clone self::$_mGLOW_INK_SAC;
+	}
+
+	public static function GLOW_STICK() : Item{
+		if(!isset(self::$_mGLOW_STICK)){ self::init(); }
+		return clone self::$_mGLOW_STICK;
 	}
 
 	public static function GOAT_HORN() : GoatHorn{
@@ -2056,6 +2101,11 @@ final class VanillaItems{
 	public static function LAVA_BUCKET() : LiquidBucket{
 		if(!isset(self::$_mLAVA_BUCKET)){ self::init(); }
 		return clone self::$_mLAVA_BUCKET;
+	}
+
+	public static function LEAD() : Item{
+		if(!isset(self::$_mLEAD)){ self::init(); }
+		return clone self::$_mLEAD;
 	}
 
 	public static function LEATHER() : Item{
@@ -2311,6 +2361,11 @@ final class VanillaItems{
 	public static function OMINOUS_BANNER() : ItemBlockWallOrFloor{
 		if(!isset(self::$_mOMINOUS_BANNER)){ self::init(); }
 		return clone self::$_mOMINOUS_BANNER;
+	}
+
+	public static function OMINOUS_TRIAL_KEY() : Item{
+		if(!isset(self::$_mOMINOUS_TRIAL_KEY)){ self::init(); }
+		return clone self::$_mOMINOUS_TRIAL_KEY;
 	}
 
 	public static function ORANGE_CUSHION() : Item{
@@ -2663,6 +2718,11 @@ final class VanillaItems{
 		return clone self::$_mROTTEN_FLESH;
 	}
 
+	public static function SADDLE() : Item{
+		if(!isset(self::$_mSADDLE)){ self::init(); }
+		return clone self::$_mSADDLE;
+	}
+
 	public static function SCRAPE_POTTERY_SHERD() : Item{
 		if(!isset(self::$_mSCRAPE_POTTERY_SHERD)){ self::init(); }
 		return clone self::$_mSCRAPE_POTTERY_SHERD;
@@ -2736,6 +2796,11 @@ final class VanillaItems{
 	public static function SNOWBALL() : Snowball{
 		if(!isset(self::$_mSNOWBALL)){ self::init(); }
 		return clone self::$_mSNOWBALL;
+	}
+
+	public static function SPARKLER() : Item{
+		if(!isset(self::$_mSPARKLER)){ self::init(); }
+		return clone self::$_mSPARKLER;
 	}
 
 	public static function SPIDER_EYE() : SpiderEye{
@@ -2846,6 +2911,11 @@ final class VanillaItems{
 	public static function TOTEM() : Totem{
 		if(!isset(self::$_mTOTEM)){ self::init(); }
 		return clone self::$_mTOTEM;
+	}
+
+	public static function TRIAL_KEY() : Item{
+		if(!isset(self::$_mTRIAL_KEY)){ self::init(); }
+		return clone self::$_mTRIAL_KEY;
 	}
 
 	public static function TRIDENT() : Trident{

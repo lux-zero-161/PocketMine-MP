@@ -194,6 +194,16 @@ final class ItemSerializerDeserializerRegistrar{
 		$this->map1to1Item(Ids::BREAD, Items::BREAD());
 		$this->map1to1Item(Ids::BRICK, Items::BRICK());
 		$this->map1to1Item(Ids::BUCKET, Items::BUCKET());
+		$this->map1to1Item(Ids::LEAD, Items::LEAD());
+		$this->map1to1Item(Ids::SADDLE, Items::SADDLE());
+		$this->map1to1Item(Ids::ARMADILLO_SCUTE, Items::ARMADILLO_SCUTE());
+		$this->map1to1Item(Ids::BREEZE_ROD, Items::BREEZE_ROD());
+		$this->map1to1Item(Ids::TRIAL_KEY, Items::TRIAL_KEY());
+		$this->map1to1Item(Ids::OMINOUS_TRIAL_KEY, Items::OMINOUS_TRIAL_KEY());
+		$this->map1to1Item(Ids::ENDER_EYE, Items::ENDER_EYE());
+		$this->map1to1Item(Ids::GLOW_STICK, Items::GLOW_STICK());
+		$this->map1to1Item(Ids::SPARKLER, Items::SPARKLER());
+		$this->map1to1Item(Ids::BRUSH, Items::BRUSH());
 		$this->map1to1Item(Ids::POWDER_SNOW_BUCKET, Items::POWDER_SNOW_BUCKET());
 		$this->map1to1Item(Ids::CARROT, Items::CARROT());
 		$this->map1to1Item(Ids::CHAINMAIL_BOOTS, Items::CHAINMAIL_BOOTS());

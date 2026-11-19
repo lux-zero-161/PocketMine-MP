@@ -94,6 +94,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::registerPotterySherdsAndBannerPatterns();
 		self::registerCushionsAndHarnesses();
 		self::registerEquipmentItems();
+		self::registerMiscItems();
 
 		//this doesn't use the regular register() because it doesn't have an item typeID
 		//in the future we'll probably want to dissociate this from the air block and make a proper null item
@@ -526,6 +527,20 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("copper_nautilus_armor", fn(IID $id) => new Item($id, "Copper Nautilus Armor"));
 		self::register("netherite_nautilus_armor", fn(IID $id) => new Item($id, "Netherite Nautilus Armor"));
 		self::register("wolf_armor", fn(IID $id) => new Item($id, "Wolf Armor"));
+	}
+
+
+	private function registerMiscItems() : void{
+		self::register("lead", fn(IID $id) => new Item($id, "Lead"));
+		self::register("saddle", fn(IID $id) => new Item($id, "Saddle"));
+		self::register("armadillo_scute", fn(IID $id) => new Item($id, "Armadillo Scute"));
+		self::register("breeze_rod", fn(IID $id) => new Item($id, "Breeze Rod"));
+		self::register("trial_key", fn(IID $id) => new Item($id, "Trial Key"));
+		self::register("ominous_trial_key", fn(IID $id) => new Item($id, "Ominous Trial Key"));
+		self::register("ender_eye", fn(IID $id) => new Item($id, "Eye of Ender"));
+		self::register("glow_stick", fn(IID $id) => new Item($id, "Glow Stick"));
+		self::register("sparkler", fn(IID $id) => new Item($id, "Sparkler"));
+		self::register("brush", fn(IID $id) => new Item($id, "Brush"));
 	}
 
 }

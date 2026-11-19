@@ -1844,6 +1844,16 @@ final class StringToItemParser extends StringToTParser{
 		$result->register("wooden_sword", fn() => Items::WOODEN_SWORD());
 		$result->register("writable_book", fn() => Items::WRITABLE_BOOK());
 		$result->register("written_book", fn() => Items::WRITTEN_BOOK());
+		$result->register("lead", fn() => Items::LEAD());
+		$result->register("saddle", fn() => Items::SADDLE());
+		$result->register("armadillo_scute", fn() => Items::ARMADILLO_SCUTE());
+		$result->register("breeze_rod", fn() => Items::BREEZE_ROD());
+		$result->register("trial_key", fn() => Items::TRIAL_KEY());
+		$result->register("ominous_trial_key", fn() => Items::OMINOUS_TRIAL_KEY());
+		$result->register("ender_eye", fn() => Items::ENDER_EYE());
+		$result->register("glow_stick", fn() => Items::GLOW_STICK());
+		$result->register("sparkler", fn() => Items::SPARKLER());
+		$result->register("brush", fn() => Items::BRUSH());
 		$result->register("leather_horse_armor", fn() => Items::LEATHER_HORSE_ARMOR());
 		$result->register("iron_horse_armor", fn() => Items::IRON_HORSE_ARMOR());
 		$result->register("golden_horse_armor", fn() => Items::GOLDEN_HORSE_ARMOR());
