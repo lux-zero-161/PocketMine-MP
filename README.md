@@ -38,12 +38,12 @@ The project is under active development. Everything below is measured against th
 | Sculk family | Catalyst, shrieker, vein, sensor, calibrated sensor implemented |
 | Technical blocks | Observer, dispenser, dropper, pistons, command/structure/jigsaw, vault, trial spawner implemented as stateful blocks |
 | Decorative 1.21–1.26 blocks | Bush, firefly bush, dry grass, leaf litter, wildflowers, pale moss, pale hanging moss, moss carpet, copper golem statues, etc. |
-| Block entities for new blocks | Partially. Shelves, copper chests and beehives are the remaining block types |
+| Block entities for new blocks | Shelves, copper chests and beehives implemented as tile-backed blocks; shelf comparator output and bee release behaviour still open |
 | Vanilla world generation | Not achieved. The built-in generator is PocketMine-MP's simplified noise generator |
 | Nether / End dimensions | Nether generator exists; End generation and vanilla-style dimension travel are not implemented |
-| Redstone, mob AI, vanilla survival mechanics | Not implemented (same gap as upstream) |
+| Redstone, mob AI, vanilla survival mechanics | Basic redstone (wire, torches, levers, buttons, repeaters, comparators, lamps, observers, dispensers/droppers) implemented; piston movement, sculk sensing and full vanilla parity are open |
 
-The remaining 0 names are the 1.26.60 additions not yet modelled: the poplar wood set, poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press, straw bed and related decoration. Shelves, copper chests and beehives need block entities and are intentionally not registered as tile-less stubs.
+Every canonical 1.26.60 block type name is now registered, including the poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press and straw bed. Remaining block work is behavioural rather than registry coverage, and is tracked in [ROADMAP.md](ROADMAP.md).
 
 A live audit can be run with:
 
@@ -60,8 +60,7 @@ A block is considered implemented when:
 - block properties (hardness, blast resistance, light, flammability, collision, support) match the vanilla data;
 - it can be placed, broken, saved and loaded, and its item form exists where Bedrock has one.
 
-Gameplay systems layered on top of blocks (redstone propagation, piston movement, sculk sensing, archaeology, container UIs for the new blocks) are tracked separately in the roadmap. No block is registered as an empty stub: unknown or unimplemented Bedrock states still fall back to the existing `UnknownBlock` mechanism rather than silently becoming an incorrect vanilla block.
-
+Gameplay systems layered on top of blocks (redstone propagation, piston movement, sculk sensing, archaeology, bee AI) are tracked separately in the roadmap. No block is registered as an empty stub: unknown or unimplemented Bedrock states still fall back to the existing `UnknownBlock` mechanism rather than silently becoming an incorrect vanilla block.
 ## Feature overview
 
 - **Plugin API** — stable PocketMine-MP 5.x API, Composer-based plugins, event system, commands, forms, permissions, tasks and async workers.

@@ -17,15 +17,19 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Utility blocks: honey block, dripstone block, moss block, lodestone, target, conduit, heavy core, scaffolding, composter, seagrass, kelp, suspicious sand/gravel, pointed dripstone, sulfur spike, bubble column, turtle egg, sniffer egg, mangrove propagule.
 - Technical blocks with full state models: observer, dispenser, dropper, piston/sticky piston and arm collision blocks, moving block, command blocks, structure block, jigsaw, vault, trial spawner, crafter, creaking heart, decorated pot, grindstone, sculk sensor/calibrated sensor/shrieker/catalyst/vein, border/allow/deny blocks, chalkboard, camera, end portal/gateway, powder snow, unknown/client placeholder blocks.
 - Cherry and pale oak saplings, with matching tree generators.
+- 8 wooden shelves — block entity with 4 item slots, item insert/remove and powered shelf state.
+- 8 copper chests — container block entity with oxidation/wax variants and same-variant chest pairing.
+- `bee_nest`, `beehive` — bee block entity with NBT storage, honey level and harvest interaction.
+- 1.26.60 content: poplar wood set, ice crystal/icicle, disc press, straw bed, red shrub, shelf mushroom and poplar leaves variants.
 
 Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Active**
 
-- 8 wooden shelves — block entity with 4 item slots, comparator output and powered state.
-- 6 copper chests — container block entity with oxidation/wax variants; decide on chest pairing semantics.
-- `bee_nest`, `beehive` — bee block entity, honey level and release behaviour.
-- 1.26.60 content: poplar wood set, poplar wood set, ice crystal/icicle, disc press, straw bed, red shrub, shelf mushroom, poplar leaves variants.
+- Shelves — comparator output and powered-state propagation.
+- Copper chests — verify pairing across oxidation variants and add comparator output.
+- `bee_nest`, `beehive` — bee entity release/entry and honey production.
+- Redstone — wire propagation, torch inversion, repeater delay/locking and comparator analog output are implemented; piston movement, sculk sensing and observer/dispenser edge cases remain.
 
 **Planned**
 
@@ -70,7 +74,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Planned / active by system**
 
-- Redstone: wire, torches, repeaters, comparators exist; pistons, observers, dispensers and droppers now have state models but no update logic.
+- Redstone: wire, torches, levers, buttons, repeaters (delay/locking), comparators (analog container output), lamps, observers and dispensers/droppers have logic. Pistons, sculk sensing and full vanilla update ordering still need work.
 - Fluids: basic water/lava flow exists; waterlogging and fluid containers need work.
 - Mobs: basic entity framework; vanilla AI, spawning rules and breeding are incomplete.
 - Combat: damage, armor and enchantments exist; knockback, shields and attack cooldowns need parity work.
