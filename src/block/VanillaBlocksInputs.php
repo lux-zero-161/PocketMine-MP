@@ -55,6 +55,7 @@ use pocketmine\block\tile\MonsterSpawner as TileMonsterSpawner;
 use pocketmine\block\tile\NormalFurnace as TileNormalFurnace;
 use pocketmine\block\tile\Note as TileNote;
 use pocketmine\block\tile\PotentSulfur as TilePotentSulfur;
+use pocketmine\block\tile\Shelf as TileShelf;
 use pocketmine\block\tile\ShulkerBox as TileShulkerBox;
 use pocketmine\block\tile\Sign as TileSign;
 use pocketmine\block\tile\Smoker as TileSmoker;
@@ -668,6 +669,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::registerColoredSlabBlocks();
 		self::registerBlocksR26Misc();
 		self::registerBlocksR26Container();
+		self::registerShelfBlocks();
 		self::registerMudBlocks();
 		self::registerResinBlocks();
 		self::registerTuffBlocks();
@@ -1322,6 +1324,23 @@ final class VanillaBlocksInputs extends RegistrySource{
 			self::register("straw_bed", fn(BID $id) => new StrawBed($id, "Straw Bed", new Info(new BreakInfo(0.2, BlockToolType::NONE, 0, 1.0))));
 			self::register("ice_crystal", fn(BID $id) => new IceCrystal($id, "Ice Crystal", new Info(BreakInfo::pickaxe(1.5, null, 7.5))));
 			self::register("icicle", fn(BID $id) => new Icicle($id, "Icicle", new Info(BreakInfo::pickaxe(0.5, null, 2.5))));
+	}
+
+	private function registerShelfBlocks() : void{
+		$shelfBreakInfo = new Info(BreakInfo::axe(2.0, null, 15.0));
+		self::register("oak_shelf", fn(BID $id) => new Shelf($id, "Oak Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("spruce_shelf", fn(BID $id) => new Shelf($id, "Spruce Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("birch_shelf", fn(BID $id) => new Shelf($id, "Birch Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("jungle_shelf", fn(BID $id) => new Shelf($id, "Jungle Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("acacia_shelf", fn(BID $id) => new Shelf($id, "Acacia Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("dark_oak_shelf", fn(BID $id) => new Shelf($id, "Dark Oak Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("mangrove_shelf", fn(BID $id) => new Shelf($id, "Mangrove Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("cherry_shelf", fn(BID $id) => new Shelf($id, "Cherry Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("pale_oak_shelf", fn(BID $id) => new Shelf($id, "Pale Oak Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("bamboo_shelf", fn(BID $id) => new Shelf($id, "Bamboo Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("crimson_shelf", fn(BID $id) => new Shelf($id, "Crimson Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("warped_shelf", fn(BID $id) => new Shelf($id, "Warped Shelf", $shelfBreakInfo), TileShelf::class);
+		self::register("poplar_shelf", fn(BID $id) => new Shelf($id, "Poplar Shelf", $shelfBreakInfo), TileShelf::class);
 	}
 
 	private function registerCauldronBlocks() : void{

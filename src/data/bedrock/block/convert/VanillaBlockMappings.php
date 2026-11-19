@@ -162,6 +162,7 @@ use pocketmine\block\SculkSensor;
 use pocketmine\block\SculkShrieker;
 use pocketmine\block\SculkVein;
 use pocketmine\block\Seagrass;
+use pocketmine\block\Shelf;
 use pocketmine\block\SnifferEgg;
 use pocketmine\block\StructureBlock;
 use pocketmine\block\StrawBed;
@@ -1307,6 +1308,71 @@ final class VanillaBlockMappings{
 			}), fn(PointedDripstone $b) => $b->getThickness(), fn(PointedDripstone $b, DripstoneThickness $v) => $b->setThickness($v)),
 			new BoolProperty(StateNames::HANGING, fn(PointedDripstone $b) => $b->isHanging(), fn(PointedDripstone $b, bool $v) => $b->setHanging($v)),
 			new BoolProperty(StateNames::ATTACHED_BIT, fn(Icicle $b) => $b->isAttached(), fn(Icicle $b, bool $v) => $b->setAttached($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::OAK_SHELF(), Ids::OAK_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::SPRUCE_SHELF(), Ids::SPRUCE_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::BIRCH_SHELF(), Ids::BIRCH_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::JUNGLE_SHELF(), Ids::JUNGLE_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::ACACIA_SHELF(), Ids::ACACIA_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::DARK_OAK_SHELF(), Ids::DARK_OAK_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::MANGROVE_SHELF(), Ids::MANGROVE_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::CHERRY_SHELF(), Ids::CHERRY_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::PALE_OAK_SHELF(), Ids::PALE_OAK_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::BAMBOO_SHELF(), Ids::BAMBOO_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::CRIMSON_SHELF(), Ids::CRIMSON_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::WARPED_SHELF(), Ids::WARPED_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::POPLAR_SHELF(), Ids::POPLAR_SHELF)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::POWERED_BIT, fn(Shelf $b) => $b->isPowered(), fn(Shelf $b, bool $v) => $b->setPowered($v)),
+			new IntProperty(StateNames::POWERED_SHELF_TYPE, 0, Shelf::MAX_POWERED_SHELF_TYPE, fn(Shelf $b) => $b->getPoweredShelfType(), fn(Shelf $b, int $v) => $b->setPoweredShelfType($v))
 		]));
 		$reg->mapSimple(Blocks::UNKNOWN(), Ids::UNKNOWN);
 		$reg->mapModel(Model::create(Blocks::DEPRECATED_ANVIL(), Ids::DEPRECATED_ANVIL)->properties([$commonProperties->horizontalFacingCardinal]));
