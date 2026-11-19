@@ -35,20 +35,31 @@ use pocketmine\block\Bell;
 use pocketmine\block\BigDripleafHead;
 use pocketmine\block\Block;
 use pocketmine\block\BrewingStand;
+use pocketmine\block\BubbleColumn;
 use pocketmine\block\Cactus;
 use pocketmine\block\Cake;
+use pocketmine\block\CalibratedSculkSensor;
 use pocketmine\block\Candle;
 use pocketmine\block\CaveVines;
+use pocketmine\block\Chalkboard;
 use pocketmine\block\ChiseledBookshelf;
 use pocketmine\block\ChorusFlower;
 use pocketmine\block\CocoaBlock;
+use pocketmine\block\CommandBlock;
+use pocketmine\block\Composter;
 use pocketmine\block\Copper;
 use pocketmine\block\CopperLantern;
+use pocketmine\block\Crafter;
+use pocketmine\block\CreakingHeart;
 use pocketmine\block\DaylightSensor;
+use pocketmine\block\DecoratedPot;
+use pocketmine\block\DeprecatedAnvil;
 use pocketmine\block\DetectorRail;
 use pocketmine\block\Dirt;
+use pocketmine\block\Dispenser;
 use pocketmine\block\DoublePitcherCrop;
 use pocketmine\block\DoublePlant;
+use pocketmine\block\DriedGhast;
 use pocketmine\block\EndPortalFrame;
 use pocketmine\block\EndRod;
 use pocketmine\block\Farmland;
@@ -58,18 +69,29 @@ use pocketmine\block\FloorCoralFan;
 use pocketmine\block\Froglight;
 use pocketmine\block\FrostedIce;
 use pocketmine\block\GlazedTerracotta;
+use pocketmine\block\Grindstone;
 use pocketmine\block\Hopper;
+use pocketmine\block\Jigsaw;
+use pocketmine\block\Kelp;
 use pocketmine\block\Lantern;
+use pocketmine\block\LeafLitter;
 use pocketmine\block\Leaves;
 use pocketmine\block\Lectern;
 use pocketmine\block\Lever;
 use pocketmine\block\Light;
+use pocketmine\block\MangrovePropagule;
 use pocketmine\block\MobHead;
 use pocketmine\block\NetherPortal;
 use pocketmine\block\NetherVines;
 use pocketmine\block\NetherWartPlant;
+use pocketmine\block\Observer;
+use pocketmine\block\PaleMossCarpet;
 use pocketmine\block\PinkPetals;
+use pocketmine\block\Piston;
+use pocketmine\block\PistonArmCollision;
 use pocketmine\block\PitcherCrop;
+use pocketmine\block\PointedDripstone;
+use pocketmine\block\PotentSulfur;
 use pocketmine\block\PoweredRail;
 use pocketmine\block\Rail;
 use pocketmine\block\RedMushroomBlock;
@@ -78,30 +100,54 @@ use pocketmine\block\RedstoneRepeater;
 use pocketmine\block\RedstoneTorch;
 use pocketmine\block\RespawnAnchor;
 use pocketmine\block\Sapling;
+use pocketmine\block\Scaffolding;
+use pocketmine\block\SculkCatalyst;
+use pocketmine\block\SculkSensor;
+use pocketmine\block\SculkShrieker;
+use pocketmine\block\SculkVein;
 use pocketmine\block\SeaPickle;
+use pocketmine\block\Seagrass;
 use pocketmine\block\SmallDripleaf;
+use pocketmine\block\SnifferEgg;
 use pocketmine\block\SnowLayer;
 use pocketmine\block\Sponge;
 use pocketmine\block\StraightOnlyRail;
+use pocketmine\block\StructureBlock;
 use pocketmine\block\Sugarcane;
+use pocketmine\block\SuspiciousBlock;
 use pocketmine\block\SweetBerryBush;
 use pocketmine\block\TNT;
 use pocketmine\block\TorchflowerCrop;
+use pocketmine\block\TrialSpawner;
 use pocketmine\block\Tripwire;
 use pocketmine\block\TripwireHook;
+use pocketmine\block\TurtleEgg;
+use pocketmine\block\Vault;
+use pocketmine\block\Wildflowers;
 use pocketmine\block\utils\BellAttachmentType;
 use pocketmine\block\utils\BrewingStandSlot;
 use pocketmine\block\utils\ChiseledBookshelfSlot;
 use pocketmine\block\utils\CopperOxidation;
+use pocketmine\block\utils\CrafterOrientation;
+use pocketmine\block\utils\CrackedState;
+use pocketmine\block\utils\CreakingHeartState;
 use pocketmine\block\utils\DirtType;
+use pocketmine\block\utils\DripstoneThickness;
 use pocketmine\block\utils\DripleafState;
 use pocketmine\block\utils\DyeColor;
 use pocketmine\block\utils\FroglightType;
+use pocketmine\block\utils\GrindstoneAttachment;
 use pocketmine\block\utils\HorizontalFacing;
 use pocketmine\block\utils\LeverFacing;
 use pocketmine\block\utils\MobHeadType;
 use pocketmine\block\utils\MushroomBlockType;
+use pocketmine\block\utils\PillarRotation;
+use pocketmine\block\utils\PotentSulfurState;
 use pocketmine\block\utils\PoweredByRedstone;
+use pocketmine\block\utils\SeaGrassType;
+use pocketmine\block\utils\StructureBlockMode;
+use pocketmine\block\utils\TurtleEggCount;
+use pocketmine\block\utils\VaultState;
 use pocketmine\block\VanillaBlocks as Blocks;
 use pocketmine\block\Vine;
 use pocketmine\data\bedrock\block\BlockLegacyMetadata;
@@ -123,6 +169,7 @@ use pocketmine\data\bedrock\block\convert\property\ValueFromIntProperty;
 use pocketmine\data\bedrock\block\convert\property\ValueFromStringProperty;
 use pocketmine\data\bedrock\block\convert\property\ValueMappings;
 use pocketmine\data\bedrock\block\convert\property\ValueSetFromIntProperty;
+use pocketmine\data\bedrock\block\convert\property\WallConnectionTypeShim;
 use pocketmine\math\Facing;
 use function array_map;
 use function min;
@@ -152,6 +199,7 @@ final class VanillaBlockMappings{
 		self::registerWoodMappings($reg, $commonProperties);
 		self::registerTorchMappings($reg, $commonProperties);
 		self::registerChemistryMappings($reg, $commonProperties);
+		self::registerBlocksR21Mappings($reg, $commonProperties);
 		self::register1to1CustomMappings($reg, $commonProperties);
 
 		self::registerSplitMappings($reg, $commonProperties);
@@ -171,9 +219,11 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::BRICKS(), Ids::BRICK_BLOCK);
 		$reg->mapSimple(Blocks::BROWN_MUSHROOM(), Ids::BROWN_MUSHROOM);
 		$reg->mapSimple(Blocks::BUDDING_AMETHYST(), Ids::BUDDING_AMETHYST);
+		$reg->mapSimple(Blocks::BUSH(), Ids::BUSH);
 		$reg->mapSimple(Blocks::CALCITE(), Ids::CALCITE);
 		$reg->mapSimple(Blocks::CARTOGRAPHY_TABLE(), Ids::CARTOGRAPHY_TABLE);
 		$reg->mapSimple(Blocks::CHEMICAL_HEAT(), Ids::CHEMICAL_HEAT);
+		$reg->mapSimple(Blocks::CHISELED_CINNABAR(), Ids::CHISELED_CINNABAR);
 		$reg->mapSimple(Blocks::CHISELED_DEEPSLATE(), Ids::CHISELED_DEEPSLATE);
 		$reg->mapSimple(Blocks::CHISELED_NETHER_BRICKS(), Ids::CHISELED_NETHER_BRICKS);
 		$reg->mapSimple(Blocks::CHISELED_POLISHED_BLACKSTONE(), Ids::CHISELED_POLISHED_BLACKSTONE);
@@ -181,15 +231,20 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::CHISELED_RESIN_BRICKS(), Ids::CHISELED_RESIN_BRICKS);
 		$reg->mapSimple(Blocks::CHISELED_SANDSTONE(), Ids::CHISELED_SANDSTONE);
 		$reg->mapSimple(Blocks::CHISELED_STONE_BRICKS(), Ids::CHISELED_STONE_BRICKS);
+		$reg->mapSimple(Blocks::CHISELED_SULFUR(), Ids::CHISELED_SULFUR);
 		$reg->mapSimple(Blocks::CHISELED_TUFF(), Ids::CHISELED_TUFF);
 		$reg->mapSimple(Blocks::CHISELED_TUFF_BRICKS(), Ids::CHISELED_TUFF_BRICKS);
 		$reg->mapSimple(Blocks::CHORUS_PLANT(), Ids::CHORUS_PLANT);
+		$reg->mapSimple(Blocks::CINNABAR(), Ids::CINNABAR);
+		$reg->mapSimple(Blocks::CINNABAR_BRICKS(), Ids::CINNABAR_BRICKS);
 		$reg->mapSimple(Blocks::CLAY(), Ids::CLAY);
+		$reg->mapSimple(Blocks::CLOSED_EYEBLOSSOM(), Ids::CLOSED_EYEBLOSSOM);
 		$reg->mapSimple(Blocks::COAL(), Ids::COAL_BLOCK);
 		$reg->mapSimple(Blocks::COAL_ORE(), Ids::COAL_ORE);
 		$reg->mapSimple(Blocks::COBBLED_DEEPSLATE(), Ids::COBBLED_DEEPSLATE);
 		$reg->mapSimple(Blocks::COBBLESTONE(), Ids::COBBLESTONE);
 		$reg->mapSimple(Blocks::COBWEB(), Ids::WEB);
+		$reg->mapSimple(Blocks::CONDUIT(), Ids::CONDUIT);
 		$reg->mapSimple(Blocks::COPPER_ORE(), Ids::COPPER_ORE);
 		$reg->mapSimple(Blocks::CRACKED_DEEPSLATE_BRICKS(), Ids::CRACKED_DEEPSLATE_BRICKS);
 		$reg->mapSimple(Blocks::CRACKED_DEEPSLATE_TILES(), Ids::CRACKED_DEEPSLATE_TILES);
@@ -217,6 +272,7 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::DIAMOND_ORE(), Ids::DIAMOND_ORE);
 		$reg->mapSimple(Blocks::DIORITE(), Ids::DIORITE);
 		$reg->mapSimple(Blocks::DRAGON_EGG(), Ids::DRAGON_EGG);
+		$reg->mapSimple(Blocks::DRIPSTONE_BLOCK(), Ids::DRIPSTONE_BLOCK);
 		$reg->mapSimple(Blocks::DRIED_KELP(), Ids::DRIED_KELP_BLOCK);
 		$reg->mapSimple(Blocks::ELEMENT_ACTINIUM(), Ids::ELEMENT_89);
 		$reg->mapSimple(Blocks::ELEMENT_ALUMINUM(), Ids::ELEMENT_13);
@@ -345,11 +401,14 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::FERN(), Ids::FERN);
 		$reg->mapSimple(Blocks::FLETCHING_TABLE(), Ids::FLETCHING_TABLE);
 		$reg->mapSimple(Blocks::FLOWERING_AZALEA(), Ids::FLOWERING_AZALEA);
+		$reg->mapSimple(Blocks::FIREFLY_BUSH(), Ids::FIREFLY_BUSH);
+		$reg->mapSimple(Blocks::FROG_SPAWN(), Ids::FROG_SPAWN);
 		$reg->mapSimple(Blocks::GILDED_BLACKSTONE(), Ids::GILDED_BLACKSTONE);
 		$reg->mapSimple(Blocks::GLASS(), Ids::GLASS);
 		$reg->mapSimple(Blocks::GLASS_PANE(), Ids::GLASS_PANE);
 		$reg->mapSimple(Blocks::GLOWING_OBSIDIAN(), Ids::GLOWINGOBSIDIAN);
 		$reg->mapSimple(Blocks::GLOWSTONE(), Ids::GLOWSTONE);
+		$reg->mapSimple(Blocks::GOLDEN_DANDELION(), Ids::GOLDEN_DANDELION);
 		$reg->mapSimple(Blocks::GOLD(), Ids::GOLD_BLOCK);
 		$reg->mapSimple(Blocks::GOLD_ORE(), Ids::GOLD_ORE);
 		$reg->mapSimple(Blocks::GRANITE(), Ids::GRANITE);
@@ -360,6 +419,8 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::HARDENED_CLAY(), Ids::HARDENED_CLAY);
 		$reg->mapSimple(Blocks::HARDENED_GLASS(), Ids::HARD_GLASS);
 		$reg->mapSimple(Blocks::HARDENED_GLASS_PANE(), Ids::HARD_GLASS_PANE);
+		$reg->mapSimple(Blocks::HEAVY_CORE(), Ids::HEAVY_CORE);
+		$reg->mapSimple(Blocks::HONEY_BLOCK(), Ids::HONEY_BLOCK);
 		$reg->mapSimple(Blocks::HONEYCOMB(), Ids::HONEYCOMB_BLOCK);
 		$reg->mapSimple(Blocks::ICE(), Ids::ICE);
 		$reg->mapSimple(Blocks::INFESTED_CHISELED_STONE_BRICK(), Ids::INFESTED_CHISELED_STONE_BRICKS);
@@ -379,10 +440,13 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::LAPIS_LAZULI_ORE(), Ids::LAPIS_ORE);
 		$reg->mapSimple(Blocks::LEGACY_STONECUTTER(), Ids::STONECUTTER);
 		$reg->mapSimple(Blocks::LILY_PAD(), Ids::WATERLILY);
+		$reg->mapSimple(Blocks::LODESTONE(), Ids::LODESTONE);
 		$reg->mapSimple(Blocks::MAGMA(), Ids::MAGMA);
 		$reg->mapSimple(Blocks::MANGROVE_ROOTS(), Ids::MANGROVE_ROOTS);
 		$reg->mapSimple(Blocks::MELON(), Ids::MELON_BLOCK);
 		$reg->mapSimple(Blocks::MONSTER_SPAWNER(), Ids::MOB_SPAWNER);
+		$reg->mapSimple(Blocks::MOSS_BLOCK(), Ids::MOSS_BLOCK);
+		$reg->mapSimple(Blocks::MOSS_CARPET(), Ids::MOSS_CARPET);
 		$reg->mapSimple(Blocks::MOSSY_COBBLESTONE(), Ids::MOSSY_COBBLESTONE);
 		$reg->mapSimple(Blocks::MOSSY_STONE_BRICKS(), Ids::MOSSY_STONE_BRICKS);
 		$reg->mapSimple(Blocks::MUD(), Ids::MUD);
@@ -398,15 +462,19 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::NETHER_WART_BLOCK(), Ids::NETHER_WART_BLOCK);
 		$reg->mapSimple(Blocks::NOTE_BLOCK(), Ids::NOTEBLOCK);
 		$reg->mapSimple(Blocks::OBSIDIAN(), Ids::OBSIDIAN);
+		$reg->mapSimple(Blocks::OPEN_EYEBLOSSOM(), Ids::OPEN_EYEBLOSSOM);
 		$reg->mapSimple(Blocks::PACKED_ICE(), Ids::PACKED_ICE);
 		$reg->mapSimple(Blocks::PACKED_MUD(), Ids::PACKED_MUD);
+		$reg->mapSimple(Blocks::PALE_MOSS_BLOCK(), Ids::PALE_MOSS_BLOCK);
 		$reg->mapSimple(Blocks::PODZOL(), Ids::PODZOL);
 		$reg->mapSimple(Blocks::POLISHED_ANDESITE(), Ids::POLISHED_ANDESITE);
 		$reg->mapSimple(Blocks::POLISHED_BLACKSTONE(), Ids::POLISHED_BLACKSTONE);
 		$reg->mapSimple(Blocks::POLISHED_BLACKSTONE_BRICKS(), Ids::POLISHED_BLACKSTONE_BRICKS);
+		$reg->mapSimple(Blocks::POLISHED_CINNABAR(), Ids::POLISHED_CINNABAR);
 		$reg->mapSimple(Blocks::POLISHED_DEEPSLATE(), Ids::POLISHED_DEEPSLATE);
 		$reg->mapSimple(Blocks::POLISHED_DIORITE(), Ids::POLISHED_DIORITE);
 		$reg->mapSimple(Blocks::POLISHED_GRANITE(), Ids::POLISHED_GRANITE);
+		$reg->mapSimple(Blocks::POLISHED_SULFUR(), Ids::POLISHED_SULFUR);
 		$reg->mapSimple(Blocks::POLISHED_TUFF(), Ids::POLISHED_TUFF);
 		$reg->mapSimple(Blocks::PRISMARINE(), Ids::PRISMARINE);
 		$reg->mapSimple(Blocks::PRISMARINE_BRICKS(), Ids::PRISMARINE_BRICKS);
@@ -427,6 +495,7 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::SANDSTONE(), Ids::SANDSTONE);
 		$reg->mapSimple(Blocks::SCULK(), Ids::SCULK);
 		$reg->mapSimple(Blocks::SEA_LANTERN(), Ids::SEA_LANTERN);
+		$reg->mapSimple(Blocks::SHORT_DRY_GRASS(), Ids::SHORT_DRY_GRASS);
 		$reg->mapSimple(Blocks::SHROOMLIGHT(), Ids::SHROOMLIGHT);
 		$reg->mapSimple(Blocks::SHULKER_BOX(), Ids::UNDYED_SHULKER_BOX);
 		$reg->mapSimple(Blocks::SLIME(), Ids::SLIME);
@@ -442,7 +511,11 @@ final class VanillaBlockMappings{
 		$reg->mapSimple(Blocks::STONE(), Ids::STONE);
 		$reg->mapSimple(Blocks::STONE_BRICKS(), Ids::STONE_BRICKS);
 		$reg->mapSimple(Blocks::STRUCTURE_VOID(), Ids::STRUCTURE_VOID);
+		$reg->mapSimple(Blocks::SULFUR(), Ids::SULFUR);
+		$reg->mapSimple(Blocks::SULFUR_BRICKS(), Ids::SULFUR_BRICKS);
+		$reg->mapSimple(Blocks::TALL_DRY_GRASS(), Ids::TALL_DRY_GRASS);
 		$reg->mapSimple(Blocks::TALL_GRASS(), Ids::SHORT_GRASS);  //no, this is not a typo - tall_grass is now the double block, just to be confusing :(
+		$reg->mapSimple(Blocks::TARGET(), Ids::TARGET);
 		$reg->mapSimple(Blocks::TINTED_GLASS(), Ids::TINTED_GLASS);
 		$reg->mapSimple(Blocks::TORCHFLOWER(), Ids::TORCHFLOWER);
 		$reg->mapSimple(Blocks::TUFF(), Ids::TUFF);
@@ -550,9 +623,11 @@ final class VanillaBlockMappings{
 		foreach([
 			Ids::ACACIA_SAPLING => Blocks::ACACIA_SAPLING(),
 			Ids::BIRCH_SAPLING => Blocks::BIRCH_SAPLING(),
+			Ids::CHERRY_SAPLING => Blocks::CHERRY_SAPLING(),
 			Ids::DARK_OAK_SAPLING => Blocks::DARK_OAK_SAPLING(),
 			Ids::JUNGLE_SAPLING => Blocks::JUNGLE_SAPLING(),
 			Ids::OAK_SAPLING => Blocks::OAK_SAPLING(),
+			Ids::PALE_OAK_SAPLING => Blocks::PALE_OAK_SAPLING(),
 			Ids::SPRUCE_SAPLING => Blocks::SPRUCE_SAPLING(),
 		] as $id => $block){
 			$reg->mapModel(Model::create($block, $id)->properties($properties));
@@ -874,10 +949,327 @@ final class VanillaBlockMappings{
 		);
 	}
 
+	private static function registerBlocksR21Mappings(BlockSerializerDeserializerRegistrar $reg, CommonProperties $commonProperties) : void{
+		$reg->mapModel(Model::create(Blocks::SEAGRASS(), Ids::SEAGRASS)->properties([
+			new ValueFromStringProperty(
+				StateNames::SEA_GRASS_TYPE,
+				EnumFromRawStateMap::string(SeaGrassType::class, fn(SeaGrassType $case) => match ($case) {
+					SeaGrassType::DEFAULT => StringValues::SEA_GRASS_TYPE_DEFAULT,
+					SeaGrassType::DOUBLE_TOP => StringValues::SEA_GRASS_TYPE_DOUBLE_TOP,
+					SeaGrassType::DOUBLE_BOTTOM => StringValues::SEA_GRASS_TYPE_DOUBLE_BOT,
+				}),
+				fn(Seagrass $b) => $b->getType(),
+				fn(Seagrass $b, SeaGrassType $v) => $b->setType($v)
+			)
+		]));
+		$reg->mapModel(Model::create(Blocks::KELP(), Ids::KELP)->properties([
+			new IntProperty(StateNames::KELP_AGE, 0, Kelp::MAX_AGE, fn(Kelp $b) => $b->getAge(), fn(Kelp $b, int $v) => $b->setAge($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::SCAFFOLDING(), Ids::SCAFFOLDING)->properties([
+			new IntProperty(StateNames::STABILITY, 0, Scaffolding::MAX_STABILITY, fn(Scaffolding $b) => $b->getStability(), fn(Scaffolding $b, int $v) => $b->setStability($v)),
+			new BoolProperty(StateNames::STABILITY_CHECK, fn(Scaffolding $b) => $b->isStabilityCheck(), fn(Scaffolding $b, bool $v) => $b->setStabilityCheck($v))
+		]));
+		foreach([
+			Ids::SUSPICIOUS_SAND => Blocks::SUSPICIOUS_SAND(),
+			Ids::SUSPICIOUS_GRAVEL => Blocks::SUSPICIOUS_GRAVEL()
+		] as $id => $block){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new IntProperty(StateNames::BRUSHED_PROGRESS, 0, SuspiciousBlock::MAX_BRUSHED_PROGRESS, fn(SuspiciousBlock $b) => $b->getBrushedProgress(), fn(SuspiciousBlock $b, int $v) => $b->setBrushedProgress($v)),
+				new BoolProperty(StateNames::HANGING, fn(SuspiciousBlock $b) => $b->isHanging(), fn(SuspiciousBlock $b, bool $v) => $b->setHanging($v))
+			]));
+		}
+		$reg->mapModel(Model::create(Blocks::COMPOSTER(), Ids::COMPOSTER)->properties([
+			new IntProperty(StateNames::COMPOSTER_FILL_LEVEL, 0, Composter::MAX_FILL_LEVEL, fn(Composter $b) => $b->getFillLevel(), fn(Composter $b, int $v) => $b->setFillLevel($v))
+		]));
+		foreach([
+			Ids::LEAF_LITTER => Blocks::LEAF_LITTER(),
+			Ids::WILDFLOWERS => Blocks::WILDFLOWERS()
+		] as $id => $block){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new IntProperty(StateNames::GROWTH, 0, LeafLitter::MAX_GROWTH, fn(LeafLitter $b) => $b->getGrowth(), fn(LeafLitter $b, int $v) => $b->setGrowth($v)),
+				$commonProperties->horizontalFacingCardinal
+			]));
+		}
+		foreach([
+			Ids::POINTED_DRIPSTONE => Blocks::POINTED_DRIPSTONE(),
+			Ids::SULFUR_SPIKE => Blocks::SULFUR_SPIKE()
+		] as $id => $block){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new ValueFromStringProperty(
+					StateNames::DRIPSTONE_THICKNESS,
+					EnumFromRawStateMap::string(DripstoneThickness::class, fn(DripstoneThickness $case) => match ($case) {
+						DripstoneThickness::TIP => StringValues::DRIPSTONE_THICKNESS_TIP,
+						DripstoneThickness::FRUSTUM => StringValues::DRIPSTONE_THICKNESS_FRUSTUM,
+						DripstoneThickness::MIDDLE => StringValues::DRIPSTONE_THICKNESS_MIDDLE,
+						DripstoneThickness::BASE => StringValues::DRIPSTONE_THICKNESS_BASE,
+						DripstoneThickness::MERGE => StringValues::DRIPSTONE_THICKNESS_MERGE,
+					}),
+					fn(PointedDripstone $b) => $b->getThickness(),
+					fn(PointedDripstone $b, DripstoneThickness $v) => $b->setThickness($v)
+				),
+				new BoolProperty(StateNames::HANGING, fn(PointedDripstone $b) => $b->isHanging(), fn(PointedDripstone $b, bool $v) => $b->setHanging($v))
+			]));
+		}
+		$reg->mapModel(Model::create(Blocks::BUBBLE_COLUMN(), Ids::BUBBLE_COLUMN)->properties([
+			new BoolProperty(StateNames::DRAG_DOWN, fn(BubbleColumn $b) => $b->isDragDown(), fn(BubbleColumn $b, bool $v) => $b->setDragDown($v))
+		]));
+
+		$crackedStateProperty = fn(\Closure $getter, \Closure $setter) => new ValueFromStringProperty(
+			StateNames::CRACKED_STATE,
+			EnumFromRawStateMap::string(CrackedState::class, fn(CrackedState $case) => match ($case) {
+				CrackedState::NO_CRACKS => StringValues::CRACKED_STATE_NO_CRACKS,
+				CrackedState::CRACKED => StringValues::CRACKED_STATE_CRACKED,
+				CrackedState::MAX_CRACKED => StringValues::CRACKED_STATE_MAX_CRACKED,
+			}),
+			$getter,
+			$setter
+		);
+
+		$reg->mapModel(Model::create(Blocks::TURTLE_EGG(), Ids::TURTLE_EGG)->properties([
+			$crackedStateProperty(fn(TurtleEgg $b) => $b->getCrackedState(), fn(TurtleEgg $b, CrackedState $v) => $b->setCrackedState($v)),
+			new ValueFromStringProperty(
+				StateNames::TURTLE_EGG_COUNT,
+				EnumFromRawStateMap::string(TurtleEggCount::class, fn(TurtleEggCount $case) => match ($case) {
+					TurtleEggCount::ONE => StringValues::TURTLE_EGG_COUNT_ONE_EGG,
+					TurtleEggCount::TWO => StringValues::TURTLE_EGG_COUNT_TWO_EGG,
+					TurtleEggCount::THREE => StringValues::TURTLE_EGG_COUNT_THREE_EGG,
+					TurtleEggCount::FOUR => StringValues::TURTLE_EGG_COUNT_FOUR_EGG,
+				}),
+				fn(TurtleEgg $b) => $b->getCount(),
+				fn(TurtleEgg $b, TurtleEggCount $v) => $b->setCount($v)
+			)
+		]));
+		$reg->mapModel(Model::create(Blocks::SNIFFER_EGG(), Ids::SNIFFER_EGG)->properties([
+			$crackedStateProperty(fn(SnifferEgg $b) => $b->getCrackedState(), fn(SnifferEgg $b, CrackedState $v) => $b->setCrackedState($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::MANGROVE_PROPAGULE(), Ids::MANGROVE_PROPAGULE)->properties([
+			new BoolProperty(StateNames::HANGING, fn(MangrovePropagule $b) => $b->isHanging(), fn(MangrovePropagule $b, bool $v) => $b->setHanging($v)),
+			new IntProperty(StateNames::PROPAGULE_STAGE, 0, MangrovePropagule::MAX_STAGE, fn(MangrovePropagule $b) => $b->getStage(), fn(MangrovePropagule $b, int $v) => $b->setStage($v))
+		]));
+
+		$reg->mapModel(Model::create(Blocks::SCULK_VEIN(), Ids::SCULK_VEIN)->properties([$commonProperties->multiFacingFlags]));
+		$reg->mapModel(Model::create(Blocks::SCULK_CATALYST(), Ids::SCULK_CATALYST)->properties([
+			new BoolProperty(StateNames::BLOOM, fn(SculkCatalyst $b) => $b->isBloom(), fn(SculkCatalyst $b, bool $v) => $b->setBloom($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::SCULK_SHRIEKER(), Ids::SCULK_SHRIEKER)->properties([
+			new BoolProperty(StateNames::ACTIVE, fn(SculkShrieker $b) => $b->isActive(), fn(SculkShrieker $b, bool $v) => $b->setActive($v)),
+			new BoolProperty(StateNames::CAN_SUMMON, fn(SculkShrieker $b) => $b->canSummon(), fn(SculkShrieker $b, bool $v) => $b->setCanSummon($v))
+		]));
+
+		$reg->mapModel(Model::create(Blocks::OBSERVER(), Ids::OBSERVER)->properties([
+			new ValueFromStringProperty(StateNames::MC_FACING_DIRECTION, ValueMappings::getInstance()->blockFace, fn(Observer $b) => $b->getFacing(), fn(Observer $b, int $v) => $b->setFacing($v)),
+			new BoolProperty(StateNames::POWERED_BIT, fn(Observer $b) => $b->isPowered(), fn(Observer $b, bool $v) => $b->setPowered($v))
+		]));
+		foreach([
+			Ids::DISPENSER => Blocks::DISPENSER(),
+			Ids::DROPPER => Blocks::DROPPER()
+		] as $id => $block){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new IntProperty(StateNames::FACING_DIRECTION, 0, 5, fn(Dispenser $b) => $b->getFacing(), fn(Dispenser $b, int $v) => $b->setFacing($v)),
+				new BoolProperty(StateNames::TRIGGERED_BIT, fn(Dispenser $b) => $b->isTriggered(), fn(Dispenser $b, bool $v) => $b->setTriggered($v))
+			]));
+		}
+		foreach([
+			[Blocks::PISTON(), Ids::PISTON],
+			[Blocks::STICKY_PISTON(), Ids::STICKY_PISTON]
+		] as [$block, $id]){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new IntProperty(StateNames::FACING_DIRECTION, 0, 5, fn(Piston $b) => $b->getFacing(), fn(Piston $b, int $v) => $b->setFacing($v))
+			]));
+		}
+		foreach([
+			[Blocks::PISTON_ARM_COLLISION(), Ids::PISTON_ARM_COLLISION],
+			[Blocks::STICKY_PISTON_ARM_COLLISION(), Ids::STICKY_PISTON_ARM_COLLISION]
+		] as [$block, $id]){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new IntProperty(StateNames::FACING_DIRECTION, 0, 5, fn(PistonArmCollision $b) => $b->getFacing(), fn(PistonArmCollision $b, int $v) => $b->setFacing($v))
+			]));
+		}
+
+		foreach([
+			Ids::MOVING_BLOCK => Blocks::MOVING_BLOCK(),
+			Ids::ALLOW => Blocks::ALLOW(),
+			Ids::DENY => Blocks::DENY(),
+			Ids::CAMERA => Blocks::CAMERA(),
+			Ids::END_PORTAL => Blocks::END_PORTAL(),
+			Ids::END_GATEWAY => Blocks::END_GATEWAY(),
+			Ids::CLIENT_REQUEST_PLACEHOLDER_BLOCK => Blocks::CLIENT_REQUEST_PLACEHOLDER_BLOCK(),
+			Ids::POWDER_SNOW => Blocks::POWDER_SNOW()
+		] as $id => $block){
+			$reg->mapSimple($block, $id);
+		}
+		$reg->mapModel(Model::create(Blocks::PALE_HANGING_MOSS(), Ids::PALE_HANGING_MOSS)->properties([
+			new BoolProperty(StateNames::TIP, fn(\pocketmine\block\PaleHangingMoss $b) => $b->isTip(), fn(\pocketmine\block\PaleHangingMoss $b, bool $v) => $b->setTip($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::BORDER_BLOCK(), Ids::BORDER_BLOCK)->properties($commonProperties->wallProperties));
+
+		$reg->mapModel(Model::create(Blocks::DECORATED_POT(), Ids::DECORATED_POT)->properties([
+			new IntProperty(StateNames::DIRECTION, 0, DecoratedPot::MAX_DIRECTION, fn(DecoratedPot $b) => $b->getDirection(), fn(DecoratedPot $b, int $v) => $b->setDirection($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::DRIED_GHAST(), Ids::DRIED_GHAST)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new IntProperty(StateNames::REHYDRATION_LEVEL, 0, DriedGhast::MAX_REHYDRATION_LEVEL, fn(DriedGhast $b) => $b->getRehydrationLevel(), fn(DriedGhast $b, int $v) => $b->setRehydrationLevel($v))
+		]));
+		foreach([
+			Ids::COPPER_GOLEM_STATUE => Blocks::COPPER_GOLEM_STATUE(),
+			Ids::EXPOSED_COPPER_GOLEM_STATUE => Blocks::EXPOSED_COPPER_GOLEM_STATUE(),
+			Ids::WEATHERED_COPPER_GOLEM_STATUE => Blocks::WEATHERED_COPPER_GOLEM_STATUE(),
+			Ids::OXIDIZED_COPPER_GOLEM_STATUE => Blocks::OXIDIZED_COPPER_GOLEM_STATUE(),
+			Ids::WAXED_COPPER_GOLEM_STATUE => Blocks::WAXED_COPPER_GOLEM_STATUE(),
+			Ids::WAXED_EXPOSED_COPPER_GOLEM_STATUE => Blocks::WAXED_EXPOSED_COPPER_GOLEM_STATUE(),
+			Ids::WAXED_WEATHERED_COPPER_GOLEM_STATUE => Blocks::WAXED_WEATHERED_COPPER_GOLEM_STATUE(),
+			Ids::WAXED_OXIDIZED_COPPER_GOLEM_STATUE => Blocks::WAXED_OXIDIZED_COPPER_GOLEM_STATUE()
+		] as $id => $block){
+			$reg->mapModel(Model::create($block, $id)->properties([$commonProperties->horizontalFacingCardinal]));
+		}
+
+		$reg->mapModel(Model::create(Blocks::STRUCTURE_BLOCK(), Ids::STRUCTURE_BLOCK)->properties([
+			new ValueFromStringProperty(
+				StateNames::STRUCTURE_BLOCK_TYPE,
+				EnumFromRawStateMap::string(StructureBlockMode::class, fn(StructureBlockMode $case) => match ($case) {
+					StructureBlockMode::DATA => StringValues::STRUCTURE_BLOCK_TYPE_DATA,
+					StructureBlockMode::SAVE => StringValues::STRUCTURE_BLOCK_TYPE_SAVE,
+					StructureBlockMode::LOAD => StringValues::STRUCTURE_BLOCK_TYPE_LOAD,
+					StructureBlockMode::CORNER => StringValues::STRUCTURE_BLOCK_TYPE_CORNER,
+					StructureBlockMode::INVALID => StringValues::STRUCTURE_BLOCK_TYPE_INVALID,
+					StructureBlockMode::EXPORT => StringValues::STRUCTURE_BLOCK_TYPE_EXPORT,
+				}),
+				fn(StructureBlock $b) => $b->getMode(),
+				fn(StructureBlock $b, StructureBlockMode $v) => $b->setMode($v)
+			)
+		]));
+		$reg->mapModel(Model::create(Blocks::JIGSAW(), Ids::JIGSAW)->properties([
+			new IntProperty(StateNames::FACING_DIRECTION, 0, 5, fn(Jigsaw $b) => $b->getFacing(), fn(Jigsaw $b, int $v) => $b->setFacing($v)),
+			new IntProperty(StateNames::ROTATION, 0, Jigsaw::MAX_ROTATION, fn(Jigsaw $b) => $b->getRotation(), fn(Jigsaw $b, int $v) => $b->setRotation($v))
+		]));
+		foreach([
+			Ids::COMMAND_BLOCK => Blocks::COMMAND_BLOCK(),
+			Ids::CHAIN_COMMAND_BLOCK => Blocks::CHAIN_COMMAND_BLOCK(),
+			Ids::REPEATING_COMMAND_BLOCK => Blocks::REPEATING_COMMAND_BLOCK()
+		] as $id => $block){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new IntProperty(StateNames::FACING_DIRECTION, 0, 5, fn(CommandBlock $b) => $b->getFacing(), fn(CommandBlock $b, int $v) => $b->setFacing($v)),
+				new BoolProperty(StateNames::CONDITIONAL_BIT, fn(CommandBlock $b) => $b->isConditional(), fn(CommandBlock $b, bool $v) => $b->setConditional($v))
+			]));
+		}
+
+		$reg->mapModel(Model::create(Blocks::CREAKING_HEART(), Ids::CREAKING_HEART)->properties([
+			new ValueFromStringProperty(StateNames::PILLAR_AXIS, ValueMappings::getInstance()->pillarAxis, fn(CreakingHeart $b) => $b->getAxis(), fn(CreakingHeart $b, int $v) => $b->setAxis($v)),
+			new ValueFromStringProperty(
+				StateNames::CREAKING_HEART_STATE,
+				EnumFromRawStateMap::string(CreakingHeartState::class, fn(CreakingHeartState $case) => match ($case) {
+					CreakingHeartState::UPROOTED => StringValues::CREAKING_HEART_STATE_UPROOTED,
+					CreakingHeartState::DORMANT => StringValues::CREAKING_HEART_STATE_DORMANT,
+					CreakingHeartState::AWAKE => StringValues::CREAKING_HEART_STATE_AWAKE,
+				}),
+				fn(CreakingHeart $b) => $b->getState(),
+				fn(CreakingHeart $b, CreakingHeartState $v) => $b->setState($v)
+			),
+			new BoolProperty(StateNames::NATURAL, fn(CreakingHeart $b) => $b->isNatural(), fn(CreakingHeart $b, bool $v) => $b->setNatural($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::VAULT(), Ids::VAULT)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new BoolProperty(StateNames::OMINOUS, fn(Vault $b) => $b->isOminous(), fn(Vault $b, bool $v) => $b->setOminous($v)),
+			new ValueFromStringProperty(
+				StateNames::VAULT_STATE,
+				EnumFromRawStateMap::string(VaultState::class, fn(VaultState $case) => match ($case) {
+					VaultState::INACTIVE => StringValues::VAULT_STATE_INACTIVE,
+					VaultState::ACTIVE => StringValues::VAULT_STATE_ACTIVE,
+					VaultState::UNLOCKING => StringValues::VAULT_STATE_UNLOCKING,
+					VaultState::EJECTING => StringValues::VAULT_STATE_EJECTING,
+				}),
+				fn(Vault $b) => $b->getState(),
+				fn(Vault $b, VaultState $v) => $b->setState($v)
+			)
+		]));
+		$reg->mapModel(Model::create(Blocks::TRIAL_SPAWNER(), Ids::TRIAL_SPAWNER)->properties([
+			new BoolProperty(StateNames::OMINOUS, fn(TrialSpawner $b) => $b->isOminous(), fn(TrialSpawner $b, bool $v) => $b->setOminous($v)),
+			new IntProperty(StateNames::TRIAL_SPAWNER_STATE, 0, TrialSpawner::MAX_STATE, fn(TrialSpawner $b) => $b->getState(), fn(TrialSpawner $b, int $v) => $b->setState($v))
+		]));
+
+		$paleMossCarpetProperties = [
+			new BoolProperty(StateNames::UPPER_BLOCK_BIT, fn(PaleMossCarpet $b) => $b->isUpper(), fn(PaleMossCarpet $b, bool $v) => $b->setUpper($v)),
+		];
+		foreach([
+			Facing::NORTH => StateNames::PALE_MOSS_CARPET_SIDE_NORTH,
+			Facing::SOUTH => StateNames::PALE_MOSS_CARPET_SIDE_SOUTH,
+			Facing::WEST => StateNames::PALE_MOSS_CARPET_SIDE_WEST,
+			Facing::EAST => StateNames::PALE_MOSS_CARPET_SIDE_EAST,
+		] as $facing => $stateName){
+			$paleMossCarpetProperties[] = new ValueFromStringProperty(
+				$stateName,
+				EnumFromRawStateMap::string(WallConnectionTypeShim::class, fn(WallConnectionTypeShim $case) => $case->getValue()),
+				fn(PaleMossCarpet $b) => WallConnectionTypeShim::serialize($b->getConnection($facing)),
+				fn(PaleMossCarpet $b, WallConnectionTypeShim $v) => $b->setConnection($facing, $v->deserialize())
+			);
+		}
+		$reg->mapModel(Model::create(Blocks::PALE_MOSS_CARPET(), Ids::PALE_MOSS_CARPET)->properties($paleMossCarpetProperties));
+
+		$reg->mapSimple(Blocks::UNKNOWN(), Ids::UNKNOWN);
+		$reg->mapModel(Model::create(Blocks::DEPRECATED_ANVIL(), Ids::DEPRECATED_ANVIL)->properties([$commonProperties->horizontalFacingCardinal]));
+		foreach([
+			Ids::DEPRECATED_PURPUR_BLOCK_1 => Blocks::DEPRECATED_PURPUR_BLOCK_1(),
+			Ids::DEPRECATED_PURPUR_BLOCK_2 => Blocks::DEPRECATED_PURPUR_BLOCK_2()
+		] as $id => $block){
+			$reg->mapModel(Model::create($block, $id)->properties([
+				new ValueFromStringProperty(StateNames::PILLAR_AXIS, ValueMappings::getInstance()->pillarAxis, fn(PillarRotation $b) => $b->getAxis(), fn(PillarRotation $b, int $v) => $b->setAxis($v))
+			]));
+		}
+		$reg->mapModel(Model::create(Blocks::CHALKBOARD(), Ids::CHALKBOARD)->properties([
+			new IntProperty(StateNames::DIRECTION, 0, Chalkboard::MAX_DIRECTION, fn(Chalkboard $b) => $b->getDirection(), fn(Chalkboard $b, int $v) => $b->setDirection($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::GRINDSTONE(), Ids::GRINDSTONE)->properties([
+			new ValueFromStringProperty(
+				StateNames::ATTACHMENT,
+				EnumFromRawStateMap::string(GrindstoneAttachment::class, fn(GrindstoneAttachment $case) => match ($case) {
+					GrindstoneAttachment::STANDING => StringValues::ATTACHMENT_STANDING,
+					GrindstoneAttachment::HANGING => StringValues::ATTACHMENT_HANGING,
+					GrindstoneAttachment::SIDE => StringValues::ATTACHMENT_SIDE,
+					GrindstoneAttachment::MULTIPLE => StringValues::ATTACHMENT_MULTIPLE,
+				}),
+				fn(Grindstone $b) => $b->getAttachment(),
+				fn(Grindstone $b, GrindstoneAttachment $v) => $b->setAttachment($v)
+			),
+			new IntProperty(StateNames::DIRECTION, 0, Grindstone::MAX_DIRECTION, fn(Grindstone $b) => $b->getDirection(), fn(Grindstone $b, int $v) => $b->setDirection($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::SCULK_SENSOR(), Ids::SCULK_SENSOR)->properties([
+			new IntProperty(StateNames::SCULK_SENSOR_PHASE, 0, SculkSensor::MAX_PHASE, fn(SculkSensor $b) => $b->getPhase(), fn(SculkSensor $b, int $v) => $b->setPhase($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::CALIBRATED_SCULK_SENSOR(), Ids::CALIBRATED_SCULK_SENSOR)->properties([
+			$commonProperties->horizontalFacingCardinal,
+			new IntProperty(StateNames::SCULK_SENSOR_PHASE, 0, SculkSensor::MAX_PHASE, fn(SculkSensor $b) => $b->getPhase(), fn(SculkSensor $b, int $v) => $b->setPhase($v))
+		]));
+		$reg->mapModel(Model::create(Blocks::CRAFTER(), Ids::CRAFTER)->properties([
+			new ValueFromStringProperty(
+				StateNames::ORIENTATION,
+				EnumFromRawStateMap::string(CrafterOrientation::class, fn(CrafterOrientation $case) => match ($case) {
+					CrafterOrientation::DOWN_EAST => StringValues::ORIENTATION_DOWN_EAST,
+					CrafterOrientation::DOWN_NORTH => StringValues::ORIENTATION_DOWN_NORTH,
+					CrafterOrientation::DOWN_SOUTH => StringValues::ORIENTATION_DOWN_SOUTH,
+					CrafterOrientation::DOWN_WEST => StringValues::ORIENTATION_DOWN_WEST,
+					CrafterOrientation::UP_EAST => StringValues::ORIENTATION_UP_EAST,
+					CrafterOrientation::UP_NORTH => StringValues::ORIENTATION_UP_NORTH,
+					CrafterOrientation::UP_SOUTH => StringValues::ORIENTATION_UP_SOUTH,
+					CrafterOrientation::UP_WEST => StringValues::ORIENTATION_UP_WEST,
+					CrafterOrientation::WEST_UP => StringValues::ORIENTATION_WEST_UP,
+					CrafterOrientation::EAST_UP => StringValues::ORIENTATION_EAST_UP,
+					CrafterOrientation::NORTH_UP => StringValues::ORIENTATION_NORTH_UP,
+					CrafterOrientation::SOUTH_UP => StringValues::ORIENTATION_SOUTH_UP,
+				}),
+				fn(Crafter $b) => $b->getOrientation(),
+				fn(Crafter $b, CrafterOrientation $v) => $b->setOrientation($v)
+			),
+			new BoolProperty(StateNames::TRIGGERED_BIT, fn(Crafter $b) => $b->isTriggered(), fn(Crafter $b, bool $v) => $b->setTriggered($v)),
+			new BoolProperty(StateNames::CRAFTING, fn(Crafter $b) => $b->isCrafting(), fn(Crafter $b, bool $v) => $b->setCrafting($v))
+		]));
+	}
+
 	private static function registerStoneLikeSlabMappings(BlockSerializerDeserializerRegistrar $reg) : void{
 		$reg->mapSlab(Blocks::ANDESITE_SLAB(), "andesite");
 		$reg->mapSlab(Blocks::BLACKSTONE_SLAB(), "blackstone");
 		$reg->mapSlab(Blocks::BRICK_SLAB(), "brick");
+		$reg->mapSlab(Blocks::CINNABAR_SLAB(), "cinnabar");
+		$reg->mapSlab(Blocks::CINNABAR_BRICK_SLAB(), "cinnabar_brick");
 		$reg->mapSlab(Blocks::COBBLED_DEEPSLATE_SLAB(), "cobbled_deepslate");
 		$reg->mapSlab(Blocks::COBBLESTONE_SLAB(), "cobblestone");
 		$reg->mapSlab(Blocks::CUT_RED_SANDSTONE_SLAB(), "cut_red_sandstone");
@@ -896,9 +1288,11 @@ final class VanillaBlockMappings{
 		$reg->mapSlab(Blocks::POLISHED_ANDESITE_SLAB(), "polished_andesite");
 		$reg->mapSlab(Blocks::POLISHED_BLACKSTONE_BRICK_SLAB(), "polished_blackstone_brick");
 		$reg->mapSlab(Blocks::POLISHED_BLACKSTONE_SLAB(), "polished_blackstone");
+		$reg->mapSlab(Blocks::POLISHED_CINNABAR_SLAB(), "polished_cinnabar");
 		$reg->mapSlab(Blocks::POLISHED_DEEPSLATE_SLAB(), "polished_deepslate");
 		$reg->mapSlab(Blocks::POLISHED_DIORITE_SLAB(), "polished_diorite");
 		$reg->mapSlab(Blocks::POLISHED_GRANITE_SLAB(), "polished_granite");
+		$reg->mapSlab(Blocks::POLISHED_SULFUR_SLAB(), "polished_sulfur");
 		$reg->mapSlab(Blocks::POLISHED_TUFF_SLAB(), "polished_tuff");
 		$reg->mapSlab(Blocks::PRISMARINE_BRICKS_SLAB(), "prismarine_brick");
 		$reg->mapSlab(Blocks::PRISMARINE_SLAB(), "prismarine");
@@ -914,6 +1308,8 @@ final class VanillaBlockMappings{
 		$reg->mapSlab(Blocks::SMOOTH_STONE_SLAB(), "smooth_stone");
 		$reg->mapSlab(Blocks::STONE_BRICK_SLAB(), "stone_brick");
 		$reg->mapSlab(Blocks::STONE_SLAB(), "normal_stone");
+		$reg->mapSlab(Blocks::SULFUR_SLAB(), "sulfur");
+		$reg->mapSlab(Blocks::SULFUR_BRICK_SLAB(), "sulfur_brick");
 		$reg->mapSlab(Blocks::TUFF_BRICK_SLAB(), "tuff_brick");
 		$reg->mapSlab(Blocks::TUFF_SLAB(), "tuff");
 	}
@@ -922,6 +1318,8 @@ final class VanillaBlockMappings{
 		$reg->mapStairs(Blocks::ANDESITE_STAIRS(), Ids::ANDESITE_STAIRS);
 		$reg->mapStairs(Blocks::BLACKSTONE_STAIRS(), Ids::BLACKSTONE_STAIRS);
 		$reg->mapStairs(Blocks::BRICK_STAIRS(), Ids::BRICK_STAIRS);
+		$reg->mapStairs(Blocks::CINNABAR_STAIRS(), Ids::CINNABAR_STAIRS);
+		$reg->mapStairs(Blocks::CINNABAR_BRICK_STAIRS(), Ids::CINNABAR_BRICK_STAIRS);
 		$reg->mapStairs(Blocks::COBBLED_DEEPSLATE_STAIRS(), Ids::COBBLED_DEEPSLATE_STAIRS);
 		$reg->mapStairs(Blocks::COBBLESTONE_STAIRS(), Ids::STONE_STAIRS);
 		$reg->mapStairs(Blocks::DARK_PRISMARINE_STAIRS(), Ids::DARK_PRISMARINE_STAIRS);
@@ -937,9 +1335,11 @@ final class VanillaBlockMappings{
 		$reg->mapStairs(Blocks::POLISHED_ANDESITE_STAIRS(), Ids::POLISHED_ANDESITE_STAIRS);
 		$reg->mapStairs(Blocks::POLISHED_BLACKSTONE_BRICK_STAIRS(), Ids::POLISHED_BLACKSTONE_BRICK_STAIRS);
 		$reg->mapStairs(Blocks::POLISHED_BLACKSTONE_STAIRS(), Ids::POLISHED_BLACKSTONE_STAIRS);
+		$reg->mapStairs(Blocks::POLISHED_CINNABAR_STAIRS(), Ids::POLISHED_CINNABAR_STAIRS);
 		$reg->mapStairs(Blocks::POLISHED_DEEPSLATE_STAIRS(), Ids::POLISHED_DEEPSLATE_STAIRS);
 		$reg->mapStairs(Blocks::POLISHED_DIORITE_STAIRS(), Ids::POLISHED_DIORITE_STAIRS);
 		$reg->mapStairs(Blocks::POLISHED_GRANITE_STAIRS(), Ids::POLISHED_GRANITE_STAIRS);
+		$reg->mapStairs(Blocks::POLISHED_SULFUR_STAIRS(), Ids::POLISHED_SULFUR_STAIRS);
 		$reg->mapStairs(Blocks::POLISHED_TUFF_STAIRS(), Ids::POLISHED_TUFF_STAIRS);
 		$reg->mapStairs(Blocks::PRISMARINE_BRICKS_STAIRS(), Ids::PRISMARINE_BRICKS_STAIRS);
 		$reg->mapStairs(Blocks::PRISMARINE_STAIRS(), Ids::PRISMARINE_STAIRS);
@@ -954,6 +1354,8 @@ final class VanillaBlockMappings{
 		$reg->mapStairs(Blocks::SMOOTH_SANDSTONE_STAIRS(), Ids::SMOOTH_SANDSTONE_STAIRS);
 		$reg->mapStairs(Blocks::STONE_BRICK_STAIRS(), Ids::STONE_BRICK_STAIRS);
 		$reg->mapStairs(Blocks::STONE_STAIRS(), Ids::NORMAL_STONE_STAIRS);
+		$reg->mapStairs(Blocks::SULFUR_STAIRS(), Ids::SULFUR_STAIRS);
+		$reg->mapStairs(Blocks::SULFUR_BRICK_STAIRS(), Ids::SULFUR_BRICK_STAIRS);
 		$reg->mapStairs(Blocks::TUFF_BRICK_STAIRS(), Ids::TUFF_BRICK_STAIRS);
 		$reg->mapStairs(Blocks::TUFF_STAIRS(), Ids::TUFF_STAIRS);
 	}
@@ -963,6 +1365,8 @@ final class VanillaBlockMappings{
 			Ids::ANDESITE_WALL => Blocks::ANDESITE_WALL(),
 			Ids::BLACKSTONE_WALL => Blocks::BLACKSTONE_WALL(),
 			Ids::BRICK_WALL => Blocks::BRICK_WALL(),
+			Ids::CINNABAR_WALL => Blocks::CINNABAR_WALL(),
+			Ids::CINNABAR_BRICK_WALL => Blocks::CINNABAR_BRICK_WALL(),
 			Ids::COBBLED_DEEPSLATE_WALL => Blocks::COBBLED_DEEPSLATE_WALL(),
 			Ids::COBBLESTONE_WALL => Blocks::COBBLESTONE_WALL(),
 			Ids::DEEPSLATE_BRICK_WALL => Blocks::DEEPSLATE_BRICK_WALL(),
@@ -976,7 +1380,9 @@ final class VanillaBlockMappings{
 			Ids::NETHER_BRICK_WALL => Blocks::NETHER_BRICK_WALL(),
 			Ids::POLISHED_BLACKSTONE_BRICK_WALL => Blocks::POLISHED_BLACKSTONE_BRICK_WALL(),
 			Ids::POLISHED_BLACKSTONE_WALL => Blocks::POLISHED_BLACKSTONE_WALL(),
+			Ids::POLISHED_CINNABAR_WALL => Blocks::POLISHED_CINNABAR_WALL(),
 			Ids::POLISHED_DEEPSLATE_WALL => Blocks::POLISHED_DEEPSLATE_WALL(),
+			Ids::POLISHED_SULFUR_WALL => Blocks::POLISHED_SULFUR_WALL(),
 			Ids::POLISHED_TUFF_WALL => Blocks::POLISHED_TUFF_WALL(),
 			Ids::PRISMARINE_WALL => Blocks::PRISMARINE_WALL(),
 			Ids::RED_NETHER_BRICK_WALL => Blocks::RED_NETHER_BRICK_WALL(),
@@ -984,6 +1390,8 @@ final class VanillaBlockMappings{
 			Ids::RESIN_BRICK_WALL => Blocks::RESIN_BRICK_WALL(),
 			Ids::SANDSTONE_WALL => Blocks::SANDSTONE_WALL(),
 			Ids::STONE_BRICK_WALL => Blocks::STONE_BRICK_WALL(),
+			Ids::SULFUR_WALL => Blocks::SULFUR_WALL(),
+			Ids::SULFUR_BRICK_WALL => Blocks::SULFUR_BRICK_WALL(),
 			Ids::TUFF_BRICK_WALL => Blocks::TUFF_BRICK_WALL(),
 			Ids::TUFF_WALL => Blocks::TUFF_WALL()
 		] as $id => $block){
@@ -1432,6 +1840,20 @@ final class VanillaBlockMappings{
 		$reg->mapModel(Model::create(Blocks::POLISHED_BASALT(), Ids::POLISHED_BASALT)->properties([$commonProperties->pillarAxis]));
 		$reg->mapModel(Model::create(Blocks::POLISHED_BLACKSTONE_BUTTON(), Ids::POLISHED_BLACKSTONE_BUTTON)->properties($commonProperties->buttonProperties));
 		$reg->mapModel(Model::create(Blocks::POLISHED_BLACKSTONE_PRESSURE_PLATE(), Ids::POLISHED_BLACKSTONE_PRESSURE_PLATE)->properties($commonProperties->simplePressurePlateProperties));
+		$reg->mapModel(Model::create(Blocks::POTENT_SULFUR(), Ids::POTENT_SULFUR)->properties([
+			new ValueFromStringProperty(
+				StateNames::POTENT_SULFUR_STATE,
+				EnumFromRawStateMap::string(PotentSulfurState::class, fn(PotentSulfurState $case) => match ($case) {
+					PotentSulfurState::DRY => StringValues::POTENT_SULFUR_STATE_DRY,
+					PotentSulfurState::WET => StringValues::POTENT_SULFUR_STATE_WET,
+					PotentSulfurState::DORMANT => StringValues::POTENT_SULFUR_STATE_DORMANT,
+					PotentSulfurState::ERUPTING => StringValues::POTENT_SULFUR_STATE_ERUPTING,
+					PotentSulfurState::CONTINUOUS => StringValues::POTENT_SULFUR_STATE_CONTINUOUS,
+				}),
+				fn(PotentSulfur $b) => $b->getState(),
+				fn(PotentSulfur $b, PotentSulfurState $v) => $b->setState($v)
+			)
+		]));
 		$reg->mapModel(Model::create(Blocks::PUMPKIN(), Ids::PUMPKIN)->properties([
 			//not used, has no visible effect
 			$commonProperties->dummyCardinalDirection
