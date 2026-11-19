@@ -23,7 +23,10 @@ declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\block\utils\SupportType;
 use pocketmine\data\runtime\RuntimeDataDescriber;
+use pocketmine\math\Facing;
+use function min;
 
 class Scaffolding extends Transparent{
 	public const MAX_STABILITY = 7;
@@ -65,5 +68,43 @@ class Scaffolding extends Transparent{
 
 	public function getFlammability() : int{
 		return 20;
+	}
+
+	/**
+	 * Recomputes the distance from the nearest support.
+	 *
+	 * @return int|null null when the block has no support and should break
+	 */
+	private function calculateStability() : ?int{
+		$below = $this->getSide(Facing::DOWN);
+		if($below instanceof Scaffolding){
+			return $below->getStability() < self::MAX_STABILITY ? $below->getStability() : null;
+		}
+		if($below->getSupportType(Facing::UP) !== SupportType::NONE){
+			return 0;
+		}
+
+		$lowestNeighbour = null;
+		foreach(Facing::HORIZONTAL as $face){
+			$side = $this->getSide($face);
+			if($side instanceof Scaffolding && $side->getStability() < self::MAX_STABILITY){
+				$lowestNeighbour = $lowestNeighbour === null ? $side->getStability() : min($lowestNeighbour, $side->getStability());
+			}
+		}
+
+		if($lowestNeighbour === null || $lowestNeighbour + 1 >= self::MAX_STABILITY){
+			return null;
+		}
+		return $lowestNeighbour + 1;
+	}
+
+	public function onNearbyBlockChange() : void{
+		$stability = $this->calculateStability();
+		$world = $this->position->getWorld();
+		if($stability === null){
+			$world->useBreakOn($this->position);
+		}elseif($stability !== $this->stability){
+			$world->setBlock($this->position, $this->setStability($stability));
+		}
 	}
 }
