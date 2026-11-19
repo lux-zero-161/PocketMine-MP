@@ -114,6 +114,13 @@ class Lectern extends Transparent implements HorizontalFacing, RedstoneSignalEmi
 		return $this->book !== null ? clone $this->book : null;
 	}
 
+	/**
+	 * Returns the comparator signal strength for the currently viewed page.
+	 */
+	public function getComparatorOutput() : int{
+		return $this->book === null ? 0 : $this->viewedPage + 1;
+	}
+
 	/** @return $this */
 	public function setBook(?WritableBookBase $book) : self{
 		$this->book = $book !== null && !$book->isNull() ? (clone $book)->setCount(1) : null;
