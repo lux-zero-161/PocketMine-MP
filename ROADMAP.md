@@ -72,7 +72,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Vaults accept normal/ominous trial keys, track per-player usage and eject normal/ominous loot after the unlock animation.
 - Trial spawners spawn simple mob waves when players are nearby and eject loot after three waves.
 - Generated mobs have basic wandering/hostile movement, vanilla-style drops for common mobs and XP rewards.
-- Generated mobs support basic breeding with vanilla breeding foods and baby scaling.
+- Generated mobs support basic breeding with vanilla breeding foods and baby scaling, plus A* pathfinding and simple special behaviours.
 - Boats and chest boats are spawnable, rideable entities with basic water buoyancy and rider input; the generic rider/link system is implemented.
 - Sculk sensors react to nearby block changes with a basic signal pulse; full vibration frequencies/ranges are still simplified.
 - Minecarts (normal, chest, hopper, TNT) are spawnable, rideable entities with basic rail friction and rider input.
@@ -84,6 +84,8 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Powered rails respond to redstone and accelerate minecarts; activator rails dismount passengers and prime TNT minecarts.
 - Hopper minecarts collect nearby item entities and push their contents into containers below; TNT minecarts ignite into primed TNT.
 - Chest minecarts and chest boats expose persistent 27-slot inventories through entity container windows.
+- Ground mobs use a small grid A* pathfinder, can step up/fall while chasing players, and flee when hit.
+- Mob special behaviours: creepers prime and explode, endermen teleport, chickens lay eggs, cows can be milked, sheep can be sheared and mooshrooms give stew.
 
 **Active**
 

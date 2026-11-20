@@ -7,14 +7,19 @@ namespace pocketmine\entity\mob;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\entity\EntitySizeInfo;
+use pocketmine\entity\ai\PathFinder;
 use pocketmine\entity\Location;
 use pocketmine\entity\Living;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\item\Item;
 use pocketmine\item\ItemTypeIds;
+use pocketmine\item\Shears;
 use pocketmine\item\VanillaItems;
 use pocketmine\math\AxisAlignedBB;
+use pocketmine\world\Explosion;
+use pocketmine\world\Position;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\world\particle\HeartParticle;
@@ -39,6 +44,17 @@ abstract class SimpleMob extends Living{
 	private int $inLoveTicks = 0;
 	private int $breedingCooldown = 0;
 	private bool $baby = false;
+
+	/** @var Vector3[]|null */
+	private ?array $path = null;
+	private int $pathIndex = 0;
+	private int $pathCooldown = 0;
+	private int $fleeTicks = 0;
+	private ?Vector3 $fleeFrom = null;
+	private int $creeperFuse = -1;
+	private bool $sheared = false;
+	private int $woolRegrowTicks = 0;
+	private int $eggLayTicks = 0;
 
 	abstract public function createBaby(Location $location) : self;
 
@@ -68,17 +84,11 @@ abstract class SimpleMob extends Living{
 		}
 
 		if($this->isAlive()){
-			if(in_array($this->getName(), self::HOSTILE, true) && $currentTick % 10 === 0){
-				$player = $this->getNearestPlayer(16);
-				if($player !== null){
-					$diff = $player->getPosition()->subtractVector($this->location);
-					$distance = $diff->length();
-					if($distance > 1.5){
-						$this->setMotion($diff->normalize()->multiply(0.22)->add(0, 0.2, 0));
-					}elseif($currentTick % 20 === 0){
-						$player->attack(new EntityDamageByEntityEvent($this, $player, EntityDamageEvent::CAUSE_ENTITY_ATTACK, 2));
-					}
-				}
+			$this->tickSpecial($currentTick);
+			if($this->isHostile()){
+				$this->tickHostile($currentTick);
+			}elseif($this->fleeTicks > 0){
+				$this->tickFlee();
 			}elseif($currentTick % 40 === 0 && mt_rand(0, 2) === 0 && $this->isOnGround()){
 				$this->setMotion(new Vector3(mt_rand(-10, 10) / 100, 0.2, mt_rand(-10, 10) / 100));
 			}
@@ -86,7 +96,188 @@ abstract class SimpleMob extends Living{
 		return parent::onUpdate($currentTick);
 	}
 
+	private function handleSpecialInteraction(Player $player) : bool{
+		$item = $player->getInventory()->getItemInHand();
+		$name = $this->getName();
+
+		if($name === "Cow" && $item instanceof \pocketmine\item\Bucket){
+			$item->pop();
+			$player->getInventory()->setItemInHand($item);
+			$player->getInventory()->addItem(VanillaItems::MILK_BUCKET());
+			return true;
+		}
+		if($name === "Mooshroom" && $item instanceof \pocketmine\item\Bowl){
+			$item->pop();
+			$player->getInventory()->setItemInHand($item);
+			$player->getInventory()->addItem(VanillaItems::MUSHROOM_STEW());
+			return true;
+		}
+		if($name === "Sheep" && $item instanceof Shears && !$this->sheared){
+			$this->sheared = true;
+			$this->woolRegrowTicks = 1200;
+			$item->applyDamage(1);
+			$player->getInventory()->setItemInHand($item);
+			$this->getWorld()->dropItem($this->location->add(0, $this->size->getHeight() / 2, 0), VanillaBlocks::WOOL()->asItem()->setCount(mt_rand(1, 3)));
+			return true;
+		}
+		return false;
+	}
+
+	private function tickSpecial(int $currentTick) : void{
+		$name = $this->getName();
+
+		if($this->woolRegrowTicks > 0 && --$this->woolRegrowTicks === 0){
+			$this->sheared = false;
+		}
+
+		if($name === "Chicken" && !$this->baby){
+			if($this->eggLayTicks <= 0){
+				$this->eggLayTicks = mt_rand(6000, 12000);
+			}elseif(--$this->eggLayTicks === 0){
+				$this->getWorld()->dropItem($this->location->add(0, $this->size->getHeight() / 2, 0), VanillaItems::EGG());
+			}
+		}
+
+		if($name === "Creeper"){
+			$player = $this->getNearestPlayer(3.5);
+			if($player !== null){
+				if($this->creeperFuse < 0){
+					$this->creeperFuse = 30;
+				}elseif(--$this->creeperFuse <= 0){
+					$this->explode();
+					return;
+				}
+			}elseif($this->creeperFuse >= 0){
+				$this->creeperFuse = -1;
+			}
+		}
+
+		if($name === "Enderman" && $currentTick % 100 === 0 && $this->getNearestPlayer(12) !== null){
+			$this->teleportRandomly();
+		}
+	}
+
+	private function explode() : void{
+		if($this->isClosed()){
+			return;
+		}
+		$ev = new EntityPreExplodeEvent($this, 3);
+		$ev->call();
+		if(!$ev->isCancelled()){
+			$explosion = new Explosion(
+				Position::fromObject($this->location->add(0, $this->size->getHeight() / 2, 0), $this->getWorld()),
+				$ev->getRadius(),
+				$this,
+				$ev->getFireChance()
+			);
+			if($ev->isBlockBreaking()){
+				$explosion->explodeA();
+			}
+			$explosion->explodeB();
+		}
+		$this->flagForDespawn();
+	}
+
+	private function teleportRandomly() : void{
+		$world = $this->getWorld();
+		for($i = 0; $i < 10; ++$i){
+			$x = $this->location->getFloorX() + mt_rand(-8, 8);
+			$y = $this->location->getFloorY() + mt_rand(-3, 3);
+			$z = $this->location->getFloorZ() + mt_rand(-8, 8);
+			if(PathFinder::canStand($world, $x, $y, $z)){
+				$this->teleport(new Position($x + 0.5, $y, $z + 0.5, $world));
+				return;
+			}
+		}
+	}
+
+	public function attack(EntityDamageEvent $source) : void{
+		parent::attack($source);
+		if(!$source->isCancelled() && !$this->isHostile() && $source instanceof EntityDamageByEntityEvent){
+			$damager = $source->getDamager();
+			if($damager !== null){
+				$this->fleeTicks = 100;
+				$this->fleeFrom = $damager->getPosition()->asVector3();
+			}
+		}
+	}
+
+	private function isHostile() : bool{
+		return in_array($this->getName(), self::HOSTILE, true);
+	}
+
+	private function tickHostile(int $currentTick) : void{
+		$player = $this->getNearestPlayer(16);
+		if($player === null){
+			$this->path = null;
+			if($currentTick % 40 === 0 && mt_rand(0, 3) === 0 && $this->isOnGround()){
+				$this->setMotion(new Vector3(mt_rand(-10, 10) / 100, 0.2, mt_rand(-10, 10) / 100));
+			}
+			return;
+		}
+
+		$distance = $this->location->distance($player->getLocation());
+		if($distance <= 1.5){
+			$this->setMotion(new Vector3(0, $this->getMotion()->y, 0));
+			if($currentTick % 20 === 0){
+				$player->attack(new EntityDamageByEntityEvent($this, $player, EntityDamageEvent::CAUSE_ENTITY_ATTACK, 2));
+			}
+			return;
+		}
+
+		if($this->pathCooldown > 0){
+			--$this->pathCooldown;
+		}else{
+			$this->path = PathFinder::findPath($this->getWorld(), $this->location, $player->getLocation());
+			$this->pathIndex = 0;
+			$this->pathCooldown = 20;
+		}
+
+		$waypoint = $this->path[$this->pathIndex] ?? null;
+		while($waypoint !== null && $this->location->distanceSquared($waypoint) < 0.4){
+			$this->pathIndex++;
+			$waypoint = $this->path[$this->pathIndex] ?? null;
+		}
+
+		if($waypoint !== null){
+			$this->moveTowards($waypoint, 0.22);
+		}else{
+			$diff = $player->getPosition()->subtractVector($this->location);
+			$this->moveTowards($this->location->addVector($diff), 0.22);
+		}
+	}
+
+	private function tickFlee() : void{
+		--$this->fleeTicks;
+		if($this->fleeTicks <= 0 || $this->fleeFrom === null){
+			$this->fleeTicks = 0;
+			$this->fleeFrom = null;
+			return;
+		}
+		$diff = $this->location->subtractVector($this->fleeFrom);
+		if($diff->lengthSquared() < 0.01){
+			return;
+		}
+		$this->moveTowards($this->location->addVector($diff), 0.25);
+	}
+
+	private function moveTowards(Vector3 $target, float $speed) : void{
+		$diff = $target->subtractVector($this->location);
+		$diff->y = 0;
+		if($diff->lengthSquared() < 0.0001){
+			return;
+		}
+		$motion = $diff->normalize()->multiply($speed);
+		if($target->y > $this->location->y + 0.6 && $this->isOnGround()){
+			$motion->y = 0.35;
+		}
+		$this->setMotion($motion);
+	}
+
 	public function onInteract(Player $player, Vector3 $clickPos) : bool{
+		if($this->handleSpecialInteraction($player)){
+			return true;
+		}
 		if($this->baby || $this->breedingCooldown > 0 || $this->inLoveTicks > 0){
 			return false;
 		}
