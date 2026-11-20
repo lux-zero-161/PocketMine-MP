@@ -1153,7 +1153,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("heavy_core", fn(BID $id) => new HeavyCore($id, "Heavy Core", new Info(BreakInfo::pickaxe(10.0, null, 6000.0))));
 		self::register("honey_block", fn(BID $id) => new HoneyBlock($id, "Honey Block", new Info(new BreakInfo(0.0))));
 		self::register("lodestone", fn(BID $id) => new Opaque($id, "Lodestone", new Info(BreakInfo::pickaxe(3.5, ToolTier::STONE, 17.5))));
-		self::register("target", fn(BID $id) => new Opaque($id, "Target", new Info(new BreakInfo(0.5, BlockToolType::NONE, 0, 2.5))));
+		self::register("target", fn(BID $id) => new Target($id, "Target", new Info(new BreakInfo(0.5, BlockToolType::NONE, 0, 2.5))));
 
 		self::register("conduit", fn(BID $id) => new Conduit($id, "Conduit", new Info(new BreakInfo(3.0, BlockToolType::NONE, 0, 15.0))));
 

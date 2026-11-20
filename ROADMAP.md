@@ -89,7 +89,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Planned / active by system**
 
-- Redstone: wire, torches, levers, buttons, repeaters (delay/locking), comparators (analog container output), lamps, observers, trapped chests and dispensers/droppers have logic. Pistons, sculk sensing and full vanilla update ordering still need work.
+- Redstone: wire, torches, levers, buttons, repeaters (delay/locking), comparators (analog container output), lamps, observers, trapped chests, targets and dispensers/droppers have logic. Pistons, sculk sensing and full vanilla update ordering still need work.
 - Fluids: basic water/lava flow exists; waterlogging and fluid containers need work.
 - Mobs: basic entity framework; vanilla AI, spawning rules and breeding are incomplete.
 - Combat: damage, armor and enchantments exist; knockback, shields and attack cooldowns need parity work.
