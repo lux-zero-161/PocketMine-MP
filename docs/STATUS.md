@@ -39,7 +39,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 | Redstone | ~92% | Wire, torches, repeaters, comparators, lamps, observers, targets, pistons, dispensers/droppers, hoppers, crafters, vaults, trial spawners, sculk sensing and command blocks work. Exact update ordering is simplified. |
 | Containers / automation | ~91% | Chests, barrels, hoppers, furnaces, brewing, enchanting, anvils, smithing, stonecutter, loom, cartography, crafter, bundles, chest minecarts/boats. Native grindstone/trading windows remain open; a form-based grindstone is available. |
 | Mobs | ~71% | Basic AI, A* pathfinding, breeding, natural spawning, ranged attacks, taming, villager trades and bosses. No full vanilla pathfinding, herds, fear propagation or special attack parity. |
-| World generation | ~39% | Noise terrain, caves, simplified aquifers, ores, trees, kelp/seagrass, Nether decoration, End islands and simple villages. No full vanilla biome/structures/aquifer parity. |
+| World generation | ~41% | Noise terrain, caves, simplified aquifers, ores, trees, kelp/seagrass, Nether decoration, End islands, simple villages and mineshaft segments. No full vanilla biome/structures/aquifer parity. |
 | Dimensions | ~75% | Overworld/Nether/End, portals, exit portal, gateways and dimension-aware chunks. Dragon fight phases and End content are simplified. |
 | Networking / protocol | ~95% | Protocol 2225, RakNet, NetherNet and packet coverage inherited from the maintained base. |
 | Plugin API | ~95% | PocketMine-MP 5.x API preserved; new block/item types are exposed. |

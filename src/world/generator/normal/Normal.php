@@ -41,6 +41,7 @@ use pocketmine\world\generator\InvalidGeneratorOptionsException;
 use pocketmine\world\generator\noise\Simplex;
 use pocketmine\world\generator\object\OreType;
 use pocketmine\world\generator\populator\GroundCover;
+use pocketmine\world\generator\populator\MineshaftPopulator;
 use pocketmine\world\generator\populator\Ore;
 use pocketmine\world\generator\populator\Populator;
 use pocketmine\world\World;
@@ -138,6 +139,7 @@ class Normal extends Generator{
 			new OreType(VanillaBlocks::GRAVEL(), $stone, 10, 16, 0, 128)
 		]);
 		$this->populators[] = $ores;
+		$this->populators[] = new MineshaftPopulator();
 	}
 
 	private function pickBiome(int $x, int $z) : Biome{

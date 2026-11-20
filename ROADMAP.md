@@ -127,6 +127,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Successful village defence grants Hero of the Village.
 - Grindstones open a form UI that removes enchantments and combines durability with an offhand item.
 - Villages include crop farms, fence borders and torch lamp posts; larger villages get an iron golem defender.
+- Overworld generation includes chunk-local mineshaft segments with supports, rails, cobwebs and loot chests.
 - The Wither gains a damage-reduction armour phase below half health.
 
 **Active**
