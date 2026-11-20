@@ -115,6 +115,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - End crystals heal a nearby Ender Dragon and the dragon creates an exit portal when killed.
 - Thunderstorms periodically strike lightning near players, damaging and igniting nearby entities.
 - End gateways teleport players to outer End islands with an arrival platform; the dragon has health-based phases and drops a dragon egg on the exit portal.
+- Deep caves include simplified water-filled aquifers, and `build/audit/soak.php` runs repeated serialization/memory checks.
 
 **Active**
 
@@ -177,7 +178,7 @@ Policy: no performance claims without measurements.
 
 - Reduce allocations in chunk serialization and entity ticking.
 - Improve async chunk generation scheduling.
-- Long-running soak tests (`build/audit/performance.php` provides a quick throughput baseline).
+- Long-running server soak tests (`build/audit/performance.php` and `build/audit/soak.php` provide quick baselines).
 
 ## Milestone 6 — Plugin ecosystem
 

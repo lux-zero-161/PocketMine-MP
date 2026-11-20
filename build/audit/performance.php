@@ -57,6 +57,9 @@ $items = array_values(iterator_to_array(Utils::stringifyKeys(VanillaItems::getAl
 
 bench("Item NBT serialize/deserialize", count($items), function(int $i) use ($items, $itemSerializer, $itemDeserializer) : void{
 	$item = $items[$i];
+	if($item->isNull()){
+		return;
+	}
 	try{
 		$nbt = $itemSerializer->serializeStack($item);
 		$itemDeserializer->deserializeStack($nbt);

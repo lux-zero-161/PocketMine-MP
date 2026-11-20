@@ -249,6 +249,7 @@ class Normal extends Generator{
 		$noise1 = $this->caveNoise1->getFastNoise3D(Chunk::EDGE_LENGTH, 128, Chunk::EDGE_LENGTH, 4, 8, 4, $baseX, 0, $baseZ);
 		$noise2 = $this->caveNoise2->getFastNoise3D(Chunk::EDGE_LENGTH, 128, Chunk::EDGE_LENGTH, 4, 8, 4, $baseX, 0, $baseZ);
 		$lava = VanillaBlocks::LAVA()->getStateId();
+		$water = VanillaBlocks::WATER()->getStateId();
 		$air = Block::EMPTY_STATE_ID;
 
 		for($x = 0; $x < Chunk::EDGE_LENGTH; ++$x){
@@ -263,7 +264,9 @@ class Normal extends Generator{
 						continue;
 					}
 					if(abs($noise1[$x][$z][$y]) < 0.045 && abs($noise2[$x][$z][$y]) < 0.045){
-						$chunk->setBlockStateId($x, $y, $z, $y < 10 ? $lava : $air);
+						//Simplified aquifers: deep caves are partly water-filled
+						$fluid = $y < 10 ? $lava : ($y < 40 && $noise2[$x][$z][$y] > 0.0 ? $water : $air);
+						$chunk->setBlockStateId($x, $y, $z, $fluid);
 					}
 				}
 			}
