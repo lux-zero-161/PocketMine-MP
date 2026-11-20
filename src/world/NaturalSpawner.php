@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace pocketmine\world;
 
 use pocketmine\block\BlockTypeIds;
+use pocketmine\block\Water;
 use pocketmine\entity\EntityFactory;
 use pocketmine\entity\Location;
 use pocketmine\entity\Living;
@@ -73,6 +74,18 @@ final class NaturalSpawner{
 		$feet = $world->getBlockAt($x, $y, $z);
 		$head = $world->getBlockAt($x, $y + 1, $z);
 		$floor = $world->getBlockAt($x, $y - 1, $z);
+
+		if($feet instanceof Water && $head instanceof Water){
+			if(mt_rand(0, 3) === 0){
+				self::spawn($world, Location::fromObject(new \pocketmine\math\Vector3($x + 0.5, $y, $z + 0.5), $world, mt_rand(0, 359), 0), match(mt_rand(0, 3)){
+					0 => "minecraft:cod",
+					1 => "minecraft:salmon",
+					2 => "minecraft:tropical_fish",
+					default => "minecraft:squid"
+				});
+			}
+			return;
+		}
 		if(!$feet->canBeReplaced() || !$head->canBeReplaced() || !$floor->isFullCube() || $floor instanceof \pocketmine\block\Liquid){
 			return;
 		}
