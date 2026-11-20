@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pocketmine\block;
 
 use pocketmine\data\runtime\RuntimeDataDescriber;
+use pocketmine\world\World;
 
 class Sponge extends Opaque{
 	protected bool $wet = false;
@@ -41,19 +42,26 @@ class Sponge extends Opaque{
 	}
 
 	public function onPostPlace() : void{
+		$this->tryDryInNether();
 		$this->absorbWater();
 	}
 
 	public function onNearbyBlockChange() : void{
+		$this->tryDryInNether();
 		if(!$this->wet){
 			$this->absorbWater();
 		}
 	}
 
+	private function tryDryInNether() : void{
+		if($this->wet && $this->position->getWorld()->getDimensionId() === World::DIMENSION_NETHER){
+			$this->wet = false;
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
+	}
+
 	/**
 	 * Absorbs nearby water blocks and turns this sponge into a wet sponge.
-	 *
-	 * TODO: wet sponges should dry when placed in the nether
 	 */
 	private function absorbWater() : void{
 		$world = $this->position->getWorld();

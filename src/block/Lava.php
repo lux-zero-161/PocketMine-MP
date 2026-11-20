@@ -28,6 +28,7 @@ use pocketmine\event\entity\EntityCombustByBlockEvent;
 use pocketmine\event\entity\EntityDamageByBlockEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\math\Facing;
+use pocketmine\world\World;
 use pocketmine\world\sound\BucketEmptyLavaSound;
 use pocketmine\world\sound\BucketFillLavaSound;
 use pocketmine\world\sound\Sound;
@@ -51,7 +52,7 @@ class Lava extends Liquid{
 	}
 
 	public function getFlowDecayPerBlock() : int{
-		return 2; //TODO: this is 1 in the nether
+		return $this->position->getWorld()->getDimensionId() === World::DIMENSION_NETHER ? 1 : 2;
 	}
 
 	/**

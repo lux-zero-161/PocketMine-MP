@@ -27,7 +27,9 @@ use pocketmine\entity\Entity;
 use pocketmine\event\entity\EntityExtinguishEvent;
 use pocketmine\world\sound\BucketEmptyWaterSound;
 use pocketmine\world\sound\BucketFillWaterSound;
+use pocketmine\world\sound\FizzSound;
 use pocketmine\world\sound\Sound;
+use pocketmine\world\World;
 
 class Water extends Liquid{
 
@@ -49,6 +51,22 @@ class Water extends Liquid{
 
 	public function getMinAdjacentSourcesToFormSource() : ?int{
 		return 2;
+	}
+
+	public function onPostPlace() : void{
+		$this->tryEvaporate();
+	}
+
+	public function onNearbyBlockChange() : void{
+		$this->tryEvaporate();
+	}
+
+	private function tryEvaporate() : void{
+		$world = $this->position->getWorld();
+		if($world->getDimensionId() === World::DIMENSION_NETHER){
+			$world->setBlock($this->position, VanillaBlocks::AIR());
+			$world->addSound($this->position->add(0.5, 0.5, 0.5), new FizzSound());
+		}
 	}
 
 	public function onEntityInside(Entity $entity) : bool{
