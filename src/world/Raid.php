@@ -12,6 +12,8 @@ use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\BossEventPacket;
 use pocketmine\network\mcpe\protocol\types\BossBarColor;
 use pocketmine\network\mcpe\protocol\types\BossBarOverlay;
+use pocketmine\entity\effect\EffectInstance;
+use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 use function cos;
@@ -185,6 +187,9 @@ final class Raid{
 				? TextFormat::GREEN . "Der Raid wurde erfolgreich abgewehrt!"
 				: TextFormat::GRAY . "Der Raid wurde beendet."
 			);
+			if($success){
+				$player->getEffects()->add(new EffectInstance(VanillaEffects::VILLAGE_HERO(), 24000, 0, true, true));
+			}
 		}
 
 		if($success){
