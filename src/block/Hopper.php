@@ -31,6 +31,7 @@ use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\SupportType;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\item\Item;
+use pocketmine\item\VanillaItems;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Facing;
 use pocketmine\math\Vector3;
@@ -150,6 +151,29 @@ class Hopper extends Transparent implements PoweredByRedstone{
 			}
 		}
 
+		if($this->facing === Facing::DOWN){
+			$composter = $world->getBlock($this->getSide(Facing::DOWN)->getPosition());
+			if($composter instanceof Composter && $composter->getFillLevel() < Composter::MAX_FILL_LEVEL){
+				$source = $tile->getInventory();
+				foreach($source->getContents() as $slot => $item){
+					$returned = [];
+					$test = clone $item;
+					if($composter->onInteract($test, Facing::UP, new Vector3(0.5, 0.5, 0.5), null, $returned)){
+						$amount = $item->getCount() - $test->getCount();
+						if($amount > 0){
+							if($item->getCount() <= $amount){
+								$source->clear($slot);
+							}else{
+								$source->setItem($slot, (clone $item)->setCount($item->getCount() - $amount));
+							}
+							$transferred = true;
+						}
+						break;
+					}
+				}
+			}
+		}
+
 		$above = $world->getTile($this->getSide(Facing::UP)->getPosition());
 		if($above instanceof Container){
 			$source = $above->getRealInventory();
@@ -167,6 +191,20 @@ class Hopper extends Transparent implements PoweredByRedstone{
 				}
 				$transferred = true;
 				break;
+			}
+		}
+
+		$composter = $world->getBlock($this->getSide(Facing::UP)->getPosition());
+		if($composter instanceof Composter && $composter->getFillLevel() >= Composter::MAX_FILL_LEVEL){
+			$targetInventory = $tile->getInventory();
+			$boneMeal = VanillaItems::BONE_MEAL();
+			if($targetInventory->canAddItem($boneMeal)){
+				$returned = [];
+				$composter->onInteract(VanillaItems::AIR(), Facing::UP, new Vector3(0.5, 0.5, 0.5), null, $returned);
+				foreach($returned as $result){
+					$targetInventory->addItem($result);
+				}
+				$transferred = true;
 			}
 		}
 
