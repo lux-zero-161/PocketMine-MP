@@ -48,6 +48,7 @@ use pocketmine\entity\projectile\IceBomb;
 use pocketmine\entity\projectile\Snowball;
 use pocketmine\entity\projectile\SplashPotion;
 use pocketmine\entity\projectile\Trident;
+use pocketmine\entity\projectile\WindCharge;
 use pocketmine\item\Item;
 use pocketmine\math\Facing;
 use pocketmine\math\Vector3;
@@ -130,6 +131,10 @@ final class EntityFactory{
 		$this->register(IceBomb::class, function(World $world, CompoundTag $nbt) : IceBomb{
 			return new IceBomb(Helper::parseLocation($nbt, $world), null, $nbt);
 		}, ['minecraft:ice_bomb']);
+
+		$this->register(WindCharge::class, function(World $world, CompoundTag $nbt) : WindCharge{
+			return new WindCharge(Helper::parseLocation($nbt, $world), null, $nbt);
+		}, ['minecraft:wind_charge_projectile']);
 
 		$this->register(ItemEntity::class, function(World $world, CompoundTag $nbt) : ItemEntity{
 			$itemTag = $nbt->getCompoundTag(ItemEntity::TAG_ITEM);

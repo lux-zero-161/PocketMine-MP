@@ -983,7 +983,7 @@ final class VanillaBlocks{
 	private static SweetBerryBush $_mSWEET_BERRY_BUSH;
 	private static DryGrass $_mTALL_DRY_GRASS;
 	private static TallGrass $_mTALL_GRASS;
-	private static Opaque $_mTARGET;
+	private static Target $_mTARGET;
 	private static TintedGlass $_mTINTED_GLASS;
 	private static TNT $_mTNT;
 	private static Torch $_mTORCH;
@@ -2039,7 +2039,7 @@ final class VanillaBlocks{
 			"sweet_berry_bush" => fn(SweetBerryBush $v) => self::$_mSWEET_BERRY_BUSH = $v,
 			"tall_dry_grass" => fn(DryGrass $v) => self::$_mTALL_DRY_GRASS = $v,
 			"tall_grass" => fn(TallGrass $v) => self::$_mTALL_GRASS = $v,
-			"target" => fn(Opaque $v) => self::$_mTARGET = $v,
+			"target" => fn(Target $v) => self::$_mTARGET = $v,
 			"tinted_glass" => fn(TintedGlass $v) => self::$_mTINTED_GLASS = $v,
 			"tnt" => fn(TNT $v) => self::$_mTNT = $v,
 			"torch" => fn(Torch $v) => self::$_mTORCH = $v,
@@ -6879,7 +6879,7 @@ final class VanillaBlocks{
 		return clone self::$_mTALL_GRASS;
 	}
 
-	public static function TARGET() : Opaque{
+	public static function TARGET() : Target{
 		if(!isset(self::$_mTARGET)){ self::init(); }
 		return clone self::$_mTARGET;
 	}

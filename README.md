@@ -34,6 +34,7 @@ The project is under active development. Everything below is measured against th
 |---|---|
 | Bedrock protocol 1.26.60 (2225), 26.65-compatible | Working (NetherGames 5.51.2 base, NetherNet + RakNet) |
 | Block type names registered | **1,480 / 1,480** |
+| Creative inventory items represented | **1,766 / 1,766** (some entity-backed items are item-only until their mobs/entities exist) |
 | Sulfur & cinnabar families | Complete (27 block types / 33 Bedrock block names, including `potent_sulfur` states) |
 | Sculk family | Catalyst, shrieker, vein, sensor, calibrated sensor implemented |
 | Technical blocks | Observer, dispenser, dropper, pistons, command/structure/jigsaw, vault, trial spawner implemented as stateful blocks |
@@ -43,7 +44,7 @@ The project is under active development. Everything below is measured against th
 | Nether / End dimensions | Nether generator exists; End generation and vanilla-style dimension travel are not implemented |
 | Redstone, mob AI, vanilla survival mechanics | Basic redstone (wire, torches, levers, buttons, repeaters, comparators, lamps, observers, dispensers/droppers, pistons) implemented; sculk sensing and full vanilla parity are open |
 
-Every canonical 1.26.60 block type name is now registered, including the poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press and straw bed. Remaining block work is behavioural rather than registry coverage, and is tracked in [ROADMAP.md](ROADMAP.md).
+Every canonical 1.26.60 block type name and every creative inventory item is now represented, including the poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press and straw bed. Remaining work is behavioural rather than registry coverage, and is tracked in [ROADMAP.md](ROADMAP.md).
 
 A live audit can be run with:
 

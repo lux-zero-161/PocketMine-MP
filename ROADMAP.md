@@ -65,10 +65,11 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Carrot on a Stick and Warped Fungus on a Stick with correct durability.
 - 1.26.60 blue and brown egg items.
 - Bamboo raft item and BoatType support.
+- All 1,766 creative-inventory items are representable, including chest boats, bundles, spears, shields, crossbows, elytra, mace, buckets, minecarts and spawn eggs.
 
 **Active**
 
-- Verify new block items against the creative inventory and crafting data.
+- Entity-backed items (spawn eggs, minecarts, armor stand, mob buckets) are item-only until their mobs/entities are implemented.
 - Fill item components for 1.26 content where Bedrock defines them.
 
 ## Milestone 2 — World system
