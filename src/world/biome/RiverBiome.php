@@ -25,6 +25,7 @@ namespace pocketmine\world\biome;
 
 use pocketmine\block\VanillaBlocks;
 use pocketmine\world\generator\populator\TallGrass;
+use pocketmine\world\generator\populator\UnderwaterPlants;
 
 class RiverBiome extends Biome{
 
@@ -41,6 +42,10 @@ class RiverBiome extends Biome{
 		$tallGrass->setBaseAmount(5);
 
 		$this->addPopulator($tallGrass);
+
+		$underwater = new UnderwaterPlants();
+		$underwater->setRandomAmount(8);
+		$this->addPopulator($underwater);
 
 		$this->setElevation(58, 62);
 

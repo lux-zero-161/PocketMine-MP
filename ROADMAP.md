@@ -100,6 +100,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Copper blocks oxidise randomly over time; waxing and axe scraping stop/reverse the process.
 - Rain extinguishes exposed fires and lit campfires.
 - Empty maps create filled maps with a rendered 128x128 terrain image; map info requests are answered with color data and maps can be given by name.
+- Ocean and river generation now includes kelp and seagrass on underwater floors.
 
 **Active**
 
