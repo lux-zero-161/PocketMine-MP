@@ -17,7 +17,7 @@ lacking deep gameplay systems.
 | Soak test | **0 errors, 0 MiB growth** | `build/audit/soak.php --iterations=2` |
 | Performance baseline | ~300k block (de)serializations/s, ~100k item NBT ops/s | `build/audit/performance.php` |
 | Worldgen smoke test | **9 chunks, 0 errors** | `build/audit/worldgen.php` |
-| PHPStan | green except 2 missing `ext-webrtc` symbols in the local test PHP | `vendor/bin/phpstan` |
+| PHPStan | **fully green** (including a local `pmmp\webrtc` stub for development PHP builds) | `vendor/bin/phpstan` |
 
 The blockstate number is reported separately on purpose. Many missing permutations are legacy or
 invalid Bedrock combinations (for example redundant hanging-sign layouts), while all block types

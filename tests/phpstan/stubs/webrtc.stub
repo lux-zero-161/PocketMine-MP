@@ -1,0 +1,13 @@
+<?php
+
+namespace pmmp\webrtc;
+
+/**
+ * Stub for the pmmp/webrtc extension, which may not be installed in every development environment.
+ */
+final class IceServer{
+
+	public static function turn(string $host, int $port, string $username, string $password) : self{}
+
+	public static function stun(string $host, int $port) : self{}
+}
