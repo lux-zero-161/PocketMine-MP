@@ -1051,6 +1051,7 @@
         "BIRCH_WALL_SIGN": "pocketmine\\block\\tile\\Sign",
         "BLAST_FURNACE": "pocketmine\\block\\tile\\BlastFurnace",
         "BREWING_STAND": "pocketmine\\block\\tile\\BrewingStand",
+        "CALIBRATED_SCULK_SENSOR": "pocketmine\\block\\tile\\CalibratedSculkSensor",
         "CAMPFIRE": "pocketmine\\block\\tile\\Campfire",
         "CAULDRON": "pocketmine\\block\\tile\\Cauldron",
         "CHAIN_COMMAND_BLOCK": "pocketmine\\block\\tile\\CommandBlock",

@@ -101,6 +101,7 @@ class Note extends Opaque{
 			$this->position->add(0.5, 0.5, 0.5),
 			new NoteSound($this->getInstrument(), $this->pitch)
 		);
+		SculkSensor::submitVibration($this->position->getWorld(), $this->position->add(0.5, 0.5, 0.5), SculkSensor::FREQUENCY_NOTE_BLOCK_PLAY);
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{

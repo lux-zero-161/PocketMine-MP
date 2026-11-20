@@ -39,6 +39,7 @@ use pocketmine\block\tile\BrewingStand as TileBrewingStand;
 use pocketmine\block\tile\Campfire as TileCampfire;
 use pocketmine\block\tile\Cauldron as TileCauldron;
 use pocketmine\block\tile\Chest as TileChest;
+use pocketmine\block\tile\CalibratedSculkSensor as TileCalibratedSculkSensor;
 use pocketmine\block\tile\CommandBlock as TileCommandBlock;
 use pocketmine\block\tile\ChiseledBookshelf as TileChiseledBookshelf;
 use pocketmine\block\tile\Comparator as TileComparator;
@@ -1259,7 +1260,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("grindstone", fn(BID $id) => new Grindstone($id, "Grindstone", new Info(BreakInfo::pickaxe(2.0, ToolTier::WOOD, 30.0))));
 		$sculkSensorBreakInfo = new Info(new BreakInfo(1.5, ToolType::HOE, 0, 7.5));
 		self::register("sculk_sensor", fn(BID $id) => new SculkSensor($id, "Sculk Sensor", $sculkSensorBreakInfo));
-		self::register("calibrated_sculk_sensor", fn(BID $id) => new CalibratedSculkSensor($id, "Calibrated Sculk Sensor", $sculkSensorBreakInfo));
+		self::register("calibrated_sculk_sensor", fn(BID $id) => new CalibratedSculkSensor($id, "Calibrated Sculk Sensor", $sculkSensorBreakInfo), TileCalibratedSculkSensor::class);
 		self::register("crafter", fn(BID $id) => new Crafter($id, "Crafter", new Info(BreakInfo::pickaxe(1.5, ToolTier::WOOD, 17.5))), TileCrafter::class);
 	}
 

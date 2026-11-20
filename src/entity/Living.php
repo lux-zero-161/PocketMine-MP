@@ -33,6 +33,7 @@ use pocketmine\entity\animation\HurtAnimation;
 use pocketmine\entity\animation\RespawnAnimation;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
+use pocketmine\block\SculkSensor;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -605,6 +606,14 @@ abstract class Living extends Entity{
 
 		if($this->isAlive()){
 			$this->applyPostDamageEffects($source);
+		}
+
+		$damager = $source instanceof \pocketmine\event\entity\EntityDamageByEntityEvent ? $source->getDamager() : null;
+		if($this instanceof \pocketmine\player\Player || $damager instanceof \pocketmine\player\Player){
+			SculkSensor::submitVibration($this->getWorld(), $this->getPosition(), SculkSensor::FREQUENCY_ENTITY_HURT, $damager);
+			if(!$this->isAlive()){
+				SculkSensor::submitVibration($this->getWorld(), $this->getPosition(), SculkSensor::FREQUENCY_ENTITY_DIE, $damager);
+			}
 		}
 	}
 

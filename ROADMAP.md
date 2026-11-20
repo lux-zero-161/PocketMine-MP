@@ -40,11 +40,11 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Shelves — multi-shelf powered connections and hotbar swapping.
 - Copper chests — container block entity with oxidation/wax variants, same-variant chest pairing and waxing/scraping support.
 - `bee_nest`, `beehive` — bee entity release/entry and honey production.
-- Redstone — wire propagation, torch inversion, repeater delay/locking, comparator analog output, piston movement, command blocks, beacons and powered/activator rails are implemented; sculk frequencies, exact piston animation/update ordering and observer/dispenser edge cases remain.
+- Redstone — wire propagation, torch inversion, repeater delay/locking, comparator analog output, piston movement, command blocks, beacons, powered/activator rails and sculk vibration sensing are implemented; exact piston animation/update ordering and observer/dispenser edge cases remain.
 
 **Planned**
 
-- Block behaviour parity for the newly added technical blocks: full sculk vibration frequencies and structure/jigsaw execution.
+- Block behaviour parity for the newly added technical blocks: structure/jigsaw execution.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
 
@@ -74,7 +74,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Generated mobs have basic wandering/hostile movement, vanilla-style drops for common mobs and XP rewards.
 - Generated mobs support basic breeding with vanilla breeding foods and baby scaling, plus A* pathfinding and simple special behaviours.
 - Boats and chest boats are spawnable, rideable entities with basic water buoyancy and rider input; the generic rider/link system is implemented.
-- Sculk sensors react to nearby block changes with a basic signal pulse; full vibration frequencies/ranges are still simplified.
+- Sculk sensors receive distance-scaled vibrations for block break/place, explosions, damage, deaths and note blocks; calibrated sensors can be tuned with amethyst shards and shriekers summon Wardens after repeated warnings.
 - Minecarts (normal, chest, hopper, TNT) are spawnable, rideable entities with basic rail friction and rider input.
 - Bundles store items in NBT (64 bundle slots) and can eject the last stored stack on use; full inventory UI insertion remains open.
 - Archaeology: brushes progress suspicious sand/gravel through three stages and reveal loot.

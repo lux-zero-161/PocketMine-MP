@@ -24,8 +24,8 @@ implemented blocks round-trip through the serializer.
 |---|---:|---|
 | Block registry / data | 100% | Every canonical block type name is registered. |
 | Item registry / data | 100% | Every creative item is representable and serializable. |
-| Block behaviour | ~67% | Most utility/decorative blocks work; waterlogging, archaeology, command/structure blocks and many edge cases are incomplete. |
-| Redstone | ~82% | Wire, torches, repeaters, comparators, lamps, observers, targets, pistons, dispensers, droppers, hoppers, crafter, vault and trial spawner work. Sculk frequencies and exact update ordering are simplified. |
+| Block behaviour | ~69% | Most utility/decorative blocks work; waterlogging, archaeology, command/structure blocks and many edge cases are incomplete. |
+| Redstone | ~85% | Wire, torches, repeaters, comparators, lamps, observers, targets, pistons, dispensers, droppers, hoppers, crafter, vault and trial spawner work. Sculk frequencies and exact update ordering are simplified. |
 | Containers / automation | ~85% | Chests, barrels, hoppers, dispensers/droppers, shelves, decorated pots, composters, jukeboxes, crafter and minecart inventories are partly or fully implemented. |
 | Mobs | ~42% | 84 mob entities exist with basic movement/hostile AI, drops, XP and basic breeding. No pathfinding, herds, fear, special mob abilities or full vanilla loot tables. |
 | World generation | ~20% | Simplified noise generator, Nether generator and tree/ore populators. No Bedrock-style biomes, caves, aquifers, structures or End generation. |
@@ -34,14 +34,14 @@ implemented blocks round-trip through the serializer.
 | Plugin API | ~95% | PocketMine-MP 5.x API preserved; new block/item types are exposed. |
 | Testing / performance | ~55% | Registry and serialization tests are strong. No per-tick benchmarks, profiling suite or soak tests. |
 
-**Overall roadmap estimate: roughly 74% complete.**
+**Overall roadmap estimate: roughly 75% complete.**
 Content/data is at 100%; gameplay, world generation and dimension depth are the
 remaining work.
 
 ## Highest-value remaining work
 
 1. Bundle inventory interaction and minecart container windows.
-2. Full sculk vibration frequencies/ranges and calibrated sensor filtering.
+2. Waterlogging and fluid interaction parity.
 3. Vanilla portal linking rules and End content (dragon, gateway).
 4. Advanced mob AI (herds, fear propagation, special attacks), advanced drops, villager trading and breeding rules.
 5. Vanilla-style world generation and structures.

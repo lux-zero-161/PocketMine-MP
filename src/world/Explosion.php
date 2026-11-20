@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pocketmine\world;
 
 use pocketmine\block\Block;
+use pocketmine\block\SculkSensor;
 use pocketmine\block\RuntimeBlockStateRegistry;
 use pocketmine\block\TNT;
 use pocketmine\block\utils\SupportType;
@@ -270,6 +271,7 @@ class Explosion{
 
 		$this->world->addParticle($source, new HugeExplodeSeedParticle());
 		$this->world->addSound($source, new ExplodeSound());
+		SculkSensor::submitVibration($this->world, $source, SculkSensor::FREQUENCY_EXPLODE, $this->what instanceof Entity ? $this->what : null);
 
 		return true;
 	}

@@ -34,6 +34,7 @@ use pocketmine\block\Air;
 use pocketmine\block\Block;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\RuntimeBlockStateRegistry;
+use pocketmine\block\SculkSensor;
 use pocketmine\block\tile\Spawnable;
 use pocketmine\block\tile\Tile;
 use pocketmine\block\tile\TileFactory;
@@ -2354,6 +2355,8 @@ class World implements ChunkManager{
 			$this->dropExperience($vector->add(0.5, 0.5, 0.5), $xpDrop);
 		}
 
+		SculkSensor::submitVibration($this, $vector->add(0.5, 0.5, 0.5), SculkSensor::FREQUENCY_BLOCK_DESTROY, $player);
+
 		return true;
 	}
 
@@ -2492,6 +2495,7 @@ class World implements ChunkManager{
 		if(!$tx->apply()){
 			return false;
 		}
+		SculkSensor::submitVibration($this, $blockReplace->getPosition()->add(0.5, 0.5, 0.5), SculkSensor::FREQUENCY_BLOCK_PLACE, $player);
 		$first = true;
 		foreach($tx->getBlocks() as [$x, $y, $z, $_]){
 			$tile = $this->getTileAt($x, $y, $z);
