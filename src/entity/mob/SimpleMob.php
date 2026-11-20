@@ -14,6 +14,8 @@ use pocketmine\entity\projectile\Snowball;
 use pocketmine\entity\projectile\SplashPotion;
 use pocketmine\entity\Location;
 use pocketmine\entity\Living;
+use pocketmine\entity\effect\EffectInstance;
+use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityPreExplodeEvent;
@@ -417,6 +419,12 @@ abstract class SimpleMob extends Living{
 	}
 
 	protected function onDeath() : void{
+		if($this->getName() === "Pillager"){
+			$cause = $this->getLastDamageCause();
+			if($cause instanceof EntityDamageByEntityEvent && ($damager = $cause->getDamager()) instanceof Player){
+				$damager->getEffects()->add(new EffectInstance(VanillaEffects::BAD_OMEN(), 24000, 0, true, true));
+			}
+		}
 		parent::onDeath();
 		if(!$this->baby && ($this->getName() === "Slime" || $this->getName() === "Magma Cube")){
 			for($i = 0; $i < 2; ++$i){

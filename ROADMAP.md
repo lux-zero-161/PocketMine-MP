@@ -123,6 +123,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Water spawning for cod, salmon, tropical fish and squid.
 - Plains and desert generation contain deterministic village houses and a central bell/well; villagers spawn naturally around registered bells.
 - Villages occasionally trigger a natural three-wave raid when a player is nearby.
+- Killing a pillager grants Bad Omen; entering a village with Bad Omen consumes it and starts a raid.
 - The Wither gains a damage-reduction armour phase below half health.
 
 **Active**

@@ -60,7 +60,7 @@ final class EffectIdMap{
 		$this->register(EffectIds::FATAL_POISON, VanillaEffects::FATAL_POISON());
 		$this->register(EffectIds::CONDUIT_POWER, VanillaEffects::CONDUIT_POWER());
 		//TODO: SLOW_FALLING
-		//TODO: BAD_OMEN
+		$this->register(EffectIds::BAD_OMEN, VanillaEffects::BAD_OMEN());
 		//TODO: VILLAGE_HERO
 		$this->register(EffectIds::DARKNESS, VanillaEffects::DARKNESS());
 	}

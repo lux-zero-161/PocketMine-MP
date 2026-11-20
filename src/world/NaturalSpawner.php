@@ -13,6 +13,7 @@ use pocketmine\entity\ai\PathFinder;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\player\Player;
 use pocketmine\entity\Villager;
+use pocketmine\entity\effect\VanillaEffects;
 use function count;
 use function max;
 use function min;
@@ -128,6 +129,12 @@ final class NaturalSpawner{
 
 	private static function spawnVillagers(World $world, Player $player) : void{
 		foreach(VillageRegistry::findNear($world, $player->getPosition(), 48) as $center){
+			if($player->getEffects()->has(VanillaEffects::BAD_OMEN())){
+				$player->getEffects()->remove(VanillaEffects::BAD_OMEN());
+				Raid::startAt($world, new Position($center->x, $center->y, $center->z, $world), 3);
+				$player->sendMessage(\pocketmine\utils\TextFormat::RED . "Dein Bad Omen hat einen Raid ausgelöst!");
+				return;
+			}
 			self::maybeStartVillageRaid($world, $player, $center);
 			$existing = 0;
 			$box = AxisAlignedBB::one()->expand(24, 12, 24)->offset($center->x, $center->y, $center->z);

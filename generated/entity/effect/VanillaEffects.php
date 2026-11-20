@@ -37,6 +37,7 @@ use function mb_strtoupper;
  */
 final class VanillaEffects{
 	private static AbsorptionEffect $_mABSORPTION;
+	private static Effect $_mBAD_OMEN;
 	private static Effect $_mBLINDNESS;
 	private static Effect $_mCONDUIT_POWER;
 	private static Effect $_mDARKNESS;
@@ -98,6 +99,7 @@ final class VanillaEffects{
 	private static function getInitAssigners() : array{
 		return [
 			"absorption" => fn(AbsorptionEffect $v) => self::$_mABSORPTION = $v,
+			"bad_omen" => fn(Effect $v) => self::$_mBAD_OMEN = $v,
 			"blindness" => fn(Effect $v) => self::$_mBLINDNESS = $v,
 			"conduit_power" => fn(Effect $v) => self::$_mCONDUIT_POWER = $v,
 			"darkness" => fn(Effect $v) => self::$_mDARKNESS = $v,
@@ -165,6 +167,11 @@ final class VanillaEffects{
 	public static function ABSORPTION() : AbsorptionEffect{
 		if(!isset(self::$_mABSORPTION)){ self::init(); }
 		return self::$_mABSORPTION;
+	}
+
+	public static function BAD_OMEN() : Effect{
+		if(!isset(self::$_mBAD_OMEN)){ self::init(); }
+		return self::$_mBAD_OMEN;
 	}
 
 	public static function BLINDNESS() : Effect{

@@ -43,7 +43,7 @@ final class VanillaEffectsInputs extends RegistrySource{
 
 	protected function setup() : void{
 		self::register("absorption", new AbsorptionEffect(KnownTranslationFactory::potion_absorption(), new Color(0x25, 0x52, 0xa5)));
-		//TODO: bad_omen
+		self::register("bad_omen", new Effect("Bad Omen", new Color(0x0b, 0x6e, 0x3f), true, 24000));
 		self::register("blindness", new Effect(KnownTranslationFactory::potion_blindness(), new Color(0x1f, 0x1f, 0x23), true));
 		self::register("conduit_power", new Effect(KnownTranslationFactory::potion_conduitPower(), new Color(0x1d, 0xc2, 0xd1)));
 		self::register("darkness", new Effect(KnownTranslationFactory::effect_darkness(), new Color(0x29, 0x27, 0x21), true, 600, false));
