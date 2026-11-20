@@ -565,7 +565,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("acacia_chest_boat", fn(IID $id) => new Boat($id, "Acacia Chest Boat", BoatType::ACACIA));
 		self::register("allay_spawn_egg", fn(IID $id) => new Item($id, "Allay Spawn Egg"));
 		self::register("armadillo_spawn_egg", fn(IID $id) => new Item($id, "Armadillo Spawn Egg"));
-		self::register("armor_stand", fn(IID $id) => new Item($id, "Armor Stand"));
+		self::register("armor_stand", fn(IID $id) => new ArmorStand($id, "Armor Stand"));
 		self::registerDelayed("axolotl_bucket", fn(string $name) : MobBucket => new MobBucket(self::makeIID($name), "Axolotl Bucket"));
 		self::register("axolotl_spawn_egg", fn(IID $id) => new Item($id, "Axolotl Spawn Egg"));
 		self::register("balloon", fn(IID $id) => new Item($id, "Balloon"));

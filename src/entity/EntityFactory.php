@@ -33,6 +33,7 @@ use pocketmine\data\bedrock\PotionTypeIds;
 use pocketmine\data\SavedDataLoadingException;
 use pocketmine\entity\EntityDataHelper as Helper;
 use pocketmine\entity\object\AreaEffectCloud;
+use pocketmine\entity\object\ArmorStand;
 use pocketmine\entity\object\EndCrystal;
 use pocketmine\entity\object\ExperienceOrb;
 use pocketmine\entity\object\FallingBlock;
@@ -127,6 +128,10 @@ final class EntityFactory{
 		$this->register(FallingBlock::class, function(World $world, CompoundTag $nbt) : FallingBlock{
 			return new FallingBlock(Helper::parseLocation($nbt, $world), FallingBlock::parseBlockNBT(RuntimeBlockStateRegistry::getInstance(), $nbt), $nbt);
 		}, ['FallingSand', 'minecraft:falling_block']);
+
+		$this->register(ArmorStand::class, function(World $world, CompoundTag $nbt) : ArmorStand{
+			return new ArmorStand(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['ArmorStand', 'minecraft:armor_stand']);
 
 		$this->register(IceBomb::class, function(World $world, CompoundTag $nbt) : IceBomb{
 			return new IceBomb(Helper::parseLocation($nbt, $world), null, $nbt);

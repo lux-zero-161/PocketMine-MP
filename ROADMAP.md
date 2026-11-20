@@ -66,6 +66,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - 1.26.60 blue and brown egg items.
 - Bamboo raft item and BoatType support.
 - All 1,766 creative-inventory items are representable, including chest boats, bundles, spears, shields, crossbows, elytra, mace, buckets, minecarts and spawn eggs.
+- Armor stands are spawnable entities, accept armor and drop their equipment when destroyed.
 
 **Active**
 
