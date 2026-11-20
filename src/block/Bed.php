@@ -41,6 +41,8 @@ use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 use pocketmine\world\BlockTransaction;
+use pocketmine\world\Explosion;
+use pocketmine\world\Position;
 use pocketmine\world\World;
 
 class Bed extends Transparent implements Colored, HorizontalFacing{
@@ -129,6 +131,17 @@ class Bed extends Transparent implements Colored, HorizontalFacing{
 				return true;
 			}elseif($playerPos->distanceSquared($this->position) > 4 && $playerPos->distanceSquared($other->position) > 4){
 				$player->sendMessage(KnownTranslationFactory::tile_bed_tooFar()->prefix(TextFormat::GRAY));
+				return true;
+			}
+
+			$world = $this->position->getWorld();
+			if($world->getDimensionId() !== World::DIMENSION_OVERWORLD){
+				$base = $this->isHeadPart() ? $this : $other;
+				$world->setBlock($base->position, VanillaBlocks::AIR());
+				$explosion = new Explosion(Position::fromObject($base->position->add(0.5, 0.5, 0.5), $world), 5, $this);
+				$explosion->setFireChance(1.0);
+				$explosion->explodeA();
+				$explosion->explodeB();
 				return true;
 			}
 

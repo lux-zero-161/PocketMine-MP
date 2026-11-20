@@ -90,6 +90,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Fishing rods cast a fishing hook, bob in water and reel in fish, junk or treasure loot with durability loss.
 - Firework rockets boost gliding players when used in the air.
 - Nether dimension rules: water evaporates, wet sponges dry and lava flows one block further.
+- Beds explode when used outside the overworld.
 
 **Active**
 
