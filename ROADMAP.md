@@ -28,6 +28,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Composters accept compostable items with vanilla chances, produce bone meal and expose their fill level to comparators.
 - Hoppers can insert compostable items into composters and pull finished bone meal out.
 - Hoppers can insert music discs into jukeboxes and pull them back out.
+- Decorated pots act as single-slot containers, support hopper input/output and drop their contents when broken.
 - Sponges absorb nearby water and turn into wet sponges.
 - Powder snow slows and freezes entities without leather boots, and can be collected/filled with buckets.
 

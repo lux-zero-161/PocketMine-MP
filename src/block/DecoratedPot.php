@@ -23,6 +23,10 @@ declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\block\tile\DecoratedPot as TileDecoratedPot;
+use pocketmine\item\Item;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 
 class DecoratedPot extends Opaque{
@@ -32,6 +36,37 @@ class DecoratedPot extends Opaque{
 
 	protected function describeBlockOnlyState(RuntimeDataDescriber $w) : void{
 		$w->boundedIntAuto(0, self::MAX_DIRECTION, $this->direction);
+	}
+
+	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
+		$tile = $this->position->getWorld()->getTile($this->position);
+		if(!$tile instanceof TileDecoratedPot){
+			return false;
+		}
+
+		$inventory = $tile->getInventory();
+		$current = $inventory->getItem(0);
+		if($item->isNull()){
+			if(!$current->isNull()){
+				$returnedItems[] = $current;
+				$inventory->clear(0);
+			}
+			return true;
+		}
+
+		if($current->isNull()){
+			$inventory->setItem(0, (clone $item)->setCount(1));
+			$item->pop();
+			return true;
+		}
+
+		if($current->equals($item) && $current->getCount() < $current->getMaxStackSize()){
+			$inventory->setItem(0, $current->setCount($current->getCount() + 1));
+			$item->pop();
+			return true;
+		}
+
+		return true;
 	}
 
 	public function getDirection() : int{ return $this->direction; }

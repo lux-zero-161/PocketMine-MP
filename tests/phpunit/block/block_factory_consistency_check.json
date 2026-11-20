@@ -1077,6 +1077,7 @@
         "DARK_OAK_WALL_HANGING_SIGN": "pocketmine\\block\\tile\\HangingSign",
         "DARK_OAK_WALL_SIGN": "pocketmine\\block\\tile\\Sign",
         "DAYLIGHT_SENSOR": "pocketmine\\block\\tile\\DaylightSensor",
+        "DECORATED_POT": "pocketmine\\block\\tile\\DecoratedPot",
         "DISPENSER": "pocketmine\\block\\tile\\Dispenser",
         "DROPPER": "pocketmine\\block\\tile\\Dispenser",
         "DYED_SHULKER_BOX": "pocketmine\\block\\tile\\ShulkerBox",

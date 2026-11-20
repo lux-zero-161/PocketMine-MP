@@ -41,6 +41,7 @@ use pocketmine\block\tile\Cauldron as TileCauldron;
 use pocketmine\block\tile\Chest as TileChest;
 use pocketmine\block\tile\ChiseledBookshelf as TileChiseledBookshelf;
 use pocketmine\block\tile\Comparator as TileComparator;
+use pocketmine\block\tile\DecoratedPot as TileDecoratedPot;
 use pocketmine\block\tile\DaylightSensor as TileDaylightSensor;
 use pocketmine\block\tile\Dispenser as TileDispenser;
 use pocketmine\block\tile\EnchantTable as TileEnchantingTable;
@@ -1220,7 +1221,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 
 		self::register("powder_snow", fn(BID $id) => new PowderSnow($id, "Powder Snow", new Info(new BreakInfo(0.25, BlockToolType::NONE, 0, 1.25))));
 		self::register("pale_hanging_moss", fn(BID $id) => new PaleHangingMoss($id, "Pale Hanging Moss", new Info(BreakInfo::instant())));
-		self::register("decorated_pot", fn(BID $id) => new DecoratedPot($id, "Decorated Pot", new Info(BreakInfo::instant())));
+		self::register("decorated_pot", fn(BID $id) => new DecoratedPot($id, "Decorated Pot", new Info(BreakInfo::instant())), TileDecoratedPot::class);
 		self::register("dried_ghast", fn(BID $id) => new DriedGhast($id, "Dried Ghast", new Info(new BreakInfo(0.0, BlockToolType::NONE, 0, 5.0))));
 
 		$statueBreakInfo = new Info(BreakInfo::pickaxe(3.0, ToolTier::STONE, 30.0));
