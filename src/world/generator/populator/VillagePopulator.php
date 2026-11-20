@@ -61,6 +61,47 @@ class VillagePopulator implements Populator{
 		foreach([[-14, 0], [14, 0], [0, -14], [0, 14]] as [$dx, $dz]){
 			$this->buildHouse($world, $centerX + $dx, $centerZ + $dz, $baseX, $baseZ);
 		}
+
+		$this->buildFarm($world, $centerX + 14, $centerZ + 14, $baseX, $baseZ);
+		$this->buildLampPosts($world, $centerX, $centerZ, $wellY, $baseX, $baseZ);
+	}
+
+	private function buildFarm(ChunkManager $world, int $centerX, int $centerZ, int $baseX, int $baseZ) : void{
+		$groundY = $this->groundY($world, $centerX, $centerZ);
+		if($groundY === null){
+			return;
+		}
+		$crops = [VanillaBlocks::WHEAT(), VanillaBlocks::CARROTS(), VanillaBlocks::POTATOES()];
+		for($x = -3; $x <= 3; ++$x){
+			for($z = -2; $z <= 2; ++$z){
+				$wx = $centerX + $x;
+				$wz = $centerZ + $z;
+				if($z === 0){
+					$this->place($world, $wx, $groundY - 1, $wz, VanillaBlocks::WATER(), $baseX, $baseZ);
+				}else{
+					$this->place($world, $wx, $groundY - 1, $wz, VanillaBlocks::FARMLAND(), $baseX, $baseZ);
+					$crop = clone $crops[abs($x + $z) % 3];
+					$crop->setAge($crop->getMaxAge());
+					$this->place($world, $wx, $groundY, $wz, $crop, $baseX, $baseZ);
+				}
+			}
+		}
+		for($x = -4; $x <= 4; ++$x){
+			$this->place($world, $centerX + $x, $groundY, $centerZ - 3, VanillaBlocks::OAK_FENCE(), $baseX, $baseZ);
+			$this->place($world, $centerX + $x, $groundY, $centerZ + 3, VanillaBlocks::OAK_FENCE(), $baseX, $baseZ);
+		}
+	}
+
+	private function buildLampPosts(ChunkManager $world, int $centerX, int $centerZ, ?int $groundY, int $baseX, int $baseZ) : void{
+		if($groundY === null){
+			return;
+		}
+		foreach([[7, 7], [-7, 7], [7, -7], [-7, -7]] as [$dx, $dz]){
+			$x = $centerX + $dx;
+			$z = $centerZ + $dz;
+			$this->place($world, $x, $groundY, $z, VanillaBlocks::OAK_FENCE(), $baseX, $baseZ);
+			$this->place($world, $x, $groundY + 1, $z, VanillaBlocks::TORCH(), $baseX, $baseZ);
+		}
 	}
 
 	private function buildHouse(ChunkManager $world, int $centerX, int $centerZ, int $baseX, int $baseZ) : void{

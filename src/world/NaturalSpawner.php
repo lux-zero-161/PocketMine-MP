@@ -13,6 +13,7 @@ use pocketmine\entity\ai\PathFinder;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\player\Player;
 use pocketmine\entity\Villager;
+use pocketmine\entity\mob\IronGolem;
 use pocketmine\entity\effect\VanillaEffects;
 use function count;
 use function max;
@@ -144,6 +145,23 @@ final class NaturalSpawner{
 				}
 			}
 			if($existing >= 3){
+				$golems = 0;
+				foreach($world->getNearbyEntities($box) as $entity){
+					if($entity instanceof IronGolem && $entity->isAlive()){
+						$golems++;
+					}
+				}
+				if($golems === 0){
+					for($attempt = 0; $attempt < 8; ++$attempt){
+						$x = $center->getFloorX() + mt_rand(-6, 6);
+						$y = $center->getFloorY() + mt_rand(-1, 2);
+						$z = $center->getFloorZ() + mt_rand(-6, 6);
+						if(PathFinder::canStand($world, $x, $y, $z)){
+							self::spawn($world, Location::fromObject(new \pocketmine\math\Vector3($x + 0.5, $y, $z + 0.5), $world, mt_rand(0, 359), 0), "minecraft:iron_golem");
+							break;
+						}
+					}
+				}
 				continue;
 			}
 			for($i = 0; $i < 2; ++$i){
