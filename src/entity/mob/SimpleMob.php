@@ -8,6 +8,9 @@ use pocketmine\block\BlockTypeIds;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\ai\PathFinder;
+use pocketmine\entity\projectile\SmallFireball;
+use pocketmine\entity\projectile\Snowball;
+use pocketmine\entity\projectile\SplashPotion;
 use pocketmine\entity\Location;
 use pocketmine\entity\Living;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -15,6 +18,7 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\item\Item;
 use pocketmine\item\ItemTypeIds;
+use pocketmine\item\PotionType;
 use pocketmine\item\Shears;
 use pocketmine\item\VanillaItems;
 use pocketmine\math\AxisAlignedBB;
@@ -159,6 +163,47 @@ abstract class SimpleMob extends Living{
 
 		if($name === "Enderman" && $currentTick % 100 === 0 && $this->getNearestPlayer(12) !== null){
 			$this->teleportRandomly();
+		}
+
+		if($name === "Iron Golem" && $currentTick % 10 === 0){
+			$target = $this->getNearestHostileMob(10);
+			if($target !== null){
+				$diff = $target->getPosition()->subtractVector($this->location);
+				if($diff->length() > 2){
+					$this->moveTowards($target->getPosition(), 0.25);
+				}else{
+					$target->attack(new EntityDamageByEntityEvent($this, $target, EntityDamageEvent::CAUSE_ENTITY_ATTACK, 7));
+				}
+			}
+		}
+
+		if($name === "Snow Golem" && $currentTick % 40 === 0){
+			$target = $this->getNearestHostileMob(10);
+			if($target !== null){
+				$direction = $target->getEyePos()->subtractVector($this->getEyePos());
+				if($direction->lengthSquared() > 0.01){
+					$snowball = new Snowball(Location::fromObject($this->getEyePos(), $this->getWorld(), $this->location->yaw, $this->location->pitch), $this);
+					$snowball->setBaseDamage(1.0);
+					$snowball->setMotion($direction->normalize()->multiply(0.7));
+					$snowball->spawnToAll();
+				}
+			}
+		}
+
+		if(($name === "Witch" || $name === "Blaze" || $name === "Ghast") && $currentTick % 60 === 0){
+			$player = $this->getNearestPlayer(16);
+			if($player !== null){
+				$direction = $player->getEyePos()->subtractVector($this->getEyePos());
+				if($direction->lengthSquared() > 0.01){
+					if($name === "Witch"){
+						$projectile = new SplashPotion(Location::fromObject($this->getEyePos(), $this->getWorld(), $this->location->yaw, $this->location->pitch), $this, PotionType::HARMING);
+					}else{
+						$projectile = new SmallFireball(Location::fromObject($this->getEyePos(), $this->getWorld(), $this->location->yaw, $this->location->pitch), $this);
+					}
+					$projectile->setMotion($direction->normalize()->multiply(0.7));
+					$projectile->spawnToAll();
+				}
+			}
 		}
 
 		if($currentTick % 100 === 0 && in_array($name, self::BURNS_IN_DAYLIGHT, true)){
@@ -381,6 +426,22 @@ abstract class SimpleMob extends Living{
 			"Horse", "Donkey", "Mule", "Llama", "Trader Llama" => $item instanceof \pocketmine\item\GoldenApple || $item instanceof \pocketmine\item\GoldenCarrot,
 			default => false
 		};
+	}
+
+	private function getNearestHostileMob(float $radius) : ?SimpleMob{
+		$box = AxisAlignedBB::one()->expand($radius, $radius, $radius)->offset($this->location->x, $this->location->y, $this->location->z);
+		$nearest = null;
+		$bestDistance = $radius * $radius;
+		foreach($this->getWorld()->getNearbyEntities($box, $this) as $entity){
+			if($entity instanceof self && $entity !== $this && $entity->isAlive() && in_array($entity->getName(), self::HOSTILE, true)){
+				$distance = $this->location->distanceSquared($entity->getLocation());
+				if($distance < $bestDistance){
+					$bestDistance = $distance;
+					$nearest = $entity;
+				}
+			}
+		}
+		return $nearest;
 	}
 
 	private function getNearestPlayer(float $radius) : ?Player{

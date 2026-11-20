@@ -107,6 +107,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Rain slowly fills empty and partially filled cauldrons.
 - Map IDs, colors and metadata persist across server restarts in `maps.nbt`.
 - Overworld generation carves noise-based caves and lava pools below the surface while avoiding oceans and tree roots.
+- Iron golems attack hostile mobs, snow golems throw snowballs, witches throw harming potions and blazes/ghasts shoot small fireballs.
 
 **Active**
 
