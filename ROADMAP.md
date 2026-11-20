@@ -37,7 +37,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 - Block behaviour parity for the newly added technical blocks: redstone updates, piston movement, sculk sensing, vault/trial spawner logic, crafter automation, command execution.
 - Archaeology for suspicious sand/gravel.
-- Powder snow entity interaction (sinking, freezing, leather boots).
+- Powder snow slows and freezes entities without leather boots (sinking depth is approximated).
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
 
