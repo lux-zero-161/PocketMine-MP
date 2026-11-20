@@ -63,6 +63,7 @@ and all states used by the implemented blocks round-trip through the serializer.
   chicken eggs, milking, shearing, dyeing, taming, ranged skeletons/pillagers, golems,
   witches, blazes and ghasts.
 - Natural mob spawning (land and water), deterministic villages with farms/lamps, villagers, iron golem defenders and natural raids.
+- Overworld mineshaft segments with supports, rails, cobwebs and loot chests.
 - Bad Omen from pillager kills and village raid triggering; Hero of the Village after a win.
 - Form-based villager trade UI and grindstone UI.
 - Bad Omen / Hero of the Village effects registered.
