@@ -95,6 +95,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - `/structure save|load|delete|list` provides a command-line interface to the same NBT structure format.
 - `/summon <entity> [x y z]` spawns any registered entity by Bedrock save name.
 - Wither boss: flying AI, boss bar, wither skull projectiles with explosions, nether star drop and 50 XP.
+- Ender Dragon boss: flying/circling AI, boss bar, melee damage, dragon egg drop and 12,000 XP.
 
 **Active**
 
@@ -112,7 +113,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 **Active**
 
 - Bedrock-style Overworld terrain: biome placement, caves, aquifers, structures.
-- Vanilla End dimension generation, dragon fight and portal linking rules.
+- Vanilla End dimension generation, dragon phases/crystals and portal linking rules.
 - Structure generation (villages, temples, strongholds, ancient cities).
 
 **Planned**

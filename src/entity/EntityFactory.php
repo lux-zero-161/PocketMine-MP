@@ -615,6 +615,10 @@ final class EntityFactory{
 			return new \pocketmine\entity\mob\ZombiePigman(Helper::parseLocation($nbt, $world), $nbt);
 		}, ['minecraft:zombie_pigman']);
 
+		$this->register(\pocketmine\entity\mob\EnderDragon::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\EnderDragon{
+			return new \pocketmine\entity\mob\EnderDragon(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:ender_dragon', 'EnderDragon']);
+
 		$this->register(\pocketmine\entity\mob\Wither::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Wither{
 			return new \pocketmine\entity\mob\Wither(Helper::parseLocation($nbt, $world), $nbt);
 		}, ['minecraft:wither', 'Wither']);
