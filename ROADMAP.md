@@ -106,6 +106,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Jigsaw blocks store pool/target data, trigger structure placement on redstone and recursively expand jigsaw connectors; `/jigsaw set|generate` configures and runs them.
 - Rain slowly fills empty and partially filled cauldrons.
 - Map IDs, colors and metadata persist across server restarts in `maps.nbt`.
+- Overworld generation carves noise-based caves and lava pools below the surface while avoiding oceans and tree roots.
 
 **Active**
 

@@ -27,6 +27,7 @@ use pocketmine\block\Block;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\data\bedrock\BiomeIds;
 use pocketmine\utils\AssumptionFailedError;
+use pocketmine\utils\Random;
 use pocketmine\world\biome\Biome;
 use pocketmine\world\biome\BiomeRegistry;
 use pocketmine\world\ChunkManager;
@@ -58,6 +59,8 @@ class Normal extends Generator{
 	/** @var Populator[] */
 	private array $generationPopulators = [];
 	private Simplex $noiseBase;
+	private Simplex $caveNoise1;
+	private Simplex $caveNoise2;
 	private BiomeSelector $selector;
 	private Gaussian $gaussian;
 
@@ -73,6 +76,11 @@ class Normal extends Generator{
 
 		$this->noiseBase = new Simplex($this->random, 4, 1 / 4, 1 / 32);
 		$this->random->setSeed($this->seed);
+
+		$caveRandom = new Random($this->seed ^ 0x51ed270b);
+		$this->caveNoise1 = new Simplex($caveRandom, 2, 1 / 2, 1 / 32);
+		$caveRandom = new Random($this->seed ^ 0x2f6e2b1);
+		$this->caveNoise2 = new Simplex($caveRandom, 2, 1 / 2, 1 / 32);
 
 		$this->selector = new class($this->random) extends BiomeSelector{
 			protected function lookup(float $temperature, float $rainfall) : int{
@@ -230,8 +238,35 @@ class Normal extends Generator{
 			}
 		}
 
+		$this->carveCaves($chunk, $baseX, $baseZ, $stone);
+
 		foreach($this->generationPopulators as $populator){
 			$populator->populate($world, $chunkX, $chunkZ, $this->random);
+		}
+	}
+
+	private function carveCaves(Chunk $chunk, int $baseX, int $baseZ, int $stone) : void{
+		$noise1 = $this->caveNoise1->getFastNoise3D(Chunk::EDGE_LENGTH, 128, Chunk::EDGE_LENGTH, 4, 8, 4, $baseX, 0, $baseZ);
+		$noise2 = $this->caveNoise2->getFastNoise3D(Chunk::EDGE_LENGTH, 128, Chunk::EDGE_LENGTH, 4, 8, 4, $baseX, 0, $baseZ);
+		$lava = VanillaBlocks::LAVA()->getStateId();
+		$air = Block::EMPTY_STATE_ID;
+
+		for($x = 0; $x < Chunk::EDGE_LENGTH; ++$x){
+			for($z = 0; $z < Chunk::EDGE_LENGTH; ++$z){
+				$surface = $chunk->getHighestBlockAt($x, $z);
+				if($surface === null || $surface <= $this->waterHeight + 4){
+					continue;
+				}
+				$maxY = min(110, $surface - 5);
+				for($y = 1; $y <= $maxY; ++$y){
+					if($chunk->getBlockStateId($x, $y, $z) !== $stone){
+						continue;
+					}
+					if(abs($noise1[$x][$z][$y]) < 0.045 && abs($noise2[$x][$z][$y]) < 0.045){
+						$chunk->setBlockStateId($x, $y, $z, $y < 10 ? $lava : $air);
+					}
+				}
+			}
 		}
 	}
 
