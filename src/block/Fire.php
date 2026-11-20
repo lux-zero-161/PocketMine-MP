@@ -120,6 +120,12 @@ class Fire extends BaseFire implements Ageable, HorizontalConnectable{
 	}
 
 	public function onRandomTick() : void{
+		$world = $this->position->getWorld();
+		if($world->isRaining() && $world->getRealBlockSkyLightAt($this->position->getFloorX(), $this->position->getFloorY(), $this->position->getFloorZ()) >= 8){
+			$world->setBlock($this->position, VanillaBlocks::AIR());
+			return;
+		}
+
 		$down = $this->getSide(Facing::DOWN);
 
 		$result = null;

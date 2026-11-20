@@ -113,6 +113,18 @@ class Campfire extends Transparent implements Lightable, HorizontalFacing{
 		return true;
 	}
 
+	public function ticksRandomly() : bool{
+		return $this->lit;
+	}
+
+	public function onRandomTick() : void{
+		$world = $this->position->getWorld();
+		if($this->lit && $world->isRaining() && $world->getRealBlockSkyLightAt($this->position->getFloorX(), $this->position->getFloorY(), $this->position->getFloorZ()) >= 8){
+			$this->lit = false;
+			$world->setBlock($this->position, $this);
+		}
+	}
+
 	public function getLightLevel() : int{
 		return $this->lit ? 15 : 0;
 	}
