@@ -27,7 +27,7 @@ implemented blocks round-trip through the serializer.
 | Block behaviour | ~76% | Most utility/decorative blocks work; waterlogging, archaeology, command/structure blocks and many edge cases are incomplete. |
 | Redstone | ~85% | Wire, torches, repeaters, comparators, lamps, observers, targets, pistons, dispensers, droppers, hoppers, crafter, vault and trial spawner work. Sculk frequencies and exact update ordering are simplified. |
 | Containers / automation | ~85% | Chests, barrels, hoppers, dispensers/droppers, shelves, decorated pots, composters, jukeboxes, crafter and minecart inventories are partly or fully implemented. |
-| Mobs | ~63% | 84 mob entities exist with basic movement/hostile AI, drops, XP and basic breeding. No pathfinding, herds, fear, special mob abilities or full vanilla loot tables. |
+| Mobs | ~66% | 84 mob entities exist with basic movement/hostile AI, drops, XP and basic breeding. No pathfinding, herds, fear, special mob abilities or full vanilla loot tables. |
 | World generation / weather | ~32% | Simplified noise generator, Nether generator and tree/ore populators. No Bedrock-style biomes, caves, aquifers, structures or End generation. |
 | Dimensions | ~72% | Nether/End portal travel switches worlds and dimensions with ChangeDimensionPacket; vanilla linking, dragon fight and End content are simplified. |
 | Networking / protocol | ~95% | Protocol 2225, RakNet, NetherNet and packet coverage are inherited from the maintained base. |

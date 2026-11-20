@@ -119,6 +119,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - `/raid [waves]` starts a simplified illager raid with pillagers, vindicators, evokers and ravagers, a live boss bar and emerald rewards.
 - Villagers open a form-based trade UI with clickable offers; the native Bedrock trade window is still not used.
 - Skeletons, strays, bogged and pillagers shoot arrows at ranged targets.
+- Natural mob spawning: passive animals during the day and hostile mobs in low light, with nearby-mob caps.
 - The Wither gains a damage-reduction armour phase below half health.
 
 **Active**

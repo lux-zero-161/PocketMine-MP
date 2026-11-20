@@ -1074,6 +1074,7 @@ class World implements ChunkManager{
 			foreach($this->raids as $raid){
 				$raid->tick();
 			}
+			NaturalSpawner::tick($this);
 		}
 		if(!$this->stopTime){
 			//this simulates an overflow, as would happen in any language which doesn't do stupid things to var types
