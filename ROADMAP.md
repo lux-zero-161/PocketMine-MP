@@ -17,18 +17,19 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Utility blocks: honey block, dripstone block, moss block, lodestone, target, conduit, heavy core, scaffolding, composter, seagrass, kelp, suspicious sand/gravel, pointed dripstone, sulfur spike, bubble column, turtle egg, sniffer egg, mangrove propagule.
 - Technical blocks with full state models: observer, dispenser, dropper, piston/sticky piston and arm collision blocks, moving block, command blocks, structure block, jigsaw, vault, trial spawner, crafter, creaking heart, decorated pot, grindstone, sculk sensor/calibrated sensor/shrieker/catalyst/vein, border/allow/deny blocks, chalkboard, camera, end portal/gateway, powder snow, unknown/client placeholder blocks.
 - Cherry and pale oak saplings, with matching tree generators.
-- 8 wooden shelves — block entity with 4 item slots, item insert/remove and powered shelf state.
+- 8 wooden shelves — block entity with 3 item slots, item insert/remove, powered state and comparator output.
 - 8 copper chests — container block entity with oxidation/wax variants and same-variant chest pairing.
 - `bee_nest`, `beehive` — bee block entity with NBT storage, honey level and harvest interaction.
 - 1.26.60 content: poplar wood set, ice crystal/icicle, disc press, straw bed, red shrub, shelf mushroom and poplar leaves variants.
 - Straw beds are placed as two halves and support sleeping/spawn setting like regular beds.
 - Shelf mushrooms attach to walls, can be grown with bone meal and bounce entities.
+- Powder snow slows and freezes entities without leather boots, and can be collected/filled with buckets.
 
 Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Active**
 
-- Shelves — 3 slots, item insertion/removal, redstone powered state and comparator output (1/2/4 per slot) implemented; multi-shelf hotbar swapping remains.
+- Shelves — multi-shelf powered connections and hotbar swapping.
 - Copper chests — container block entity with oxidation/wax variants, same-variant chest pairing and waxing/scraping support.
 - `bee_nest`, `beehive` — bee entity release/entry and honey production.
 - Redstone — wire propagation, torch inversion, repeater delay/locking and comparator analog output are implemented; piston movement, sculk sensing and observer/dispenser edge cases remain.
@@ -37,7 +38,6 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 - Block behaviour parity for the newly added technical blocks: redstone updates, piston movement, sculk sensing, vault/trial spawner logic, crafter automation, command execution.
 - Archaeology for suspicious sand/gravel.
-- Powder snow slows and freezes entities without leather boots (sinking depth is approximated).
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
 
@@ -57,7 +57,6 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Carrot on a Stick and Warped Fungus on a Stick with correct durability.
 - 1.26.60 blue and brown egg items.
 - Bamboo raft item and BoatType support.
-- Cherry and pale oak boats, plus horse, nautilus and wolf armor items.
 
 **Active**
 

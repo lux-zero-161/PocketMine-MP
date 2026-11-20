@@ -39,7 +39,6 @@ use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\world\sound\ChiseledBookshelfInsertSound;
 use pocketmine\world\sound\ChiseledBookshelfPickupSound;
-use function count;
 use function spl_object_id;
 
 class ChiseledBookshelf extends Opaque implements HorizontalFacing{
@@ -147,10 +146,10 @@ class ChiseledBookshelf extends Opaque implements HorizontalFacing{
 	}
 
 	/**
-	 * Returns the comparator signal strength, which equals the number of stored books.
+	 * Returns the comparator signal strength for the last interacted slot (1-6), or 0 if no slot was used.
 	 */
 	public function getComparatorOutput() : int{
-		return count($this->slots);
+		return $this->lastInteractedSlot !== null ? $this->lastInteractedSlot->value + 1 : 0;
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{

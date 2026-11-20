@@ -9,6 +9,11 @@ use pocketmine\block\Block;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\Button;
 use pocketmine\block\Cake;
+use pocketmine\block\Cauldron;
+use pocketmine\block\EndPortalFrame;
+use pocketmine\block\FillableCauldron;
+use pocketmine\block\LavaCauldron;
+use pocketmine\block\RespawnAnchor;
 use pocketmine\block\ChiseledBookshelf;
 use pocketmine\block\Composter;
 use pocketmine\block\ItemFrame;
@@ -24,6 +29,7 @@ use pocketmine\block\tile\Container;
 use pocketmine\inventory\Inventory;
 use pocketmine\math\Facing;
 use function floor;
+use function intdiv;
 use function min;
 
 final class RedstonePowerHelper{
@@ -110,6 +116,22 @@ final class RedstonePowerHelper{
 			return $block->getComparatorOutput();
 		}
 		if($block instanceof ChiseledBookshelf){
+			return $block->getComparatorOutput();
+		}
+		if($block instanceof LavaCauldron){
+			return 3;
+		}
+		if($block instanceof FillableCauldron){
+			//Bedrock cauldrons have 6 fill levels but comparators report 1-3
+			return intdiv($block->getFillLevel() + 1, 2);
+		}
+		if($block instanceof Cauldron){
+			return 0;
+		}
+		if($block instanceof EndPortalFrame){
+			return $block->hasEye() ? 15 : 0;
+		}
+		if($block instanceof RespawnAnchor){
 			return $block->getComparatorOutput();
 		}
 

@@ -64,6 +64,10 @@ final class RespawnAnchor extends Opaque{
 		return $this->charges > 0 ? ($this->charges * 4) - 1 : 0;
 	}
 
+	public function getComparatorOutput() : int{
+		return $this->charges > 0 ? ($this->charges * 4) - 1 : 0;
+	}
+
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
 		if($item->getTypeId() === ItemTypeIds::fromBlockTypeId(BlockTypeIds::GLOWSTONE) && $this->charges < self::MAX_CHARGES){
 			$this->position->getWorld()->setBlock($this->position, $this->setCharges($this->charges + 1));
