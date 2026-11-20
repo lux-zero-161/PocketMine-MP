@@ -87,6 +87,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Ground mobs use a small grid A* pathfinder, can step up/fall while chasing players, and flee when hit.
 - Mob special behaviours: creepers prime and explode, endermen teleport, chickens lay eggs, cows can be milked, sheep can be sheared and mooshrooms give stew.
 - Dimensions: worlds report overworld/nether/end dimensions, chunk serialization and spawn settings use them, and portals move players between worlds (creating destination portals/platforms when needed).
+- Fishing rods cast a fishing hook, bob in water and reel in fish, junk or treasure loot with durability loss.
 
 **Active**
 

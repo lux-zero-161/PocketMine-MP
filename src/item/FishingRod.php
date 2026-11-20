@@ -23,6 +23,10 @@ declare(strict_types=1);
 
 namespace pocketmine\item;
 
+use pocketmine\entity\object\FishingHook;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
+
 class FishingRod extends Durable{
 
 	public function getMaxStackSize() : int{
@@ -33,5 +37,8 @@ class FishingRod extends Durable{
 		return 384;
 	}
 
-	//TODO
+	public function onClickAir(Player $player, Vector3 $directionVector, array &$returnedItems) : ItemUseResult{
+		FishingHook::cast($player);
+		return ItemUseResult::SUCCESS;
+	}
 }
