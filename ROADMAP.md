@@ -44,7 +44,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Planned**
 
-- Block behaviour parity for the newly added technical blocks: sculk sensing, vault/trial spawner logic, crafter automation, command execution.
+- Block behaviour parity for the newly added technical blocks: sculk sensing, vault/trial spawner logic, command execution.
 - Archaeology for suspicious sand/gravel.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
@@ -69,6 +69,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Armor stands are spawnable entities, accept armor and drop their equipment when destroyed.
 - Spawn eggs spawn basic mob entities with simple movement; fish/mob buckets place water and spawn their mob.
 - Shields block frontal hits, crossbows fire arrows, elytra enable gliding and maces deal fall-based smash damage.
+- Crafters have a 3x3 inventory, redstone-triggered crafting, recipe matching and output ejection into containers/droppers.
 
 **Active**
 

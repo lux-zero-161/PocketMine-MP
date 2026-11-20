@@ -1063,6 +1063,7 @@
         "CHISELED_BOOKSHELF": "pocketmine\\block\\tile\\ChiseledBookshelf",
         "CONTINUOUS_POTENT_SULFUR": "pocketmine\\block\\tile\\PotentSulfur",
         "COPPER_CHEST": "pocketmine\\block\\tile\\Chest",
+        "CRAFTER": "pocketmine\\block\\tile\\Crafter",
         "CRIMSON_CEILING_CENTER_HANGING_SIGN": "pocketmine\\block\\tile\\HangingSign",
         "CRIMSON_CEILING_EDGES_HANGING_SIGN": "pocketmine\\block\\tile\\HangingSign",
         "CRIMSON_SHELF": "pocketmine\\block\\tile\\Shelf",

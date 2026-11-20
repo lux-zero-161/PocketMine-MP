@@ -41,6 +41,7 @@ use pocketmine\block\tile\Cauldron as TileCauldron;
 use pocketmine\block\tile\Chest as TileChest;
 use pocketmine\block\tile\ChiseledBookshelf as TileChiseledBookshelf;
 use pocketmine\block\tile\Comparator as TileComparator;
+use pocketmine\block\tile\Crafter as TileCrafter;
 use pocketmine\block\tile\DecoratedPot as TileDecoratedPot;
 use pocketmine\block\tile\DaylightSensor as TileDaylightSensor;
 use pocketmine\block\tile\Dispenser as TileDispenser;
@@ -1256,7 +1257,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		$sculkSensorBreakInfo = new Info(new BreakInfo(1.5, ToolType::HOE, 0, 7.5));
 		self::register("sculk_sensor", fn(BID $id) => new SculkSensor($id, "Sculk Sensor", $sculkSensorBreakInfo));
 		self::register("calibrated_sculk_sensor", fn(BID $id) => new CalibratedSculkSensor($id, "Calibrated Sculk Sensor", $sculkSensorBreakInfo));
-		self::register("crafter", fn(BID $id) => new Crafter($id, "Crafter", new Info(BreakInfo::pickaxe(1.5, ToolTier::WOOD, 17.5))));
+		self::register("crafter", fn(BID $id) => new Crafter($id, "Crafter", new Info(BreakInfo::pickaxe(1.5, ToolTier::WOOD, 17.5))), TileCrafter::class);
 	}
 
 	private function registerMudBlocks() : void{

@@ -27,6 +27,7 @@ use pocketmine\block\inventory\AnvilInventory;
 use pocketmine\block\inventory\BlockInventory;
 use pocketmine\block\inventory\BrewingStandInventory;
 use pocketmine\block\inventory\CartographyTableInventory;
+use pocketmine\block\inventory\CrafterInventory;
 use pocketmine\block\inventory\CraftingTableInventory;
 use pocketmine\block\inventory\EnchantInventory;
 use pocketmine\block\inventory\FurnaceInventory;
@@ -384,6 +385,7 @@ class InventoryManager{
 				$inv instanceof BrewingStandInventory => WindowTypes::BREWING_STAND,
 				$inv instanceof AnvilInventory => WindowTypes::ANVIL,
 				$inv instanceof HopperInventory => WindowTypes::HOPPER,
+				$inv instanceof CrafterInventory => WindowTypes::CRAFTER,
 				$inv instanceof CraftingTableInventory => WindowTypes::WORKBENCH,
 				$inv instanceof StonecutterInventory => WindowTypes::STONECUTTER,
 				$inv instanceof CartographyTableInventory => WindowTypes::CARTOGRAPHY,
