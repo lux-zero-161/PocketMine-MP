@@ -23,5 +23,16 @@ declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\entity\Entity;
+use pocketmine\player\Player;
+use pocketmine\world\PortalHelper;
+
 class EndGateway extends EndPortal{
+
+	public function onEntityInside(Entity $entity) : bool{
+		if($entity instanceof Player && $entity->isAlive()){
+			PortalHelper::useEndGateway($entity);
+		}
+		return true;
+	}
 }

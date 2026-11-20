@@ -31,6 +31,7 @@ class EnderDragon extends Living{
 	private int $attackCooldown = 0;
 	private int $barUpdateCooldown = 0;
 	private float $circleAngle = 0.0;
+	private int $phase = 0;
 
 	public function __construct(Location $location, ?CompoundTag $nbt = null){
 		parent::__construct($location, $nbt);
@@ -65,17 +66,20 @@ class EnderDragon extends Living{
 
 	public function onUpdate(int $currentTick) : bool{
 		if($this->isAlive()){
+			$healthPercent = $this->getHealth() / $this->getMaxHealth();
+			$this->phase = $healthPercent <= 0.25 ? 2 : ($healthPercent <= 0.5 ? 1 : 0);
+
 			$target = $this->resolveTarget();
 			if($target !== null && $this->location->distanceSquared($target->getLocation()) < 64 * 64){
-				$this->chase($target);
+				$this->chase($target, 1.0 + $this->phase * 0.25);
 				if($this->location->distanceSquared($target->getLocation()) < 25){
 					if(--$this->attackCooldown <= 0){
-						$this->attackCooldown = 20;
+						$this->attackCooldown = max(8, 20 - $this->phase * 5);
 						$target->attack(new \pocketmine\event\entity\EntityDamageByEntityEvent(
 							$this,
 							$target,
 							EntityDamageEvent::CAUSE_ENTITY_ATTACK,
-							10
+							10 + $this->phase * 3
 						));
 					}
 				}
@@ -129,6 +133,7 @@ class EnderDragon extends Living{
 				$world->setBlockAt($dx, 66, $dz, VanillaBlocks::AIR(), false);
 			}
 		}
+		$world->setBlockAt(0, 66, 0, VanillaBlocks::DRAGON_EGG(), false);
 	}
 
 	public function getDrops() : array{
@@ -162,7 +167,7 @@ class EnderDragon extends Living{
 		return $nearest;
 	}
 
-	private function chase(Player $target) : void{
+	private function chase(Player $target, float $speedMultiplier = 1.0) : void{
 		$desired = $target->getPosition()->add(0, 5, 0);
 		$diff = $desired->subtractVector($this->location);
 		$distance = $diff->length();
@@ -170,7 +175,7 @@ class EnderDragon extends Living{
 			$this->setMotion(new Vector3(0, 0, 0));
 			return;
 		}
-		$this->setMotion($diff->normalize()->multiply(min(0.4, 0.15 + $distance / 120)));
+		$this->setMotion($diff->normalize()->multiply(min(0.4, (0.15 + $distance / 120) * $speedMultiplier)));
 	}
 
 	private function circle() : void{

@@ -10,8 +10,11 @@ use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\world\generator\hell\Nether;
 use pocketmine\world\generator\end\End;
+use function cos;
 use function floor;
 use function min;
+use const M_PI;
+use function mt_rand;
 
 /**
  * Handles Nether and End portal travel between worlds.
@@ -113,6 +116,28 @@ final class PortalHelper{
 
 		self::buildEndPlatform($target, 0, 64, 0);
 		return $player->switchWorld($target, new Position(0.5, 66, 0.5, $target), World::DIMENSION_THE_END);
+	}
+
+	public static function useEndGateway(Player $player) : bool{
+		$current = $player->getWorld();
+		if($current->getDimensionId() !== World::DIMENSION_THE_END || !self::checkCooldown($player)){
+			return false;
+		}
+
+		$angle = mt_rand(0, 359) / 180 * M_PI;
+		$distance = mt_rand(900, 1400);
+		$targetX = (int) (cos($angle) * $distance);
+		$targetZ = (int) (sin($angle) * $distance);
+
+		//Build a small arrival platform so the player never falls into the void
+		for($dx = -2; $dx <= 2; ++$dx){
+			for($dz = -2; $dz <= 2; ++$dz){
+				$current->setBlockAt($targetX + $dx, 64, $targetZ + $dz, VanillaBlocks::END_STONE(), false);
+			}
+		}
+		$current->setBlockAt($targetX, 65, $targetZ, VanillaBlocks::END_GATEWAY(), false);
+
+		return $player->teleport(new Position($targetX + 0.5, 66, $targetZ + 0.5, $current));
 	}
 
 	private static function checkCooldown(Player $player) : bool{

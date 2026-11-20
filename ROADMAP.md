@@ -114,6 +114,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Bundle item-stack requests now insert and remove items through the Bedrock bundle UI actions, in addition to the NBT storage API.
 - End crystals heal a nearby Ender Dragon and the dragon creates an exit portal when killed.
 - Thunderstorms periodically strike lightning near players, damaging and igniting nearby entities.
+- End gateways teleport players to outer End islands with an arrival platform; the dragon has health-based phases and drops a dragon egg on the exit portal.
 
 **Active**
 
