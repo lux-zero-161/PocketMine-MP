@@ -24,6 +24,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Straw beds are placed as two halves and support sleeping/spawn setting like regular beds.
 - Shelf mushrooms attach to walls, can be grown with bone meal and bounce entities.
 - End portal frames accept eyes of ender and activate the 3x3 portal when all 12 frames are filled.
+- Composters accept compostable items with vanilla chances, produce bone meal and expose their fill level to comparators.
 - Powder snow slows and freezes entities without leather boots, and can be collected/filled with buckets.
 
 Coverage: **1,480 of 1,480** canonical block type names (100%).
@@ -91,7 +92,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Fluids: basic water/lava flow exists; waterlogging and fluid containers need work.
 - Mobs: basic entity framework; vanilla AI, spawning rules and breeding are incomplete.
 - Combat: damage, armor and enchantments exist; knockback, shields and attack cooldowns need parity work.
-- Farming: crops exist; growth, bone meal and composting interactions are partial.
+- Farming: crops and composter interactions are implemented; crop growth and bone meal edge cases remain partial.
 - Portals: Nether portal blocks exist; travel and coordinate scaling are not vanilla-complete.
 
 ## Milestone 4 — Networking and protocol
