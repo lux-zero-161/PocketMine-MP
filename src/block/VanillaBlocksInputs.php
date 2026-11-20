@@ -41,6 +41,7 @@ use pocketmine\block\tile\Cauldron as TileCauldron;
 use pocketmine\block\tile\Chest as TileChest;
 use pocketmine\block\tile\ChiseledBookshelf as TileChiseledBookshelf;
 use pocketmine\block\tile\Comparator as TileComparator;
+use pocketmine\block\tile\TrialSpawner as TileTrialSpawner;
 use pocketmine\block\tile\Vault as TileVault;
 use pocketmine\block\tile\Crafter as TileCrafter;
 use pocketmine\block\tile\DecoratedPot as TileDecoratedPot;
@@ -1245,7 +1246,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 
 		self::register("creaking_heart", fn(BID $id) => new CreakingHeart($id, "Creaking Heart", new Info(BreakInfo::axe(10.0, null, 50.0))));
 		self::register("vault", fn(BID $id) => new Vault($id, "Vault", new Info(new BreakInfo(50.0, BlockToolType::NONE, 0, 250.0))), TileVault::class);
-		self::register("trial_spawner", fn(BID $id) => new TrialSpawner($id, "Trial Spawner", new Info(new BreakInfo(50.0, BlockToolType::NONE, 0, 250.0))));
+		self::register("trial_spawner", fn(BID $id) => new TrialSpawner($id, "Trial Spawner", new Info(new BreakInfo(50.0, BlockToolType::NONE, 0, 250.0))), TileTrialSpawner::class);
 		self::register("pale_moss_carpet", fn(BID $id) => new PaleMossCarpet($id, "Pale Moss Carpet", new Info(new BreakInfo(0.1, ToolType::HOE, 0, 0.5))));
 
 		self::register("unknown", fn(BID $id) => new UnknownVanillaBlock($id, "Unknown", new Info(BreakInfo::instant())));

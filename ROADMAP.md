@@ -44,7 +44,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Planned**
 
-- Block behaviour parity for the newly added technical blocks: sculk sensing, trial spawner logic, command execution.
+- Block behaviour parity for the newly added technical blocks: sculk sensing and command execution.
 - Archaeology for suspicious sand/gravel.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
@@ -71,6 +71,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Shields block frontal hits, crossbows fire arrows, elytra enable gliding and maces deal fall-based smash damage.
 - Crafters have a 3x3 inventory, redstone-triggered crafting, recipe matching and output ejection into containers/droppers.
 - Vaults accept normal/ominous trial keys, track per-player usage and eject normal/ominous loot after the unlock animation.
+- Trial spawners spawn simple mob waves when players are nearby and eject loot after three waves.
 
 **Active**
 

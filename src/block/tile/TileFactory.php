@@ -67,6 +67,7 @@ final class TileFactory{
 		$this->register(Comparator::class, ["Comparator", "minecraft:comparator"]);
 		$this->register(Crafter::class, ["Crafter", "minecraft:crafter"]);
 		$this->register(Vault::class, ["Vault", "minecraft:vault"]);
+		$this->register(TrialSpawner::class, ["TrialSpawner", "minecraft:trial_spawner"]);
 		$this->register(DecoratedPot::class, ["DecoratedPot", "minecraft:decorated_pot"]);
 		$this->register(DaylightSensor::class, ["DaylightDetector", "minecraft:daylight_detector"]);
 		$this->register(EnchantTable::class, ["EnchantTable", "minecraft:enchanting_table"]);
