@@ -39,4 +39,43 @@ class Sponge extends Opaque{
 		$this->wet = $wet;
 		return $this;
 	}
+
+	public function onPostPlace() : void{
+		$this->absorbWater();
+	}
+
+	public function onNearbyBlockChange() : void{
+		if(!$this->wet){
+			$this->absorbWater();
+		}
+	}
+
+	/**
+	 * Absorbs nearby water blocks and turns this sponge into a wet sponge.
+	 *
+	 * TODO: wet sponges should dry when placed in the nether
+	 */
+	private function absorbWater() : void{
+		$world = $this->position->getWorld();
+		$absorbed = false;
+
+		$x = $this->position->getFloorX();
+		$y = $this->position->getFloorY();
+		$z = $this->position->getFloorZ();
+		for($dx = -2; $dx <= 2; ++$dx){
+			for($dy = -2; $dy <= 2; ++$dy){
+				for($dz = -2; $dz <= 2; ++$dz){
+					if($world->getBlockAt($x + $dx, $y + $dy, $z + $dz) instanceof Water){
+						$world->setBlockAt($x + $dx, $y + $dy, $z + $dz, VanillaBlocks::AIR());
+						$absorbed = true;
+					}
+				}
+			}
+		}
+
+		if($absorbed){
+			$this->wet = true;
+			$world->setBlock($this->position, $this);
+		}
+	}
 }

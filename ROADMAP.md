@@ -25,6 +25,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Shelf mushrooms attach to walls, can be grown with bone meal and bounce entities.
 - End portal frames accept eyes of ender and activate the 3x3 portal when all 12 frames are filled.
 - Composters accept compostable items with vanilla chances, produce bone meal and expose their fill level to comparators.
+- Sponges absorb nearby water and turn into wet sponges.
 - Powder snow slows and freezes entities without leather boots, and can be collected/filled with buckets.
 
 Coverage: **1,480 of 1,480** canonical block type names (100%).
