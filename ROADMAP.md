@@ -74,6 +74,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Trial spawners spawn simple mob waves when players are nearby and eject loot after three waves.
 - Generated mobs have basic wandering/hostile movement, vanilla-style drops for common mobs and XP rewards.
 - Generated mobs support basic breeding with vanilla breeding foods and baby scaling.
+- Boats and chest boats are spawnable, rideable entities with basic water buoyancy and rider input; the generic rider/link system is implemented.
 
 **Active**
 

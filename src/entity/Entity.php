@@ -54,6 +54,8 @@ use pocketmine\network\mcpe\protocol\AddActorPacket;
 use pocketmine\network\mcpe\protocol\MoveActorAbsolutePacket;
 use pocketmine\network\mcpe\protocol\SetActorMotionPacket;
 use pocketmine\network\mcpe\protocol\types\entity\Attribute as NetworkAttribute;
+use pocketmine\network\mcpe\protocol\SetActorLinkPacket;
+use pocketmine\network\mcpe\protocol\types\entity\EntityLink;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataCollection;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataFlags;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataProperties;
@@ -114,6 +116,10 @@ abstract class Entity{
 	 * @phpstan-var array<int, Player>
 	 */
 	protected array $hasSpawned = [];
+
+	protected ?Entity $riding = null;
+	/** @var Entity[] */
+	protected array $passengers = [];
 
 	protected int $id;
 
@@ -983,6 +989,14 @@ abstract class Entity{
 	}
 
 	public function onUpdate(int $currentTick) : bool{
+		if(count($this->passengers) > 0){
+			foreach($this->passengers as $passenger){
+				$seat = $this->getRiderSeatPosition($passenger);
+				if($passenger->getPosition()->distanceSquared($seat) > 0.01){
+					$passenger->setPosition($seat);
+				}
+			}
+		}
 		if($this->closed){
 			return false;
 		}
@@ -1511,6 +1525,84 @@ abstract class Entity{
 		return $this->hasSpawned;
 	}
 
+	public function getRidingEntity() : ?Entity{
+		return $this->riding;
+	}
+
+	/** @return Entity[] */
+	public function getPassengers() : array{
+		return $this->passengers;
+	}
+
+	public function getPassenger() : ?Entity{
+		foreach($this->passengers as $passenger){
+			return $passenger;
+		}
+		return null;
+	}
+
+	public function addPassenger(Entity $passenger) : bool{
+		if($passenger === $this || $passenger->closed || $passenger->riding !== null){
+			return false;
+		}
+		$this->passengers[spl_object_id($passenger)] = $passenger;
+		$passenger->riding = $this;
+		$passenger->networkPropertiesDirty = true;
+		$this->sendLink($this, $passenger, EntityLink::TYPE_RIDER);
+		$this->sendLink($passenger, $this, EntityLink::TYPE_PASSENGER);
+		$passenger->setPosition($this->getRiderSeatPosition($passenger));
+		return true;
+	}
+
+	public function removePassenger(Entity $passenger) : bool{
+		$id = spl_object_id($passenger);
+		if(!isset($this->passengers[$id])){
+			return false;
+		}
+		unset($this->passengers[$id]);
+		$passenger->riding = null;
+		$passenger->networkPropertiesDirty = true;
+		$this->sendLink($this, $passenger, EntityLink::TYPE_REMOVE);
+		$this->sendLink($passenger, $this, EntityLink::TYPE_REMOVE);
+		return true;
+	}
+
+	public function dismount() : void{
+		if($this->riding !== null){
+			$vehicle = $this->riding;
+			$vehicle->removePassenger($this);
+			$this->setPosition($vehicle->getPosition()->add(0, $vehicle->size->getHeight() + 0.1, 0));
+		}
+	}
+
+	protected function getRiderSeatPosition(Entity $rider) : Vector3{
+		return $this->location->asVector3();
+	}
+
+	private function sendLink(Entity $from, Entity $to, int $type) : void{
+		$viewers = [];
+		foreach($from->hasSpawned as $player){
+			$viewers[spl_object_id($player)] = $player;
+		}
+		foreach($to->hasSpawned as $player){
+			$viewers[spl_object_id($player)] = $player;
+		}
+		foreach($viewers as $player){
+			$this->sendLinkTo($player, $from, $to, $type);
+		}
+	}
+
+	private function sendLinkTo(Player $player, Entity $from, Entity $to, int $type) : void{
+		$player->getNetworkSession()->sendDataPacket(SetActorLinkPacket::create(new EntityLink(
+			$from->getId(),
+			$to->getId(),
+			$type,
+			true,
+			false,
+			0.0
+		)));
+	}
+
 	abstract public static function getNetworkTypeId() : string;
 
 	/**
@@ -1546,6 +1638,15 @@ abstract class Entity{
 			$this->hasSpawned[$id] = $player;
 
 			$this->sendSpawnPacket($player);
+			$vehicle = $this->riding;
+			if($vehicle !== null){
+				$this->sendLinkTo($player, $vehicle, $this, EntityLink::TYPE_PASSENGER);
+				$this->sendLinkTo($player, $this, $vehicle, EntityLink::TYPE_RIDER);
+			}
+			foreach($this->passengers as $passenger){
+				$this->sendLinkTo($player, $this, $passenger, EntityLink::TYPE_RIDER);
+				$this->sendLinkTo($player, $passenger, $this, EntityLink::TYPE_PASSENGER);
+			}
 		}
 	}
 
@@ -1657,6 +1758,14 @@ abstract class Entity{
 	 */
 	protected function destroyCycles() : void{
 		$this->lastDamageCause = null;
+		foreach($this->passengers as $passenger){
+			$passenger->riding = null;
+		}
+		$this->passengers = [];
+		if($this->riding !== null){
+			$this->riding->removePassenger($this);
+			$this->riding = null;
+		}
 	}
 
 	/**
@@ -1721,6 +1830,7 @@ abstract class Entity{
 		$properties->setGenericFlag(EntityMetadataFlags::SILENT, $this->silent);
 		$properties->setGenericFlag(EntityMetadataFlags::ONFIRE, $this->isOnFire());
 		$properties->setGenericFlag(EntityMetadataFlags::WALLCLIMBING, $this->canClimbWalls);
+		$properties->setGenericFlag(EntityMetadataFlags::RIDING, $this->riding !== null);
 	}
 
 	/**

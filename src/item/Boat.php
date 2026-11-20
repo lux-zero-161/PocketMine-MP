@@ -23,6 +23,14 @@ declare(strict_types=1);
 
 namespace pocketmine\item;
 
+use pocketmine\block\Block;
+use pocketmine\entity\Location;
+use pocketmine\entity\object\Boat as BoatEntity;
+use pocketmine\entity\object\ChestBoat as ChestBoatEntity;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
+use function str_contains;
+
 class Boat extends Item{
 	private BoatType $boatType;
 
@@ -43,5 +51,24 @@ class Boat extends Item{
 		return 1;
 	}
 
-	//TODO
+	public function onInteractBlock(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, array &$returnedItems) : ItemUseResult{
+		if(!$blockReplace->canBeReplaced()){
+			return ItemUseResult::NONE;
+		}
+
+		$location = Location::fromObject(
+			$blockReplace->getPosition()->add(0.5, 0, 0.5),
+			$player->getWorld(),
+			$player->getLocation()->yaw,
+			0
+		);
+		$dropItem = (clone $this)->setCount(1);
+		$entity = str_contains($this->getName(), "Chest") ?
+			new ChestBoatEntity($location, null, $this->boatType, $dropItem) :
+			new BoatEntity($location, null, $this->boatType, $dropItem);
+
+		$this->pop();
+		$entity->spawnToAll();
+		return ItemUseResult::SUCCESS;
+	}
 }

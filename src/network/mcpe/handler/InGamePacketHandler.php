@@ -249,6 +249,11 @@ class InGamePacketHandler extends PacketHandler{
 			if($inputFlags->get(PlayerAuthInputFlags::MISSED_SWING)){
 				$this->player->missSwing();
 			}
+
+			$vehicle = $this->player->getRidingEntity();
+			if($vehicle instanceof \pocketmine\entity\object\Boat){
+				$vehicle->handleRiderInput($this->player, $inputFlags);
+			}
 		}
 
 		if(!$this->forceMoveSync && $hasMoved){

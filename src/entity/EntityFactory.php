@@ -129,6 +129,14 @@ final class EntityFactory{
 			return new FallingBlock(Helper::parseLocation($nbt, $world), FallingBlock::parseBlockNBT(RuntimeBlockStateRegistry::getInstance(), $nbt), $nbt);
 		}, ['FallingSand', 'minecraft:falling_block']);
 
+		$this->register(\pocketmine\entity\object\Boat::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\object\Boat{
+			return new \pocketmine\entity\object\Boat(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['Boat', 'minecraft:boat']);
+
+		$this->register(\pocketmine\entity\object\ChestBoat::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\object\ChestBoat{
+			return new \pocketmine\entity\object\ChestBoat(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['ChestBoat', 'minecraft:chest_boat']);
+
 		$this->register(ArmorStand::class, function(World $world, CompoundTag $nbt) : ArmorStand{
 			return new ArmorStand(Helper::parseLocation($nbt, $world), $nbt);
 		}, ['ArmorStand', 'minecraft:armor_stand']);

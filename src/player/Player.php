@@ -2155,6 +2155,13 @@ class Player extends Human implements CommandSender, ChunkListener, IPlayer, Nev
 		return true;
 	}
 
+	public function setSneaking(bool $value = true) : void{
+		if($value && $this->riding !== null){
+			$this->dismount();
+		}
+		parent::setSneaking($value);
+	}
+
 	public function toggleCrawl(bool $crawl) : bool{
 		return false;
 	}
