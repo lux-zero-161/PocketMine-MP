@@ -44,7 +44,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Planned**
 
-- Block behaviour parity for the newly added technical blocks: structure/jigsaw execution.
+- Block behaviour parity for the newly added technical blocks: jigsaw execution and full vanilla structure NBT compatibility.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
 
@@ -91,6 +91,8 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Firework rockets boost gliding players when used in the air.
 - Nether dimension rules: water evaporates, wet sponges dry and lava flows one block further.
 - Beds explode when used outside the overworld.
+- Structure blocks have editable names/sizes/offsets/rotation via the Bedrock editor UI, save/load regions on redstone and persist their settings.
+- `/structure save|load|delete|list` provides a command-line interface to the same NBT structure format.
 
 **Active**
 

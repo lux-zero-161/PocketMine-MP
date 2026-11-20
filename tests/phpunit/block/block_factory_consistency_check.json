@@ -1146,6 +1146,7 @@
         "SPRUCE_WALL_HANGING_SIGN": "pocketmine\\block\\tile\\HangingSign",
         "SPRUCE_WALL_SIGN": "pocketmine\\block\\tile\\Sign",
         "STICKY_PISTON": "pocketmine\\block\\tile\\PistonArm",
+        "STRUCTURE_BLOCK": "pocketmine\\block\\tile\\StructureBlock",
         "TRAPPED_CHEST": "pocketmine\\block\\tile\\Chest",
         "TRIAL_SPAWNER": "pocketmine\\block\\tile\\TrialSpawner",
         "VAULT": "pocketmine\\block\\tile\\Vault",

@@ -27,6 +27,7 @@ use pocketmine\block\BaseSign;
 use pocketmine\block\Lectern;
 use pocketmine\block\tile\CommandBlock as TileCommandBlock;
 use pocketmine\block\tile\Sign;
+use pocketmine\block\tile\StructureBlock as TileStructureBlock;
 use pocketmine\block\utils\SignText;
 use pocketmine\entity\Attribute;
 use pocketmine\entity\InvalidSkinException;
@@ -72,6 +73,7 @@ use pocketmine\network\mcpe\protocol\MovePlayerPacket;
 use pocketmine\network\mcpe\protocol\NetworkStackLatencyPacket;
 use pocketmine\network\mcpe\protocol\PlayerActionPacket;
 use pocketmine\network\mcpe\protocol\PlayerAuthInputPacket;
+use pocketmine\network\mcpe\protocol\StructureBlockUpdatePacket;
 use pocketmine\network\mcpe\protocol\PlayerHotbarPacket;
 use pocketmine\network\mcpe\protocol\PlayerInputPacket;
 use pocketmine\network\mcpe\protocol\PlayerSkinPacket;
@@ -797,6 +799,37 @@ class InGamePacketHandler extends PacketHandler{
 		}catch(\UnexpectedValueException $e){
 			throw PacketHandlingException::wrap($e);
 		}
+	}
+
+	public function handleStructureBlockUpdate(StructureBlockUpdatePacket $packet) : bool{
+		if(!$this->player->isCreative() && !$this->player->hasPermission(\pocketmine\permission\DefaultPermissions::ROOT_OPERATOR)){
+			return false;
+		}
+		$pos = new Vector3($packet->blockPosition->getX(), $packet->blockPosition->getY(), $packet->blockPosition->getZ());
+		if($pos->distanceSquared($this->player->getLocation()) > 10000){
+			return false;
+		}
+		$tile = $this->player->getWorld()->getTile($pos);
+		if(!$tile instanceof TileStructureBlock){
+			return false;
+		}
+
+		$data = $packet->structureEditorData;
+		$tile->setStructureName($data->structureName);
+		$tile->setMode(TileStructureBlock::modeFromInt($data->structureBlockType));
+		$tile->setIncludePlayers($data->includePlayers);
+		$tile->setShowBoundingBox($data->showBoundingBox);
+
+		$settings = $data->structureSettings;
+		$tile->setOffset(new Vector3($settings->offset->getX(), $settings->offset->getY(), $settings->offset->getZ()));
+		$tile->setSize(new Vector3($settings->dimensions->getX(), $settings->dimensions->getY(), $settings->dimensions->getZ()));
+		$tile->setRotation($settings->rotation);
+		$tile->setMirror($settings->mirror);
+		$tile->setIgnoreEntities($settings->ignoreEntities);
+		$tile->setIntegrity($settings->integrityValue);
+		$tile->setSeed($settings->integritySeed);
+		$tile->setPowered($packet->isPowered);
+		return true;
 	}
 
 	public function handleCommandBlockUpdate(CommandBlockUpdatePacket $packet) : bool{

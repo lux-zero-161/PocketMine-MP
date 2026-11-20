@@ -55,6 +55,7 @@ use pocketmine\command\defaults\SetWorldSpawnCommand;
 use pocketmine\command\defaults\SpawnpointCommand;
 use pocketmine\command\defaults\StatusCommand;
 use pocketmine\command\defaults\StopCommand;
+use pocketmine\command\defaults\StructureCommand;
 use pocketmine\command\defaults\TeleportCommand;
 use pocketmine\command\defaults\TellCommand;
 use pocketmine\command\defaults\TimeCommand;
@@ -127,6 +128,7 @@ class SimpleCommandMap implements CommandMap{
 			new SpawnpointCommand(),
 			new StatusCommand(),
 			new StopCommand(),
+			new StructureCommand(),
 			new TeleportCommand(),
 			new TellCommand(),
 			new TimeCommand(),

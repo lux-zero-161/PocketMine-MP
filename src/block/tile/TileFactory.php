@@ -52,6 +52,7 @@ final class TileFactory{
 	public function __construct(){
 		$this->register(Barrel::class, ["Barrel", "minecraft:barrel"]);
 		$this->register(CommandBlock::class, ["CommandBlock", "minecraft:command_block"]);
+		$this->register(StructureBlock::class, ["StructureBlock", "minecraft:structure_block"]);
 		$this->register(CalibratedSculkSensor::class, ["CalibratedSculkSensor", "minecraft:calibrated_sculk_sensor"]);
 		$this->register(Banner::class, ["Banner", "minecraft:banner"]);
 		$this->register(Beacon::class, ["Beacon", "minecraft:beacon"]);

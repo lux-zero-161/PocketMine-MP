@@ -41,6 +41,7 @@ use pocketmine\block\tile\Cauldron as TileCauldron;
 use pocketmine\block\tile\Chest as TileChest;
 use pocketmine\block\tile\CalibratedSculkSensor as TileCalibratedSculkSensor;
 use pocketmine\block\tile\CommandBlock as TileCommandBlock;
+use pocketmine\block\tile\StructureBlock as TileStructureBlock;
 use pocketmine\block\tile\ChiseledBookshelf as TileChiseledBookshelf;
 use pocketmine\block\tile\Comparator as TileComparator;
 use pocketmine\block\tile\TrialSpawner as TileTrialSpawner;
@@ -1240,7 +1241,7 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("waxed_weathered_copper_golem_statue", fn(BID $id) => new CopperGolemStatue($id, "Waxed Weathered Copper Golem Statue", $statueBreakInfo));
 		self::register("waxed_oxidized_copper_golem_statue", fn(BID $id) => new CopperGolemStatue($id, "Waxed Oxidized Copper Golem Statue", $statueBreakInfo));
 
-		self::register("structure_block", fn(BID $id) => new StructureBlock($id, "Structure Block", $unbreakable));
+		self::register("structure_block", fn(BID $id) => new StructureBlock($id, "Structure Block", $unbreakable), TileStructureBlock::class);
 		self::register("jigsaw", fn(BID $id) => new Jigsaw($id, "Jigsaw Block", $unbreakable));
 		self::register("command_block", fn(BID $id) => new CommandBlock($id, "Command Block", $unbreakable), TileCommandBlock::class);
 		self::register("chain_command_block", fn(BID $id) => new CommandBlock($id, "Chain Command Block", $unbreakable), TileCommandBlock::class);
