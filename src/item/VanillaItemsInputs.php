@@ -95,6 +95,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::registerCushionsAndHarnesses();
 		self::registerEquipmentItems();
 		self::registerMiscItems();
+		self::registerOnAStickItems();
 
 		//this doesn't use the regular register() because it doesn't have an item typeID
 		//in the future we'll probably want to dissociate this from the air block and make a proper null item
@@ -548,6 +549,12 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("glow_stick", fn(IID $id) => new Item($id, "Glow Stick"));
 		self::register("sparkler", fn(IID $id) => new Item($id, "Sparkler"));
 		self::register("brush", fn(IID $id) => new Item($id, "Brush"));
+	}
+
+
+	private function registerOnAStickItems() : void{
+		self::register("carrot_on_a_stick", fn(IID $id) => new OnAStick($id, "Carrot on a Stick", 25));
+		self::register("warped_fungus_on_a_stick", fn(IID $id) => new OnAStick($id, "Warped Fungus on a Stick", 100));
 	}
 
 }

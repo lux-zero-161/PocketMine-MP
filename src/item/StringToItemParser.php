@@ -1844,6 +1844,8 @@ final class StringToItemParser extends StringToTParser{
 		$result->register("wooden_sword", fn() => Items::WOODEN_SWORD());
 		$result->register("writable_book", fn() => Items::WRITABLE_BOOK());
 		$result->register("written_book", fn() => Items::WRITTEN_BOOK());
+		$result->register("carrot_on_a_stick", fn() => Items::CARROT_ON_A_STICK());
+		$result->register("warped_fungus_on_a_stick", fn() => Items::WARPED_FUNGUS_ON_A_STICK());
 		$result->register("bamboo_raft", fn() => Items::BAMBOO_RAFT());
 		$result->register("music_disc_bounce", fn() => Items::MUSIC_DISC_BOUNCE());
 		$result->register("music_disc_tears", fn() => Items::MUSIC_DISC_TEARS());

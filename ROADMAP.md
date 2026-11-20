@@ -54,6 +54,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Powder snow bucket and powder snow cauldron, including bucket pickup from powder snow blocks.
 - Lead, saddle, armadillo scute, breeze rod, trial keys, eye of ender, brush, glow stick and sparkler items.
 - 1.26.60 Bounce and Tears music discs, including jukebox comparator outputs.
+- Carrot on a Stick and Warped Fungus on a Stick with correct durability.
 - Bamboo raft item and BoatType support.
 - Cherry and pale oak boats, plus horse, nautilus and wolf armor items.
 

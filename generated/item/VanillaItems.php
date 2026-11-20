@@ -86,6 +86,7 @@ final class VanillaItems{
 	private static Bucket $_mBUCKET;
 	private static Item $_mBURN_POTTERY_SHERD;
 	private static Carrot $_mCARROT;
+	private static OnAStick $_mCARROT_ON_A_STICK;
 	private static Armor $_mCHAINMAIL_BOOTS;
 	private static Armor $_mCHAINMAIL_CHESTPLATE;
 	private static Armor $_mCHAINMAIL_HELMET;
@@ -440,6 +441,7 @@ final class VanillaItems{
 	private static Item $_mVEX_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static SpawnEgg $_mVILLAGER_SPAWN_EGG;
 	private static Item $_mWARD_ARMOR_TRIM_SMITHING_TEMPLATE;
+	private static OnAStick $_mWARPED_FUNGUS_ON_A_STICK;
 	private static HangingSign $_mWARPED_HANGING_SIGN;
 	private static ItemBlockWallOrFloor $_mWARPED_SIGN;
 	private static LiquidBucket $_mWATER_BUCKET;
@@ -542,6 +544,7 @@ final class VanillaItems{
 			"bucket" => fn(Bucket $v) => self::$_mBUCKET = $v,
 			"burn_pottery_sherd" => fn(Item $v) => self::$_mBURN_POTTERY_SHERD = $v,
 			"carrot" => fn(Carrot $v) => self::$_mCARROT = $v,
+			"carrot_on_a_stick" => fn(OnAStick $v) => self::$_mCARROT_ON_A_STICK = $v,
 			"chainmail_boots" => fn(Armor $v) => self::$_mCHAINMAIL_BOOTS = $v,
 			"chainmail_chestplate" => fn(Armor $v) => self::$_mCHAINMAIL_CHESTPLATE = $v,
 			"chainmail_helmet" => fn(Armor $v) => self::$_mCHAINMAIL_HELMET = $v,
@@ -896,6 +899,7 @@ final class VanillaItems{
 			"vex_armor_trim_smithing_template" => fn(Item $v) => self::$_mVEX_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"villager_spawn_egg" => fn(SpawnEgg $v) => self::$_mVILLAGER_SPAWN_EGG = $v,
 			"ward_armor_trim_smithing_template" => fn(Item $v) => self::$_mWARD_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
+			"warped_fungus_on_a_stick" => fn(OnAStick $v) => self::$_mWARPED_FUNGUS_ON_A_STICK = $v,
 			"warped_hanging_sign" => fn(HangingSign $v) => self::$_mWARPED_HANGING_SIGN = $v,
 			"warped_sign" => fn(ItemBlockWallOrFloor $v) => self::$_mWARPED_SIGN = $v,
 			"water_bucket" => fn(LiquidBucket $v) => self::$_mWATER_BUCKET = $v,
@@ -1192,6 +1196,11 @@ final class VanillaItems{
 	public static function CARROT() : Carrot{
 		if(!isset(self::$_mCARROT)){ self::init(); }
 		return clone self::$_mCARROT;
+	}
+
+	public static function CARROT_ON_A_STICK() : OnAStick{
+		if(!isset(self::$_mCARROT_ON_A_STICK)){ self::init(); }
+		return clone self::$_mCARROT_ON_A_STICK;
 	}
 
 	public static function CHAINMAIL_BOOTS() : Armor{
@@ -2962,6 +2971,11 @@ final class VanillaItems{
 	public static function WARD_ARMOR_TRIM_SMITHING_TEMPLATE() : Item{
 		if(!isset(self::$_mWARD_ARMOR_TRIM_SMITHING_TEMPLATE)){ self::init(); }
 		return clone self::$_mWARD_ARMOR_TRIM_SMITHING_TEMPLATE;
+	}
+
+	public static function WARPED_FUNGUS_ON_A_STICK() : OnAStick{
+		if(!isset(self::$_mWARPED_FUNGUS_ON_A_STICK)){ self::init(); }
+		return clone self::$_mWARPED_FUNGUS_ON_A_STICK;
 	}
 
 	public static function WARPED_HANGING_SIGN() : HangingSign{
