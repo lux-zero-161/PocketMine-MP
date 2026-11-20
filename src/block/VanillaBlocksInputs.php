@@ -57,6 +57,7 @@ use pocketmine\block\tile\MobHead as TileMobHead;
 use pocketmine\block\tile\MonsterSpawner as TileMonsterSpawner;
 use pocketmine\block\tile\NormalFurnace as TileNormalFurnace;
 use pocketmine\block\tile\Note as TileNote;
+use pocketmine\block\tile\PistonArm as TilePistonArm;
 use pocketmine\block\tile\PotentSulfur as TilePotentSulfur;
 use pocketmine\block\tile\Shelf as TileShelf;
 use pocketmine\block\tile\ShulkerBox as TileShulkerBox;
@@ -1201,8 +1202,8 @@ final class VanillaBlocksInputs extends RegistrySource{
 		self::register("dropper", fn(BID $id) => new Dispenser($id, "Dropper", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD, 17.5))), TileDispenser::class);
 
 		$pistonBreakInfo = new Info(new BreakInfo(1.5, BlockToolType::NONE, 0, 7.5));
-		self::register("piston", fn(BID $id) => new Piston($id, "Piston", $pistonBreakInfo));
-		self::register("sticky_piston", fn(BID $id) => new StickyPiston($id, "Sticky Piston", $pistonBreakInfo));
+		self::register("piston", fn(BID $id) => new Piston($id, "Piston", $pistonBreakInfo), TilePistonArm::class);
+		self::register("sticky_piston", fn(BID $id) => new StickyPiston($id, "Sticky Piston", $pistonBreakInfo), TilePistonArm::class);
 		self::register("piston_arm_collision", fn(BID $id) => new PistonArmCollision($id, "Piston Arm", $pistonBreakInfo));
 		self::register("sticky_piston_arm_collision", fn(BID $id) => new PistonArmCollision($id, "Sticky Piston Arm", $pistonBreakInfo));
 

@@ -41,7 +41,7 @@ The project is under active development. Everything below is measured against th
 | Block entities for new blocks | Shelves, copper chests, beehives and decorated pots implemented as tile-backed blocks; multi-shelf hotbar swapping and bee release behaviour still open |
 | Vanilla world generation | Not achieved. The built-in generator is PocketMine-MP's simplified noise generator |
 | Nether / End dimensions | Nether generator exists; End generation and vanilla-style dimension travel are not implemented |
-| Redstone, mob AI, vanilla survival mechanics | Basic redstone (wire, torches, levers, buttons, repeaters, comparators, lamps, observers, dispensers/droppers) implemented; piston movement, sculk sensing and full vanilla parity are open |
+| Redstone, mob AI, vanilla survival mechanics | Basic redstone (wire, torches, levers, buttons, repeaters, comparators, lamps, observers, dispensers/droppers, pistons) implemented; sculk sensing and full vanilla parity are open |
 
 Every canonical 1.26.60 block type name is now registered, including the poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press and straw bed. Remaining block work is behavioural rather than registry coverage, and is tracked in [ROADMAP.md](ROADMAP.md).
 
@@ -63,7 +63,7 @@ A block is considered implemented when:
 - block properties (hardness, blast resistance, light, flammability, collision, support) match the vanilla data;
 - it can be placed, broken, saved and loaded, and its item form exists where Bedrock has one.
 
-Gameplay systems layered on top of blocks (redstone propagation, piston movement, sculk sensing, archaeology, bee AI) are tracked separately in the roadmap. No block is registered as an empty stub: unknown or unimplemented Bedrock states still fall back to the existing `UnknownBlock` mechanism rather than silently becoming an incorrect vanilla block.
+Gameplay systems layered on top of blocks (redstone propagation, piston animation details, sculk sensing, archaeology, bee AI) are tracked separately in the roadmap. No block is registered as an empty stub: unknown or unimplemented Bedrock states still fall back to the existing `UnknownBlock` mechanism rather than silently becoming an incorrect vanilla block.
 ## Feature overview
 
 - **Plugin API** — stable PocketMine-MP 5.x API, Composer-based plugins, event system, commands, forms, permissions, tasks and async workers.

@@ -23,6 +23,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - 1.26.60 content: poplar wood set, ice crystal/icicle, disc press, straw bed, red shrub, shelf mushroom and poplar leaves variants.
 - Straw beds are placed as two halves and support sleeping/spawn setting like regular beds.
 - Shelf mushrooms attach to walls, can be grown with bone meal and bounce entities.
+- Pistons and sticky pistons move up to 12 blocks, place piston arm blocks and use a PistonArm block entity.
 - End portal frames accept eyes of ender and activate the 3x3 portal when all 12 frames are filled.
 - Nether portals can be lit with flint and steel or fire charges on a valid obsidian frame (dimension travel is still missing).
 - Composters accept compostable items with vanilla chances, produce bone meal and expose their fill level to comparators.
@@ -39,11 +40,11 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Shelves — multi-shelf powered connections and hotbar swapping.
 - Copper chests — container block entity with oxidation/wax variants, same-variant chest pairing and waxing/scraping support.
 - `bee_nest`, `beehive` — bee entity release/entry and honey production.
-- Redstone — wire propagation, torch inversion, repeater delay/locking and comparator analog output are implemented; piston movement, sculk sensing and observer/dispenser edge cases remain.
+- Redstone — wire propagation, torch inversion, repeater delay/locking, comparator analog output and piston movement are implemented; sculk sensing, exact piston animation/update ordering and observer/dispenser edge cases remain.
 
 **Planned**
 
-- Block behaviour parity for the newly added technical blocks: redstone updates, piston movement, sculk sensing, vault/trial spawner logic, crafter automation, command execution.
+- Block behaviour parity for the newly added technical blocks: sculk sensing, vault/trial spawner logic, crafter automation, command execution.
 - Archaeology for suspicious sand/gravel.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
