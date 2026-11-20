@@ -126,6 +126,7 @@ use pocketmine\world\Position;
 use pocketmine\world\World;
 use pocketmine\world\WorldCreationOptions;
 use pocketmine\world\WorldManager;
+use pocketmine\world\map\MapManager;
 use pocketmine\YmlServerProperties as Yml;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Filesystem\Path;
@@ -1109,6 +1110,8 @@ class Server{
 
 			$this->playerDataProvider = new DatFilePlayerDataProvider(Path::join($this->dataPath, "players"));
 
+			MapManager::init($this);
+
 			register_shutdown_function($this->crashDump(...));
 
 			$loadErrorCount = 0;
@@ -1609,6 +1612,8 @@ class Server{
 			if(isset($this->network)){
 				$this->network->getSessionManager()->close($this->configGroup->getPropertyString(Yml::SETTINGS_SHUTDOWN_MESSAGE, "Server closed"));
 			}
+
+			MapManager::save();
 
 			if(isset($this->worldManager)){
 				$this->logger->debug("Unloading all worlds");

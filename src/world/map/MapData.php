@@ -7,8 +7,13 @@ namespace pocketmine\world\map;
 use pocketmine\block\Block;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\color\Color;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\IntArrayTag;
+use pocketmine\nbt\tag\IntTag;
 use pocketmine\network\mcpe\protocol\types\MapImage;
 use pocketmine\world\World;
+use function array_values;
+use function count;
 use function max;
 use function min;
 use function str_contains;
@@ -130,6 +135,39 @@ final class MapData{
 			return [219, 222, 158];
 		}
 		return [150, 150, 150];
+	}
+
+	public function toNbt() : CompoundTag{
+		return CompoundTag::create()
+			->setInt("id", $this->id)
+			->setInt("dimension", $this->dimensionId)
+			->setInt("centerX", $this->centerX)
+			->setInt("centerZ", $this->centerZ)
+			->setInt("scale", $this->scale)
+			->setTag("colors", new IntArrayTag(array_values($this->colors)));
+	}
+
+	public static function fromNbt(CompoundTag $tag) : ?self{
+		$id = $tag->getInt("id", -1);
+		if($id <= 0){
+			return null;
+		}
+		$colorsTag = $tag->getTag("colors");
+		if(!$colorsTag instanceof IntArrayTag){
+			return null;
+		}
+		$map = new self(
+			$id,
+			$tag->getInt("dimension", 0),
+			$tag->getInt("centerX", 0),
+			$tag->getInt("centerZ", 0),
+			max(0, min(4, $tag->getInt("scale", 0)))
+		);
+		$colors = array_values($colorsTag->getValue());
+		if(count($colors) === self::SIZE * self::SIZE){
+			$map->colors = $colors;
+		}
+		return $map;
 	}
 
 	public function toImage() : MapImage{

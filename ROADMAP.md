@@ -105,6 +105,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - End generation now creates a central end-stone island, outer islands and obsidian pillars; portal travel uses it instead of a void world.
 - Jigsaw blocks store pool/target data, trigger structure placement on redstone and recursively expand jigsaw connectors; `/jigsaw set|generate` configures and runs them.
 - Rain slowly fills empty and partially filled cauldrons.
+- Map IDs, colors and metadata persist across server restarts in `maps.nbt`.
 
 **Active**
 
