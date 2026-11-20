@@ -32,6 +32,7 @@ use pocketmine\world\generator\Generator;
 use pocketmine\world\generator\InvalidGeneratorOptionsException;
 use pocketmine\world\generator\noise\Simplex;
 use pocketmine\world\generator\object\OreType;
+use pocketmine\world\generator\populator\HellDecorator;
 use pocketmine\world\generator\populator\Ore;
 use pocketmine\world\generator\populator\Populator;
 use pocketmine\world\World;
@@ -64,6 +65,7 @@ class Nether extends Generator{
 			new OreType(VanillaBlocks::NETHER_QUARTZ_ORE(), VanillaBlocks::NETHERRACK(), 16, 14, 10, 117)
 		]);
 		$this->populators[] = $ores;
+		$this->populators[] = new HellDecorator();
 	}
 
 	public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ) : void{
