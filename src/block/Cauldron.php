@@ -93,6 +93,19 @@ final class Cauldron extends Transparent{
 		return true;
 	}
 
+	public function ticksRandomly() : bool{
+		return true;
+	}
+
+	public function onRandomTick() : void{
+		$world = $this->position->getWorld();
+		if($world->isRaining() && $world->getRealBlockSkyLightAt($this->position->getFloorX(), $this->position->getFloorY(), $this->position->getFloorZ()) >= 8){
+			$cauldron = VanillaBlocks::WATER_CAULDRON()->setFillLevel(FillableCauldron::MIN_FILL_LEVEL);
+			$world->setBlock($this->position, $cauldron);
+			$world->addSound($this->position->add(0.5, 0.5, 0.5), $cauldron->getFillSound());
+		}
+	}
+
 	public function onNearbyBlockChange() : void{
 		$world = $this->position->getWorld();
 		if($world->getBlock($this->position->up())->getTypeId() === BlockTypeIds::WATER){

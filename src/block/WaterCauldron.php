@@ -108,6 +108,17 @@ final class WaterCauldron extends FillableCauldron{
 		return new CauldronEmptyWaterSound();
 	}
 
+	public function ticksRandomly() : bool{
+		return $this->getFillLevel() < FillableCauldron::MAX_FILL_LEVEL;
+	}
+
+	public function onRandomTick() : void{
+		$world = $this->position->getWorld();
+		if($world->isRaining() && $world->getRealBlockSkyLightAt($this->position->getFloorX(), $this->position->getFloorY(), $this->position->getFloorZ()) >= 8){
+			$world->setBlock($this->position, $this->setFillLevel($this->getFillLevel() + 1));
+		}
+	}
+
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
 		$world = $this->position->getWorld();
 		if(($dyeColor = match($item->getTypeId()){
