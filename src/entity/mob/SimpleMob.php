@@ -18,6 +18,8 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\item\Item;
 use pocketmine\item\ItemTypeIds;
+use pocketmine\block\utils\DyeColor;
+use pocketmine\item\Dye;
 use pocketmine\item\PotionType;
 use pocketmine\item\Shears;
 use pocketmine\item\VanillaItems;
@@ -64,6 +66,9 @@ abstract class SimpleMob extends Living{
 	private bool $sheared = false;
 	private int $woolRegrowTicks = 0;
 	private int $eggLayTicks = 0;
+	private ?DyeColor $woolColor = null;
+	private bool $tamed = false;
+	private ?Player $tamedBy = null;
 
 	abstract public function createBaby(Location $location) : self;
 
@@ -121,12 +126,46 @@ abstract class SimpleMob extends Living{
 			$player->getInventory()->addItem(VanillaItems::MUSHROOM_STEW());
 			return true;
 		}
+		if($name === "Sheep" && $item instanceof Dye){
+			$this->woolColor = $item->getColor();
+			$item->pop();
+			$player->getInventory()->setItemInHand($item);
+			return true;
+		}
+		if($name === "Mooshroom" && $item instanceof Shears && !$this->sheared){
+			$this->sheared = true;
+			$this->woolRegrowTicks = 1200;
+			$item->applyDamage(1);
+			$player->getInventory()->setItemInHand($item);
+			for($i = 0; $i < 5; ++$i){
+				$this->getWorld()->dropItem($this->location->add(0, $this->size->getHeight() / 2, 0), VanillaBlocks::RED_MUSHROOM()->asItem());
+			}
+			return true;
+		}
+		if(($name === "Wolf" || $name === "Cat") && !$this->tamed){
+			$food = $name === "Wolf" ? ItemTypeIds::BONE : null;
+			if(($food !== null && $item->getTypeId() === $food) || ($name === "Cat" && ($item instanceof \pocketmine\item\RawFish || $item instanceof \pocketmine\item\RawSalmon || $item instanceof \pocketmine\item\Clownfish))){
+				$item->pop();
+				$player->getInventory()->setItemInHand($item);
+				if(mt_rand(0, 2) === 0){
+					$this->tamed = true;
+					$this->tamedBy = $player;
+					$this->setNameTag($player->getName() . "'s " . $name);
+					$this->getWorld()->addParticle($this->location->add(0, $this->size->getHeight(), 0), new HeartParticle());
+				}
+				return true;
+			}
+		}
 		if($name === "Sheep" && $item instanceof Shears && !$this->sheared){
 			$this->sheared = true;
 			$this->woolRegrowTicks = 1200;
 			$item->applyDamage(1);
 			$player->getInventory()->setItemInHand($item);
-			$this->getWorld()->dropItem($this->location->add(0, $this->size->getHeight() / 2, 0), VanillaBlocks::WOOL()->asItem()->setCount(mt_rand(1, 3)));
+			$wool = VanillaBlocks::WOOL();
+			if($this->woolColor !== null){
+				$wool->setColor($this->woolColor);
+			}
+			$this->getWorld()->dropItem($this->location->add(0, $this->size->getHeight() / 2, 0), $wool->asItem()->setCount(mt_rand(1, 3)));
 			return true;
 		}
 		return false;
@@ -163,6 +202,13 @@ abstract class SimpleMob extends Living{
 
 		if($name === "Enderman" && $currentTick % 100 === 0 && $this->getNearestPlayer(12) !== null){
 			$this->teleportRandomly();
+		}
+
+		if($this->tamed && $this->tamedBy !== null && $this->tamedBy->isAlive()){
+			$owner = $this->tamedBy;
+			if($this->location->distanceSquared($owner->getLocation()) > 64){
+				$this->moveTowards($owner->getPosition(), 0.3);
+			}
 		}
 
 		if($name === "Iron Golem" && $currentTick % 10 === 0){
@@ -462,11 +508,19 @@ abstract class SimpleMob extends Living{
 		return $nearest;
 	}
 
+	private function getWoolDrop() : Item{
+		$wool = VanillaBlocks::WOOL();
+		if($this->woolColor !== null){
+			$wool->setColor($this->woolColor);
+		}
+		return $wool->asItem();
+	}
+
 	public function getDrops() : array{
 		return match($this->getName()){
 			"Cow" => [VanillaItems::RAW_BEEF()->setCount(mt_rand(1, 3)), VanillaItems::LEATHER()->setCount(mt_rand(0, 2))],
 			"Pig" => [VanillaItems::RAW_PORKCHOP()->setCount(mt_rand(1, 3))],
-			"Sheep" => [VanillaItems::RAW_MUTTON()->setCount(mt_rand(1, 2)), VanillaBlocks::WOOL()->asItem()],
+			"Sheep" => [VanillaItems::RAW_MUTTON()->setCount(mt_rand(1, 2)), $this->getWoolDrop()],
 			"Chicken" => [VanillaItems::RAW_CHICKEN()->setCount(1), VanillaItems::FEATHER()->setCount(mt_rand(0, 2))],
 			"Rabbit" => [VanillaItems::RAW_RABBIT()->setCount(mt_rand(0, 1)), VanillaItems::RABBIT_HIDE()->setCount(mt_rand(0, 1)), VanillaItems::RABBIT_FOOT()->setCount(mt_rand(0, 1))],
 			"Cod" => [VanillaItems::RAW_FISH()->setCount(1)],
