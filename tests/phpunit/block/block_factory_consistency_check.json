@@ -1143,6 +1143,7 @@
         "SPRUCE_WALL_SIGN": "pocketmine\\block\\tile\\Sign",
         "STICKY_PISTON": "pocketmine\\block\\tile\\PistonArm",
         "TRAPPED_CHEST": "pocketmine\\block\\tile\\Chest",
+        "VAULT": "pocketmine\\block\\tile\\Vault",
         "WALL_BANNER": "pocketmine\\block\\tile\\Banner",
         "WARPED_CEILING_CENTER_HANGING_SIGN": "pocketmine\\block\\tile\\HangingSign",
         "WARPED_CEILING_EDGES_HANGING_SIGN": "pocketmine\\block\\tile\\HangingSign",
