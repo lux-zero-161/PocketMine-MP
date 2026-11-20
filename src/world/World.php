@@ -200,6 +200,8 @@ class World implements ChunkManager{
 	 * @phpstan-var array<int, Player>
 	 */
 	private array $players = [];
+	/** @var Raid[] */
+	private array $raids = [];
 
 	/**
 	 * @var Entity[] entity runtime ID => Entity
@@ -1068,6 +1070,11 @@ class World implements ChunkManager{
 
 	protected function actuallyDoTick(int $currentTick) : void{
 		$this->tickWeather();
+		if($currentTick % 20 === 0){
+			foreach($this->raids as $raid){
+				$raid->tick();
+			}
+		}
 		if(!$this->stopTime){
 			//this simulates an overflow, as would happen in any language which doesn't do stupid things to var types
 			if($this->time === PHP_INT_MAX){
@@ -2739,6 +2746,14 @@ class World implements ChunkManager{
 		}
 
 		return $currentTarget;
+	}
+
+	public function addRaid(Raid $raid) : void{
+		$this->raids[spl_object_id($raid)] = $raid;
+	}
+
+	public function removeRaid(Raid $raid) : void{
+		unset($this->raids[spl_object_id($raid)]);
 	}
 
 	/**

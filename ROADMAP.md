@@ -116,6 +116,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Thunderstorms periodically strike lightning near players, damaging and igniting nearby entities.
 - End gateways teleport players to outer End islands with an arrival platform; the dragon has health-based phases and drops a dragon egg on the exit portal.
 - Deep caves include simplified water-filled aquifers, and `build/audit/soak.php` runs repeated serialization/memory checks.
+- `/raid [waves]` starts a simplified illager raid with pillagers, vindicators, evokers and ravagers, a live boss bar and emerald rewards.
 
 **Active**
 
