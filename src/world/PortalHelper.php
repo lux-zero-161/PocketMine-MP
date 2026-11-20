@@ -9,7 +9,7 @@ use pocketmine\block\VanillaBlocks;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\world\generator\hell\Nether;
-use pocketmine\world\generator\VoidGenerator;
+use pocketmine\world\generator\end\End;
 use function floor;
 use function min;
 
@@ -101,7 +101,7 @@ final class PortalHelper{
 		$targetName = "the_end";
 		$target = $worldManager->getWorldByName($targetName);
 		if($target === null){
-			$options = WorldCreationOptions::create()->setSeed($current->getSeed())->setGeneratorClass(VoidGenerator::class);
+			$options = WorldCreationOptions::create()->setSeed($current->getSeed())->setGeneratorClass(End::class);
 			if(!$worldManager->generateWorld($targetName, $options, false)){
 				return false;
 			}
