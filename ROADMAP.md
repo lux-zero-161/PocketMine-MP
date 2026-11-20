@@ -72,6 +72,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Crafters have a 3x3 inventory, redstone-triggered crafting, recipe matching and output ejection into containers/droppers.
 - Vaults accept normal/ominous trial keys, track per-player usage and eject normal/ominous loot after the unlock animation.
 - Trial spawners spawn simple mob waves when players are nearby and eject loot after three waves.
+- Generated mobs have basic wandering/hostile movement, vanilla-style drops for common mobs and XP rewards.
 
 **Active**
 
