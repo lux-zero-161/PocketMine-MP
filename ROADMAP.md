@@ -113,6 +113,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Villagers wander and offer profession-based direct item trades (wheat/paper/coal/meat for emeralds and back); the full Bedrock trade window is still simplified.
 - Bundle item-stack requests now insert and remove items through the Bedrock bundle UI actions, in addition to the NBT storage API.
 - End crystals heal a nearby Ender Dragon and the dragon creates an exit portal when killed.
+- Thunderstorms periodically strike lightning near players, damaging and igniting nearby entities.
 
 **Active**
 

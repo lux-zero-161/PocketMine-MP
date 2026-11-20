@@ -45,6 +45,7 @@ use pocketmine\data\bedrock\block\BlockStateData;
 use pocketmine\data\bedrock\block\BlockStateDeserializeException;
 use pocketmine\data\SavedDataLoadingException;
 use pocketmine\entity\Entity;
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\entity\EntityFactory;
 use pocketmine\entity\Location;
 use pocketmine\entity\NeverSavedWithChunkEntity;
@@ -116,6 +117,7 @@ use pocketmine\world\particle\BlockParticle;
 use pocketmine\world\particle\ItemParticle;
 use pocketmine\world\particle\Particle;
 use pocketmine\world\particle\ProtocolParticle;
+use pocketmine\world\sound\ThunderSound;
 use pocketmine\world\sound\BlockPlaceSound;
 use pocketmine\world\sound\BlockSound;
 use pocketmine\world\sound\ProtocolSound;
@@ -127,6 +129,7 @@ use function array_filter;
 use function array_key_exists;
 use function array_keys;
 use function array_map;
+use function array_rand;
 use function array_merge;
 use function array_sum;
 use function array_values;
@@ -1927,6 +1930,10 @@ class World implements ChunkManager{
 	}
 
 	private function tickWeather() : void{
+		if($this->thundering && mt_rand(0, 599) === 0){
+			$this->strikeLightning();
+		}
+
 		if(--$this->rainTicks > 0){
 			if($this->thundering && --$this->thunderTicks <= 0){
 				$this->setThundering(false);
@@ -1942,6 +1949,32 @@ class World implements ChunkManager{
 			if(mt_rand(0, 4) === 0){
 				$this->setThundering(true);
 			}
+		}
+	}
+
+	private function strikeLightning() : void{
+		$players = $this->getPlayers();
+		if(count($players) === 0){
+			return;
+		}
+		$player = $players[array_rand($players)];
+		$x = $player->getLocation()->getFloorX();
+		$z = $player->getLocation()->getFloorZ();
+		try{
+			$y = $this->getHighestBlockAt($x, $z);
+		}catch(\Throwable){
+			return;
+		}
+		if($y === null){
+			return;
+		}
+		$position = new Position($x + 0.5, $y + 1, $z + 0.5, $this);
+		$this->addSound($position, new ThunderSound());
+
+		$box = AxisAlignedBB::one()->expand(3, 6, 3)->offset($position->x, $position->y, $position->z);
+		foreach($this->getNearbyEntities($box) as $entity){
+			$entity->attack(new EntityDamageEvent($entity, EntityDamageEvent::CAUSE_CUSTOM, 5));
+			$entity->setOnFire(4);
 		}
 	}
 

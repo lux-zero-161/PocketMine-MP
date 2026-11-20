@@ -34,7 +34,7 @@ implemented blocks round-trip through the serializer.
 | Plugin API | ~95% | PocketMine-MP 5.x API preserved; new block/item types are exposed. |
 | Testing / performance | ~60% | Registry and serialization tests are strong. No per-tick benchmarks, profiling suite or soak tests. |
 
-**Overall roadmap estimate: roughly 96% complete.**
+**Overall roadmap estimate: roughly 97% complete.**
 Content/data is at 100%; gameplay, world generation and dimension depth are the
 remaining work.
 
