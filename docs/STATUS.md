@@ -44,7 +44,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 | Dimensions | ~75% | Overworld/Nether/End, portals, exit portal, gateways and dimension-aware chunks. Dragon fight phases and End content are simplified. |
 | Networking / protocol | ~95% | Protocol 2225, RakNet, NetherNet and packet coverage inherited from the maintained base. |
 | Plugin API | ~95% | PocketMine-MP 5.x API preserved; new block/item types are exposed. |
-| Testing / performance | ~70% | Strong registry/serialization tests plus quick performance and soak audits. No long-running multi-player load test yet. |
+| Testing / performance | ~73% | Strong registry/serialization tests plus quick performance and soak audits. No long-running multi-player load test yet. |
 
 ## Recently completed
 
@@ -69,7 +69,8 @@ and all states used by the implemented blocks round-trip through the serializer.
 - Form-based villager trade UI and grindstone UI.
 - Bad Omen / Hero of the Village effects registered.
 - `/raid`, `/summon`, `/structure`, `/jigsaw` commands.
-- Performance and soak audit scripts.
+- Performance and soak audit scripts, plus an in-memory worldgen smoke test.
+- PHP 8.3 minimum (tested on PHP 8.4), with hot-path optimizations for sculk scans and natural spawning.
 
 ## Known gaps / highest-value remaining work
 
@@ -96,6 +97,7 @@ vendor/bin/phpstan analyse --no-progress --memory-limit=2G
 
 ## Notes
 
+- Performance details and benchmarks: [PERFORMANCE.md](PERFORMANCE.md).
 - Vendor data is Bedrock 1.26.60 / protocol 2225 and is authoritative for integration.
 - The reference folder `bedrockServer/` is Bedrock 1.26.30 and is only used for comparisons.
 - Estimates are deliberately conservative. "100% content coverage" does **not** mean

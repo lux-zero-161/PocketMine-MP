@@ -46,7 +46,7 @@ The project is under active development. Everything below is measured against th
 
 Every canonical 1.26.60 block type name and every creative inventory item is now represented, including the poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press and straw bed. Remaining work is behavioural rather than registry coverage, and is tracked in [ROADMAP.md](ROADMAP.md).
 
-A status breakdown with an estimate of remaining work is in [docs/STATUS.md](docs/STATUS.md).
+A status breakdown with an estimate of remaining work is in [docs/STATUS.md](docs/STATUS.md). Performance notes are in [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
 
 A live audit can be run with:
 
