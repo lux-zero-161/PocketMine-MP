@@ -25,12 +25,14 @@ namespace pocketmine\block;
 
 use pocketmine\block\tile\Container;
 use pocketmine\block\tile\Hopper as TileHopper;
+use pocketmine\block\tile\Jukebox as TileJukebox;
 use pocketmine\block\utils\PoweredByRedstone;
 use pocketmine\block\utils\PoweredByRedstoneTrait;
 use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\block\utils\SupportType;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\item\Item;
+use pocketmine\item\Record;
 use pocketmine\item\VanillaItems;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Facing;
@@ -174,6 +176,30 @@ class Hopper extends Transparent implements PoweredByRedstone{
 			}
 		}
 
+		if($this->facing === Facing::DOWN){
+			$jukebox = $world->getBlock($this->getSide(Facing::DOWN)->getPosition());
+			if($jukebox instanceof Jukebox){
+				$jukeboxTile = $world->getTile($jukebox->getPosition());
+				if($jukeboxTile instanceof TileJukebox && $jukeboxTile->getRecord() === null){
+					$source = $tile->getInventory();
+					foreach($source->getContents() as $slot => $item){
+						if($item instanceof Record){
+							$jukebox->insertRecord(clone $item);
+							$world->setBlock($jukebox->getPosition(), $jukebox);
+							$item->pop();
+							if($item->isNull()){
+								$source->clear($slot);
+							}else{
+								$source->setItem($slot, $item);
+							}
+							$transferred = true;
+							break;
+						}
+					}
+				}
+			}
+		}
+
 		$above = $world->getTile($this->getSide(Facing::UP)->getPosition());
 		if($above instanceof Container){
 			$source = $above->getRealInventory();
@@ -191,6 +217,20 @@ class Hopper extends Transparent implements PoweredByRedstone{
 				}
 				$transferred = true;
 				break;
+			}
+		}
+
+		$jukebox = $world->getBlock($this->getSide(Facing::UP)->getPosition());
+		if($jukebox instanceof Jukebox){
+			$jukeboxTile = $world->getTile($jukebox->getPosition());
+			if($jukeboxTile instanceof TileJukebox && ($record = $jukeboxTile->getRecord()) !== null){
+				$targetInventory = $tile->getInventory();
+				if($targetInventory->canAddItem($record)){
+					$jukebox->removeRecord();
+					$world->setBlock($jukebox->getPosition(), $jukebox);
+					$targetInventory->addItem($record);
+					$transferred = true;
+				}
 			}
 		}
 

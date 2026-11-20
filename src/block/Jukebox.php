@@ -86,6 +86,18 @@ class Jukebox extends Opaque{
 		};
 	}
 
+	/**
+	 * Removes and returns the current record without dropping it into the world.
+	 */
+	public function removeRecord() : ?Record{
+		$record = $this->record;
+		if($record !== null){
+			$this->record = null;
+			$this->stopSound();
+		}
+		return $record;
+	}
+
 	public function ejectRecord() : void{
 		if($this->record !== null){
 			$this->position->getWorld()->dropItem($this->position->add(0.5, 1, 0.5), $this->record);
