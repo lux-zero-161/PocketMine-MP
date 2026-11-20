@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace pocketmine\entity\mob;
 
+use pocketmine\entity\Location;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 
 class Turtle extends SimpleMob{
@@ -11,4 +12,7 @@ class Turtle extends SimpleMob{
 	public static function getNetworkTypeId() : string{ return EntityIds::TURTLE; }
 
 	public function getName() : string{ return "Turtle"; }
+	public function createBaby(Location $location) : self{
+		return new self($location);
+	}
 }
