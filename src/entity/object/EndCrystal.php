@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pocketmine\entity\object;
 
 use pocketmine\entity\Entity;
+use pocketmine\entity\mob\EnderDragon;
 use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\Explosive;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -39,6 +40,8 @@ use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataCollection;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataFlags;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataProperties;
 use pocketmine\world\Explosion;
+use function min;
+use pocketmine\math\AxisAlignedBB;
 
 class EndCrystal extends Entity implements Explosive{
 	private const TAG_SHOWBASE = "ShowBottom"; //TAG_Byte
@@ -84,6 +87,19 @@ class EndCrystal extends Entity implements Explosive{
 	public function setBeamTarget(?Vector3 $beamTarget) : void{
 		$this->beamTarget = $beamTarget;
 		$this->networkPropertiesDirty = true;
+	}
+
+	public function onUpdate(int $currentTick) : bool{
+		if($currentTick % 20 === 0 && $this->isAlive()){
+			$box = AxisAlignedBB::one()->expand(32, 32, 32)->offset($this->location->x, $this->location->y, $this->location->z);
+			foreach($this->getWorld()->getNearbyEntities($box, $this) as $entity){
+				if($entity instanceof EnderDragon && $entity->isAlive()){
+					$entity->setHealth(min($entity->getMaxHealth(), $entity->getHealth() + 1));
+					break;
+				}
+			}
+		}
+		return parent::onUpdate($currentTick);
 	}
 
 	public function attack(EntityDamageEvent $source) : void{

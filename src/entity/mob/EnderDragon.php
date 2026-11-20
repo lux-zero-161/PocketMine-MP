@@ -16,6 +16,7 @@ use pocketmine\network\mcpe\protocol\BossEventPacket;
 use pocketmine\network\mcpe\protocol\types\BossBarColor;
 use pocketmine\network\mcpe\protocol\types\BossBarOverlay;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
+use pocketmine\world\World;
 use pocketmine\player\Player;
 use function cos;
 use function max;
@@ -113,6 +114,21 @@ class EnderDragon extends Living{
 			$player->getNetworkSession()->sendDataPacket(BossEventPacket::hide($this->getId()));
 		}
 		parent::onDeath();
+		$this->createExitPortal();
+	}
+
+	private function createExitPortal() : void{
+		$world = $this->getWorld();
+		if($world->getDimensionId() !== World::DIMENSION_THE_END){
+			return;
+		}
+		for($dx = -1; $dx <= 1; ++$dx){
+			for($dz = -1; $dz <= 1; ++$dz){
+				$world->setBlockAt($dx, 64, $dz, VanillaBlocks::BEDROCK(), false);
+				$world->setBlockAt($dx, 65, $dz, VanillaBlocks::END_PORTAL(), false);
+				$world->setBlockAt($dx, 66, $dz, VanillaBlocks::AIR(), false);
+			}
+		}
 	}
 
 	public function getDrops() : array{
