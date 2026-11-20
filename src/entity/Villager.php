@@ -24,11 +24,13 @@ declare(strict_types=1);
 namespace pocketmine\entity;
 
 use pocketmine\entity\utils\Trade;
+use pocketmine\form\SimpleForm;
 use pocketmine\item\Item;
 use pocketmine\item\VanillaItems;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
+use pocketmine\utils\TextFormat;
 use function mt_rand;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
@@ -108,20 +110,54 @@ class Villager extends Living implements Ageable{
 
 	public function onInteract(Player $player, Vector3 $clickPos) : bool{
 		$item = $player->getInventory()->getItemInHand();
-		if($item->isNull()){
-			return false;
+		if(!$item->isNull()){
+			foreach($this->trades as $trade){
+				$input = $trade->getInput();
+				if($item->getTypeId() === $input->getTypeId() && $this->tryTrade($player, $trade)){
+					return true;
+				}
+			}
 		}
+
+		$form = new SimpleForm(
+			$this->getProfessionName() . " Villager",
+			"Wähle einen Handel:",
+			function(Player $player, ?int $index) : void{
+				if($index === null || !isset($this->trades[$index])){
+					return;
+				}
+				if(!$this->tryTrade($player, $this->trades[$index])){
+					$player->sendMessage(TextFormat::RED . "Du hast nicht genügend Items für diesen Handel.");
+				}
+			}
+		);
 		foreach($this->trades as $trade){
 			$input = $trade->getInput();
-			if($item->getTypeId() !== $input->getTypeId() || $item->getCount() < $input->getCount()){
-				continue;
-			}
-			$item->setCount($item->getCount() - $input->getCount());
-			$player->getInventory()->setItemInHand($item);
-			$player->getInventory()->addItem($trade->getOutput());
-			return true;
+			$output = $trade->getOutput();
+			$form->addButton($input->getCount() . "x " . $input->getName() . " → " . $output->getCount() . "x " . $output->getName());
 		}
-		return false;
+		$player->sendForm($form);
+		return true;
+	}
+
+	private function tryTrade(Player $player, Trade $trade) : bool{
+		$input = $trade->getInput();
+		if(!$player->getInventory()->contains($input)){
+			return false;
+		}
+		$player->getInventory()->removeItem($input);
+		$player->getInventory()->addItem($trade->getOutput());
+		return true;
+	}
+
+	private function getProfessionName() : string{
+		return match($this->profession){
+			self::PROFESSION_LIBRARIAN => "Librarian",
+			self::PROFESSION_PRIEST => "Cleric",
+			self::PROFESSION_BLACKSMITH => "Blacksmith",
+			self::PROFESSION_BUTCHER => "Butcher",
+			default => "Farmer"
+		};
 	}
 
 	public function onUpdate(int $currentTick) : bool{
