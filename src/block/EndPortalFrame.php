@@ -26,8 +26,12 @@ namespace pocketmine\block;
 use pocketmine\block\utils\FacesOppositePlacingPlayerTrait;
 use pocketmine\block\utils\HorizontalFacing;
 use pocketmine\data\runtime\RuntimeDataDescriber;
+use pocketmine\item\Item;
+use pocketmine\item\ItemTypeIds;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Facing;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
 
 class EndPortalFrame extends Opaque implements HorizontalFacing{
 	use FacesOppositePlacingPlayerTrait;
@@ -49,6 +53,68 @@ class EndPortalFrame extends Opaque implements HorizontalFacing{
 
 	public function getLightLevel() : int{
 		return 1;
+	}
+
+	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
+		if(!$this->eye && $item->getTypeId() === ItemTypeIds::ENDER_EYE){
+			$this->eye = true;
+			$this->position->getWorld()->setBlock($this->position, $this);
+			$item->pop();
+			$this->tryActivatePortal();
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Checks the 12 surrounding frames and fills the 3x3 interior when all of them have eyes.
+	 */
+	private function tryActivatePortal() : bool{
+		$world = $this->position->getWorld();
+		$y = $this->position->getFloorY();
+		$x = $this->position->getFloorX();
+		$z = $this->position->getFloorZ();
+
+		for($offsetX = -2; $offsetX <= 2; ++$offsetX){
+			for($offsetZ = -2; $offsetZ <= 2; ++$offsetZ){
+				$centerX = $x + $offsetX;
+				$centerZ = $z + $offsetZ;
+				if(!$this->isRingCompleteAt($centerX, $y, $centerZ)){
+					continue;
+				}
+				for($dx = -1; $dx <= 1; ++$dx){
+					for($dz = -1; $dz <= 1; ++$dz){
+						$world->setBlockAt($centerX + $dx, $y, $centerZ + $dz, VanillaBlocks::END_PORTAL());
+					}
+				}
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private function isRingCompleteAt(int $centerX, int $y, int $centerZ) : bool{
+		$world = $this->position->getWorld();
+		for($offset = -1; $offset <= 1; ++$offset){
+			foreach([[$offset, -2], [$offset, 2], [-2, $offset], [2, $offset]] as [$dx, $dz]){
+				$block = $world->getBlockAt($centerX + $dx, $y, $centerZ + $dz);
+				if(!$block instanceof EndPortalFrame || !$block->hasEye()){
+					return false;
+				}
+			}
+		}
+
+		for($dx = -1; $dx <= 1; ++$dx){
+			for($dz = -1; $dz <= 1; ++$dz){
+				if(!$world->getBlockAt($centerX + $dx, $y, $centerZ + $dz)->canBeReplaced()){
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	protected function recalculateCollisionBoxes() : array{

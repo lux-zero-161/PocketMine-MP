@@ -23,6 +23,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - 1.26.60 content: poplar wood set, ice crystal/icicle, disc press, straw bed, red shrub, shelf mushroom and poplar leaves variants.
 - Straw beds are placed as two halves and support sleeping/spawn setting like regular beds.
 - Shelf mushrooms attach to walls, can be grown with bone meal and bounce entities.
+- End portal frames accept eyes of ender and activate the 3x3 portal when all 12 frames are filled.
 - Powder snow slows and freezes entities without leather boots, and can be collected/filled with buckets.
 
 Coverage: **1,480 of 1,480** canonical block type names (100%).
