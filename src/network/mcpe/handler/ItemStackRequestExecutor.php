@@ -55,11 +55,14 @@ use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\ItemStackReque
 use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\ItemStackRequestAction;
 use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\ItemStackRequestSlotInfo;
 use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\MineBlockStackRequestAction;
+use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\PlaceIntoBundleStackRequestAction;
 use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\PlaceStackRequestAction;
 use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\SwapStackRequestAction;
+use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\TakeFromBundleStackRequestAction;
 use pocketmine\network\mcpe\protocol\types\inventory\stackrequest\TakeStackRequestAction;
 use pocketmine\network\mcpe\protocol\types\inventory\stackresponse\ItemStackResponse;
 use pocketmine\network\mcpe\protocol\types\inventory\UIInventorySlotOffset;
+use pocketmine\item\Bundle;
 use pocketmine\player\Player;
 use pocketmine\utils\AssumptionFailedError;
 use pocketmine\utils\Utils;
@@ -339,12 +342,80 @@ class ItemStackRequestExecutor{
 	/**
 	 * @throws ItemStackRequestProcessException
 	 */
+	private function placeIntoBundle(PlaceIntoBundleStackRequestAction $action) : void{
+		$this->requestSlotInfos[] = $action->getSource();
+		$this->requestSlotInfos[] = $action->getDestination();
+		[$sourceInventory, $sourceSlot] = $this->getBuilderInventoryAndSlot($action->getSource());
+		[$destinationInventory, $destinationSlot] = $this->getBuilderInventoryAndSlot($action->getDestination());
+
+		$sourceItem = $sourceInventory->getItem($sourceSlot);
+		$destinationItem = $destinationInventory->getItem($destinationSlot);
+		if($sourceItem instanceof Bundle && !$destinationItem instanceof Bundle){
+			[$sourceInventory, $sourceSlot, $destinationInventory, $destinationSlot] = [$destinationInventory, $destinationSlot, $sourceInventory, $sourceSlot];
+			[$sourceItem, $destinationItem] = [$destinationItem, $sourceItem];
+		}
+
+		if(!$destinationItem instanceof Bundle){
+			throw new ItemStackRequestProcessException("Destination slot does not contain a bundle");
+		}
+		if($sourceItem->isNull()){
+			throw new ItemStackRequestProcessException("Cannot insert an empty stack into a bundle");
+		}
+
+		$toAdd = clone $sourceItem;
+		$toAdd->setCount(min($action->getCount(), $sourceItem->getCount()));
+		$leftover = $destinationItem->addItem($toAdd);
+		$added = $toAdd->getCount() - ($leftover?->getCount() ?? 0);
+		if($added <= 0){
+			throw new ItemStackRequestProcessException("Bundle has no space for this item");
+		}
+
+		$sourceItem->setCount($sourceItem->getCount() - $added);
+		$sourceInventory->setItem($sourceSlot, $sourceItem);
+		$destinationInventory->setItem($destinationSlot, $destinationItem);
+	}
+
+	private function takeFromBundle(TakeFromBundleStackRequestAction $action) : void{
+		$this->requestSlotInfos[] = $action->getSource();
+		$this->requestSlotInfos[] = $action->getDestination();
+		[$sourceInventory, $sourceSlot] = $this->getBuilderInventoryAndSlot($action->getSource());
+		[$destinationInventory, $destinationSlot] = $this->getBuilderInventoryAndSlot($action->getDestination());
+
+		$sourceItem = $sourceInventory->getItem($sourceSlot);
+		$destinationItem = $destinationInventory->getItem($destinationSlot);
+		if(!$sourceItem instanceof Bundle && $destinationItem instanceof Bundle){
+			[$sourceInventory, $sourceSlot, $destinationInventory, $destinationSlot] = [$destinationInventory, $destinationSlot, $sourceInventory, $sourceSlot];
+			[$sourceItem, $destinationItem] = [$destinationItem, $sourceItem];
+		}
+
+		if(!$sourceItem instanceof Bundle){
+			throw new ItemStackRequestProcessException("Source slot does not contain a bundle");
+		}
+		$taken = $sourceItem->takeItem($action->getCount());
+		if($taken === null){
+			throw new ItemStackRequestProcessException("Bundle is empty");
+		}
+		if(!$destinationItem->isNull()){
+			if(!$destinationItem->canStackWith($taken)){
+				throw new ItemStackRequestProcessException("Cannot take items into a different item stack");
+			}
+			$destinationItem->setCount($destinationItem->getCount() + $taken->getCount());
+			$taken = $destinationItem;
+		}
+		$destinationInventory->setItem($destinationSlot, $taken);
+		$sourceInventory->setItem($sourceSlot, $sourceItem);
+	}
+
 	protected function processItemStackRequestAction(ItemStackRequestAction $action) : void{
 		if(
 			$action instanceof TakeStackRequestAction ||
 			$action instanceof PlaceStackRequestAction
 		){
 			$this->transferItems($action->getSource(), $action->getDestination(), $action->getCount());
+		}elseif($action instanceof PlaceIntoBundleStackRequestAction){
+			$this->placeIntoBundle($action);
+		}elseif($action instanceof TakeFromBundleStackRequestAction){
+			$this->takeFromBundle($action);
 		}elseif($action instanceof SwapStackRequestAction){
 			$this->requestSlotInfos[] = $action->getSlot1();
 			$this->requestSlotInfos[] = $action->getSlot2();

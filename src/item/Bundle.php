@@ -103,6 +103,27 @@ class Bundle extends Item{
 	}
 
 	/**
+	 * Removes up to $count items from the last stack in the bundle.
+	 */
+	public function takeItem(int $count) : ?Item{
+		$contents = $this->getContents();
+		$index = count($contents) - 1;
+		if($index < 0 || $count < 1){
+			return null;
+		}
+		$stack = $contents[$index];
+		$amount = min($count, $stack->getCount());
+		$taken = (clone $stack)->setCount($amount);
+		if($amount >= $stack->getCount()){
+			array_pop($contents);
+		}else{
+			$contents[$index] = $stack->setCount($stack->getCount() - $amount);
+		}
+		$this->setContents(array_values($contents));
+		return $taken;
+	}
+
+	/**
 	 * Removes and returns the last item stack in the bundle.
 	 */
 	public function popItem() : ?Item{

@@ -111,6 +111,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Sheep can be dyed (colored wool drops) and mooshrooms can be sheared for mushrooms; wolves and cats can be tamed and follow their owner.
 - Beehives slowly fill with honey when bees are nearby.
 - Villagers wander and offer profession-based direct item trades (wheat/paper/coal/meat for emeralds and back); the full Bedrock trade window is still simplified.
+- Bundle item-stack requests now insert and remove items through the Bedrock bundle UI actions, in addition to the NBT storage API.
 
 **Active**
 
