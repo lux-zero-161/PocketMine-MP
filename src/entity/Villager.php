@@ -23,8 +23,13 @@ declare(strict_types=1);
 
 namespace pocketmine\entity;
 
+use pocketmine\entity\utils\Trade;
 use pocketmine\item\Item;
 use pocketmine\item\VanillaItems;
+use pocketmine\block\VanillaBlocks;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
+use function mt_rand;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataCollection;
@@ -44,6 +49,8 @@ class Villager extends Living implements Ageable{
 
 	private bool $baby = false;
 	private int $profession = self::PROFESSION_FARMER;
+	/** @var Trade[] */
+	private array $trades = [];
 
 	protected function getInitialSizeInfo() : EntitySizeInfo{
 		return new EntitySizeInfo(1.9, 0.6); //TODO: eye height??
@@ -66,6 +73,64 @@ class Villager extends Living implements Ageable{
 		$this->setProfession($profession);
 	}
 
+	/**
+	 * @return Trade[]
+	 */
+	public function getTrades() : array{ return $this->trades; }
+
+	public function addTrade(Trade $trade) : void{ $this->trades[] = $trade; }
+
+	private function rebuildTrades() : void{
+		$this->trades = [];
+		switch($this->profession){
+			case self::PROFESSION_FARMER:
+				$this->trades[] = new Trade(VanillaItems::WHEAT()->setCount(20), VanillaItems::EMERALD());
+				$this->trades[] = new Trade(VanillaItems::EMERALD(), VanillaItems::BREAD()->setCount(6));
+				break;
+			case self::PROFESSION_LIBRARIAN:
+				$this->trades[] = new Trade(VanillaItems::PAPER()->setCount(24), VanillaItems::EMERALD());
+				$this->trades[] = new Trade(VanillaItems::EMERALD(), VanillaBlocks::BOOKSHELF()->asItem());
+				break;
+			case self::PROFESSION_PRIEST:
+				$this->trades[] = new Trade(VanillaItems::ROTTEN_FLESH()->setCount(32), VanillaItems::EMERALD());
+				$this->trades[] = new Trade(VanillaItems::EMERALD(), VanillaBlocks::REDSTONE()->asItem()->setCount(4));
+				break;
+			case self::PROFESSION_BLACKSMITH:
+				$this->trades[] = new Trade(VanillaItems::COAL()->setCount(15), VanillaItems::EMERALD());
+				$this->trades[] = new Trade(VanillaItems::EMERALD(), VanillaItems::IRON_INGOT()->setCount(3));
+				break;
+			case self::PROFESSION_BUTCHER:
+				$this->trades[] = new Trade(VanillaItems::RAW_BEEF()->setCount(10), VanillaItems::EMERALD());
+				$this->trades[] = new Trade(VanillaItems::EMERALD(), VanillaItems::COOKED_PORKCHOP()->setCount(3));
+				break;
+		}
+	}
+
+	public function onInteract(Player $player, Vector3 $clickPos) : bool{
+		$item = $player->getInventory()->getItemInHand();
+		if($item->isNull()){
+			return false;
+		}
+		foreach($this->trades as $trade){
+			$input = $trade->getInput();
+			if($item->getTypeId() !== $input->getTypeId() || $item->getCount() < $input->getCount()){
+				continue;
+			}
+			$item->setCount($item->getCount() - $input->getCount());
+			$player->getInventory()->setItemInHand($item);
+			$player->getInventory()->addItem($trade->getOutput());
+			return true;
+		}
+		return false;
+	}
+
+	public function onUpdate(int $currentTick) : bool{
+		if($this->isAlive() && $currentTick % 60 === 0 && mt_rand(0, 2) === 0 && $this->isOnGround()){
+			$this->setMotion(new Vector3(mt_rand(-10, 10) / 100, 0.2, mt_rand(-10, 10) / 100));
+		}
+		return parent::onUpdate($currentTick);
+	}
+
 	public function saveNBT() : CompoundTag{
 		$nbt = parent::saveNBT();
 		$nbt->setInt(self::TAG_PROFESSION, $this->getProfession());
@@ -79,6 +144,7 @@ class Villager extends Living implements Ageable{
 	public function setProfession(int $profession) : void{
 		$this->profession = $profession; //TODO: validation
 		$this->networkPropertiesDirty = true;
+		$this->rebuildTrades();
 	}
 
 	public function getProfession() : int{
