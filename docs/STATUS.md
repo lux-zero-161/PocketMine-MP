@@ -32,9 +32,9 @@ implemented blocks round-trip through the serializer.
 | Dimensions | ~65% | Nether/End portal travel switches worlds and dimensions with ChangeDimensionPacket; vanilla linking, dragon fight and End content are simplified. |
 | Networking / protocol | ~95% | Protocol 2225, RakNet, NetherNet and packet coverage are inherited from the maintained base. |
 | Plugin API | ~95% | PocketMine-MP 5.x API preserved; new block/item types are exposed. |
-| Testing / performance | ~55% | Registry and serialization tests are strong. No per-tick benchmarks, profiling suite or soak tests. |
+| Testing / performance | ~60% | Registry and serialization tests are strong. No per-tick benchmarks, profiling suite or soak tests. |
 
-**Overall roadmap estimate: roughly 92% complete.**
+**Overall roadmap estimate: roughly 93% complete.**
 Content/data is at 100%; gameplay, world generation and dimension depth are the
 remaining work.
 

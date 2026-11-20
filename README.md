@@ -53,9 +53,10 @@ A live audit can be run with:
 ```bash
 php build/audit/block-coverage.php
 php build/audit/item-coverage.php --missing
+php build/audit/performance.php
 ```
 
-The block audit reports canonical block type and state coverage; the item audit compares the Bedrock creative inventory against the block and item registries.
+The block audit reports canonical block type and state coverage; the item audit compares the Bedrock creative inventory against the block and item registries. The performance audit measures registry startup and block/item (de)serialization throughput.
 
 ### What "implemented" means here
 

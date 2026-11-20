@@ -172,7 +172,7 @@ Policy: no performance claims without measurements.
 
 - Reduce allocations in chunk serialization and entity ticking.
 - Improve async chunk generation scheduling.
-- Long-running soak tests.
+- Long-running soak tests (`build/audit/performance.php` provides a quick throughput baseline).
 
 ## Milestone 6 — Plugin ecosystem
 
