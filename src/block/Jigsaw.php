@@ -1,31 +1,16 @@
 <?php
 
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_|  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
- */
-
 declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\block\tile\Jigsaw as TileJigsaw;
 use pocketmine\block\utils\AnyFacing;
+use pocketmine\block\utils\RedstonePowerHelper;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\math\Facing;
+use pocketmine\world\structure\StructureManager;
+use function max;
 
 class Jigsaw extends Opaque implements AnyFacing{
 	public const MAX_ROTATION = 3;
@@ -56,5 +41,63 @@ class Jigsaw extends Opaque implements AnyFacing{
 		}
 		$this->rotation = $rotation;
 		return $this;
+	}
+
+	public function onNearbyBlockChange() : void{
+		$tile = $this->position->getWorld()->getTile($this->position);
+		if(!$tile instanceof TileJigsaw){
+			return;
+		}
+		$powered = RedstonePowerHelper::isPowered($this);
+		if($powered && !$tile->isPowered()){
+			$tile->setPowered(true);
+			$count = 0;
+			$this->generate($tile, 0, $count);
+		}elseif(!$powered && $tile->isPowered()){
+			$tile->setPowered(false);
+		}
+	}
+
+	/**
+	 * Loads the structure named by the tile's pool and recursively expands jigsaw connectors in the placed piece.
+	 */
+	public function generate(TileJigsaw $tile, int $depth = 0, int &$count = 0) : void{
+		if($depth > 4 || $count >= 16){
+			return;
+		}
+		$world = $this->position->getWorld();
+		$pool = $tile->getPool();
+		if($pool === ""){
+			return;
+		}
+		$size = StructureManager::getSize($world, $pool);
+		if($size === null){
+			return;
+		}
+		if(!StructureManager::load($world, $pool, $this->position, $this->rotation)){
+			return;
+		}
+		$count++;
+
+		$radiusX = (int) max($size->getFloorX(), $size->getFloorZ()) + 1;
+		$radiusY = $size->getFloorY() + 1;
+		$baseX = $this->position->getFloorX();
+		$baseY = $this->position->getFloorY();
+		$baseZ = $this->position->getFloorZ();
+
+		for($dx = 0; $dx <= $radiusX; ++$dx){
+			for($dy = 0; $dy <= $radiusY; ++$dy){
+				for($dz = 0; $dz <= $radiusX; ++$dz){
+					$block = $world->getBlockAt($baseX + $dx, $baseY + $dy, $baseZ + $dz);
+					if(!$block instanceof self || $block === $this){
+						continue;
+					}
+					$child = $world->getTileAt($baseX + $dx, $baseY + $dy, $baseZ + $dz);
+					if($child instanceof TileJigsaw && $child !== $tile && $child->getPool() !== ""){
+						$block->generate($child, $depth + 1, $count);
+					}
+				}
+			}
+		}
 	}
 }

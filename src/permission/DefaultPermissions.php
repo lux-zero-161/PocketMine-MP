@@ -93,6 +93,7 @@ abstract class DefaultPermissions{
 			Names::COMMAND_GIVE_OTHER,
 			Names::COMMAND_GIVE_SELF,
 			Names::COMMAND_KICK,
+			Names::COMMAND_JIGSAW,
 			Names::COMMAND_KILL_OTHER,
 			Names::COMMAND_LIST,
 			Names::COMMAND_OP_GIVE,

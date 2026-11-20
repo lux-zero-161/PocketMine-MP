@@ -37,6 +37,7 @@ use pocketmine\command\defaults\GamemodeCommand;
 use pocketmine\command\defaults\GarbageCollectorCommand;
 use pocketmine\command\defaults\GiveCommand;
 use pocketmine\command\defaults\HelpCommand;
+use pocketmine\command\defaults\JigsawCommand;
 use pocketmine\command\defaults\KickCommand;
 use pocketmine\command\defaults\KillCommand;
 use pocketmine\command\defaults\ListCommand;
@@ -111,6 +112,7 @@ class SimpleCommandMap implements CommandMap{
 			new GarbageCollectorCommand(),
 			new GiveCommand(),
 			new HelpCommand(),
+			new JigsawCommand(),
 			new KickCommand(),
 			new KillCommand(),
 			new ListCommand(),

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace pocketmine\world\structure;
 
+use pocketmine\block\BlockTypeIds;
 use pocketmine\block\RuntimeBlockStateRegistry;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\LittleEndianNbtSerializer;
@@ -128,6 +129,34 @@ final class StructureManager{
 		return file_put_contents(self::getFile($world, $name), $serializer->write(new TreeRoot($root))) !== false;
 	}
 
+	/**
+	 * Returns the size of a stored structure, or null if it cannot be read.
+	 */
+	public static function getSize(World $world, string $name) : ?Vector3{
+		$file = self::getFile($world, $name);
+		if(!is_file($file)){
+			return null;
+		}
+		try{
+			$contents = file_get_contents($file);
+			if($contents === false){
+				return null;
+			}
+			$root = (new LittleEndianNbtSerializer())->read($contents)->mustGetCompoundTag();
+			$size = $root->getListTag(self::TAG_SIZE, IntTag::class);
+			if($size === null){
+				return null;
+			}
+			$values = $size->getValue();
+			if(count($values) !== 3){
+				return null;
+			}
+			return new Vector3($values[0]->getValue(), $values[1]->getValue(), $values[2]->getValue());
+		}catch(\Throwable){
+			return null;
+		}
+	}
+
 	public static function load(World $world, string $name, Vector3 $target, int $rotation = 0) : bool{
 		$file = self::getFile($world, $name);
 		if(!is_file($file)){
@@ -181,6 +210,9 @@ final class StructureManager{
 				default => [$x, $z]
 			};
 			$block = $registry->fromStateId($stateId);
+			if($block->getTypeId() === BlockTypeIds::STRUCTURE_VOID){
+				continue; //structure void preserves the existing block
+			}
 			$world->setBlockAt($baseX + $rx, $baseY + $y, $baseZ + $rz, $block, false);
 		}
 

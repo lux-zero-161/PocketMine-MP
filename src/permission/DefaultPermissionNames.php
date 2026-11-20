@@ -44,6 +44,7 @@ final class DefaultPermissionNames{
 	public const COMMAND_GIVE_OTHER = "pocketmine.command.give.other";
 	public const COMMAND_GIVE_SELF = "pocketmine.command.give.self";
 	public const COMMAND_HELP = "pocketmine.command.help";
+	public const COMMAND_JIGSAW = "pocketmine.command.jigsaw";
 	public const COMMAND_KICK = "pocketmine.command.kick";
 	public const COMMAND_KILL_OTHER = "pocketmine.command.kill.other";
 	public const COMMAND_KILL_SELF = "pocketmine.command.kill.self";

@@ -44,7 +44,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Planned**
 
-- Block behaviour parity for the newly added technical blocks: jigsaw execution and full vanilla structure NBT compatibility.
+- Block behaviour parity for the newly added technical blocks: full vanilla structure NBT compatibility and jigsaw pool weighting.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
 
@@ -103,6 +103,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Ocean and river generation now includes kelp and seagrass on underwater floors.
 - Nether generation now includes soul sand/gravel patches, magma, glowstone clusters and crimson/warped fungi trees.
 - End generation now creates a central end-stone island, outer islands and obsidian pillars; portal travel uses it instead of a void world.
+- Jigsaw blocks store pool/target data, trigger structure placement on redstone and recursively expand jigsaw connectors; `/jigsaw set|generate` configures and runs them.
 
 **Active**
 
