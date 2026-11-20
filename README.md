@@ -38,7 +38,7 @@ The project is under active development. Everything below is measured against th
 | Sculk family | Catalyst, shrieker, vein, sensor, calibrated sensor implemented |
 | Technical blocks | Observer, dispenser, dropper, pistons, command/structure/jigsaw, vault, trial spawner implemented as stateful blocks |
 | Decorative 1.21–1.26 blocks | Bush, firefly bush, dry grass, leaf litter, wildflowers, pale moss, pale hanging moss, moss carpet, copper golem statues, etc. |
-| Block entities for new blocks | Shelves, copper chests and beehives implemented as tile-backed blocks; multi-shelf hotbar swapping and bee release behaviour still open |
+| Block entities for new blocks | Shelves, copper chests, beehives and decorated pots implemented as tile-backed blocks; multi-shelf hotbar swapping and bee release behaviour still open |
 | Vanilla world generation | Not achieved. The built-in generator is PocketMine-MP's simplified noise generator |
 | Nether / End dimensions | Nether generator exists; End generation and vanilla-style dimension travel are not implemented |
 | Redstone, mob AI, vanilla survival mechanics | Basic redstone (wire, torches, levers, buttons, repeaters, comparators, lamps, observers, dispensers/droppers) implemented; piston movement, sculk sensing and full vanilla parity are open |
