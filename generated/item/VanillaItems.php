@@ -68,6 +68,7 @@ final class VanillaItems{
 	private static BlazeRod $_mBLAZE_ROD;
 	private static Item $_mBLEACH;
 	private static Item $_mBLUE_CUSHION;
+	private static Egg $_mBLUE_EGG;
 	private static Item $_mBLUE_HARNESS;
 	private static Item $_mBOLT_ARMOR_TRIM_SMITHING_TEMPLATE;
 	private static Item $_mBONE;
@@ -81,6 +82,7 @@ final class VanillaItems{
 	private static Item $_mBREWER_POTTERY_SHERD;
 	private static Item $_mBRICK;
 	private static Item $_mBROWN_CUSHION;
+	private static Egg $_mBROWN_EGG;
 	private static Item $_mBROWN_HARNESS;
 	private static Item $_mBRUSH;
 	private static Bucket $_mBUCKET;
@@ -526,6 +528,7 @@ final class VanillaItems{
 			"blaze_rod" => fn(BlazeRod $v) => self::$_mBLAZE_ROD = $v,
 			"bleach" => fn(Item $v) => self::$_mBLEACH = $v,
 			"blue_cushion" => fn(Item $v) => self::$_mBLUE_CUSHION = $v,
+			"blue_egg" => fn(Egg $v) => self::$_mBLUE_EGG = $v,
 			"blue_harness" => fn(Item $v) => self::$_mBLUE_HARNESS = $v,
 			"bolt_armor_trim_smithing_template" => fn(Item $v) => self::$_mBOLT_ARMOR_TRIM_SMITHING_TEMPLATE = $v,
 			"bone" => fn(Item $v) => self::$_mBONE = $v,
@@ -539,6 +542,7 @@ final class VanillaItems{
 			"brewer_pottery_sherd" => fn(Item $v) => self::$_mBREWER_POTTERY_SHERD = $v,
 			"brick" => fn(Item $v) => self::$_mBRICK = $v,
 			"brown_cushion" => fn(Item $v) => self::$_mBROWN_CUSHION = $v,
+			"brown_egg" => fn(Egg $v) => self::$_mBROWN_EGG = $v,
 			"brown_harness" => fn(Item $v) => self::$_mBROWN_HARNESS = $v,
 			"brush" => fn(Item $v) => self::$_mBRUSH = $v,
 			"bucket" => fn(Bucket $v) => self::$_mBUCKET = $v,
@@ -1108,6 +1112,11 @@ final class VanillaItems{
 		return clone self::$_mBLUE_CUSHION;
 	}
 
+	public static function BLUE_EGG() : Egg{
+		if(!isset(self::$_mBLUE_EGG)){ self::init(); }
+		return clone self::$_mBLUE_EGG;
+	}
+
 	public static function BLUE_HARNESS() : Item{
 		if(!isset(self::$_mBLUE_HARNESS)){ self::init(); }
 		return clone self::$_mBLUE_HARNESS;
@@ -1171,6 +1180,11 @@ final class VanillaItems{
 	public static function BROWN_CUSHION() : Item{
 		if(!isset(self::$_mBROWN_CUSHION)){ self::init(); }
 		return clone self::$_mBROWN_CUSHION;
+	}
+
+	public static function BROWN_EGG() : Egg{
+		if(!isset(self::$_mBROWN_EGG)){ self::init(); }
+		return clone self::$_mBROWN_EGG;
 	}
 
 	public static function BROWN_HARNESS() : Item{

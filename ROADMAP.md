@@ -55,6 +55,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Lead, saddle, armadillo scute, breeze rod, trial keys, eye of ender, brush, glow stick and sparkler items.
 - 1.26.60 Bounce and Tears music discs, including jukebox comparator outputs.
 - Carrot on a Stick and Warped Fungus on a Stick with correct durability.
+- 1.26.60 blue and brown egg items.
 - Bamboo raft item and BoatType support.
 - Cherry and pale oak boats, plus horse, nautilus and wolf armor items.
 

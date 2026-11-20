@@ -473,7 +473,10 @@ final class ItemTypeIds{
 	public const CARROT_ON_A_STICK = 20426;
 	public const WARPED_FUNGUS_ON_A_STICK = 20427;
 
-	public const FIRST_UNUSED_ITEM_ID = 20428;
+	public const BLUE_EGG = 20428;
+	public const BROWN_EGG = 20429;
+
+	public const FIRST_UNUSED_ITEM_ID = 20430;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 
