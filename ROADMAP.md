@@ -77,6 +77,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Boats and chest boats are spawnable, rideable entities with basic water buoyancy and rider input; the generic rider/link system is implemented.
 - Sculk sensors react to nearby block changes with a basic signal pulse; full vibration frequencies/ranges are still simplified.
 - Minecarts (normal, chest, hopper, TNT) are spawnable, rideable entities with basic rail friction and rider input.
+- Bundles store items in NBT (64 bundle slots) and can eject the last stored stack on use; full inventory UI insertion remains open.
 
 **Active**
 
