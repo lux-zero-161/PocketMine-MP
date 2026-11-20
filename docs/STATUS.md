@@ -27,7 +27,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 | View | Estimate | Notes |
 |---|---:|---|
 | **Roadmap checklist items addressed** | **~99%** | Almost every listed subsystem has at least a working implementation. |
-| **Vanilla gameplay parity** | **~79%** | Many systems are simplified compared with vanilla Bedrock. |
+| **Vanilla gameplay parity** | **~80%** | Many systems are simplified compared with vanilla Bedrock. |
 
 ### Estimated parity by area
 
@@ -49,7 +49,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 
 - 100% coverage of canonical block type names and the Bedrock creative inventory.
 - Redstone, pistons, observers, hoppers, crafters, vaults and trial spawners.
-- Command blocks, structure blocks with editor UI, structure save/load NBT format, Bedrock `.mcstructure` import/export and `/structure`.
+- Command blocks, structure blocks with editor UI, structure save/load NBT format, Bedrock `.mcstructure` import/export with block entities and `/structure`.
 - Jigsaw blocks with recursive piece expansion and `/jigsaw`.
 - Sculk vibration frequencies, calibrated sensors, shriekers and Warden summoning.
 - Boats, minecarts (normal/chest/hopper/TNT), rider links and entity inventories.
@@ -78,7 +78,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 4. Native grindstone container window and remaining container/transaction edge cases.
 5. Long-running multi-player soak/load tests and profiling on real hardware.
 6. Remaining End content (dragon AI parity, gateways with exact coordinate rules, shulkers/end cities).
-7. Full `.mcstructure` block-entity/tick-queue import/export.
+7. `.mcstructure` tick-queue import/export and full vanilla structure semantics.
 8. More exact redstone update ordering and block-specific edge cases.
 
 ## Verification commands

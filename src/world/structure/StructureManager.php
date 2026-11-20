@@ -23,6 +23,8 @@ use function count;
 use function file_get_contents;
 use function file_put_contents;
 use function in_array;
+use function intdiv;
+use function is_numeric;
 use function is_dir;
 use function mkdir;
 use function strtolower;
@@ -268,6 +270,7 @@ final class StructureManager{
 		$palette = [];
 		$paletteIndex = [];
 		$indices = [];
+		$positionData = new CompoundTag();
 		for($x = $minX; $x <= $maxX; ++$x){
 			for($y = $minY; $y <= $maxY; ++$y){
 				for($z = $minZ; $z <= $maxZ; ++$z){
@@ -285,7 +288,17 @@ final class StructureManager{
 							->setTag(BlockStateData::TAG_STATES, $states)
 							->setInt(BlockStateData::TAG_VERSION, $data->getVersion());
 					}
+					$flatIndex = count($indices);
 					$indices[] = $paletteIndex[$stateId];
+
+					$tile = $world->getTileAt($x, $y, $z);
+					if($tile !== null){
+						$tileTag = $tile->saveNBT();
+						$tileTag->setInt("x", $x - $minX);
+						$tileTag->setInt("y", $y - $minY);
+						$tileTag->setInt("z", $z - $minZ);
+						$positionData->setTag((string) $flatIndex, CompoundTag::create()->setTag("block_entity_data", $tileTag));
+					}
 				}
 			}
 		}
@@ -298,7 +311,7 @@ final class StructureManager{
 
 		$default = CompoundTag::create()
 			->setTag("block_palette", new ListTag($palette, NBT::TAG_Compound))
-			->setTag("block_position_data", new CompoundTag());
+			->setTag("block_position_data", $positionData);
 
 		$root = CompoundTag::create()
 			->setInt("format_version", 1)
@@ -391,6 +404,39 @@ final class StructureManager{
 				}
 			}
 		}
+
+		$positionData = $structure->getCompoundTag("palette")?->getCompoundTag("default")?->getCompoundTag("block_position_data");
+		if($positionData !== null){
+			foreach(Utils::stringifyKeys($positionData->getValue()) as $flatIndexString => $entry){
+				if(!$entry instanceof CompoundTag || !is_numeric($flatIndexString)){
+					continue;
+				}
+				$blockEntityData = $entry->getCompoundTag("block_entity_data");
+				if($blockEntityData === null){
+					continue;
+				}
+				$flatIndex = (int) $flatIndexString;
+				$x = intdiv($flatIndex, $sizeY * $sizeZ);
+				$remainder = $flatIndex % ($sizeY * $sizeZ);
+				$y = intdiv($remainder, $sizeZ);
+				$z = $remainder % $sizeZ;
+				[$rx, $rz] = match($rotation){
+					1 => [$z, $sizeX - 1 - $x],
+					2 => [$sizeX - 1 - $x, $sizeZ - 1 - $z],
+					3 => [$sizeZ - 1 - $z, $x],
+					default => [$x, $z]
+				};
+				$tile = $world->getTileAt($baseX + $rx, $baseY + $y, $baseZ + $rz);
+				if($tile !== null){
+					try{
+						$tile->readSaveData($blockEntityData);
+					}catch(\Throwable){
+						//ignore corrupt block entity data
+					}
+				}
+			}
+		}
+
 		return true;
 	}
 
