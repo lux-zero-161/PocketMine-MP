@@ -23,7 +23,10 @@ declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\entity\Entity;
 use pocketmine\math\AxisAlignedBB;
+use pocketmine\player\Player;
+use pocketmine\world\PortalHelper;
 
 class EndPortal extends Transparent{
 	public function getLightLevel() : int{
@@ -36,5 +39,12 @@ class EndPortal extends Transparent{
 
 	public function getDropsForCompatibleTool(\pocketmine\item\Item $item) : array{
 		return [];
+	}
+
+	public function onEntityInside(Entity $entity) : bool{
+		if($entity instanceof Player && $entity->isAlive()){
+			PortalHelper::useEndPortal($entity);
+		}
+		return true;
 	}
 }

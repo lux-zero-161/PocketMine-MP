@@ -28,6 +28,8 @@ use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
 use pocketmine\math\Axis;
+use pocketmine\player\Player;
+use pocketmine\world\PortalHelper;
 
 class NetherPortal extends Transparent{
 
@@ -74,7 +76,9 @@ class NetherPortal extends Transparent{
 	}
 
 	public function onEntityInside(Entity $entity) : bool{
-		//TODO
+		if($entity instanceof Player && $entity->isAlive()){
+			PortalHelper::useNetherPortal($entity);
+		}
 		return true;
 	}
 }

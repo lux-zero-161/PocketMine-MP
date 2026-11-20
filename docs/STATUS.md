@@ -29,12 +29,12 @@ implemented blocks round-trip through the serializer.
 | Containers / automation | ~85% | Chests, barrels, hoppers, dispensers/droppers, shelves, decorated pots, composters, jukeboxes, crafter and minecart inventories are partly or fully implemented. |
 | Mobs | ~42% | 84 mob entities exist with basic movement/hostile AI, drops, XP and basic breeding. No pathfinding, herds, fear, special mob abilities or full vanilla loot tables. |
 | World generation | ~20% | Simplified noise generator, Nether generator and tree/ore populators. No Bedrock-style biomes, caves, aquifers, structures or End generation. |
-| Dimensions | 0% | Nether/End portal blocks exist and Nether portals can be lit, but dimension travel is not implemented. |
+| Dimensions | ~55% | Nether/End portal travel switches worlds and dimensions with ChangeDimensionPacket; vanilla linking, dragon fight and End content are simplified. |
 | Networking / protocol | ~95% | Protocol 2225, RakNet, NetherNet and packet coverage are inherited from the maintained base. |
 | Plugin API | ~95% | PocketMine-MP 5.x API preserved; new block/item types are exposed. |
 | Testing / performance | ~55% | Registry and serialization tests are strong. No per-tick benchmarks, profiling suite or soak tests. |
 
-**Overall roadmap estimate: roughly 67% complete.**
+**Overall roadmap estimate: roughly 70% complete.**
 Content/data is at 100%; gameplay, world generation and dimension depth are the
 remaining work.
 
@@ -42,7 +42,7 @@ remaining work.
 
 1. Bundle inventory interaction and minecart container windows.
 2. Full sculk vibration frequencies/ranges and calibrated sensor filtering.
-3. Nether/End dimension travel.
+3. Vanilla portal linking rules and End content (dragon, gateway).
 4. Advanced mob AI (herds, fear propagation, special attacks), advanced drops, villager trading and breeding rules.
 5. Vanilla-style world generation and structures.
 6. Rails/minecart edge cases, minecart inventories and TNT minecarts.

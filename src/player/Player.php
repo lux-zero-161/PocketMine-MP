@@ -115,6 +115,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\network\mcpe\NetworkSession;
 use pocketmine\network\mcpe\protocol\AnimatePacket;
+use pocketmine\network\mcpe\protocol\ChangeDimensionPacket;
 use pocketmine\network\mcpe\protocol\MovePlayerPacket;
 use pocketmine\network\mcpe\protocol\SetActorMotionPacket;
 use pocketmine\network\mcpe\protocol\types\BlockPosition;
@@ -2758,6 +2759,19 @@ class Player extends Human implements CommandSender, ChunkListener, IPlayer, Nev
 		$this->getNetworkSession()->syncMovement($pos, $yaw, $pitch, $mode);
 
 		$this->ySize = 0;
+	}
+
+	/**
+	 * Moves the player to another world/dimension, sending the client the appropriate dimension change.
+	 *
+	 * @phpstan-param World::DIMENSION_* $dimensionId
+	 */
+	public function switchWorld(World $world, Position $position, int $dimensionId) : bool{
+		if(!$this->isAlive()){
+			return false;
+		}
+		$this->getNetworkSession()->sendDataPacket(ChangeDimensionPacket::create($dimensionId, $position->asVector3(), true, null));
+		return $this->teleport(Position::fromObject($position, $world));
 	}
 
 	public function teleport(Vector3 $pos, ?float $yaw = null, ?float $pitch = null) : bool{

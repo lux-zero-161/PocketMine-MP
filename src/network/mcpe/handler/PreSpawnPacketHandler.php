@@ -86,7 +86,11 @@ class PreSpawnPacketHandler extends PacketHandler{
 			$this->session->getLogger()->debug("Preparing StartGamePacket");
 			$levelSettings = new LevelSettings();
 			$levelSettings->seed = -1;
-			$levelSettings->spawnSettings = new SpawnSettings(SpawnSettings::BIOME_TYPE_DEFAULT, "", DimensionIds::OVERWORLD); //TODO: implement this properly
+			$levelSettings->spawnSettings = new SpawnSettings(SpawnSettings::BIOME_TYPE_DEFAULT, "", match($world->getDimensionId()){
+					\pocketmine\world\World::DIMENSION_NETHER => DimensionIds::NETHER,
+					\pocketmine\world\World::DIMENSION_THE_END => DimensionIds::THE_END,
+					default => DimensionIds::OVERWORLD
+				});
 			$levelSettings->worldGamemode = $typeConverter->coreGameModeToProtocol($this->server->getGamemode());
 			$levelSettings->difficulty = $world->getDifficulty();
 			$levelSettings->spawnPosition = BlockPosition::fromVector3($world->getSpawnLocation());

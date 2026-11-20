@@ -92,14 +92,21 @@ class ChunkCache implements ChunkListener{
 	private int $hits = 0;
 	private int $misses = 0;
 
-	/**
-	 * @phpstan-param DimensionIds::* $dimensionId
-	 */
 	private function __construct(
 		private World $world,
-		private Compressor $compressor,
-		private int $dimensionId = DimensionIds::OVERWORLD
+		private Compressor $compressor
 	){}
+
+	/**
+	 * @phpstan-return DimensionIds::*
+	 */
+	private function getDimensionId() : int{
+		return match($this->world->getDimensionId()){
+			\pocketmine\world\World::DIMENSION_NETHER => DimensionIds::NETHER,
+			\pocketmine\world\World::DIMENSION_THE_END => DimensionIds::THE_END,
+			default => DimensionIds::OVERWORLD
+		};
+	}
 
 	private function prepareChunkAsync(int $chunkX, int $chunkZ, int $chunkHash, TypeConverter $typeConverter) : CompressBatchPromise{
 		$this->world->registerChunkListener($this, $chunkX, $chunkZ);
@@ -117,7 +124,7 @@ class ChunkCache implements ChunkListener{
 				new ChunkRequestTask(
 					$chunkX,
 					$chunkZ,
-					$this->dimensionId,
+					$this->getDimensionId(),
 					$chunk,
 					$typeConverter,
 					$promise,

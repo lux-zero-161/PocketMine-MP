@@ -51,6 +51,11 @@ abstract class SimpleMob extends Living{
 	private int $pathCooldown = 0;
 	private int $fleeTicks = 0;
 	private ?Vector3 $fleeFrom = null;
+	private const BURNS_IN_DAYLIGHT = [
+		"Zombie", "Husk", "Drowned", "Zombie Villager", "Zombie Pigman",
+		"Skeleton", "Stray", "Bogged", "Wither Skeleton", "Phantom"
+	];
+
 	private int $creeperFuse = -1;
 	private bool $sheared = false;
 	private int $woolRegrowTicks = 0;
@@ -154,6 +159,38 @@ abstract class SimpleMob extends Living{
 
 		if($name === "Enderman" && $currentTick % 100 === 0 && $this->getNearestPlayer(12) !== null){
 			$this->teleportRandomly();
+		}
+
+		if($currentTick % 100 === 0 && in_array($name, self::BURNS_IN_DAYLIGHT, true)){
+			$this->tickDaylightBurning();
+		}
+
+		if($currentTick % 100 === 0 && !$this->isHostile() && $this->fleeTicks <= 0 && $this->inLoveTicks <= 0 && mt_rand(0, 1) === 0){
+			$this->tickHerd();
+		}
+	}
+
+	private function tickDaylightBurning() : void{
+		$world = $this->getWorld();
+		if($world->getTimeOfDay() >= 12000 || $this->isUnderwater()){
+			return;
+		}
+		$light = $world->getRealBlockSkyLightAt($this->location->getFloorX(), $this->location->getFloorY() + 1, $this->location->getFloorZ());
+		if($light >= 12){
+			$this->setOnFire(8);
+		}
+	}
+
+	private function tickHerd() : void{
+		$box = AxisAlignedBB::one()->expand(8, 6, 8)->offset($this->location->x, $this->location->y, $this->location->z);
+		foreach($this->getWorld()->getNearbyEntities($box, $this) as $entity){
+			if($entity instanceof SimpleMob && $entity->getName() === $this->getName() && !$entity->isBaby()){
+				$diff = $entity->getPosition()->subtractVector($this->location);
+				if($diff->lengthSquared() > 4){
+					$this->moveTowards($entity->getPosition(), 0.12);
+				}
+				return;
+			}
 		}
 	}
 
@@ -272,6 +309,17 @@ abstract class SimpleMob extends Living{
 			$motion->y = 0.35;
 		}
 		$this->setMotion($motion);
+	}
+
+	protected function onDeath() : void{
+		parent::onDeath();
+		if(!$this->baby && ($this->getName() === "Slime" || $this->getName() === "Magma Cube")){
+			for($i = 0; $i < 2; ++$i){
+				$child = $this->createBaby(Location::fromObject($this->location->add(mt_rand(-1, 1), 0, mt_rand(-1, 1)), $this->getWorld(), $this->location->yaw, 0));
+				$child->setBaby(true);
+				$child->spawnToAll();
+			}
+		}
 	}
 
 	public function onInteract(Player $player, Vector3 $clickPos) : bool{

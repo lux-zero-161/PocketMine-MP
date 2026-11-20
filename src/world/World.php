@@ -166,6 +166,10 @@ class World implements ChunkManager{
 	public const Y_MAX = 320;
 	public const Y_MIN = -64;
 
+	public const DIMENSION_OVERWORLD = 0;
+	public const DIMENSION_NETHER = 1;
+	public const DIMENSION_THE_END = 2;
+
 	public const TIME_DAY = 1000;
 	public const TIME_NOON = 6000;
 	public const TIME_SUNSET = 12000;
@@ -3393,6 +3397,22 @@ class World implements ChunkManager{
 		}
 
 		return new Position($spawn->x, $y, $spawn->z, $this);
+	}
+
+	/**
+	 * Returns the dimension this world represents.
+	 *
+	 * @phpstan-return self::DIMENSION_*
+	 */
+	public function getDimensionId() : int{
+		$generator = strtolower($this->provider->getWorldData()->getGenerator());
+		if($generator === "nether" || $generator === "hell"){
+			return self::DIMENSION_NETHER;
+		}
+		if($generator === "end" || $generator === "the_end" || $this->folderName === "the_end"){
+			return self::DIMENSION_THE_END;
+		}
+		return self::DIMENSION_OVERWORLD;
 	}
 
 	/**
