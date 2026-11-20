@@ -37,6 +37,7 @@ use pocketmine\math\RayTraceResult;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 use pocketmine\world\BlockTransaction;
+use pocketmine\world\VillageRegistry;
 use pocketmine\world\sound\BellRingSound;
 
 final class Bell extends Transparent implements HorizontalFacing{
@@ -69,6 +70,14 @@ final class Bell extends Transparent implements HorizontalFacing{
 		return [
 			$this->attachmentType === BellAttachmentType::ONE_WALL ? $box->trim($this->facing, 3 / 16) : $box
 		];
+	}
+
+	public function readStateFromWorld() : Block{
+		$result = parent::readStateFromWorld();
+		if($result === $this){
+			VillageRegistry::register($this->position->getWorld(), $this->position);
+		}
+		return $result;
 	}
 
 	public function getSupportType(int $facing) : SupportType{

@@ -121,6 +121,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Skeletons, strays, bogged and pillagers shoot arrows at ranged targets.
 - Natural mob spawning: passive animals during the day and hostile mobs in low light, with nearby-mob caps.
 - Water spawning for cod, salmon, tropical fish and squid.
+- Plains and desert generation contain deterministic village houses and a central bell/well; villagers spawn naturally around registered bells.
 - The Wither gains a damage-reduction armour phase below half health.
 
 **Active**

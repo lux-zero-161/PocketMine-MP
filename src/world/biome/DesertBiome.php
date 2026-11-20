@@ -23,10 +23,13 @@ declare(strict_types=1);
 
 namespace pocketmine\world\biome;
 
+use pocketmine\world\generator\populator\VillagePopulator;
+
 class DesertBiome extends SandyBiome{
 
 	public function __construct(){
 		parent::__construct();
+		$this->addPopulator(new VillagePopulator());
 		$this->setElevation(63, 74);
 
 		$this->temperature = 2;

@@ -9,8 +9,10 @@ use pocketmine\block\Water;
 use pocketmine\entity\EntityFactory;
 use pocketmine\entity\Location;
 use pocketmine\entity\Living;
+use pocketmine\entity\ai\PathFinder;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\player\Player;
+use pocketmine\entity\Villager;
 use function count;
 use function max;
 use function min;
@@ -55,6 +57,7 @@ final class NaturalSpawner{
 			for($i = 0; $i < self::ATTEMPTS_PER_PLAYER; ++$i){
 				self::attemptSpawn($world, $player);
 			}
+			self::spawnVillagers($world, $player);
 		}
 	}
 
@@ -100,6 +103,29 @@ final class NaturalSpawner{
 			self::spawn($world, $location, self::pick(self::PASSIVE_MOBS));
 		}elseif($light <= 7){
 			self::spawn($world, $location, self::pick(self::HOSTILE_MOBS));
+		}
+	}
+
+	private static function spawnVillagers(World $world, Player $player) : void{
+		foreach(VillageRegistry::findNear($world, $player->getPosition(), 48) as $center){
+			$existing = 0;
+			$box = AxisAlignedBB::one()->expand(24, 12, 24)->offset($center->x, $center->y, $center->z);
+			foreach($world->getNearbyEntities($box) as $entity){
+				if($entity instanceof Villager && $entity->isAlive()){
+					$existing++;
+				}
+			}
+			if($existing >= 3){
+				continue;
+			}
+			for($i = 0; $i < 2; ++$i){
+				$x = $center->getFloorX() + mt_rand(-6, 6);
+				$y = $center->getFloorY() + mt_rand(-1, 2);
+				$z = $center->getFloorZ() + mt_rand(-6, 6);
+				if(PathFinder::canStand($world, $x, $y, $z)){
+					self::spawn($world, Location::fromObject(new \pocketmine\math\Vector3($x + 0.5, $y, $z + 0.5), $world, mt_rand(0, 359), 0), "minecraft:villager");
+				}
+			}
 		}
 	}
 

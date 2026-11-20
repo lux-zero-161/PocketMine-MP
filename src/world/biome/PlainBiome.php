@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pocketmine\world\biome;
 
 use pocketmine\world\generator\populator\TallGrass;
+use pocketmine\world\generator\populator\VillagePopulator;
 
 class PlainBiome extends GrassyBiome{
 
@@ -34,6 +35,7 @@ class PlainBiome extends GrassyBiome{
 		$tallGrass->setBaseAmount(12);
 
 		$this->addPopulator($tallGrass);
+		$this->addPopulator(new VillagePopulator());
 
 		$this->setElevation(63, 68);
 
