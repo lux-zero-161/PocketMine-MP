@@ -1,33 +1,61 @@
 <?php
 
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- *
- */
-
 declare(strict_types=1);
 
 namespace pocketmine\block;
 
 use pocketmine\block\utils\PoweredByRedstone;
 use pocketmine\block\utils\RailPoweredByRedstoneTrait;
+use pocketmine\block\utils\RedstonePowerHelper;
+use pocketmine\entity\Living;
+use pocketmine\entity\object\Minecart;
+use pocketmine\entity\object\TNTMinecart;
+use pocketmine\math\AxisAlignedBB;
 
 class ActivatorRail extends StraightOnlyRail implements PoweredByRedstone{
 	use RailPoweredByRedstoneTrait;
 
-	//TODO
+	public function onNearbyBlockChange() : void{
+		parent::onNearbyBlockChange();
+		$this->updatePoweredState();
+	}
+
+	public function onPostPlace() : void{
+		parent::onPostPlace();
+		$this->updatePoweredState();
+	}
+
+	protected function updatePoweredState() : void{
+		$world = $this->position->getWorld();
+		$current = $world->getBlock($this->position);
+		if(!$current instanceof self || $current->getTypeId() !== $this->getTypeId()){
+			return;
+		}
+		$powered = RedstonePowerHelper::isPowered($current);
+		if($powered !== $current->isPowered()){
+			$current->setPowered($powered);
+			$world->setBlock($this->position, $current);
+		}
+		if($powered){
+			$this->activateRiders();
+		}
+	}
+
+	/**
+	 * Dismounts riders from minecarts standing on this rail.
+	 */
+	private function activateRiders() : void{
+		$box = AxisAlignedBB::one()
+			->offset($this->position->x, $this->position->y, $this->position->z)
+			->expand(0.1, 1.0, 0.1);
+		foreach($this->position->getWorld()->getNearbyEntities($box) as $entity){
+			if($entity instanceof TNTMinecart){
+				$entity->activate();
+			}elseif($entity instanceof Minecart){
+				$entity->dismountPassengers();
+			}elseif($entity instanceof Living && $entity->getRidingEntity() !== null){
+				$entity->dismount();
+			}
+		}
+	}
 }

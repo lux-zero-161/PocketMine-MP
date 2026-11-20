@@ -39,6 +39,7 @@ use pocketmine\block\tile\BrewingStand as TileBrewingStand;
 use pocketmine\block\tile\Campfire as TileCampfire;
 use pocketmine\block\tile\Cauldron as TileCauldron;
 use pocketmine\block\tile\Chest as TileChest;
+use pocketmine\block\tile\CommandBlock as TileCommandBlock;
 use pocketmine\block\tile\ChiseledBookshelf as TileChiseledBookshelf;
 use pocketmine\block\tile\Comparator as TileComparator;
 use pocketmine\block\tile\TrialSpawner as TileTrialSpawner;
@@ -1240,9 +1241,9 @@ final class VanillaBlocksInputs extends RegistrySource{
 
 		self::register("structure_block", fn(BID $id) => new StructureBlock($id, "Structure Block", $unbreakable));
 		self::register("jigsaw", fn(BID $id) => new Jigsaw($id, "Jigsaw Block", $unbreakable));
-		self::register("command_block", fn(BID $id) => new CommandBlock($id, "Command Block", $unbreakable));
-		self::register("chain_command_block", fn(BID $id) => new CommandBlock($id, "Chain Command Block", $unbreakable));
-		self::register("repeating_command_block", fn(BID $id) => new CommandBlock($id, "Repeating Command Block", $unbreakable));
+		self::register("command_block", fn(BID $id) => new CommandBlock($id, "Command Block", $unbreakable), TileCommandBlock::class);
+		self::register("chain_command_block", fn(BID $id) => new CommandBlock($id, "Chain Command Block", $unbreakable), TileCommandBlock::class);
+		self::register("repeating_command_block", fn(BID $id) => new CommandBlock($id, "Repeating Command Block", $unbreakable), TileCommandBlock::class);
 
 		self::register("creaking_heart", fn(BID $id) => new CreakingHeart($id, "Creaking Heart", new Info(BreakInfo::axe(10.0, null, 50.0))));
 		self::register("vault", fn(BID $id) => new Vault($id, "Vault", new Info(new BreakInfo(50.0, BlockToolType::NONE, 0, 250.0))), TileVault::class);

@@ -29,6 +29,7 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\mcpe\convert\TypeConverter;
+use function max;
 
 /**
  * @deprecated
@@ -123,6 +124,38 @@ class MonsterSpawner extends Spawnable{
 		$nbt->setFloat(self::TAG_ENTITY_HEIGHT, $this->displayEntityHeight);
 		$nbt->setFloat(self::TAG_ENTITY_SCALE, $this->displayEntityScale);
 	}
+
+	public function getEntityTypeId() : string{ return $this->entityTypeId; }
+
+	public function setEntityTypeId(string $entityTypeId) : void{ $this->entityTypeId = $entityTypeId; }
+
+	public function getSpawnDelay() : int{ return $this->spawnDelay; }
+
+	public function setSpawnDelay(int $spawnDelay) : void{ $this->spawnDelay = max(0, $spawnDelay); }
+
+	public function getMinSpawnDelay() : int{ return $this->minSpawnDelay; }
+
+	public function setMinSpawnDelay(int $minSpawnDelay) : void{ $this->minSpawnDelay = max(0, $minSpawnDelay); }
+
+	public function getMaxSpawnDelay() : int{ return $this->maxSpawnDelay; }
+
+	public function setMaxSpawnDelay(int $maxSpawnDelay) : void{ $this->maxSpawnDelay = max(1, $maxSpawnDelay); }
+
+	public function getSpawnPerAttempt() : int{ return $this->spawnPerAttempt; }
+
+	public function setSpawnPerAttempt(int $spawnPerAttempt) : void{ $this->spawnPerAttempt = max(1, $spawnPerAttempt); }
+
+	public function getMaxNearbyEntities() : int{ return $this->maxNearbyEntities; }
+
+	public function setMaxNearbyEntities(int $maxNearbyEntities) : void{ $this->maxNearbyEntities = max(1, $maxNearbyEntities); }
+
+	public function getSpawnRange() : int{ return $this->spawnRange; }
+
+	public function setSpawnRange(int $spawnRange) : void{ $this->spawnRange = max(1, $spawnRange); }
+
+	public function getRequiredPlayerRange() : int{ return $this->requiredPlayerRange; }
+
+	public function setRequiredPlayerRange(int $requiredPlayerRange) : void{ $this->requiredPlayerRange = max(0, $requiredPlayerRange); }
 
 	protected function addAdditionalSpawnData(CompoundTag $nbt, TypeConverter $typeConverter) : void{
 		$nbt->setString(self::TAG_ENTITY_TYPE_ID, $this->entityTypeId);

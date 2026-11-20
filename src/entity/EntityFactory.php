@@ -56,6 +56,9 @@ use pocketmine\math\Vector3;
 use pocketmine\nbt\NbtException;
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\DoubleTag;
+use pocketmine\nbt\tag\FloatTag;
+use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
@@ -616,6 +619,31 @@ final class EntityFactory{
 			return new \pocketmine\entity\mob\ZombieVillager(Helper::parseLocation($nbt, $world), $nbt);
 		}, ['minecraft:zombie_villager']);
 
+	}
+
+	/**
+	 * Creates a fresh entity of the type with the given save name at the given location.
+	 *
+	 * @return Entity|null null if the save name is not registered
+	 */
+	public function createEntity(World $world, string $saveName, Location $location) : ?Entity{
+		$func = $this->creationFuncs[$saveName] ?? null;
+		if($func === null){
+			return null;
+		}
+
+		$nbt = CompoundTag::create()
+			->setTag(Entity::TAG_POS, new ListTag([
+				new DoubleTag($location->x),
+				new DoubleTag($location->y),
+				new DoubleTag($location->z)
+			]))
+			->setTag(Entity::TAG_ROTATION, new ListTag([
+				new FloatTag($location->yaw),
+				new FloatTag($location->pitch)
+			]));
+
+		return $func($world, $nbt);
 	}
 
 	/**

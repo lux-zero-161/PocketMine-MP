@@ -25,6 +25,7 @@ namespace pocketmine\network\mcpe\handler;
 
 use pocketmine\block\BaseSign;
 use pocketmine\block\Lectern;
+use pocketmine\block\tile\CommandBlock as TileCommandBlock;
 use pocketmine\block\tile\Sign;
 use pocketmine\block\utils\SignText;
 use pocketmine\entity\Attribute;
@@ -53,6 +54,7 @@ use pocketmine\network\mcpe\protocol\AnimatePacket;
 use pocketmine\network\mcpe\protocol\BlockActorDataPacket;
 use pocketmine\network\mcpe\protocol\BlockPickRequestPacket;
 use pocketmine\network\mcpe\protocol\BookEditPacket;
+use pocketmine\network\mcpe\protocol\CommandBlockUpdatePacket;
 use pocketmine\network\mcpe\protocol\CommandRequestPacket;
 use pocketmine\network\mcpe\protocol\ContainerClosePacket;
 use pocketmine\network\mcpe\protocol\CraftingEventPacket;
@@ -795,6 +797,30 @@ class InGamePacketHandler extends PacketHandler{
 		}catch(\UnexpectedValueException $e){
 			throw PacketHandlingException::wrap($e);
 		}
+	}
+
+	public function handleCommandBlockUpdate(CommandBlockUpdatePacket $packet) : bool{
+		if(!$packet->isBlock || (!$this->player->isCreative() && !$this->player->hasPermission(\pocketmine\permission\DefaultPermissions::ROOT_OPERATOR))){
+			return false;
+		}
+		$pos = new Vector3($packet->blockPosition->getX(), $packet->blockPosition->getY(), $packet->blockPosition->getZ());
+		if($pos->distanceSquared($this->player->getLocation()) > 10000){
+			return false;
+		}
+		$tile = $this->player->getWorld()->getTile($pos);
+		if(!$tile instanceof TileCommandBlock){
+			return false;
+		}
+		$tile->setCommand($packet->command);
+		$tile->setLastOutput($packet->lastOutput);
+		$tile->setName($packet->name);
+		$tile->setMode($packet->commandBlockMode);
+		$tile->setRedstoneMode($packet->isRedstoneMode);
+		$tile->setConditional($packet->isConditional);
+		$tile->setTrackOutput($packet->shouldTrackOutput);
+		$tile->setTickDelay($packet->tickDelay);
+		$tile->setExecuteOnFirstTick($packet->executeOnFirstTick);
+		return true;
 	}
 
 	public function handleBlockActorData(BlockActorDataPacket $packet) : bool{

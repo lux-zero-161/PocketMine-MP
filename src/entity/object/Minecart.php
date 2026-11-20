@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace pocketmine\entity\object;
 
 use pocketmine\block\BaseRail;
+use pocketmine\block\PoweredRail;
 use pocketmine\entity\Entity;
 use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\Location;
@@ -14,6 +15,7 @@ use pocketmine\network\mcpe\protocol\serializer\BitSet;
 use pocketmine\network\mcpe\protocol\types\PlayerAuthInputFlags;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 use pocketmine\player\Player;
+use function min;
 use function cos;
 use function deg2rad;
 use function sin;
@@ -47,6 +49,12 @@ class Minecart extends Entity{
 		return false;
 	}
 
+	public function dismountPassengers() : void{
+		foreach($this->getPassengers() as $passenger){
+			$passenger->dismount();
+		}
+	}
+
 	public function onRail() : bool{
 		return $this->getWorld()->getBlock($this->location->subtract(0, 0.5, 0)) instanceof BaseRail;
 	}
@@ -71,8 +79,23 @@ class Minecart extends Entity{
 
 	public function onUpdate(int $currentTick) : bool{
 		if($this->onRail()){
+			$rail = $this->getWorld()->getBlock($this->location->subtract(0, 0.5, 0));
 			$motion = $this->getMotion();
-			$this->setMotion(new Vector3($motion->x * 0.95, 0, $motion->z * 0.95));
+			$horizontal = new Vector3($motion->x, 0, $motion->z);
+			$speed = $horizontal->length();
+
+			if($rail instanceof PoweredRail && $rail->isPowered()){
+				if($speed < 0.05){
+					$yaw = deg2rad($this->location->yaw);
+					$horizontal = new Vector3(-sin($yaw), 0, cos($yaw));
+				}else{
+					$horizontal = $horizontal->normalize();
+				}
+				$speed = min(0.4, $speed + 0.06);
+				$this->setMotion(new Vector3($horizontal->x * $speed, 0, $horizontal->z * $speed));
+			}else{
+				$this->setMotion(new Vector3($motion->x * 0.95, 0, $motion->z * 0.95));
+			}
 		}
 		return parent::onUpdate($currentTick);
 	}
