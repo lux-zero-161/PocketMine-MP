@@ -8,6 +8,7 @@ use pocketmine\block\BlockTypeIds;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\ai\PathFinder;
+use pocketmine\entity\projectile\Arrow;
 use pocketmine\entity\projectile\SmallFireball;
 use pocketmine\entity\projectile\Snowball;
 use pocketmine\entity\projectile\SplashPotion;
@@ -232,6 +233,19 @@ abstract class SimpleMob extends Living{
 					$snowball->setBaseDamage(1.0);
 					$snowball->setMotion($direction->normalize()->multiply(0.7));
 					$snowball->spawnToAll();
+				}
+			}
+		}
+
+		if(in_array($name, ["Skeleton", "Stray", "Bogged", "Pillager"], true) && $currentTick % 40 === 0){
+			$player = $this->getNearestPlayer(16);
+			if($player !== null && $this->location->distanceSquared($player->getLocation()) > 9){
+				$direction = $player->getEyePos()->subtractVector($this->getEyePos());
+				if($direction->lengthSquared() > 0.01){
+					$arrow = new Arrow(Location::fromObject($this->getEyePos(), $this->getWorld(), $this->location->yaw, $this->location->pitch), $this, false);
+					$arrow->setBaseDamage($name === "Pillager" ? 3.0 : 2.0);
+					$arrow->setMotion($direction->normalize()->multiply(1.3));
+					$arrow->spawnToAll();
 				}
 			}
 		}

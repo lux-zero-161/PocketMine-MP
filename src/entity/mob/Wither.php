@@ -28,6 +28,7 @@ class Wither extends Living{
 
 	private int $shootCooldown = 40;
 	private int $barUpdateCooldown = 0;
+	private bool $armored = false;
 
 	public function __construct(Location $location, ?CompoundTag $nbt = null){
 		parent::__construct($location, $nbt);
@@ -51,6 +52,9 @@ class Wither extends Living{
 	}
 
 	public function attack(EntityDamageEvent $source) : void{
+		if($this->armored && $source->getBaseDamage() > 0){
+			$source->setBaseDamage($source->getBaseDamage() * 0.6);
+		}
 		parent::attack($source);
 		if($source instanceof \pocketmine\event\entity\EntityDamageByEntityEvent){
 			$damager = $source->getDamager();
@@ -62,6 +66,9 @@ class Wither extends Living{
 
 	public function onUpdate(int $currentTick) : bool{
 		if($this->isAlive()){
+			if(!$this->armored && $this->getHealth() <= $this->getMaxHealth() / 2){
+				$this->armored = true;
+			}
 			$target = $this->resolveTarget();
 			if($target !== null){
 				$this->flyTowards($target);
