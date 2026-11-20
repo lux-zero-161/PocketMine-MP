@@ -55,9 +55,10 @@ php build/audit/block-coverage.php
 php build/audit/item-coverage.php --missing
 php build/audit/performance.php
 php build/audit/soak.php --iterations=5
+php build/audit/worldgen.php
 ```
 
-The block audit reports canonical block type and state coverage; the item audit compares the Bedrock creative inventory against the block and item registries. The performance audit measures registry startup and block/item (de)serialization throughput; the soak audit repeats those cycles and checks for serialization errors and memory growth.
+The block audit reports canonical block type and state coverage; the item audit compares the Bedrock creative inventory against the block and item registries. The performance audit measures registry startup and block/item (de)serialization throughput; the soak audit repeats those cycles and checks for serialization errors and memory growth; the worldgen audit generates a small chunk area in memory.
 
 ### What "implemented" means here
 

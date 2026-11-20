@@ -16,6 +16,7 @@ lacking deep gameplay systems.
 | PHPUnit | **211 tests, 130,392 assertions, all green** | `vendor/bin/phpunit` |
 | Soak test | **0 errors, 0 MiB growth** | `build/audit/soak.php --iterations=2` |
 | Performance baseline | ~300k block (de)serializations/s, ~100k item NBT ops/s | `build/audit/performance.php` |
+| Worldgen smoke test | **9 chunks, 0 errors** | `build/audit/worldgen.php` |
 | PHPStan | green except 2 missing `ext-webrtc` symbols in the local test PHP | `vendor/bin/phpstan` |
 
 The blockstate number is reported separately on purpose. Many missing permutations are legacy or
@@ -88,6 +89,7 @@ php build/audit/block-coverage.php
 php build/audit/item-coverage.php
 php build/audit/performance.php
 php build/audit/soak.php --iterations=5
+php build/audit/worldgen.php
 vendor/bin/phpunit --bootstrap vendor/autoload.php tests/phpunit
 vendor/bin/phpstan analyse --no-progress --memory-limit=2G
 ```
