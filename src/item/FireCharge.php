@@ -25,6 +25,7 @@ namespace pocketmine\item;
 
 use pocketmine\block\Block;
 use pocketmine\block\BlockTypeIds;
+use pocketmine\block\utils\NetherPortalHelper;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
@@ -33,8 +34,14 @@ use pocketmine\world\sound\BlazeShootSound;
 class FireCharge extends Item{
 
 	public function onInteractBlock(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, array &$returnedItems) : ItemUseResult{
+		$world = $player->getWorld();
+		if($blockClicked->getTypeId() === BlockTypeIds::OBSIDIAN && NetherPortalHelper::tryActivate($world, $blockReplace->getPosition())){
+			$world->addSound($blockReplace->getPosition()->add(0.5, 0.5, 0.5), new BlazeShootSound());
+			$this->pop();
+			return ItemUseResult::SUCCESS;
+		}
+
 		if($blockReplace->getTypeId() === BlockTypeIds::AIR){
-			$world = $player->getWorld();
 			$world->setBlock($blockReplace->getPosition(), VanillaBlocks::FIRE());
 			$world->addSound($blockReplace->getPosition()->add(0.5, 0.5, 0.5), new BlazeShootSound());
 

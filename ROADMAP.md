@@ -24,6 +24,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Straw beds are placed as two halves and support sleeping/spawn setting like regular beds.
 - Shelf mushrooms attach to walls, can be grown with bone meal and bounce entities.
 - End portal frames accept eyes of ender and activate the 3x3 portal when all 12 frames are filled.
+- Nether portals can be lit with flint and steel or fire charges on a valid obsidian frame (dimension travel is still missing).
 - Composters accept compostable items with vanilla chances, produce bone meal and expose their fill level to comparators.
 - Sponges absorb nearby water and turn into wet sponges.
 - Powder snow slows and freezes entities without leather boots, and can be collected/filled with buckets.
