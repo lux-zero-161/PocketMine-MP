@@ -67,6 +67,7 @@ use pocketmine\network\mcpe\protocol\ItemStackResponsePacket;
 use pocketmine\network\mcpe\protocol\LecternUpdatePacket;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\network\mcpe\protocol\MobArmorEquipmentPacket;
+use pocketmine\network\mcpe\protocol\MapInfoRequestPacket;
 use pocketmine\network\mcpe\protocol\MobEquipmentPacket;
 use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 use pocketmine\network\mcpe\protocol\MovePlayerPacket;
@@ -106,6 +107,7 @@ use pocketmine\utils\Limits;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
 use pocketmine\world\format\Chunk;
+use pocketmine\world\map\MapManager;
 use function array_push;
 use function count;
 use function fmod;
@@ -935,6 +937,11 @@ class InGamePacketHandler extends PacketHandler{
 		}
 
 		return $result;
+	}
+
+	public function handleMapInfoRequest(MapInfoRequestPacket $packet) : bool{
+		MapManager::sendMap($this->player, $packet->mapId);
+		return true;
 	}
 
 	public function handleBookEdit(BookEditPacket $packet) : bool{

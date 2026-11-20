@@ -236,6 +236,7 @@ final class ItemSerializerDeserializerRegistrar{
 		$this->map1to1Item(Ids::ELDER_GUARDIAN_SPAWN_EGG, Items::ELDER_GUARDIAN_SPAWN_EGG());
 		$this->map1to1Item(Ids::ELYTRA, Items::ELYTRA());
 		$this->map1to1Item(Ids::EMPTY_MAP, Items::EMPTY_MAP());
+		$this->map1to1Item(Ids::FILLED_MAP, Items::FILLED_MAP());
 		$this->map1to1Item(Ids::ENDERMAN_SPAWN_EGG, Items::ENDERMAN_SPAWN_EGG());
 		$this->map1to1Item(Ids::ENDERMITE_SPAWN_EGG, Items::ENDERMITE_SPAWN_EGG());
 		$this->map1to1Item(Ids::EVOKER_SPAWN_EGG, Items::EVOKER_SPAWN_EGG());

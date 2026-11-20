@@ -1886,6 +1886,7 @@ final class StringToItemParser extends StringToTParser{
 		$result->register("elder_guardian_spawn_egg", fn() => Items::ELDER_GUARDIAN_SPAWN_EGG());
 		$result->register("elytra", fn() => Items::ELYTRA());
 		$result->register("empty_map", fn() => Items::EMPTY_MAP());
+		$result->register("filled_map", fn() => Items::FILLED_MAP());
 		$result->register("enderman_spawn_egg", fn() => Items::ENDERMAN_SPAWN_EGG());
 		$result->register("endermite_spawn_egg", fn() => Items::ENDERMITE_SPAWN_EGG());
 		$result->register("evoker_spawn_egg", fn() => Items::EVOKER_SPAWN_EGG());

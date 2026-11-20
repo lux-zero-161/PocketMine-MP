@@ -396,6 +396,7 @@ final class ItemTypeIds{
 	public const BORDURE_INDENTED_BANNER_PATTERN = 20355;
 	public const CREEPER_BANNER_PATTERN = 20356;
 	public const FIELD_MASONED_BANNER_PATTERN = 20357;
+	public const FILLED_MAP = 20567;
 	public const FLOW_BANNER_PATTERN = 20358;
 	public const FLOWER_BANNER_PATTERN = 20359;
 	public const GLOBE_BANNER_PATTERN = 20360;
@@ -614,7 +615,7 @@ final class ItemTypeIds{
 	public const ZOMBIE_PIGMAN_SPAWN_EGG = 20565;
 	public const ZOMBIE_VILLAGER_SPAWN_EGG = 20566;
 
-	public const FIRST_UNUSED_ITEM_ID = 20567;
+	public const FIRST_UNUSED_ITEM_ID = 20568;
 
 	private static int $nextDynamicId = self::FIRST_UNUSED_ITEM_ID;
 
