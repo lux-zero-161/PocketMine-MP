@@ -125,6 +125,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Villages occasionally trigger a natural three-wave raid when a player is nearby.
 - Killing a pillager grants Bad Omen; entering a village with Bad Omen consumes it and starts a raid.
 - Successful village defence grants Hero of the Village.
+- Grindstones open a form UI that removes enchantments and combines durability with an offhand item.
 - The Wither gains a damage-reduction armour phase below half health.
 
 **Active**

@@ -37,7 +37,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 | Item registry / data | 100% | Every creative item is representable and serializable. |
 | Block behaviour | ~82% | Most utility, technical and redstone blocks work; some container UIs and edge cases remain simplified. |
 | Redstone | ~92% | Wire, torches, repeaters, comparators, lamps, observers, targets, pistons, dispensers/droppers, hoppers, crafters, vaults, trial spawners, sculk sensing and command blocks work. Exact update ordering is simplified. |
-| Containers / automation | ~90% | Chests, barrels, hoppers, furnaces, brewing, enchanting, anvils, smithing, stonecutter, loom, cartography, crafter, bundles, chest minecarts/boats. Grindstone UI and native trading window remain open. |
+| Containers / automation | ~91% | Chests, barrels, hoppers, furnaces, brewing, enchanting, anvils, smithing, stonecutter, loom, cartography, crafter, bundles, chest minecarts/boats. Native grindstone/trading windows remain open; a form-based grindstone is available. |
 | Mobs | ~70% | Basic AI, A* pathfinding, breeding, natural spawning, ranged attacks, taming, villager trades and bosses. No full vanilla pathfinding, herds, fear propagation or special attack parity. |
 | World generation | ~38% | Noise terrain, caves, simplified aquifers, ores, trees, kelp/seagrass, Nether decoration, End islands and simple villages. No full vanilla biome/structures/aquifer parity. |
 | Dimensions | ~75% | Overworld/Nether/End, portals, exit portal, gateways and dimension-aware chunks. Dragon fight phases and End content are simplified. |
@@ -64,7 +64,8 @@ and all states used by the implemented blocks round-trip through the serializer.
   witches, blazes and ghasts.
 - Natural mob spawning (land and water), deterministic villages, villagers and natural raids.
 - Bad Omen from pillager kills and village raid triggering; Hero of the Village after a win.
-- Form-based villager trade UI; Bad Omen / Hero of the Village effects registered.
+- Form-based villager trade UI and grindstone UI.
+- Bad Omen / Hero of the Village effects registered.
 - `/raid`, `/summon`, `/structure`, `/jigsaw` commands.
 - Performance and soak audit scripts.
 
@@ -73,7 +74,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 1. Native Bedrock villager trade window (`UpdateTradePacket` + trade inventory requests).
 2. Full vanilla raid mechanics, village POIs, villager professions/workstations and restocking.
 3. Full vanilla world generation: structures, aquifers, biome variation, strongholds and End cities.
-4. Grindstone UI and remaining container/transaction edge cases.
+4. Native grindstone container window and remaining container/transaction edge cases.
 5. Long-running multi-player soak/load tests and profiling on real hardware.
 6. Remaining End content (dragon AI parity, gateways with exact coordinate rules, shulkers/end cities).
 7. More exact redstone update ordering and block-specific edge cases.
