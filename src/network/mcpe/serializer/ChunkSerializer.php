@@ -85,11 +85,11 @@ final class ChunkSerializer{
 	 * @phpstan-param DimensionIds::* $dimensionId
 	 * @return string[]
 	 */
-	public static function serializeSubChunks(Chunk $chunk, int $dimensionId, TypeConverter $typeConverter) : array{
+	public static function serializeSubChunks(Chunk $chunk, int $dimensionId, TypeConverter $typeConverter, ?int $subChunkCount = null) : array{
 		$stream = new ByteBufferWriter();
 		$subChunks = [];
 
-		$subChunkCount = self::getSubChunkCount($chunk, $dimensionId);
+		$subChunkCount ??= self::getSubChunkCount($chunk, $dimensionId);
 		$writtenCount = 0;
 
 		[$minSubChunkIndex, ] = self::getDimensionChunkBounds($dimensionId);
@@ -105,10 +105,10 @@ final class ChunkSerializer{
 	/**
 	 * @phpstan-param DimensionIds::* $dimensionId
 	 */
-	public static function serializeFullChunk(Chunk $chunk, int $dimensionId, TypeConverter $typeConverter, ?string $tiles = null) : string{
+	public static function serializeFullChunk(Chunk $chunk, int $dimensionId, TypeConverter $typeConverter, ?string $tiles = null, ?int $subChunkCount = null) : string{
 		$stream = new ByteBufferWriter();
 
-		foreach(self::serializeSubChunks($chunk, $dimensionId, $typeConverter) as $subChunk){
+		foreach(self::serializeSubChunks($chunk, $dimensionId, $typeConverter, $subChunkCount) as $subChunk){
 			$stream->writeByteArray($subChunk);
 		}
 

@@ -44,7 +44,7 @@ and all states used by the implemented blocks round-trip through the serializer.
 | Dimensions | ~75% | Overworld/Nether/End, portals, exit portal, gateways and dimension-aware chunks. Dragon fight phases and End content are simplified. |
 | Networking / protocol | ~95% | Protocol 2225, RakNet, NetherNet and packet coverage inherited from the maintained base. |
 | Plugin API | ~95% | PocketMine-MP 5.x API preserved; new block/item types are exposed. |
-| Testing / performance | ~73% | Strong registry/serialization tests plus quick performance and soak audits. No long-running multi-player load test yet. |
+| Testing / performance | ~74% | Strong registry/serialization tests plus quick performance and soak audits. No long-running multi-player load test yet. |
 
 ## Recently completed
 

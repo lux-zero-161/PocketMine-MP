@@ -74,7 +74,7 @@ class ChunkRequestTask extends AsyncTask{
 
 		$subCount = ChunkSerializer::getSubChunkCount($chunk, $dimensionId);
 		$converter = TypeConverter::getInstance($this->mappingProtocol);
-		$payload = ChunkSerializer::serializeFullChunk($chunk, $dimensionId, $converter, $this->tiles);
+		$payload = ChunkSerializer::serializeFullChunk($chunk, $dimensionId, $converter, $this->tiles, $subCount);
 
 		$stream = new ByteBufferWriter();
 		PacketBatch::encodePackets($stream, $this->mappingProtocol, [LevelChunkPacket::create(

@@ -309,6 +309,8 @@ class World implements ChunkManager{
 
 	private float $sunAnglePercentage = 0.0;
 
+	/** @var self::DIMENSION_*|null */
+	private ?int $dimensionId = null;
 	private bool $raining = false;
 	private bool $thundering = false;
 	private int $rainTicks = 6000;
@@ -3541,14 +3543,15 @@ class World implements ChunkManager{
 	 * @phpstan-return self::DIMENSION_*
 	 */
 	public function getDimensionId() : int{
+		if($this->dimensionId !== null){
+			return $this->dimensionId;
+		}
 		$generator = strtolower($this->provider->getWorldData()->getGenerator());
-		if($generator === "nether" || $generator === "hell"){
-			return self::DIMENSION_NETHER;
-		}
-		if($generator === "end" || $generator === "the_end" || $this->folderName === "the_end"){
-			return self::DIMENSION_THE_END;
-		}
-		return self::DIMENSION_OVERWORLD;
+		return $this->dimensionId = match(true){
+			$generator === "nether" || $generator === "hell" => self::DIMENSION_NETHER,
+			$generator === "end" || $generator === "the_end" || $this->folderName === "the_end" => self::DIMENSION_THE_END,
+			default => self::DIMENSION_OVERWORLD
+		};
 	}
 
 	/**
