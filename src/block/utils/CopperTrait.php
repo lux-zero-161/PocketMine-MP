@@ -33,6 +33,7 @@ use pocketmine\player\Player;
 use pocketmine\world\sound\CopperWaxApplySound;
 use pocketmine\world\sound\CopperWaxRemoveSound;
 use pocketmine\world\sound\ScrapeSound;
+use function mt_rand;
 
 trait CopperTrait{
 	private CopperOxidation $oxidation = CopperOxidation::NONE;
@@ -57,6 +58,21 @@ trait CopperTrait{
 	public function setWaxed(bool $waxed) : self{
 		$this->waxed = $waxed;
 		return $this;
+	}
+
+	public function ticksRandomly() : bool{
+		return !$this->waxed && $this->oxidation->getNext() !== null;
+	}
+
+	public function onRandomTick() : void{
+		if($this->waxed || mt_rand(0, 499) !== 0){
+			return;
+		}
+		$next = $this->oxidation->getNext();
+		if($next !== null){
+			$this->oxidation = $next;
+			$this->position->getWorld()->setBlock($this->position, $this);
+		}
 	}
 
 	/**

@@ -97,6 +97,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Wither boss: flying AI, boss bar, wither skull projectiles with explosions, nether star drop and 50 XP.
 - Ender Dragon boss: flying/circling AI, boss bar, melee damage, dragon egg drop and 12,000 XP.
 - Worlds have persistent rain/thunder weather cycles with client notifications and weather-adjusted sky light; weather transitions are broadcast on join.
+- Copper blocks oxidise randomly over time; waxing and axe scraping stop/reverse the process.
 
 **Active**
 
