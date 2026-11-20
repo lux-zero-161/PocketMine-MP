@@ -79,6 +79,8 @@ use pocketmine\network\mcpe\convert\TypeConverter;
 use pocketmine\network\mcpe\NetworkBroadcastUtils;
 use pocketmine\network\mcpe\protocol\BlockActorDataPacket;
 use pocketmine\network\mcpe\protocol\ClientboundPacket;
+use pocketmine\network\mcpe\protocol\LevelEventPacket;
+use pocketmine\network\mcpe\protocol\types\LevelEvent;
 use pocketmine\network\mcpe\protocol\types\BlockPosition;
 use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
 use pocketmine\player\Player;
@@ -301,6 +303,11 @@ class World implements ChunkManager{
 	public bool $stopTime = false;
 
 	private float $sunAnglePercentage = 0.0;
+
+	private bool $raining = false;
+	private bool $thundering = false;
+	private int $rainTicks = 6000;
+	private int $thunderTicks = 0;
 	private int $skyLightReduction = 0;
 
 	private string $folderName;
@@ -525,6 +532,12 @@ class World implements ChunkManager{
 		$this->blockStateRegistry = RuntimeBlockStateRegistry::getInstance();
 		$this->minY = $this->provider->getWorldMinY();
 		$this->maxY = $this->provider->getWorldMaxY();
+
+		$worldData = $this->provider->getWorldData();
+		$this->raining = $worldData->getRainLevel() > 0.0;
+		$this->thundering = $worldData->getLightningLevel() > 0.0;
+		$this->rainTicks = max(6000, $worldData->getRainTime());
+		$this->thunderTicks = max(0, $worldData->getLightningTime());
 
 		$cfg = $this->server->getConfigGroup();
 		$this->damageY = $cfg->getPropertyInt(YmlServerProperties::LEVEL_SETTINGS_MIN_Y, 0);
@@ -1051,6 +1064,7 @@ class World implements ChunkManager{
 	}
 
 	protected function actuallyDoTick(int $currentTick) : void{
+		$this->tickWeather();
 		if(!$this->stopTime){
 			//this simulates an overflow, as would happen in any language which doesn't do stupid things to var types
 			if($this->time === PHP_INT_MAX){
@@ -1866,14 +1880,83 @@ class World implements ChunkManager{
 		return $this->sunAnglePercentage * 360.0;
 	}
 
+	public function isRaining() : bool{ return $this->raining; }
+
+	public function isThundering() : bool{ return $this->thundering; }
+
+	public function getRainLevel() : float{ return $this->raining ? 1.0 : 0.0; }
+
+	public function getLightningLevel() : float{ return $this->thundering ? 1.0 : 0.0; }
+
+	/**
+	 * Enables or disables rain and broadcasts the change to all players in this world.
+	 */
+	public function setRaining(bool $raining, int $durationTicks = -1) : void{
+		if($this->raining === $raining && $durationTicks < 0){
+			return;
+		}
+		$this->raining = $raining;
+		$this->rainTicks = $durationTicks > 0 ? $durationTicks : mt_rand(6000, 18000);
+
+		$this->provider->getWorldData()->setRainLevel($raining ? 1.0 : 0.0);
+		$this->provider->getWorldData()->setRainTime($this->rainTicks);
+
+		$pk = LevelEventPacket::create($raining ? LevelEvent::START_RAIN : LevelEvent::STOP_RAIN, 0, new Vector3(0, 0, 0));
+		foreach($this->players as $player){
+			$player->getNetworkSession()->sendDataPacket($pk);
+		}
+	}
+
+	/**
+	 * Enables or disables thunder and broadcasts the change to all players in this world.
+	 */
+	public function setThundering(bool $thundering, int $durationTicks = -1) : void{
+		if($this->thundering === $thundering && $durationTicks < 0){
+			return;
+		}
+		$this->thundering = $thundering;
+		$this->thunderTicks = $durationTicks > 0 ? $durationTicks : mt_rand(3000, 9000);
+
+		$this->provider->getWorldData()->setLightningLevel($thundering ? 1.0 : 0.0);
+		$this->provider->getWorldData()->setLightningTime($this->thunderTicks);
+
+		$pk = LevelEventPacket::create($thundering ? LevelEvent::START_THUNDER : LevelEvent::STOP_THUNDER, 0, new Vector3(0, 0, 0));
+		foreach($this->players as $player){
+			$player->getNetworkSession()->sendDataPacket($pk);
+		}
+	}
+
+	private function tickWeather() : void{
+		if(--$this->rainTicks > 0){
+			if($this->thundering && --$this->thunderTicks <= 0){
+				$this->setThundering(false);
+			}
+			return;
+		}
+
+		if($this->raining){
+			$this->setRaining(false);
+			$this->setThundering(false);
+		}else{
+			$this->setRaining(true);
+			if(mt_rand(0, 4) === 0){
+				$this->setThundering(true);
+			}
+		}
+	}
+
 	/**
 	 * Computes how many points of sky light is subtracted based on the current time. Used to offset raw chunk sky light
 	 * to get a real light value.
 	 */
 	public function computeSkyLightReduction() : int{
 		$percentage = max(0, min(1, -(cos($this->getSunAngleRadians()) * 2 - 0.5)));
-
-		//TODO: check rain and thunder level
+		if($this->raining){
+			$percentage = min(1, $percentage + 0.25);
+		}
+		if($this->thundering){
+			$percentage = min(1, $percentage + 0.35);
+		}
 
 		return (int) ($percentage * 11);
 	}

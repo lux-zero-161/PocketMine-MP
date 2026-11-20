@@ -98,8 +98,8 @@ class PreSpawnPacketHandler extends PacketHandler{
 			$levelSettings->time = $world->getTime();
 			$levelSettings->eduEditionOffer = 0;
 			$levelSettings->hasEduFeaturesEnabled = true; //required for education items to render
-			$levelSettings->rainLevel = 0; //TODO: implement these properly
-			$levelSettings->lightningLevel = 0;
+			$levelSettings->rainLevel = $world->getRainLevel();
+			$levelSettings->lightningLevel = $world->getLightningLevel();
 			$levelSettings->commandsEnabled = true;
 			$levelSettings->gameRules = [
 				"naturalregeneration" => new BoolGameRule(false, false), //Hack for client side regeneration
