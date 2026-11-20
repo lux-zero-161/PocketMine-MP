@@ -220,6 +220,8 @@ final class EntityFactory{
 		$this->register(Human::class, function(World $world, CompoundTag $nbt) : Human{
 			return new Human(Helper::parseLocation($nbt, $world), Human::parseSkinNBT($nbt), $nbt);
 		}, ['Human']);
+
+		$this->registerSimpleMobs();
 	}
 
 	/**
@@ -251,6 +253,345 @@ final class EntityFactory{
 		}
 
 		$this->saveNames[$className] = reset($saveNames);
+	}
+
+	private function registerSimpleMobs() : void{
+		$this->register(\pocketmine\entity\mob\Allay::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Allay{
+			return new \pocketmine\entity\mob\Allay(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:allay']);
+
+		$this->register(\pocketmine\entity\mob\Armadillo::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Armadillo{
+			return new \pocketmine\entity\mob\Armadillo(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:armadillo']);
+
+		$this->register(\pocketmine\entity\mob\Axolotl::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Axolotl{
+			return new \pocketmine\entity\mob\Axolotl(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:axolotl']);
+
+		$this->register(\pocketmine\entity\mob\Bat::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Bat{
+			return new \pocketmine\entity\mob\Bat(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:bat']);
+
+		$this->register(\pocketmine\entity\mob\Bee::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Bee{
+			return new \pocketmine\entity\mob\Bee(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:bee']);
+
+		$this->register(\pocketmine\entity\mob\Blaze::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Blaze{
+			return new \pocketmine\entity\mob\Blaze(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:blaze']);
+
+		$this->register(\pocketmine\entity\mob\Bogged::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Bogged{
+			return new \pocketmine\entity\mob\Bogged(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:bogged']);
+
+		$this->register(\pocketmine\entity\mob\Breeze::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Breeze{
+			return new \pocketmine\entity\mob\Breeze(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:breeze']);
+
+		$this->register(\pocketmine\entity\mob\Camel::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Camel{
+			return new \pocketmine\entity\mob\Camel(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:camel']);
+
+		$this->register(\pocketmine\entity\mob\CamelHusk::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\CamelHusk{
+			return new \pocketmine\entity\mob\CamelHusk(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:camel_husk']);
+
+		$this->register(\pocketmine\entity\mob\Cat::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Cat{
+			return new \pocketmine\entity\mob\Cat(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:cat']);
+
+		$this->register(\pocketmine\entity\mob\CaveSpider::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\CaveSpider{
+			return new \pocketmine\entity\mob\CaveSpider(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:cave_spider']);
+
+		$this->register(\pocketmine\entity\mob\Chicken::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Chicken{
+			return new \pocketmine\entity\mob\Chicken(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:chicken']);
+
+		$this->register(\pocketmine\entity\mob\Cod::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Cod{
+			return new \pocketmine\entity\mob\Cod(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:cod']);
+
+		$this->register(\pocketmine\entity\mob\CopperGolem::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\CopperGolem{
+			return new \pocketmine\entity\mob\CopperGolem(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:copper_golem']);
+
+		$this->register(\pocketmine\entity\mob\Cow::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Cow{
+			return new \pocketmine\entity\mob\Cow(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:cow']);
+
+		$this->register(\pocketmine\entity\mob\Creaking::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Creaking{
+			return new \pocketmine\entity\mob\Creaking(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:creaking']);
+
+		$this->register(\pocketmine\entity\mob\Creeper::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Creeper{
+			return new \pocketmine\entity\mob\Creeper(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:creeper']);
+
+		$this->register(\pocketmine\entity\mob\Dolphin::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Dolphin{
+			return new \pocketmine\entity\mob\Dolphin(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:dolphin']);
+
+		$this->register(\pocketmine\entity\mob\Donkey::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Donkey{
+			return new \pocketmine\entity\mob\Donkey(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:donkey']);
+
+		$this->register(\pocketmine\entity\mob\Drowned::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Drowned{
+			return new \pocketmine\entity\mob\Drowned(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:drowned']);
+
+		$this->register(\pocketmine\entity\mob\ElderGuardian::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\ElderGuardian{
+			return new \pocketmine\entity\mob\ElderGuardian(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:elder_guardian']);
+
+		$this->register(\pocketmine\entity\mob\Enderman::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Enderman{
+			return new \pocketmine\entity\mob\Enderman(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:enderman']);
+
+		$this->register(\pocketmine\entity\mob\Endermite::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Endermite{
+			return new \pocketmine\entity\mob\Endermite(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:endermite']);
+
+		$this->register(\pocketmine\entity\mob\Evoker::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Evoker{
+			return new \pocketmine\entity\mob\Evoker(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:evocation_illager']);
+
+		$this->register(\pocketmine\entity\mob\Fox::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Fox{
+			return new \pocketmine\entity\mob\Fox(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:fox']);
+
+		$this->register(\pocketmine\entity\mob\Frog::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Frog{
+			return new \pocketmine\entity\mob\Frog(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:frog']);
+
+		$this->register(\pocketmine\entity\mob\Frostbite::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Frostbite{
+			return new \pocketmine\entity\mob\Frostbite(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:frostbite']);
+
+		$this->register(\pocketmine\entity\mob\Ghast::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Ghast{
+			return new \pocketmine\entity\mob\Ghast(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:ghast']);
+
+		$this->register(\pocketmine\entity\mob\GlowSquid::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\GlowSquid{
+			return new \pocketmine\entity\mob\GlowSquid(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:glow_squid']);
+
+		$this->register(\pocketmine\entity\mob\Goat::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Goat{
+			return new \pocketmine\entity\mob\Goat(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:goat']);
+
+		$this->register(\pocketmine\entity\mob\Guardian::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Guardian{
+			return new \pocketmine\entity\mob\Guardian(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:guardian']);
+
+		$this->register(\pocketmine\entity\mob\HappyGhast::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\HappyGhast{
+			return new \pocketmine\entity\mob\HappyGhast(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:happy_ghast']);
+
+		$this->register(\pocketmine\entity\mob\Hoglin::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Hoglin{
+			return new \pocketmine\entity\mob\Hoglin(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:hoglin']);
+
+		$this->register(\pocketmine\entity\mob\Horse::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Horse{
+			return new \pocketmine\entity\mob\Horse(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:horse']);
+
+		$this->register(\pocketmine\entity\mob\Husk::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Husk{
+			return new \pocketmine\entity\mob\Husk(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:husk']);
+
+		$this->register(\pocketmine\entity\mob\IronGolem::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\IronGolem{
+			return new \pocketmine\entity\mob\IronGolem(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:iron_golem']);
+
+		$this->register(\pocketmine\entity\mob\Llama::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Llama{
+			return new \pocketmine\entity\mob\Llama(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:llama']);
+
+		$this->register(\pocketmine\entity\mob\MagmaCube::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\MagmaCube{
+			return new \pocketmine\entity\mob\MagmaCube(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:magma_cube']);
+
+		$this->register(\pocketmine\entity\mob\Mooshroom::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Mooshroom{
+			return new \pocketmine\entity\mob\Mooshroom(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:mooshroom']);
+
+		$this->register(\pocketmine\entity\mob\Mule::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Mule{
+			return new \pocketmine\entity\mob\Mule(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:mule']);
+
+		$this->register(\pocketmine\entity\mob\Nautilus::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Nautilus{
+			return new \pocketmine\entity\mob\Nautilus(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:nautilus']);
+
+		$this->register(\pocketmine\entity\mob\Ocelot::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Ocelot{
+			return new \pocketmine\entity\mob\Ocelot(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:ocelot']);
+
+		$this->register(\pocketmine\entity\mob\Panda::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Panda{
+			return new \pocketmine\entity\mob\Panda(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:panda']);
+
+		$this->register(\pocketmine\entity\mob\Parched::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Parched{
+			return new \pocketmine\entity\mob\Parched(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:parched']);
+
+		$this->register(\pocketmine\entity\mob\Parrot::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Parrot{
+			return new \pocketmine\entity\mob\Parrot(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:parrot']);
+
+		$this->register(\pocketmine\entity\mob\Phantom::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Phantom{
+			return new \pocketmine\entity\mob\Phantom(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:phantom']);
+
+		$this->register(\pocketmine\entity\mob\Pig::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Pig{
+			return new \pocketmine\entity\mob\Pig(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:pig']);
+
+		$this->register(\pocketmine\entity\mob\Piglin::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Piglin{
+			return new \pocketmine\entity\mob\Piglin(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:piglin']);
+
+		$this->register(\pocketmine\entity\mob\PiglinBrute::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\PiglinBrute{
+			return new \pocketmine\entity\mob\PiglinBrute(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:piglin_brute']);
+
+		$this->register(\pocketmine\entity\mob\Pillager::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Pillager{
+			return new \pocketmine\entity\mob\Pillager(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:pillager']);
+
+		$this->register(\pocketmine\entity\mob\PolarBear::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\PolarBear{
+			return new \pocketmine\entity\mob\PolarBear(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:polar_bear']);
+
+		$this->register(\pocketmine\entity\mob\Pufferfish::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Pufferfish{
+			return new \pocketmine\entity\mob\Pufferfish(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:pufferfish']);
+
+		$this->register(\pocketmine\entity\mob\Rabbit::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Rabbit{
+			return new \pocketmine\entity\mob\Rabbit(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:rabbit']);
+
+		$this->register(\pocketmine\entity\mob\Ravager::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Ravager{
+			return new \pocketmine\entity\mob\Ravager(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:ravager']);
+
+		$this->register(\pocketmine\entity\mob\Salmon::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Salmon{
+			return new \pocketmine\entity\mob\Salmon(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:salmon']);
+
+		$this->register(\pocketmine\entity\mob\Sheep::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Sheep{
+			return new \pocketmine\entity\mob\Sheep(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:sheep']);
+
+		$this->register(\pocketmine\entity\mob\Shulker::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Shulker{
+			return new \pocketmine\entity\mob\Shulker(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:shulker']);
+
+		$this->register(\pocketmine\entity\mob\Silverfish::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Silverfish{
+			return new \pocketmine\entity\mob\Silverfish(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:silverfish']);
+
+		$this->register(\pocketmine\entity\mob\Skeleton::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Skeleton{
+			return new \pocketmine\entity\mob\Skeleton(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:skeleton']);
+
+		$this->register(\pocketmine\entity\mob\SkeletonHorse::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\SkeletonHorse{
+			return new \pocketmine\entity\mob\SkeletonHorse(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:skeleton_horse']);
+
+		$this->register(\pocketmine\entity\mob\Slime::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Slime{
+			return new \pocketmine\entity\mob\Slime(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:slime']);
+
+		$this->register(\pocketmine\entity\mob\Sniffer::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Sniffer{
+			return new \pocketmine\entity\mob\Sniffer(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:sniffer']);
+
+		$this->register(\pocketmine\entity\mob\SnowGolem::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\SnowGolem{
+			return new \pocketmine\entity\mob\SnowGolem(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:snow_golem']);
+
+		$this->register(\pocketmine\entity\mob\Spider::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Spider{
+			return new \pocketmine\entity\mob\Spider(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:spider']);
+
+		$this->register(\pocketmine\entity\mob\Stray::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Stray{
+			return new \pocketmine\entity\mob\Stray(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:stray']);
+
+		$this->register(\pocketmine\entity\mob\Strider::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Strider{
+			return new \pocketmine\entity\mob\Strider(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:strider']);
+
+		$this->register(\pocketmine\entity\mob\SulfurCube::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\SulfurCube{
+			return new \pocketmine\entity\mob\SulfurCube(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:sulfur_cube']);
+
+		$this->register(\pocketmine\entity\mob\Tadpole::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Tadpole{
+			return new \pocketmine\entity\mob\Tadpole(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:tadpole']);
+
+		$this->register(\pocketmine\entity\mob\TraderLlama::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\TraderLlama{
+			return new \pocketmine\entity\mob\TraderLlama(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:trader_llama']);
+
+		$this->register(\pocketmine\entity\mob\TropicalFish::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\TropicalFish{
+			return new \pocketmine\entity\mob\TropicalFish(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:tropicalfish']);
+
+		$this->register(\pocketmine\entity\mob\Turtle::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Turtle{
+			return new \pocketmine\entity\mob\Turtle(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:turtle']);
+
+		$this->register(\pocketmine\entity\mob\Vex::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Vex{
+			return new \pocketmine\entity\mob\Vex(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:vex']);
+
+		$this->register(\pocketmine\entity\mob\Vindicator::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Vindicator{
+			return new \pocketmine\entity\mob\Vindicator(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:vindicator']);
+
+		$this->register(\pocketmine\entity\mob\WanderingTrader::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\WanderingTrader{
+			return new \pocketmine\entity\mob\WanderingTrader(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:wandering_trader']);
+
+		$this->register(\pocketmine\entity\mob\Warden::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Warden{
+			return new \pocketmine\entity\mob\Warden(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:warden']);
+
+		$this->register(\pocketmine\entity\mob\Witch::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Witch{
+			return new \pocketmine\entity\mob\Witch(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:witch']);
+
+		$this->register(\pocketmine\entity\mob\WitherSkeleton::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\WitherSkeleton{
+			return new \pocketmine\entity\mob\WitherSkeleton(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:wither_skeleton']);
+
+		$this->register(\pocketmine\entity\mob\Wolf::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Wolf{
+			return new \pocketmine\entity\mob\Wolf(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:wolf']);
+
+		$this->register(\pocketmine\entity\mob\Zoglin::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\Zoglin{
+			return new \pocketmine\entity\mob\Zoglin(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:zoglin']);
+
+		$this->register(\pocketmine\entity\mob\ZombieHorse::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\ZombieHorse{
+			return new \pocketmine\entity\mob\ZombieHorse(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:zombie_horse']);
+
+		$this->register(\pocketmine\entity\mob\ZombieNautilus::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\ZombieNautilus{
+			return new \pocketmine\entity\mob\ZombieNautilus(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:zombie_nautilus']);
+
+		$this->register(\pocketmine\entity\mob\ZombiePigman::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\ZombiePigman{
+			return new \pocketmine\entity\mob\ZombiePigman(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:zombie_pigman']);
+
+		$this->register(\pocketmine\entity\mob\ZombieVillager::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\mob\ZombieVillager{
+			return new \pocketmine\entity\mob\ZombieVillager(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['minecraft:zombie_villager']);
+
 	}
 
 	/**

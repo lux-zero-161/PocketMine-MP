@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+namespace pocketmine\entity\mob;
+
+use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
+
+class Bogged extends SimpleMob{
+
+	public static function getNetworkTypeId() : string{ return EntityIds::BOGGED; }
+
+	public function getName() : string{ return "Bogged"; }
+}
