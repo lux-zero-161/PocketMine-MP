@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace pocketmine\item;
 
-class Shield extends Durable{
+use pocketmine\player\Player;
+
+class Shield extends Durable implements Releasable{
 
 	public function getMaxDurability() : int{
 		return 336;
@@ -12,5 +14,9 @@ class Shield extends Durable{
 
 	public function getMaxStackSize() : int{
 		return 1;
+	}
+
+	public function canStartUsingItem(Player $player) : bool{
+		return true;
 	}
 }

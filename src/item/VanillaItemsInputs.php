@@ -602,7 +602,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("donkey_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Donkey Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Donkey($loc)));
 		self::register("drowned_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Drowned Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Drowned($loc)));
 		self::register("elder_guardian_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Elder Guardian Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\ElderGuardian($loc)));
-		self::register("elytra", fn(IID $id) => new Elytra($id, "Elytra"));
+		self::registerDelayed("elytra", fn(string $name) : Elytra => new Elytra(self::makeIID($name), "Elytra"));
 		self::register("empty_map", fn(IID $id) => new Item($id, "Empty Map"));
 		self::register("enderman_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Enderman Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Enderman($loc)));
 		self::register("endermite_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Endermite Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Endermite($loc)));

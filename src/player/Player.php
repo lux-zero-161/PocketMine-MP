@@ -99,11 +99,14 @@ use pocketmine\inventory\transaction\TransactionCancelledException;
 use pocketmine\inventory\transaction\TransactionValidationException;
 use pocketmine\item\ConsumableItem;
 use pocketmine\item\Durable;
+use pocketmine\item\Elytra;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\enchantment\MeleeWeaponEnchantment;
 use pocketmine\item\Item;
 use pocketmine\item\ItemUseResult;
+use pocketmine\item\Mace;
 use pocketmine\item\Releasable;
+use pocketmine\item\Shield;
 use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\lang\Language;
 use pocketmine\lang\Translatable;
@@ -2019,6 +2022,11 @@ class Player extends Human implements CommandSender, ChunkListener, IPlayer, Nev
 			$ev->setModifier($ev->getFinalDamage() / 2, EntityDamageEvent::MODIFIER_CRITICAL);
 		}
 
+		if($heldItem instanceof Mace && $this->fallDistance > 1.5){
+			$ev->setModifier(min(10.0, $this->fallDistance * 2), EntityDamageEvent::MODIFIER_MACE_SMASH);
+			$this->fallDistance = 0.0;
+		}
+
 		$entity->attack($ev);
 		$this->broadcastAnimation(new ArmSwingAnimation($this), $this->getViewers());
 
@@ -2154,6 +2162,9 @@ class Player extends Human implements CommandSender, ChunkListener, IPlayer, Nev
 	public function toggleGlide(bool $glide) : bool{
 		if($glide === $this->gliding){
 			return true;
+		}
+		if($glide && !$this->armorInventory->getChestplate() instanceof Elytra){
+			return false;
 		}
 		$ev = new PlayerToggleGlideEvent($this, $glide);
 		$ev->call();
@@ -2661,6 +2672,15 @@ class Player extends Human implements CommandSender, ChunkListener, IPlayer, Nev
 	public function attack(EntityDamageEvent $source) : void{
 		if(!$this->isAlive()){
 			return;
+		}
+
+		if($this->isUsingItem() && ($shield = $this->inventory->getItemInHand()) instanceof Shield){
+			$damager = $source instanceof EntityDamageByEntityEvent ? $source->getDamager() : null;
+			if($damager !== null && $this->getDirectionVector()->dot($damager->getPosition()->subtractVector($this->getPosition())) > 0){
+				$shield->applyDamage((int) max(1, floor($source->getFinalDamage())));
+				$source->cancel();
+				return;
+			}
 		}
 
 		if($this->isCreative()

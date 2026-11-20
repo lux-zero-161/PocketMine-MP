@@ -68,10 +68,11 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - All 1,766 creative-inventory items are representable, including chest boats, bundles, spears, shields, crossbows, elytra, mace, buckets, minecarts and spawn eggs.
 - Armor stands are spawnable entities, accept armor and drop their equipment when destroyed.
 - Spawn eggs spawn basic mob entities with simple movement; fish/mob buckets place water and spawn their mob.
+- Shields block frontal hits, crossbows fire arrows, elytra enable gliding and maces deal fall-based smash damage.
 
 **Active**
 
-- Minecart items, bundle storage and shield/crossbow/elytra mechanics still need dedicated entities or item logic.
+- Minecart/boat entities and bundle storage still need dedicated entity/item implementations.
 - Fill item components for 1.26 content where Bedrock defines them.
 
 ## Milestone 2 — World system
