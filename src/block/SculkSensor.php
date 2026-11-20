@@ -6,6 +6,7 @@ namespace pocketmine\block;
 
 use pocketmine\block\tile\CalibratedSculkSensor as TileCalibratedSculkSensor;
 use pocketmine\block\utils\AnalogRedstoneSignalEmitter;
+use pocketmine\block\RuntimeBlockStateRegistry;
 use pocketmine\data\runtime\RuntimeDataDescriber;
 use pocketmine\entity\Entity;
 use pocketmine\math\Vector3;
@@ -58,6 +59,13 @@ class SculkSensor extends Opaque implements AnalogRedstoneSignalEmitter{
 	 */
 	private static bool $updating = false;
 
+	/**
+	 * State IDs of all sculk sensor and shrieker blocks, built lazily to avoid creating Block objects during scans.
+	 *
+	 * @var array<int, true>|null
+	 */
+	private static ?array $sensorStateIds = null;
+
 	protected function describeBlockOnlyState(RuntimeDataDescriber $w) : void{
 		$w->boundedIntAuto(0, self::MAX_PHASE, $this->phase);
 	}
@@ -101,6 +109,9 @@ class SculkSensor extends Opaque implements AnalogRedstoneSignalEmitter{
 		$centerY = $position->getFloorY();
 		$centerZ = $position->getFloorZ();
 
+		self::$sensorStateIds ??= self::buildSensorStateIds();
+		$registry = RuntimeBlockStateRegistry::getInstance();
+
 		for($dx = -self::MAX_VIBRATION_DISTANCE; $dx <= self::MAX_VIBRATION_DISTANCE; ++$dx){
 			for($dy = -self::MAX_VIBRATION_DISTANCE; $dy <= self::MAX_VIBRATION_DISTANCE; ++$dy){
 				for($dz = -self::MAX_VIBRATION_DISTANCE; $dz <= self::MAX_VIBRATION_DISTANCE; ++$dz){
@@ -114,7 +125,15 @@ class SculkSensor extends Opaque implements AnalogRedstoneSignalEmitter{
 					if(!$world->isInWorld($x, $y, $z)){
 						continue;
 					}
-					$block = $world->getBlockAt($x, $y, $z);
+					$chunk = $world->getChunk($x >> \pocketmine\world\format\Chunk::COORD_BIT_SIZE, $z >> \pocketmine\world\format\Chunk::COORD_BIT_SIZE);
+					if($chunk === null){
+						continue;
+					}
+					$stateId = $chunk->getBlockStateId($x & \pocketmine\world\format\Chunk::COORD_MASK, $y, $z & \pocketmine\world\format\Chunk::COORD_MASK);
+					if(!isset(self::$sensorStateIds[$stateId])){
+						continue;
+					}
+					$block = $registry->fromStateId($stateId);
 					if($block instanceof self){
 						$block->receiveVibration($frequency, max(1, 15 - (int) floor(sqrt($distanceSquared))), $source);
 					}elseif($block instanceof SculkShrieker){
@@ -193,6 +212,19 @@ class SculkSensor extends Opaque implements AnalogRedstoneSignalEmitter{
 		$world->setBlock($this->position, $this);
 		self::$updating = false;
 		$world->notifyNeighbourBlockUpdate($this->position);
+	}
+
+	/**
+	 * @return array<int, true>
+	 */
+	private static function buildSensorStateIds() : array{
+		$result = [];
+		foreach(RuntimeBlockStateRegistry::getInstance()->getAllKnownStates() as $stateId => $state){
+			if($state instanceof self || $state instanceof SculkShrieker){
+				$result[$stateId] = true;
+			}
+		}
+		return $result;
 	}
 
 	private function getBlockHash() : int{

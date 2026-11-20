@@ -59,24 +59,26 @@ final class NaturalSpawner{
 		}
 
 		foreach($world->getPlayers() as $player){
+			$nearbyMobs = self::countNearbyMobs($world, $player);
 			for($i = 0; $i < self::ATTEMPTS_PER_PLAYER; ++$i){
-				self::attemptSpawn($world, $player);
+				if($nearbyMobs >= self::MAX_NEARBY_MOBS){
+					break;
+				}
+				if(self::attemptSpawn($world, $player, $nearbyMobs)){
+					$nearbyMobs++;
+				}
 			}
 			self::spawnVillagers($world, $player);
 		}
 	}
 
-	private static function attemptSpawn(World $world, Player $player) : void{
-		if(self::countNearbyMobs($world, $player) >= self::MAX_NEARBY_MOBS){
-			return;
-		}
-
+	private static function attemptSpawn(World $world, Player $player, int &$nearbyMobs) : bool{
 		$playerPos = $player->getPosition();
 		$x = $playerPos->getFloorX() + mt_rand(-self::SPAWN_RANGE, self::SPAWN_RANGE);
 		$z = $playerPos->getFloorZ() + mt_rand(-self::SPAWN_RANGE, self::SPAWN_RANGE);
 		$y = $playerPos->getFloorY() + mt_rand(-8, 8);
 		if($y <= $world->getMinY() + 2 || $y >= $world->getMaxY() - 2){
-			return;
+			return false;
 		}
 
 		$feet = $world->getBlockAt($x, $y, $z);
@@ -85,17 +87,17 @@ final class NaturalSpawner{
 
 		if($feet instanceof Water && $head instanceof Water){
 			if(mt_rand(0, 3) === 0){
-				self::spawn($world, Location::fromObject(new \pocketmine\math\Vector3($x + 0.5, $y, $z + 0.5), $world, mt_rand(0, 359), 0), match(mt_rand(0, 3)){
+				return self::spawn($world, Location::fromObject(new \pocketmine\math\Vector3($x + 0.5, $y, $z + 0.5), $world, mt_rand(0, 359), 0), match(mt_rand(0, 3)){
 					0 => "minecraft:cod",
 					1 => "minecraft:salmon",
 					2 => "minecraft:tropical_fish",
 					default => "minecraft:squid"
 				});
 			}
-			return;
+			return false;
 		}
 		if(!$feet->canBeReplaced() || !$head->canBeReplaced() || !$floor->isFullCube() || $floor instanceof \pocketmine\block\Liquid){
-			return;
+			return false;
 		}
 
 		$light = $world->getFullLightAt($x, $y, $z);
@@ -105,10 +107,11 @@ final class NaturalSpawner{
 		$location = Location::fromObject(new \pocketmine\math\Vector3($x + 0.5, $y, $z + 0.5), $world, mt_rand(0, 359), 0);
 
 		if($isDay && $light >= 9 && self::isGrassLike($floor->getTypeId())){
-			self::spawn($world, $location, self::pick(self::PASSIVE_MOBS));
+			return self::spawn($world, $location, self::pick(self::PASSIVE_MOBS));
 		}elseif($light <= 7){
-			self::spawn($world, $location, self::pick(self::HOSTILE_MOBS));
+			return self::spawn($world, $location, self::pick(self::HOSTILE_MOBS));
 		}
+		return false;
 	}
 
 	private static function maybeStartVillageRaid(World $world, Player $player, \pocketmine\math\Vector3 $center) : void{
@@ -175,9 +178,13 @@ final class NaturalSpawner{
 		}
 	}
 
-	private static function spawn(World $world, Location $location, string $type) : void{
+	private static function spawn(World $world, Location $location, string $type) : bool{
 		$entity = EntityFactory::getInstance()->createEntity($world, $type, $location);
-		$entity?->spawnToAll();
+		if($entity === null){
+			return false;
+		}
+		$entity->spawnToAll();
+		return true;
 	}
 
 	/**

@@ -6,7 +6,7 @@ PocketMine-MP is a highly customisable, open-source server software for Minecraf
 
 In 2025 the upstream PocketMine-MP team announced the end of support: no one was left to update the project for new Minecraft versions. This repository continues from the last upstream release, now rebased onto the maintained NetherGames 5.51.2 base (Bedrock 1.26.60 / protocol 2225, compatible with 26.60–26.65 clients) as an actively maintained successor. It is **not** an official PocketMine-MP release and is not affiliated with the upstream team or Mojang.
 
-- PHP 8.2+ (64-bit), PHP 8.4 recommended
+- PHP 8.3+ (64-bit), PHP 8.4 recommended
 - Bedrock 1.26.60 / protocol 2225 (26.65 clients use the same protocol)
 - `ext-webrtc` for NetherNet (included in axolotl-pm PHP builds)
 - LGPL-3.0
@@ -90,7 +90,7 @@ Gameplay systems layered on top of blocks (redstone propagation, piston animatio
 
 ## Requirements
 
-- 64-bit PHP 8.1 or newer (PHP 8.2+ recommended; the build guide assumes 8.2+)
+- 64-bit PHP 8.3 or newer (PHP 8.4 recommended)
 - Required extensions: `chunkutils2`, `crypto`, `ctype`, `curl`, `date`, `encoding`, `gmp`, `hash`, `igbinary`, `json`, `leveldb`, `mbstring`, `morton`, `openssl`, `pcre`, `phar`, `pmmpthread`, `reflection`, `simplexml`, `sockets`, `spl`, `yaml`, `zip`, `zlib`
 - Composer 2
 - A bash shell for building (Git Bash works on Windows)
