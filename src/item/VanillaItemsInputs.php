@@ -551,7 +551,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("ender_eye", fn(IID $id) => new Item($id, "Eye of Ender"));
 		self::register("glow_stick", fn(IID $id) => new Item($id, "Glow Stick"));
 		self::register("sparkler", fn(IID $id) => new Item($id, "Sparkler"));
-		self::register("brush", fn(IID $id) => new Item($id, "Brush"));
+		self::register("brush", fn(IID $id) => new Brush($id, "Brush"));
 	}
 
 

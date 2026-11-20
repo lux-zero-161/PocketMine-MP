@@ -45,7 +45,6 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 **Planned**
 
 - Block behaviour parity for the newly added technical blocks: full sculk vibration frequencies and command execution.
-- Archaeology for suspicious sand/gravel.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
 
@@ -78,6 +77,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Sculk sensors react to nearby block changes with a basic signal pulse; full vibration frequencies/ranges are still simplified.
 - Minecarts (normal, chest, hopper, TNT) are spawnable, rideable entities with basic rail friction and rider input.
 - Bundles store items in NBT (64 bundle slots) and can eject the last stored stack on use; full inventory UI insertion remains open.
+- Archaeology: brushes progress suspicious sand/gravel through three stages and reveal loot.
 
 **Active**
 
