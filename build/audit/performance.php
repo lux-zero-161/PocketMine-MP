@@ -18,6 +18,9 @@ require dirname(__DIR__, 2) . '/vendor/autoload.php';
  *   php build/audit/performance.php
  */
 
+/**
+ * @param Closure(int): void $func
+ */
 function bench(string $name, int $iterations, Closure $func) : float{
 	$start = hrtime(true);
 	for($i = 0; $i < $iterations; ++$i){
