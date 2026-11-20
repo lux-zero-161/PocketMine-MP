@@ -44,7 +44,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 **Planned**
 
-- Block behaviour parity for the newly added technical blocks: sculk sensing and command execution.
+- Block behaviour parity for the newly added technical blocks: full sculk vibration frequencies and command execution.
 - Archaeology for suspicious sand/gravel.
 - Scaffolding climbing physics (stability is now calculated and unsupported scaffolding breaks).
 - Seagrass and full fluid interaction behaviour (kelp already grows upward through water).
@@ -75,6 +75,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Generated mobs have basic wandering/hostile movement, vanilla-style drops for common mobs and XP rewards.
 - Generated mobs support basic breeding with vanilla breeding foods and baby scaling.
 - Boats and chest boats are spawnable, rideable entities with basic water buoyancy and rider input; the generic rider/link system is implemented.
+- Sculk sensors react to nearby block changes with a basic signal pulse; full vibration frequencies/ranges are still simplified.
 
 **Active**
 
