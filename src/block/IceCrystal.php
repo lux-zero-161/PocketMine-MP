@@ -23,4 +23,8 @@ class IceCrystal extends Opaque implements AnyFacing{
 		$this->facing = $facing;
 		return $this;
 	}
+
+	public function getLightLevel() : int{
+		return 4;
+	}
 }
