@@ -23,18 +23,15 @@ final class InMemoryChunkManager implements ChunkManager{
 
 	public function getBlockAt(int $x, int $y, int $z) : Block{
 		$chunk = $this->getChunk($x >> Chunk::COORD_BIT_SIZE, $z >> Chunk::COORD_BIT_SIZE);
-		if($chunk === null){
-			return RuntimeBlockStateRegistry::getInstance()->fromStateId(Block::EMPTY_STATE_ID);
-		}
 		return RuntimeBlockStateRegistry::getInstance()->fromStateId($chunk->getBlockStateId($x & Chunk::COORD_MASK, $y, $z & Chunk::COORD_MASK));
 	}
 
 	public function setBlockAt(int $x, int $y, int $z, Block $block) : void{
 		$chunk = $this->getChunk($x >> Chunk::COORD_BIT_SIZE, $z >> Chunk::COORD_BIT_SIZE);
-		$chunk?->setBlockStateId($x & Chunk::COORD_MASK, $y, $z & Chunk::COORD_MASK, $block->getStateId());
+		$chunk->setBlockStateId($x & Chunk::COORD_MASK, $y, $z & Chunk::COORD_MASK, $block->getStateId());
 	}
 
-	public function getChunk(int $chunkX, int $chunkZ) : ?Chunk{
+	public function getChunk(int $chunkX, int $chunkZ) : Chunk{
 		$key = ($chunkX << 32) ^ ($chunkZ & 0xffffffff);
 		if(!isset($this->chunks[$key])){
 			$this->chunks[$key] = new Chunk([], false);
