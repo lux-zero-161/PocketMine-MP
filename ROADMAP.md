@@ -76,6 +76,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Generated mobs support basic breeding with vanilla breeding foods and baby scaling.
 - Boats and chest boats are spawnable, rideable entities with basic water buoyancy and rider input; the generic rider/link system is implemented.
 - Sculk sensors react to nearby block changes with a basic signal pulse; full vibration frequencies/ranges are still simplified.
+- Minecarts (normal, chest, hopper, TNT) are spawnable, rideable entities with basic rail friction and rider input.
 
 **Active**
 

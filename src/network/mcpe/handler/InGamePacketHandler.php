@@ -254,6 +254,9 @@ class InGamePacketHandler extends PacketHandler{
 			if($vehicle instanceof \pocketmine\entity\object\Boat){
 				$vehicle->handleRiderInput($this->player, $inputFlags);
 			}
+			if($vehicle instanceof \pocketmine\entity\object\Minecart){
+				$vehicle->handleRiderInput($this->player, $inputFlags);
+			}
 		}
 
 		if(!$this->forceMoveSync && $hasMoved){

@@ -585,7 +585,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("cat_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Cat Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Cat($loc)));
 		self::register("cave_spider_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Cave Spider Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\CaveSpider($loc)));
 		self::register("cherry_chest_boat", fn(IID $id) => new Boat($id, "Cherry Chest Boat", BoatType::CHERRY));
-		self::register("chest_minecart", fn(IID $id) => new Item($id, "Chest Minecart"));
+		self::register("chest_minecart", fn(IID $id) => new Minecart($id, "Chest Minecart", "chest"));
 		self::register("chicken_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Chicken Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Chicken($loc)));
 		self::registerDelayed("cod_bucket", fn(string $name) : MobBucket => new MobBucket(self::makeIID($name), "Cod Bucket", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Cod($loc)));
 		self::register("cod_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Cod Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Cod($loc)));
@@ -619,7 +619,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("guardian_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Guardian Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Guardian($loc)));
 		self::register("happy_ghast_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Happy Ghast Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\HappyGhast($loc)));
 		self::register("hoglin_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Hoglin Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Hoglin($loc)));
-		self::register("hopper_minecart", fn(IID $id) => new Item($id, "Hopper Minecart"));
+		self::register("hopper_minecart", fn(IID $id) => new Minecart($id, "Hopper Minecart", "hopper"));
 		self::register("horse_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Horse Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Horse($loc)));
 		self::register("husk_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Husk Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Husk($loc)));
 		self::register("ice_ball", fn(IID $id) => new IceBall($id, "Ice Ball"));
@@ -681,7 +681,7 @@ final class VanillaItemsInputs extends RegistrySource{
 		self::register("sulfur_cube_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Sulfur Cube Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\SulfurCube($loc)));
 		self::registerDelayed("tadpole_bucket", fn(string $name) : MobBucket => new MobBucket(self::makeIID($name), "Tadpole Bucket", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Tadpole($loc)));
 		self::register("tadpole_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Tadpole Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\Tadpole($loc)));
-		self::register("tnt_minecart", fn(IID $id) => new Item($id, "TNT Minecart"));
+		self::register("tnt_minecart", fn(IID $id) => new Minecart($id, "TNT Minecart", "tnt"));
 		self::register("trader_llama_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Trader Llama Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\TraderLlama($loc)));
 		self::registerDelayed("tropical_fish_bucket", fn(string $name) : MobBucket => new MobBucket(self::makeIID($name), "Tropical Fish Bucket", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\TropicalFish($loc)));
 		self::register("tropical_fish_spawn_egg", fn(IID $id) => new SimpleSpawnEgg($id, "Tropical Fish Spawn Egg", fn(\pocketmine\entity\Location $loc) => new \pocketmine\entity\mob\TropicalFish($loc)));

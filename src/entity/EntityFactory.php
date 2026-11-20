@@ -129,6 +129,22 @@ final class EntityFactory{
 			return new FallingBlock(Helper::parseLocation($nbt, $world), FallingBlock::parseBlockNBT(RuntimeBlockStateRegistry::getInstance(), $nbt), $nbt);
 		}, ['FallingSand', 'minecraft:falling_block']);
 
+		$this->register(\pocketmine\entity\object\ChestMinecart::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\object\ChestMinecart{
+			return new \pocketmine\entity\object\ChestMinecart(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['ChestMinecart', 'minecraft:chest_minecart']);
+
+		$this->register(\pocketmine\entity\object\HopperMinecart::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\object\HopperMinecart{
+			return new \pocketmine\entity\object\HopperMinecart(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['HopperMinecart', 'minecraft:hopper_minecart']);
+
+		$this->register(\pocketmine\entity\object\TNTMinecart::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\object\TNTMinecart{
+			return new \pocketmine\entity\object\TNTMinecart(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['TNTMinecart', 'minecraft:tnt_minecart']);
+
+		$this->register(\pocketmine\entity\object\Minecart::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\object\Minecart{
+			return new \pocketmine\entity\object\Minecart(Helper::parseLocation($nbt, $world), $nbt);
+		}, ['Minecart', 'minecraft:minecart']);
+
 		$this->register(\pocketmine\entity\object\Boat::class, function(World $world, CompoundTag $nbt) : \pocketmine\entity\object\Boat{
 			return new \pocketmine\entity\object\Boat(Helper::parseLocation($nbt, $world), $nbt);
 		}, ['Boat', 'minecraft:boat']);

@@ -23,11 +23,46 @@ declare(strict_types=1);
 
 namespace pocketmine\item;
 
+use pocketmine\block\Block;
+use pocketmine\entity\Location;
+use pocketmine\entity\object\ChestMinecart;
+use pocketmine\entity\object\HopperMinecart;
+use pocketmine\entity\object\Minecart as MinecartEntity;
+use pocketmine\entity\object\TNTMinecart;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
+
 class Minecart extends Item{
+
+	public function __construct(ItemIdentifier $identifier, string $name, private string $kind = "normal"){
+		parent::__construct($identifier, $name);
+	}
 
 	public function getMaxStackSize() : int{
 		return 1;
 	}
 
-	//TODO
+	public function onInteractBlock(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, array &$returnedItems) : ItemUseResult{
+		if(!$blockReplace->canBeReplaced()){
+			return ItemUseResult::NONE;
+		}
+
+		$location = Location::fromObject(
+			$blockReplace->getPosition()->add(0.5, 0, 0.5),
+			$player->getWorld(),
+			$player->getLocation()->yaw,
+			0
+		);
+		$dropItem = (clone $this)->setCount(1);
+		$entity = match($this->kind){
+			"chest" => new ChestMinecart($location, null, $dropItem),
+			"hopper" => new HopperMinecart($location, null, $dropItem),
+			"tnt" => new TNTMinecart($location, null, $dropItem),
+			default => new MinecartEntity($location, null, $dropItem)
+		};
+
+		$this->pop();
+		$entity->spawnToAll();
+		return ItemUseResult::SUCCESS;
+	}
 }
