@@ -6,10 +6,14 @@ namespace pocketmine\world\structure;
 
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\RuntimeBlockStateRegistry;
+use pocketmine\block\VanillaBlocks;
+use pocketmine\data\bedrock\block\BlockStateData;
+use pocketmine\world\format\io\GlobalBlockStateHandlers;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\LittleEndianNbtSerializer;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\TreeRoot;
+use pocketmine\utils\Utils;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
@@ -239,6 +243,154 @@ final class StructureManager{
 			}
 		}
 
+		return true;
+	}
+
+	/**
+	 * Exports the region to a Bedrock-compatible .mcstructure file.
+	 */
+	public static function saveMcStructure(World $world, string $name, Vector3 $first, Vector3 $second) : bool{
+		$minX = min($first->getFloorX(), $second->getFloorX());
+		$minY = max($world->getMinY(), min($first->getFloorY(), $second->getFloorY()));
+		$minZ = min($first->getFloorZ(), $second->getFloorZ());
+		$maxX = max($first->getFloorX(), $second->getFloorX());
+		$maxY = min($world->getMaxY() - 1, max($first->getFloorY(), $second->getFloorY()));
+		$maxZ = max($first->getFloorZ(), $second->getFloorZ());
+
+		$sizeX = $maxX - $minX + 1;
+		$sizeY = $maxY - $minY + 1;
+		$sizeZ = $maxZ - $minZ + 1;
+		if($sizeX <= 0 || $sizeY <= 0 || $sizeZ <= 0 || $sizeX * $sizeY * $sizeZ > self::MAX_VOLUME){
+			return false;
+		}
+
+		$serializer = GlobalBlockStateHandlers::getSerializer();
+		$palette = [];
+		$paletteIndex = [];
+		$indices = [];
+		for($x = $minX; $x <= $maxX; ++$x){
+			for($y = $minY; $y <= $maxY; ++$y){
+				for($z = $minZ; $z <= $maxZ; ++$z){
+					$block = $world->getBlockAt($x, $y, $z);
+					$stateId = $block->getStateId();
+					if(!isset($paletteIndex[$stateId])){
+						$data = $serializer->serializeBlock($block);
+						$states = CompoundTag::create();
+						foreach(Utils::stringifyKeys($data->getStates()) as $stateName => $stateValue){
+							$states->setTag($stateName, clone $stateValue);
+						}
+						$paletteIndex[$stateId] = count($palette);
+						$palette[] = CompoundTag::create()
+							->setString(BlockStateData::TAG_NAME, $data->getName())
+							->setTag(BlockStateData::TAG_STATES, $states)
+							->setInt(BlockStateData::TAG_VERSION, $data->getVersion());
+					}
+					$indices[] = $paletteIndex[$stateId];
+				}
+			}
+		}
+
+		$secondary = array_fill(0, count($indices), -1);
+		$blockIndices = new ListTag([
+			new ListTag(array_map(fn(int $index) => new IntTag($index), $indices), NBT::TAG_Int),
+			new ListTag(array_map(fn(int $index) => new IntTag($index), $secondary), NBT::TAG_Int)
+		], NBT::TAG_List);
+
+		$default = CompoundTag::create()
+			->setTag("block_palette", new ListTag($palette, NBT::TAG_Compound))
+			->setTag("block_position_data", new CompoundTag());
+
+		$root = CompoundTag::create()
+			->setInt("format_version", 1)
+			->setTag("size", new ListTag([new IntTag($sizeX), new IntTag($sizeY), new IntTag($sizeZ)], NBT::TAG_Int))
+			->setTag("structure", CompoundTag::create()
+				->setTag("block_indices", $blockIndices)
+				->setTag("entities", new ListTag([], NBT::TAG_Compound))
+				->setTag("palette", CompoundTag::create()->setTag("default", $default))
+			)
+			->setTag("structure_world_origin", new ListTag([new IntTag($minX), new IntTag($minY), new IntTag($minZ)], NBT::TAG_Int));
+
+		$file = self::getDirectory($world) . "/" . strtolower($name) . ".mcstructure";
+		$serializerNbt = new LittleEndianNbtSerializer();
+		return file_put_contents($file, $serializerNbt->write(new TreeRoot($root))) !== false;
+	}
+
+	/**
+	 * Imports a Bedrock .mcstructure file. Block entity data is currently ignored.
+	 */
+	public static function loadMcStructure(World $world, string $name, Vector3 $target, int $rotation = 0) : bool{
+		$file = self::getDirectory($world) . "/" . strtolower($name) . ".mcstructure";
+		if(!is_file($file)){
+			return false;
+		}
+		$contents = file_get_contents($file);
+		if($contents === false){
+			return false;
+		}
+		try{
+			$root = (new LittleEndianNbtSerializer())->read($contents)->mustGetCompoundTag();
+		}catch(\Throwable){
+			return false;
+		}
+		$size = $root->getListTag("size", IntTag::class);
+		$structure = $root->getCompoundTag("structure");
+		if($size === null || $structure === null){
+			return false;
+		}
+		$sizeValues = $size->getValue();
+		if(count($sizeValues) !== 3){
+			return false;
+		}
+		$sizeX = $sizeValues[0]->getValue();
+		$sizeY = $sizeValues[1]->getValue();
+		$sizeZ = $sizeValues[2]->getValue();
+		if($sizeX <= 0 || $sizeY <= 0 || $sizeZ <= 0 || $sizeX * $sizeY * $sizeZ > self::MAX_VOLUME){
+			return false;
+		}
+
+		$paletteTag = $structure->getCompoundTag("palette")?->getCompoundTag("default")?->getListTag("block_palette", CompoundTag::class);
+		$indicesTag = $structure->getListTag("block_indices", ListTag::class);
+		if($paletteTag === null || $indicesTag === null || count($indicesTag->getValue()) < 1){
+			return false;
+		}
+		$indicesRaw = $indicesTag->getValue()[0]->cast(IntTag::class)?->getValue();
+		if($indicesRaw === null){
+			return false;
+		}
+		$indices = array_map(fn(IntTag $tag) => $tag->getValue(), $indicesRaw);
+
+		$deserializer = GlobalBlockStateHandlers::getDeserializer();
+		$blocks = [];
+		foreach($paletteTag->getValue() as $entry){
+			try{
+				$blocks[] = $deserializer->deserializeBlock(BlockStateData::fromNbt($entry));
+			}catch(\Throwable){
+				$blocks[] = VanillaBlocks::AIR();
+			}
+		}
+
+		$rotation = (($rotation % 4) + 4) % 4;
+		$baseX = $target->getFloorX();
+		$baseY = $target->getFloorY();
+		$baseZ = $target->getFloorZ();
+		$index = 0;
+		for($x = 0; $x < $sizeX; ++$x){
+			for($y = 0; $y < $sizeY; ++$y){
+				for($z = 0; $z < $sizeZ; ++$z){
+					$paletteId = $indices[$index++] ?? -1;
+					if($paletteId < 0 || !isset($blocks[$paletteId])){
+						continue;
+					}
+					[$rx, $rz] = match($rotation){
+						1 => [$z, $sizeX - 1 - $x],
+						2 => [$sizeX - 1 - $x, $sizeZ - 1 - $z],
+						3 => [$sizeZ - 1 - $z, $x],
+						default => [$x, $z]
+					};
+					$world->setBlockAt($baseX + $rx, $baseY + $y, $baseZ + $rz, $blocks[$paletteId], false);
+				}
+			}
+		}
 		return true;
 	}
 

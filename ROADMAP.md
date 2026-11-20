@@ -128,6 +128,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Grindstones open a form UI that removes enchantments and combines durability with an offhand item.
 - Villages include crop farms, fence borders and torch lamp posts; larger villages get an iron golem defender.
 - Overworld generation includes chunk-local mineshaft segments with supports, rails, cobwebs and loot chests.
+- `/structure export|import` supports Bedrock-compatible `.mcstructure` files (blocks/palette; block entities are not imported yet).
 - The Wither gains a damage-reduction armour phase below half health.
 
 **Active**

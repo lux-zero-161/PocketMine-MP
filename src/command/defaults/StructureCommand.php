@@ -24,6 +24,8 @@ class StructureCommand extends VanillaCommand{
 			"Saves, loads, lists and deletes structures",
 			"/structure save <name> <x1> <y1> <z1> <x2> <y2> <z2>\n" .
 			"/structure load <name> <x> <y> <z> [rotation]\n" .
+			"/structure export <name> <x1> <y1> <z1> <x2> <y2> <z2>\n" .
+			"/structure import <name> <x> <y> <z> [rotation]\n" .
 			"/structure delete <name>\n" .
 			"/structure list"
 		);
@@ -62,6 +64,50 @@ class StructureCommand extends VanillaCommand{
 					$sender->sendMessage(TextFormat::GREEN . "Structure '$name' saved.");
 				}else{
 					$sender->sendMessage(TextFormat::RED . "Could not save structure '$name' (invalid size or write error).");
+				}
+				return true;
+
+			case "export":
+				if(count($args) !== 8){
+					throw new InvalidCommandSyntaxException();
+				}
+				$name = $args[1];
+				if(!StructureManager::isValidName($name)){
+					$sender->sendMessage(TextFormat::RED . "Invalid structure name.");
+					return true;
+				}
+				$first = new Vector3(
+					$this->getRelativeDouble($base->x, $sender, $args[2]),
+					$this->getRelativeDouble($base->y, $sender, $args[3], World::Y_MIN, World::Y_MAX),
+					$this->getRelativeDouble($base->z, $sender, $args[4])
+				);
+				$second = new Vector3(
+					$this->getRelativeDouble($base->x, $sender, $args[5]),
+					$this->getRelativeDouble($base->y, $sender, $args[6], World::Y_MIN, World::Y_MAX),
+					$this->getRelativeDouble($base->z, $sender, $args[7])
+				);
+				if(StructureManager::saveMcStructure($world, $name, $first, $second)){
+					$sender->sendMessage(TextFormat::GREEN . "Structure '$name' als .mcstructure exportiert.");
+				}else{
+					$sender->sendMessage(TextFormat::RED . "Export fehlgeschlagen.");
+				}
+				return true;
+
+			case "import":
+				if(count($args) < 5 || count($args) > 6){
+					throw new InvalidCommandSyntaxException();
+				}
+				$name = $args[1];
+				$target = new Vector3(
+					$this->getRelativeDouble($base->x, $sender, $args[2]),
+					$this->getRelativeDouble($base->y, $sender, $args[3], World::Y_MIN, World::Y_MAX),
+					$this->getRelativeDouble($base->z, $sender, $args[4])
+				);
+				$rotation = count($args) === 6 ? (int) $args[5] : 0;
+				if(StructureManager::loadMcStructure($world, $name, $target, $rotation)){
+					$sender->sendMessage(TextFormat::GREEN . "Structure '$name' importiert.");
+				}else{
+					$sender->sendMessage(TextFormat::RED . "Import fehlgeschlagen.");
 				}
 				return true;
 
