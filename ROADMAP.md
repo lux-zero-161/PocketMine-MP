@@ -25,7 +25,7 @@ Legend: **done** — implemented and covered by tests; **active** — partially 
 - Shelf mushrooms attach to walls, can be grown with bone meal and bounce entities.
 - Pistons and sticky pistons move up to 12 blocks, place piston arm blocks and use a PistonArm block entity.
 - End portal frames accept eyes of ender and activate the 3x3 portal when all 12 frames are filled.
-- Nether portals can be lit with flint and steel or fire charges on a valid obsidian frame (dimension travel is still missing).
+- Nether portals can be lit with flint and steel or fire charges on a valid obsidian frame and move players to the Nether/overworld.
 - Composters accept compostable items with vanilla chances, produce bone meal and expose their fill level to comparators.
 - Hoppers can insert compostable items into composters and pull finished bone meal out.
 - Hoppers can insert music discs into jukeboxes and pull them back out.
@@ -104,7 +104,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 **Active**
 
 - Bedrock-style Overworld terrain: biome placement, caves, aquifers, structures.
-- End dimension generator and dimension travel.
+- Vanilla End dimension generation, dragon fight and portal linking rules.
 - Structure generation (villages, temples, strongholds, ancient cities).
 
 **Planned**
