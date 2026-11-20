@@ -37,6 +37,9 @@ final class NaturalSpawner{
 		["minecraft:rabbit", 10]
 	];
 
+	/** @var \WeakMap<World, array<int, int>>|null */
+	private static ?\WeakMap $lastVillageRaid = null;
+
 	private const HOSTILE_MOBS = [
 		["minecraft:zombie", 30],
 		["minecraft:skeleton", 25],
@@ -106,8 +109,26 @@ final class NaturalSpawner{
 		}
 	}
 
+	private static function maybeStartVillageRaid(World $world, Player $player, \pocketmine\math\Vector3 $center) : void{
+		$tick = $world->getServer()->getTick();
+		self::$lastVillageRaid ??= new \WeakMap();
+		$entries = self::$lastVillageRaid[$world] ?? [];
+		$key = World::blockHash($center->getFloorX(), $center->getFloorY(), $center->getFloorZ());
+		if($tick - ($entries[$key] ?? -100000) < 12000){
+			return;
+		}
+		if(mt_rand(0, 1199) !== 0){
+			return;
+		}
+		$entries[$key] = $tick;
+		self::$lastVillageRaid[$world] = $entries;
+		Raid::startAt($world, new Position($center->x, $center->y, $center->z, $world), 3);
+		$player->sendMessage(\pocketmine\utils\TextFormat::RED . "Ein Raid nähert sich dem Dorf!");
+	}
+
 	private static function spawnVillagers(World $world, Player $player) : void{
 		foreach(VillageRegistry::findNear($world, $player->getPosition(), 48) as $center){
+			self::maybeStartVillageRaid($world, $player, $center);
 			$existing = 0;
 			$box = AxisAlignedBB::one()->expand(24, 12, 24)->offset($center->x, $center->y, $center->z);
 			foreach($world->getNearbyEntities($box) as $entity){

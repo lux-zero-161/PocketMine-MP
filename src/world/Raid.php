@@ -42,7 +42,11 @@ final class Raid{
 	){}
 
 	public static function start(Player $player, int $waves = 3) : self{
-		$raid = new self($player->getWorld(), $player->getPosition(), max(1, min(10, $waves)));
+		return self::startAt($player->getWorld(), $player->getPosition(), $waves);
+	}
+
+	public static function startAt(World $world, Position $center, int $waves = 3) : self{
+		$raid = new self($world, $center, max(1, min(10, $waves)));
 		$raid->world->addRaid($raid);
 		$raid->spawnWave();
 		$raid->broadcastBossBar();
