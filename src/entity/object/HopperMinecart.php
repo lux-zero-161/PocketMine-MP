@@ -7,6 +7,7 @@ namespace pocketmine\entity\object;
 use pocketmine\block\tile\Container;
 use pocketmine\inventory\SimpleInventory;
 use pocketmine\item\Item;
+use pocketmine\item\VanillaItems;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\ListTag;
@@ -31,6 +32,11 @@ class HopperMinecart extends Minecart{
 	public function getName() : string{ return "Hopper Minecart"; }
 
 	public function getInventory() : SimpleInventory{ return $this->inventory; }
+
+	public function getDrops() : array{
+		$drop = $this->getDropItem();
+		return [$drop ?? VanillaItems::HOPPER_MINECART()];
+	}
 
 	protected function initEntity(CompoundTag $nbt) : void{
 		parent::initEntity($nbt);

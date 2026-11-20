@@ -37,6 +37,7 @@ use pocketmine\block\inventory\SmithingTableInventory;
 use pocketmine\block\inventory\StonecutterInventory;
 use pocketmine\crafting\FurnaceType;
 use pocketmine\data\bedrock\EnchantmentIdMap;
+use pocketmine\inventory\EntityInventory;
 use pocketmine\inventory\Inventory;
 use pocketmine\inventory\transaction\action\SlotChangeAction;
 use pocketmine\inventory\transaction\InventoryTransaction;
@@ -371,6 +372,9 @@ class InventoryManager{
 	protected static function createContainerOpen(int $id, Inventory $inv) : ?array{
 		//TODO: we should be using some kind of tagging system to identify the types. Instanceof is flaky especially
 		//if the class isn't final, not to mention being inflexible.
+		if($inv instanceof EntityInventory){
+			return [ContainerOpenPacket::entityInv($id, WindowTypes::CONTAINER, $inv->getHolder()->getId())];
+		}
 		if($inv instanceof BlockInventory){
 			$blockPosition = BlockPosition::fromVector3($inv->getHolder());
 			$windowType = match(true){

@@ -83,10 +83,11 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Beacons detect their pyramid level, accept payment items and apply primary/secondary effects to nearby players.
 - Powered rails respond to redstone and accelerate minecarts; activator rails dismount passengers and prime TNT minecarts.
 - Hopper minecarts collect nearby item entities and push their contents into containers below; TNT minecarts ignite into primed TNT.
+- Chest minecarts and chest boats expose persistent 27-slot inventories through entity container windows.
 
 **Active**
 
-- Minecart inventories (chest/hopper UI) and bundle inventory UI still need dedicated window integration.
+- Bundle inventory UI still needs dedicated window integration.
 - Fill item components for 1.26 content where Bedrock defines them.
 
 ## Milestone 2 — World system

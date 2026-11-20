@@ -10,6 +10,7 @@ use pocketmine\entity\Entity;
 use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\Location;
 use pocketmine\item\Item;
+use pocketmine\item\VanillaItems;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\serializer\BitSet;
 use pocketmine\network\mcpe\protocol\types\PlayerAuthInputFlags;
@@ -104,7 +105,11 @@ class Minecart extends Entity{
 	 * @return Item[]
 	 */
 	public function getDrops() : array{
-		return $this->dropItem !== null ? [clone $this->dropItem] : [];
+		return [$this->getDropItem() ?? VanillaItems::MINECART()];
+	}
+
+	protected function getDropItem() : ?Item{
+		return $this->dropItem !== null ? clone $this->dropItem : null;
 	}
 
 	public function getXpDropAmount() : int{
