@@ -93,6 +93,8 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 - Beds explode when used outside the overworld.
 - Structure blocks have editable names/sizes/offsets/rotation via the Bedrock editor UI, save/load regions on redstone and persist their settings.
 - `/structure save|load|delete|list` provides a command-line interface to the same NBT structure format.
+- `/summon <entity> [x y z]` spawns any registered entity by Bedrock save name.
+- Wither boss: flying AI, boss bar, wither skull projectiles with explosions, nether star drop and 50 XP.
 
 **Active**
 

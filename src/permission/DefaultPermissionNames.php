@@ -64,6 +64,7 @@ final class DefaultPermissionNames{
 	public const COMMAND_STATUS = "pocketmine.command.status";
 	public const COMMAND_STOP = "pocketmine.command.stop";
 	public const COMMAND_STRUCTURE = "pocketmine.command.structure";
+	public const COMMAND_SUMMON = "pocketmine.command.summon";
 	public const COMMAND_TELEPORT_OTHER = "pocketmine.command.teleport.other";
 	public const COMMAND_TELEPORT_SELF = "pocketmine.command.teleport.self";
 	public const COMMAND_TELL = "pocketmine.command.tell";

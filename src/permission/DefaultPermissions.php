@@ -110,6 +110,7 @@ abstract class DefaultPermissions{
 			Names::COMMAND_STATUS,
 			Names::COMMAND_STOP,
 			Names::COMMAND_STRUCTURE,
+			Names::COMMAND_SUMMON,
 			Names::COMMAND_TELEPORT_OTHER,
 			Names::COMMAND_TELEPORT_SELF,
 			Names::COMMAND_TIME_ADD,
