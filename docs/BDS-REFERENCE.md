@@ -95,10 +95,11 @@ order.
 - **Block palette and item IDs** remain authoritative from
   `nethergamesmc/bedrock-data` (`vendor/`). The BDS packs do not contain the
   full runtime block palette or item registry.
-- **Block definitions** cover the newer slab/stair/cushion/copper families and
-  carry the runtime block ID, `destructible_by_mining`, explosion resistance, map
-  colour, tags, loot table and block archetype. Use them to validate properties;
-  they do not replace the full palette.
+- **Block definitions** cover the 16-colour concrete and wool slab/stair
+  families plus the shrub and shelf mushroom blocks, and carry the runtime block
+  ID, `destructible_by_mining`, explosion resistance, map colour, tags, loot table
+  and block archetype. Use them to validate properties; they do not replace the
+  full palette.
 - **Recipes, loot tables, trades and worldgen features** are the useful payload.
   They are the reference for replacing simplified hand-written tables with
   data-driven implementations.
