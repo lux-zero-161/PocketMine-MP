@@ -103,6 +103,8 @@ order.
 
 ## Reference folders in this workspace
 
+Paths below are relative to the repository root (`PocketMine-MP/`).
+
 | Path | Contents |
 |---|---|
 | `../bedrockserver/` | Unmodified BDS 1.26.60 installation |
