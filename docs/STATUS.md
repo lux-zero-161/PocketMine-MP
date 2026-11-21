@@ -74,8 +74,8 @@ and all states used by the implemented blocks round-trip through the serializer.
 - Reverse-engineered the BDS 1.26.60 `__brarchive` format and extracted the reference
   packs: 9,543 files from 546 containers, yielding an effective 1.26.60 view with
   1,892 recipes, 309 loot tables, 27 villager trade tables, 1,300 structures,
-  218 shapes, 139 worldgen features and 120 feature rules. Tooling is in
-  `build/bds/`; details in [BDS-REFERENCE.md](BDS-REFERENCE.md).
+  218 shapes, 98 block definitions, 210 worldgen features and 241 feature rules.
+  Tooling is in `build/bds/`; details in [BDS-REFERENCE.md](BDS-REFERENCE.md).
 
 ## Known gaps / highest-value remaining work
 

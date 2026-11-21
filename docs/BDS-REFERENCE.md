@@ -79,8 +79,11 @@ Measured from the 1.26.60 installation:
 | Effective biomes | 89 | climate, surface builders, tags |
 | Effective spawn rules | 60 | mob spawn conditions |
 | Block shapes | 218 | selection/collision boxes (binary `MCB` format) |
-| Worldgen features | 139 | `definitions/features/*.json` |
-| Worldgen feature rules | 120 | placement passes, biome filters, distribution |
+| Block definitions | 98 | runtime block IDs, mining time, blast resistance, map colour, tags, loot and archetype |
+| Worldgen features (pack) | 210 | behaviour pack `features/*.json` |
+| Worldgen feature rules (pack) | 241 | placement passes, biome filters, distribution |
+| Worldgen features (`definitions/`) | 139 | standalone client-side definitions, 59 overlapping the pack |
+| Worldgen feature rules (`definitions/`) | 120 | standalone client-side definitions, 94 overlapping the pack |
 | Raid spawn groups | 7 | raid wave compositions |
 
 The effective view is a merge of the base pack plus versioned overlays. It is a
@@ -92,6 +95,10 @@ order.
 - **Block palette and item IDs** remain authoritative from
   `nethergamesmc/bedrock-data` (`vendor/`). The BDS packs do not contain the
   full runtime block palette or item registry.
+- **Block definitions** cover the newer slab/stair/cushion/copper families and
+  carry the runtime block ID, `destructible_by_mining`, explosion resistance, map
+  colour, tags, loot table and block archetype. Use them to validate properties;
+  they do not replace the full palette.
 - **Recipes, loot tables, trades and worldgen features** are the useful payload.
   They are the reference for replacing simplified hand-written tables with
   data-driven implementations.

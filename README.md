@@ -68,10 +68,11 @@ and overlay-merging tools live in [`build/bds/`](build/bds), and the format and
 measured contents are documented in [docs/BDS-REFERENCE.md](docs/BDS-REFERENCE.md).
 
 The extracted 1.26.60 reference includes 1,892 recipes, 309 loot tables, 27
-villager trade tables, 1,300 structure templates, 218 block shapes, 139 worldgen
-features and 120 feature rules. These are reference material only: the runtime
-block and item registries stay generated from `nethergamesmc/bedrock-data`, and
-extracted Mojang assets are never committed to this repository.
+villager trade tables, 1,300 structure templates, 218 block shapes, 98 block
+definitions with runtime IDs and components, 210 worldgen features and 241
+feature rules. These are reference material only: the runtime block and item
+registries stay generated from `nethergamesmc/bedrock-data`, and extracted
+Mojang assets are never committed to this repository.
 
 ### What "implemented" means here
 

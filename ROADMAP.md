@@ -147,8 +147,8 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 **Active**
 
 - Bedrock-style Overworld terrain: biome placement, caves, aquifers, structures.
-  The official 1.26.60 feature and feature-rule JSON (139 features, 120 rules)
-  and 1,300 structure templates are available as a reference (see
+  The official 1.26.60 behaviour pack provides 210 worldgen features, 241 feature
+  rules, 98 block definitions and 1,300 structure templates as a reference (see
   [docs/BDS-REFERENCE.md](docs/BDS-REFERENCE.md)).
 - Vanilla End dimension generation, dragon phases/crystals and portal linking rules.
 - Structure generation (villages, temples, strongholds, ancient cities).
