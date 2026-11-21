@@ -147,6 +147,9 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 **Active**
 
 - Bedrock-style Overworld terrain: biome placement, caves, aquifers, structures.
+  The official 1.26.60 feature and feature-rule JSON (139 features, 120 rules)
+  and 1,300 structure templates are available as a reference (see
+  [docs/BDS-REFERENCE.md](docs/BDS-REFERENCE.md)).
 - Vanilla End dimension generation, dragon phases/crystals and portal linking rules.
 - Structure generation (villages, temples, strongholds, ancient cities).
 
@@ -161,7 +164,7 @@ Coverage: **1,480 of 1,480** canonical block type names (100%).
 
 - Redstone: wire, torches, levers, buttons, repeaters (delay/locking), comparators (analog container output), lamps, observers, trapped chests, targets and dispensers/droppers have logic. Pistons, sculk sensing and full vanilla update ordering still need work.
 - Fluids: basic water/lava flow exists; waterlogging and fluid containers need work.
-- Mobs: basic entity framework; vanilla AI, spawning rules and breeding are incomplete.
+- Mobs: basic entity framework; vanilla AI, spawning rules and breeding are incomplete. The official 27 villager trade tables are available as reference (see [docs/BDS-REFERENCE.md](docs/BDS-REFERENCE.md)).
 - Combat: damage, armor and enchantments exist; knockback, shields and attack cooldowns need parity work.
 - Farming: crops and composter interactions are implemented; crop growth and bone meal edge cases remain partial.
 - Portals: Nether portal blocks exist; travel and coordinate scaling are not vanilla-complete.
@@ -218,10 +221,15 @@ Policy: no performance claims without measurements.
 - Maintain changelogs and release notes under `changelogs/`.
 - Keep PHPStan level 9 and the PHPUnit suite green.
 - Keep `README.md`, this roadmap and the plugin migration notes synchronized with reality.
+- **Done:** reverse-engineer the BDS 1.26.60 `__brarchive` container format and
+  document the extracted reference assets in
+  [docs/BDS-REFERENCE.md](docs/BDS-REFERENCE.md). Tooling lives in `build/bds/`.
+  Extracted Mojang assets stay outside the repository.
 
 ## How to pick up work
 
 1. Run `php build/audit/block-coverage.php` to see missing block type names and states.
 2. Pick a block family with a clear data model; add the type ID, registration, mapping and tests.
 3. For tile-backed blocks, implement the block entity first; do not register a block that silently discards inventory data.
-4. Run PHPUnit and PHPStan before opening a change.
+4. Check the 1.26.60 reference assets in [docs/BDS-REFERENCE.md](docs/BDS-REFERENCE.md) for the vanilla recipe, loot, trade, feature or structure data behind the behaviour.
+5. Run PHPUnit and PHPStan before opening a change.

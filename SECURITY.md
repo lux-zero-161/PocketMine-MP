@@ -1,35 +1,84 @@
 # Security Policy
 
-## Reporting a Vulnerability
+This repository is a community continuation of PocketMine-MP. It inherits a large
+amount of upstream code, but it is **not** an official PocketMine-MP release and is
+maintained independently. Please report issues to this project, not to the upstream
+team, unless the issue also affects an unmodified upstream release and you have
+already confirmed that with us.
 
-### Report via GitHub
+## Supported versions
 
-Send a _**private security report**_ by going to https://github.com/pmmp/PocketMine-MP/security and clicking the "Report a vulnerability" button.
+Security fixes are provided for the current successor line:
 
-> [!WARNING]
-> **DO NOT report vulnerabilities on the Issues tab. Report them in the Security tab ONLY.**
-> 
-> The issue tracker is public to view, which means that malicious actors may learn about exploits from a public issue.
->
-> **You may put live PocketMine-MP servers at risk by reporting a vulnerability on the GitHub issue tracker.**
+| Version | Bedrock version | Supported |
+|---|---|---|
+| `5.51.x` successor builds | 1.26.60 / protocol 2225 | Yes |
+| Older upstream PocketMine-MP releases | various | No |
 
-### Report via email
+If you are unsure whether your build is current, check `src/VersionInfo.php` and the
+release notes under `changelogs/`.
 
-If you can't or don't want to use the GitHub system, you can also **contact us** by sending an email to [**security@pmmp.io**](mailto:security@pmmp.io).
-Include the following information:
+## Reporting a vulnerability
 
-- Version of PocketMine-MP
-- Detailed description of the vulnerability (e.g. how to exploit it, what the effects are)
-- Your GitHub username, if you wish to be credited for reporting the problem in the security advisory
+**Do not open a public issue, pull request or discussion for a security problem.**
+The issue tracker is public, and a public report can put live servers at risk.
 
-Please note that we can't guarantee a reply to every email.
+### Preferred: private GitHub advisory
 
-## FAQ
-### Do you offer a bug bounty?
-No.
+1. Open the **Security** tab of this repository.
+2. Choose **Report a vulnerability**.
+3. Describe the issue privately. This creates a draft security advisory visible
+   only to the maintainers and you.
 
-### How soon can I expect a fix for a vulnerability I've reported?
-This depends on the nature of the problem. We can't provide any general ETA (nor would it be wise to provide one).
-In general, it depends on when developers have time to look into the problem, how complex the problem is to fix, and how many users it impacts.
+### Alternative: private maintainer contact
 
-When a fix for a severe vulnerability is pushed, a patch release for the target version will usually be released within 24 hours so that users can update.
+If you cannot use GitHub advisories, contact a maintainer privately using the
+contact information published in the repository profile or release notes. Do not
+send exploit details to a public channel.
+
+Please include:
+
+- the affected version or commit;
+- the Bedrock client version and protocol;
+- a detailed description of the vulnerability and its impact;
+- reproduction steps, configuration and, where possible, a proof of concept;
+- whether the issue also reproduces on an unmodified upstream PocketMine-MP build;
+- your name or handle if you want to be credited in an advisory.
+
+## Scope
+
+In scope:
+
+- server core, networking, login/authentication and resource-pack handling;
+- plugin loading, permissions and the plugin API boundary;
+- world formats, chunk serialization and NBT handling;
+- generated registries and Bedrock data integration;
+- denial of service, crash and remote code execution issues in the server.
+
+Out of scope:
+
+- vulnerabilities in third-party plugins;
+- vulnerabilities in Mojang's Bedrock Dedicated Server or game client;
+- social engineering, spam and issues that require an already-compromised host;
+- reports produced only by generic scanners without a demonstrated impact.
+
+## Disclosure and timelines
+
+- We aim to acknowledge a complete report within a few days.
+- Fix timelines depend on severity and complexity; we cannot promise a general ETA.
+- Please give us a reasonable window to investigate and ship a fix before public
+  disclosure. We will coordinate a disclosure date with you.
+- If the issue also affects upstream PocketMine-MP, we may coordinate with the
+  upstream team. Upstream is not obliged to fix inherited code, and this project
+  may ship a fix independently.
+
+## Testing rules
+
+Only test against servers and clients you own or have explicit permission to test.
+Do not use exploits against production servers, and do not access data that does
+not belong to you.
+
+## Bug bounty
+
+There is no bug bounty. Security reports are handled on a best-effort basis by
+volunteer maintainers.

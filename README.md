@@ -41,7 +41,7 @@ The project is under active development. Everything below is measured against th
 | Decorative 1.21–1.26 blocks | Bush, firefly bush, dry grass, leaf litter, wildflowers, pale moss, pale hanging moss, moss carpet, copper golem statues, etc. |
 | Block entities for new blocks | Shelves, copper chests, beehives and decorated pots implemented as tile-backed blocks; multi-shelf hotbar swapping and bee release behaviour still open |
 | Vanilla world generation | Not achieved. The built-in generator is PocketMine-MP's simplified noise generator |
-| Nether / End dimensions | Nether generator exists; End generation and vanilla-style dimension travel are not implemented |
+| Nether / End dimensions | Nether and End generators exist and portals move players between dimensions; generation and End content are simplified compared with vanilla |
 | Redstone, mob AI, vanilla survival mechanics | Basic redstone (wire, torches, levers, buttons, repeaters, comparators, lamps, observers, dispensers/droppers, pistons) implemented; sculk sensing and full vanilla parity are open |
 
 Every canonical 1.26.60 block type name and every creative inventory item is now represented, including the poplar wood set, shelves, copper chests, beehives, ice crystals/icicles, disc press and straw bed. Remaining work is behavioural rather than registry coverage, and is tracked in [ROADMAP.md](ROADMAP.md).
@@ -59,6 +59,19 @@ php build/audit/worldgen.php
 ```
 
 The block audit reports canonical block type and state coverage; the item audit compares the Bedrock creative inventory against the block and item registries. The performance audit measures registry startup and block/item (de)serialization throughput; the soak audit repeats those cycles and checks for serialization errors and memory growth; the worldgen audit generates a small chunk area in memory.
+
+### Bedrock reference data
+
+Compatibility work is checked against an official Bedrock Dedicated Server 1.26.60
+installation. Its pack data is stored in `__brarchive` containers; the unpacking
+and overlay-merging tools live in [`build/bds/`](build/bds), and the format and
+measured contents are documented in [docs/BDS-REFERENCE.md](docs/BDS-REFERENCE.md).
+
+The extracted 1.26.60 reference includes 1,892 recipes, 309 loot tables, 27
+villager trade tables, 1,300 structure templates, 218 block shapes, 139 worldgen
+features and 120 feature rules. These are reference material only: the runtime
+block and item registries stay generated from `nethergamesmc/bedrock-data`, and
+extracted Mojang assets are never committed to this repository.
 
 ### What "implemented" means here
 

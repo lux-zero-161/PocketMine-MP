@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-11-20
+Last updated: 2026-11-21
 
 This file is an honest, estimate-based snapshot. It separates **measured coverage** from
 **estimated vanilla parity**, because a server can represent every block and item while still
@@ -71,12 +71,19 @@ and all states used by the implemented blocks round-trip through the serializer.
 - `/raid`, `/summon`, `/structure`, `/jigsaw` commands.
 - Performance and soak audit scripts, plus an in-memory worldgen smoke test.
 - PHP 8.3 minimum (tested on PHP 8.4), with hot-path optimizations for sculk scans and natural spawning.
+- Reverse-engineered the BDS 1.26.60 `__brarchive` format and extracted the reference
+  packs: 9,543 files from 546 containers, yielding an effective 1.26.60 view with
+  1,892 recipes, 309 loot tables, 27 villager trade tables, 1,300 structures,
+  218 shapes, 139 worldgen features and 120 feature rules. Tooling is in
+  `build/bds/`; details in [BDS-REFERENCE.md](BDS-REFERENCE.md).
 
 ## Known gaps / highest-value remaining work
 
 1. Native Bedrock villager trade window (`UpdateTradePacket` + trade inventory requests).
+   The full 1.26.60 trade tables are extracted and ready to drive an implementation.
 2. Full vanilla raid mechanics, village POIs, villager professions/workstations and restocking.
 3. Full vanilla world generation: structures, aquifers, biome variation, strongholds and End cities.
+   The official feature/feature-rule JSON and 1,300 structure templates are available as reference.
 4. Native grindstone container window and remaining container/transaction edge cases.
 5. Long-running multi-player soak/load tests and profiling on real hardware.
 6. Remaining End content (dragon AI parity, gateways with exact coordinate rules, shulkers/end cities).
@@ -99,6 +106,8 @@ vendor/bin/phpstan analyse --no-progress --memory-limit=2G
 
 - Performance details and benchmarks: [PERFORMANCE.md](PERFORMANCE.md).
 - Vendor data is Bedrock 1.26.60 / protocol 2225 and is authoritative for integration.
-- The reference folder `bedrockServer/` is Bedrock 1.26.30 and is only used for comparisons.
+- The reference BDS installation and its unpacked assets are Bedrock 1.26.60
+  (see [BDS-REFERENCE.md](BDS-REFERENCE.md)); the older `tool/BedrockData`
+  snapshot is 1.26.30 and is kept for comparison only.
 - Estimates are deliberately conservative. "100% content coverage" does **not** mean
   "100% vanilla gameplay parity".
