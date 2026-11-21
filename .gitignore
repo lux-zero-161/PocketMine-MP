@@ -62,3 +62,7 @@ Documentation/*
 
 # install-local-protocol.sh
 /composer-local-protocol.*
+
+# Python tooling caches
+__pycache__/
+*.pyc
